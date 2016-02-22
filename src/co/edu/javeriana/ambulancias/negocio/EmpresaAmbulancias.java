@@ -4,7 +4,7 @@
 package co.edu.javeriana.ambulancias.negocio;
 
 /**
- * @author Pablo Ariza y Alejandro Castro 
+ * @author Pablo Ariza y Alejandro Castro
  *
  */
 public class EmpresaAmbulancias {
@@ -12,8 +12,17 @@ public class EmpresaAmbulancias {
 	*@attribute nombre: Indica el nombre de la empresa de ambulancias
 	*/
 	private String nombre;
+	/**
+	*@attribute servicios: Indica la LISTA de servicios que se contienen en el sistema
+	*/
 	private Servicio[] servicios;
+	/**
+	*@attribute ambulancias: Indica la LISTA de ambulancias que se contienen en el sistema
+	*/
 	private Ambulancia[] ambulancias;
+	/**
+	*@attribute lasIPS: Indica la LISTA de IPS que se contienen en el sistema
+	*/
 	private IPS[] lasIPS;
 	/**
 	*@param
