@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package co.edu.javeriana.ambulancias.presentacion;
 
@@ -8,13 +8,13 @@ import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
 /**
- * @author Pablo
+ * @author Pablo Ariza y Alejandro Castro
  *
  */
 public class Utils {
 	/**
 	 * @param fecha Estilo YYYY-MM-DD
-	 * @return fechaG Instancia de GregorianCalendar 
+	 * @return fechaG Instancia de GregorianCalendar
 	 */
 	public static GregorianCalendar convertirStringFecha (String fecha)
 	{
@@ -30,7 +30,7 @@ public class Utils {
 		return fechaG;
 	}
 	/**
-	 * @param fecha de tipo GregorianCalendar 
+	 * @param fecha de tipo GregorianCalendar
 	 * @return String "AAAA-MM-DD"
 	 */
 	public static String convertirFechaString (GregorianCalendar fecha)

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package co.edu.javeriana.ambulancias.presentacion;
 
@@ -9,8 +9,8 @@ import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
 /**
- * @author Pablo
- * 
+ * @author Pablo Ariza y Alejandro Castro
+ *
  */
 public class TestAmbulacia {
 
@@ -34,7 +34,7 @@ public class TestAmbulacia {
 					empresaAmbulancias = ManejoArchivos.cargarLasIPS(empresaAmbulancias);
 					break;
 				case 2:
-					
+
 					break;
 				case 3:
 
@@ -50,14 +50,14 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * Único punto del sistema donde se pueden solicitar e imprimir información.
+	 * ï¿½nico punto del sistema donde se pueden solicitar e imprimir informaciï¿½n.
 	 * Declara e instancia una variable de tipo EmpresaAmbulancias y maneja un
-	 * menú para ofrecer al usuario los servicios del sistema.
+	 * menï¿½ para ofrecer al usuario los servicios del sistema.
 	 */
-	// Método auxiliar para cada opción del menú.
+	// Mï¿½todo auxiliar para cada opciï¿½n del menï¿½.
 
 	/**
-	 * Menú de las funcionalidades del sistema
+	 * Menï¿½ de las funcionalidades del sistema
 	 */
 	public static int menuSistema() {
 		int opcion;

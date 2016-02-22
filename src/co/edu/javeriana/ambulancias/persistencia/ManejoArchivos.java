@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package co.edu.javeriana.ambulancias.persistencia;
 
@@ -11,8 +11,8 @@ import java.util.StringTokenizer;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 
 /**
- * @author Pablo
- * 
+ * @author Pablo Ariza y Alejandro Castro
+ *
  */
 public class ManejoArchivos {
 	public static EmpresaAmbulancias cargarLasIPS(
