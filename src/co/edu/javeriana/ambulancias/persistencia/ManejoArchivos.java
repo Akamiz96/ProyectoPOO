@@ -12,7 +12,7 @@ import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
- *
+ * 
  */
 public class ManejoArchivos {
 	public static EmpresaAmbulancias cargarLasIPS(
@@ -87,7 +87,8 @@ public class ManejoArchivos {
 			int indice = 0;
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
-				linea = procesarAmbulancias(empresaAmbulancia, input, linea, indice);
+				linea = procesarAmbulancias(empresaAmbulancia, input, linea,
+						indice);
 				indice++;
 			} // fin de todas las IPS
 		} catch (Exception e) {
@@ -98,15 +99,14 @@ public class ManejoArchivos {
 		}
 	}
 
-	private static String procesarAmbulancias(EmpresaAmbulancias empresaAmbulancia,
-			Scanner input, String linea, int indice) {
+	private static String procesarAmbulancias(
+			EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea,
+			int indice) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
-		empresaAmbulancia.agregarAmbulancia(tokens.nextToken().trim(), tokens
-				.nextToken().trim(), tokens.nextToken().trim(), Integer
-				.parseInt(tokens.nextToken().trim()), Integer.parseInt(tokens
-				.nextToken().trim()), Integer.parseInt(tokens.nextToken()
-				.trim()), indice);
+		empresaAmbulancia.agregarAmbulancia(Integer.parseInt(tokens.nextToken()
+				.trim()), tokens.nextToken().trim(), tokens.nextToken().trim(),
+				indice);
 		linea = input.nextLine();
 		return linea;
 	}

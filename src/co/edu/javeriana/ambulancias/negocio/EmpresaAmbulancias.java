@@ -40,13 +40,14 @@ public class EmpresaAmbulancias {
 	/**
 	*@param
 	*/
-	public void agregarAmbulancia (int codigo, String placa, String tipoDotacion) {
+	public void agregarAmbulancia (int codigo, String placa, String tipoDotacion, int indice) {
 		Ambulancia ambulancia = new Ambulancia(codigo, placa, tipoDotacion);
+		ambulancias[indice] = ambulancia;
 	}
 	/**
 	*@param
 	*/
-	public boolean registrarPosicionAmbulancia(int, date, int, int){
+	public boolean registrarPosicionAmbulancia(int date, int , int ){
 
 	}
 	/**

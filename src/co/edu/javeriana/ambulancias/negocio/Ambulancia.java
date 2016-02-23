@@ -35,4 +35,15 @@ public class Ambulancia {
 	*@attribute posicionCarrera: Representa la carrera en la cual se encuentra la Ambulancia la �ltima vez que registr� su posici�n
 	*/
 	private int posicionCarrera;
+	/**
+	 * @param codigo
+	 * @param placa
+	 * @param tipoDotacion
+	 */
+	public Ambulancia(int codigo, String placa, String tipoDotacion) {
+		this.placa = placa;
+		this.tipoDotacion = tipoDotacion;
+		this.codigo = codigo;
+	}
+
 }
