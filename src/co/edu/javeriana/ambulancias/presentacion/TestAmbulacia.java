@@ -10,8 +10,12 @@ import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
- *
  */
+ /**
+	* �nico punto del sistema donde se pueden solicitar e imprimir informaci�n.
+	* Declara e instancia una variable de tipo EmpresaAmbulancias y maneja un
+	* men� para ofrecer al usuario los servicios del sistema.
+	*/
 public class TestAmbulacia {
 
 	/**
@@ -58,12 +62,6 @@ public class TestAmbulacia {
 
 		input.close();
 	}
-
-	/**
-	 * �nico punto del sistema donde se pueden solicitar e imprimir informaci�n.
-	 * Declara e instancia una variable de tipo EmpresaAmbulancias y maneja un
-	 * men� para ofrecer al usuario los servicios del sistema.
-	 */
 	// M�todo auxiliar para cada opci�n del men�.
 
 	/**
