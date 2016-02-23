@@ -17,11 +17,14 @@ public class IPS {
 	*/
 	private String tipoAtencion;
 	private Direccion direccion;
+	private Servicio servicios;
 	/**
-	*@param
-	*@param
-	*@param :v
-	*@param
+	*@param nombre indica el nombre IPS
+	*@param tipoAtencion
+	*@param tipoDireccion
+	*@param calle
+	*@param carrera
+	*@param numero
 	*/
 	public IPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero) {
 		this.nombre = nombre;

@@ -39,6 +39,7 @@ public class Servicio {
 	*/
 	private String estado;
 	private Direccion direccion;
+	private IPS ips;
 	/**
 	*@param
 	*/

@@ -31,14 +31,17 @@ public class EmpresaAmbulancias {
 		IPS ips = new IPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
 		lasIPS[indice] = ips;
 	}
-	public void arregloIPS(int numeroIPS){
+	public void arregloIPS(int numIPS){
 		lasIPS = new IPS[numeroIPS];
+	}
+	public void arregloAmbulancia(int numeroAmbulancia){
+		ambulancias = new Ambulancia[numAmbulancia];
 	}
 	/**
 	*@param
 	*/
-	public void agregarAmbulancia (int, String, String) {
-
+	public void agregarAmbulancia (int codigo, String placa, String tipoDotacion) {
+		Ambulancia ambulancia = new Ambulancia(codigo, placa, tipoDotacion);
 	}
 	/**
 	*@param
