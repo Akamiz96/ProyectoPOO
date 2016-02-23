@@ -32,9 +32,9 @@ public class EmpresaAmbulancias {
 		lasIPS[indice] = ips;
 	}
 	public void arregloIPS(int numIPS){
-		lasIPS = new IPS[numeroIPS];
+		lasIPS = new IPS[numIPS];
 	}
-	public void arregloAmbulancia(int numeroAmbulancia){
+	public void arregloAmbulancia(int numAmbulancia){
 		ambulancias = new Ambulancia[numAmbulancia];
 	}
 	/**
