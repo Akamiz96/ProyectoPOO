@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 /**
  * @author Pablo Ariza y Alejandro Castro
  *
+ * 
  */
 public class Ambulancia {
 	/**
