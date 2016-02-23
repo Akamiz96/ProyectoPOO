@@ -99,10 +99,14 @@ public class EmpresaAmbulancias {
 
 	}
 	/**
-	*@param
+	*@param calleInicio: Indica el numero de la calle donde se inicia el recorrido
+	*@param carreraInicio: Indica el numero de la carrera donde se inicia el recorrido
+	*@param calleFin: Indica el numero de la calle donde se termina el recorrido
+	*@param carreraFin: Indica el numero de la carrera donde se termina el recorrido
 	*/
-	private long calcularDistancia(int, int, int, int){
-
+	private long calcularDistancia(int calleInicio, int carreraInicio, int calleFin, int carreraFin){
+			long distancia = ((calleInicio-calleFin) + (carreraInicio-carreraFin));
+			return distancia < 0 ? distancia*-1 : distancia;
 	}
 
 }
