@@ -4,7 +4,7 @@
 package co.edu.javeriana.ambulancias.negocio;
 
 /**
- * @author Pablo Ariza y Alejandro Castro 
+ * @author Pablo Ariza y Alejandro Castro
  *
  */
 public class IPS {
@@ -20,7 +20,7 @@ public class IPS {
 	/**
 	*@param
 	*@param
-	*@param
+	*@param :v
 	*@param
 	*/
 	public IPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero) {
