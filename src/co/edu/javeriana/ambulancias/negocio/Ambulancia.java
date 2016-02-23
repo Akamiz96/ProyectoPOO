@@ -45,5 +45,77 @@ public class Ambulancia {
 		this.tipoDotacion = tipoDotacion;
 		this.codigo = codigo;
 	}
-
+	/**
+	 * @return the codigo
+	 */
+	public static int getCodigo() {
+		return codigo;
+	}
+	/**
+	 * @param codigo the codigo to set
+	 */
+	public static void setCodigo(int codigo) {
+		Ambulancia.codigo = codigo;
+	}
+	/**
+	 * @return the placa
+	 */
+	public String getPlaca() {
+		return placa;
+	}
+	/**
+	 * @param placa the placa to set
+	 */
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+	/**
+	 * @return the tipoDotacion
+	 */
+	public String getTipoDotacion() {
+		return tipoDotacion;
+	}
+	/**
+	 * @param tipoDotacion the tipoDotacion to set
+	 */
+	public void setTipoDotacion(String tipoDotacion) {
+		this.tipoDotacion = tipoDotacion;
+	}
+	/**
+	 * @return the horaPosicion
+	 */
+	public GregorianCalendar getHoraPosicion() {
+		return horaPosicion;
+	}
+	/**
+	 * @param horaPosicion the horaPosicion to set
+	 */
+	public void setHoraPosicion(GregorianCalendar horaPosicion) {
+		this.horaPosicion = horaPosicion;
+	}
+	/**
+	 * @return the posicionCalle
+	 */
+	public int getPosicionCalle() {
+		return posicionCalle;
+	}
+	/**
+	 * @param posicionCalle the posicionCalle to set
+	 */
+	public void setPosicionCalle(int posicionCalle) {
+		this.posicionCalle = posicionCalle;
+	}
+	/**
+	 * @return the posicionCarrera
+	 */
+	public int getPosicionCarrera() {
+		return posicionCarrera;
+	}
+	/**
+	 * @param posicionCarrera the posicionCarrera to set
+	 */
+	public void setPosicionCarrera(int posicionCarrera) {
+		this.posicionCarrera = posicionCarrera;
+	}
+	
 }
