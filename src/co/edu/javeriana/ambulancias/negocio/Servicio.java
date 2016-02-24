@@ -50,7 +50,7 @@ public class Servicio implements Serializable{
 	/**
 	*@param
 	*/
-	public void asignarDireccion(String, int, int, int){
-
+	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero){
+		this.direccion = new Direccion( tipoDireccion, calle, carrera, numero);
 	}
 }
