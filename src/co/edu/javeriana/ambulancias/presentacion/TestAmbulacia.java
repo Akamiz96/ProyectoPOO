@@ -65,7 +65,7 @@ public class TestAmbulacia {
 	// M�todo auxiliar para cada opci�n del men�.
 
 	/**
-	 * Men� de las funcionalidades del sistema
+	 * Men� de las funcionalidades del sistema y captura de la opcion deseada
 	 */
 	public static int menuSistema() {
 		int opcion;
