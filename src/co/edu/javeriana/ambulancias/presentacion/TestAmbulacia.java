@@ -29,7 +29,7 @@ public class TestAmbulacia {
 		System.out.println("Escriba el nombre del archivo: ");
 		do {
 			opcion = menuSistema();
-			if (opcion > 5)
+			if (opcion > 10)
 				System.out
 						.println("Opcion invalida. Ingrese una opcion valida.");
 			else {

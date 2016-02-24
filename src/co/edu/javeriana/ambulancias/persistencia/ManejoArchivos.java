@@ -12,9 +12,10 @@ import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
- * 
+ *
  */
 public class ManejoArchivos {
+	//Porque se retorna EmpresaAmbulancias?????
 	public static EmpresaAmbulancias cargarLasIPS(
 			EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
