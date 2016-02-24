@@ -3,6 +3,8 @@
  */
 package co.edu.javeriana.ambulancias.negocio;
 
+import java.io.Serializable;
+
 /**
  * @author Pablo Ariza y Alejandro Castro
  *

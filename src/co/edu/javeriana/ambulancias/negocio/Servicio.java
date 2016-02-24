@@ -3,6 +3,7 @@
  */
 package co.edu.javeriana.ambulancias.negocio;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 /**
