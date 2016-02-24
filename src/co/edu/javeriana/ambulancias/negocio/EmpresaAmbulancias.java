@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
-public class EmpresaAmbulancias {
+public class EmpresaAmbulancias implements Serializable{
 	/**
 	*@attribute nombre: Indica el nombre de la empresa de ambulancias
 	*/

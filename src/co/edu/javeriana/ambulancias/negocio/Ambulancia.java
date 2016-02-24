@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
  *
  *
  */
-public class Ambulancia {
+public class Ambulancia implements Serializable {
 	/**
 	*@attribute codigo: Representa el c�digo �nico dado a la ambulancia dentro del sistema
 	*/
@@ -117,5 +117,5 @@ public class Ambulancia {
 	public void setPosicionCarrera(int posicionCarrera) {
 		this.posicionCarrera = posicionCarrera;
 	}
-	
+
 }

@@ -7,7 +7,7 @@ package co.edu.javeriana.ambulancias.negocio;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
-public class Direccion {
+public class Direccion implements Serializable{
 	/**
 	* Se considera una ciudad rectangular con calles y carreras numeradas desde 1.
 	* No se consideran diagonales, ni transversales, ni indicaciones adicionales como Este, Sur, etc.

@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
-public class Servicio {
+public class Servicio implements Serializable{
 	/**
 	*@attribute consecutivo: Representa el consecutivo de los servicios dentro del sistema
 	*/
@@ -38,7 +38,13 @@ public class Servicio {
 	*@attribute estado: Indica si el servicio esta: No_ASIGNADO, ASIGNADO o FINALIZADO
 	*/
 	private String estado;
+	/**
+	*@attribute direccion: Instancia de la clase Direccion que indica la direccion del servicio
+	*/
 	private Direccion direccion;
+	/**
+	*@attribute ips: Instancia de la clase IPS que indica la ips asignada al servicio
+	*/
 	private IPS ips;
 	/**
 	*@param

@@ -7,7 +7,7 @@ package co.edu.javeriana.ambulancias.negocio;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
-public class IPS {
+public class IPS implements Serializable{
 	/**
 	*@attribute nombre: Representa el nombre de la IPS
 	*/
@@ -16,6 +16,9 @@ public class IPS {
 	*@attribute tipoAtencion: Texto que representa el tipo de atenci�n especializado de la entidad
 	*/
 	private String tipoAtencion;
+	/**
+	*@attribute direccion: Instancia de la clase Direccion que indica la direccion de la IPS
+	*/
 	private Direccion direccion;
 	private Servicio servicios;
 	/**
