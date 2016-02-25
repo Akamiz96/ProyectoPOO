@@ -1,0 +1,4 @@
+---------------------------PREGUNTAS-------------------------------
+
+-> como se pasa por referencia?
+-> Si el codigo de Ambulancia es unico para cada ambulancia?
