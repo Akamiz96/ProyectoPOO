@@ -14,10 +14,10 @@ import java.util.StringTokenizer;
 public class Utils {
 	/**
 	 * Convierte una fecha String en una instancia de la clase GregorianCalendar
-	 * 
+	 *
 	 * @param fecha
 	 *            Estilo YYYY-MM-DD
-	 * @return fechaG Instancia de GregorianCalendar
+	 * @return fecha Instancia de GregorianCalendar
 	 * @see GregorianCalendar
 	 */
 	public static GregorianCalendar convertirStringFecha(String fecha) {
@@ -35,10 +35,11 @@ public class Utils {
 
 	/**
 	 * Convierte una fecha GregorianCalendar en un String
-	 * 
+	 *
 	 * @param fecha
 	 *            de tipo GregorianCalendar
 	 * @return String "AAAA-MM-DD"
+	 * @see GregorianCalendar
 	 */
 	public static String convertirFechaString(GregorianCalendar fecha) {
 		int dia = fecha.get(Calendar.DATE);
