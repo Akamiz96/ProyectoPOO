@@ -55,7 +55,10 @@ public class Servicio implements Serializable {
 	 *            servicio
 	 */
 	private IPS ips;
-
+	/**
+	 * @attribute ambulancia
+	 */
+	private Ambulancia ambulancia; 
 	/**
 	* @param codigo:
 	* @param paciente:
@@ -76,6 +79,7 @@ public class Servicio implements Serializable {
 		this.horaSolicitud = new GregorianCalendar();
 		this.asignarDireccion(tipoDireccion, calle, carrera, numero);
 		this.ips = null;
+		this.ambulancia = null
 	}
 
 	/**
