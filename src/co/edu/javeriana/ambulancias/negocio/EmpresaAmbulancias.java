@@ -32,13 +32,13 @@ public class EmpresaAmbulancias implements Serializable {
 	private IPS[] lasIPS;
 
 	/**
-	*
+	*@return the nombre
 	*/
 	public String getNombre(){
 		return this.nombre;
 	}
 	/**
-	*
+	*@param nombre the nombre to set
 	*/
 	public void setNombre(String nombre){
 		this.nombre = nombre;
@@ -123,62 +123,79 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	*@param
+	*@param nombre: Indica el nombre de la IPS
+	*@param tipoAtencion: Indica el tipo de especializacion de la IPS
+	*@param tipoDireccion: Indica si se encuentra sobre la carrera o sobre la calle
+	* @param calle: Indica la calle en la cual se encuentra
+	* @param carrera: Indica la carrera en la cual se encuentra
+	* @param numero: Indica el bloque en la cuadra donde se encuentra
 	*/
-	public int registrarServicio(String, String, String, int, int, int){
+	public int registrarServicio(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int calle){
 
 	}
 
 	/**
-	*@param
+	*@param codigo: Representa el codigo unico dado al servicio dentro del sistema
+	*@return String:
 	*/
-	public String asignarServicio(int){
+	public String asignarServicio(int codigo){
 
 	}
 
 	/**
-	*@param
+	*@param codigo: Representa el codigo unico dado al servicio dentro del sistema
+	*@return Boolean: Retorna si el servicio fue finalizado con exito
 	*/
-	public boolean finalizarServicio(int){
+	public boolean finalizarServicio(int codigo){
 
 	}
 
 	/**
-	*@param
+	*@param codigo: Representa el codigo unico dado a la ambulancia dentro del sistema
+	*@return Ambulancia: Retorna la ambulancia a la cual corresponde el codigo dado
 	*/
-	private Ambulancia buscarAmbulancia(int){
+	private Ambulancia buscarAmbulancia(int codigo){
 
 	}
 
 	/**
-	*@param
+	*@param codigo: Representa el codigo unico dado al servicio dentro del sistema
+	*@return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	*/
-	private Servicio buscarServicio(int){
+	private Servicio buscarServicio(int codigo){
 
 	}
 
 	/**
-	*@param
+	*@param servicio: Indica el servicio al cual se le realizara una subLISTA de disponibilidad
+	*@return List<Ambulancia>: Se retorna la subLISTA de disponibilidad
 	*/
-	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio){
+	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio){
 
 	}
 
 	/**
-	*@param
+	*@param listaAmbulancia: Indica la LISTA de ambulancias
+	*@param calle: Indica la calle sobre la cual se calculara la cercania
+	*@param carrera: Indica la carrera sobre la cual se calculara la cercania
+	*@return Ambulancia: Se retorna la instancia de la Ambulancia mas cercana
 	*/
-	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia>){
+	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia> listaAmbulancia, int calle,int carrera){
 
 	}
 
 	/**
-	*@param
+	*@param calle: Indica la calle sobre la cual se calculara la cercania
+	*@param carrera: Indica la carrera sobre la cual se calculara la cercania
+	*@return IPS: Retorna la IPS mas cercana a la calle y a la carrera dadas
 	*/
-	private IPS calcularIPSMasCercano(int, int){
+	private IPS calcularIPSMasCercano(int calle, int carrera){
 
 	}
 
 	/**
+	 *Calculo a partir de la geometria de Manhattan; en donde la distancia mas
+	 *cercana entre dos puntos no es la linea recta sino la distancia en cuadrados
 	 * @param calleInicio:
 	 *            Indica el numero de la calle donde se inicia el recorrido
 	 * @param carreraInicio:
@@ -187,6 +204,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica el numero de la calle donde se termina el recorrido
 	 * @param carreraFin:
 	 *            Indica el numero de la carrera donde se termina el recorrido
+	 *@return long: Retorna la distancia a partir de los parametros dados
 	 */
 	private long calcularDistancia(int calleInicio, int carreraInicio, int calleFin, int carreraFin) {
 		long distancia = ((calleInicio - calleFin) + (carreraInicio - carreraFin));

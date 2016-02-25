@@ -15,7 +15,7 @@ public class IPS implements Serializable {
 	 */
 	private String nombre;
 	/**
-	 * @attribute tipoAtencion: Texto que representa el tipo de atenci�n
+	 * @attribute tipoAtencion: Texto que representa el tipo de atencion
 	 *            especializado de la entidad
 	 */
 	private String tipoAtencion;

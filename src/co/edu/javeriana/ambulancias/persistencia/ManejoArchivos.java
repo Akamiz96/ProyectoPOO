@@ -48,7 +48,7 @@ public class ManejoArchivos {
 	}
 
 	/**
-	 * @param inFile
+	 * @param inFile: Indica el archivo de donde leer
 	 * @throws FileNotFoundException
 	 */
 	private static int tamArreglo(File inFile) throws FileNotFoundException {
