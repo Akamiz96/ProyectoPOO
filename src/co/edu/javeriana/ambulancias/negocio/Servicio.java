@@ -16,7 +16,7 @@ public class Servicio implements Serializable{
 	*/
 	private static long consecutivo;
 	/**
-	*@attribute codigo: Representa el c�digo �nico dado al servicio dentro del sistema
+	*@attribute codigo: Representa el codigo unico dado al servicio dentro del sistema
 	*/
 	private static long codigo;
 	/**
@@ -28,7 +28,7 @@ public class Servicio implements Serializable{
 	*/
 	private String paciente;
 	/**
-	*@attribute telefono: Representa el telefono del cual se realiz� el pedido de dicho servicio
+	*@attribute telefono: Representa el telefono del cual se realizo el pedido de dicho servicio
 	*/
 	private long telefono;
 	/**
