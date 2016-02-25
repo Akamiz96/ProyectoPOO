@@ -31,10 +31,10 @@ public class Direccion implements Serializable{
 	*/
 	private int numero;
 	/**
-	 * @param tipoDireccion
-	 * @param calle
-	 * @param carrera
-	 * @param numero
+	 * @param tipoDireccion: Indica si se encuentra sobre la carrera o sobre la calle
+	 * @param calle: Indica la calle en la cual se encuentra
+	 * @param carrera: Indica la carrera en la cual se encuentra
+	 * @param numero: Indica el bloque en la cuadra donde se encuentra
 	 */
 	public Direccion(String tipoDireccion, int calle, int carrera, int numero) {
 		super();

@@ -48,7 +48,10 @@ public class Servicio implements Serializable{
 	*/
 	private IPS ips;
 	/**
-	*@param
+	*@param tipoDireccion: Indica si la direccion es sobre la carrera o sobre la calle
+	*@param calle: Indica el numero de la calle de la direccion
+	*@param carrera: Indica el numero de la carrera de la direccion
+	*@param numero: Indica el bloque en la cuadra donde se encuentra
 	*/
 	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero){
 		this.direccion = new Direccion( tipoDireccion, calle, carrera, numero);
