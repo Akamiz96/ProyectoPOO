@@ -17,8 +17,8 @@ public class Servicio implements Serializable {
 	 */
 	private static long consecutivo;
 	/**
-	 * @attribute codigo: Representa el codigo unico dado al servicio dentro
-	 *            del sistema
+	 * @attribute codigo: Representa el codigo unico dado al servicio dentro del
+	 *            sistema
 	 */
 	private long codigo;
 	/**
@@ -32,8 +32,9 @@ public class Servicio implements Serializable {
 	 */
 	private String paciente;
 	/**
-	*@attribute telefono: Representa el telefono del cual se realizo el pedido de dicho servicio
-	*/
+	 * @attribute telefono: Representa el telefono del cual se realizo el pedido
+	 *            de dicho servicio
+	 */
 	private long telefono;
 	/**
 	 * @attribute tipoServicio: Representa el tipo de servicio requerido
@@ -58,20 +59,22 @@ public class Servicio implements Serializable {
 	/**
 	 * @attribute ambulancia
 	 */
-	private Ambulancia ambulancia; 
+	private Ambulancia ambulancia;
+
 	/**
-	* @param codigo:
-	* @param paciente:
-	* @param telefono:
-	* @param tipoServicio:
-	* @param tipoDireccion:
-	* @param calle:
-	* @param carrera:
-	* @param numero:
-	*/
-	public Servicio(long codigo, String paciente, long telefono, String tipoServicio, String tipoDireccion, int calle, int carrera, int numero) {
+	 * @param codigo:
+	 * @param paciente:
+	 * @param telefono:
+	 * @param tipoServicio:
+	 * @param tipoDireccion:
+	 * @param calle:
+	 * @param carrera:
+	 * @param numero:
+	 */
+	public Servicio(String paciente, long telefono, String tipoServicio, String tipoDireccion, int calle, int carrera,
+			int numero) {
 		super();
-		this.codigo = codigo;
+		this.codigo = Servicio.consecutivo++;
 		this.paciente = paciente;
 		this.telefono = telefono;
 		this.tipoServicio = tipoServicio;
@@ -79,7 +82,7 @@ public class Servicio implements Serializable {
 		this.horaSolicitud = new GregorianCalendar();
 		this.asignarDireccion(tipoDireccion, calle, carrera, numero);
 		this.ips = null;
-		this.ambulancia = null
+		this.ambulancia = null;
 	}
 
 	/**
@@ -200,12 +203,41 @@ public class Servicio implements Serializable {
 	public long getCodigo() {
 		return codigo;
 	}
+
 	/**
-	*@param codigo the codigo to set
-	*/
-	public void setCodigo(long codigo){
+	 * @param codigo
+	 *            the codigo to set
+	 */
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
+
+	/**
+	 * @return the ambulancia
+	 */
+	public Ambulancia getAmbulancia() {
+		return ambulancia;
+	}
+
+	/**
+	 * @param ambulancia
+	 *            the ambulancia to set
+	 */
+	public void setAmbulancia(Ambulancia ambulancia) {
+		this.ambulancia = ambulancia;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%s, %s, %s, %s, %s, %s, %s", this.codigo, this.horaSolicitud, this.paciente,
+				this.tipoServicio, this.telefono, this.direccion.toString(), this.estado);
+	}
+
 	/**
 	 * @param tipoDireccion:
 	 *            Indica si la direccion es sobre la carrera o sobre la calle
