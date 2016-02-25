@@ -16,9 +16,8 @@ import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
  *
  */
 public class ManejoArchivos {
-	//Porque se retorna EmpresaAmbulancias?????
-	public static EmpresaAmbulancias cargarLasIPS(
-			EmpresaAmbulancias empresaAmbulancia) {
+	// Porque se retorna EmpresaAmbulancias?????
+	public static EmpresaAmbulancias cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
 		String nombreArchivo = input.next();
 		File inFile = new File("./" + nombreArchivo + ".txt");
@@ -36,14 +35,11 @@ public class ManejoArchivos {
 				linea = procesarIPS(empresaAmbulancia, input, linea, indice);
 				indice++;
 			} // fin de todas las IPS
-		}
-			catch (FileNotFoundException e){
-				System.out.println("Error en la ruta del archivo.\n Error: e.message()");
-		}
-		catch (IOException e){
+		} catch (FileNotFoundException e) {
+			System.out.println("Error en la ruta del archivo.\n Error: e.message()");
+		} catch (IOException e) {
 			System.out.println("Error leyendo del archivo.\n Error: e.message()");
-	}
-		 catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
 			input.close();
@@ -67,21 +63,17 @@ public class ManejoArchivos {
 		return numIPS;
 	}
 
-	private static String procesarIPS(EmpresaAmbulancias empresaAmbulancia,
-			Scanner input, String linea, int indice) {
+	private static String procesarIPS(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea, int indice) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
-		empresaAmbulancia.agregarIPS(tokens.nextToken().trim(), tokens
-				.nextToken().trim(), tokens.nextToken().trim(), Integer
-				.parseInt(tokens.nextToken().trim()), Integer.parseInt(tokens
-				.nextToken().trim()), Integer.parseInt(tokens.nextToken()
-				.trim()), indice);
+		empresaAmbulancia.agregarIPS(tokens.nextToken().trim(), tokens.nextToken().trim(), tokens.nextToken().trim(),
+				Integer.parseInt(tokens.nextToken().trim()), Integer.parseInt(tokens.nextToken().trim()),
+				Integer.parseInt(tokens.nextToken().trim()), indice);
 		linea = input.nextLine();
 		return linea;
 	}
 
-	public static EmpresaAmbulancias cargarLasAmbulancias(
-			EmpresaAmbulancias empresaAmbulancia) {
+	public static EmpresaAmbulancias cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
 		String nombreArchivo = input.next();
 		File inFile = new File("./" + nombreArchivo + ".txt");
@@ -96,32 +88,28 @@ public class ManejoArchivos {
 			int indice = 0;
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
-				linea = procesarAmbulancias(empresaAmbulancia, input, linea,
-						indice);
+				linea = procesarAmbulancias(empresaAmbulancia, input, linea, indice);
 				indice++;
-			} // fin de todas las IPS
-			catch (FileNotFoundException e){
-				System.out.println("Error en la ruta del archivo.\n Error: e.message()");
 			}
-			catch (IOException e){
-					System.out.println("Error leyendo del archivo.\n Error: e.message()");
-			}
-			} catch (Exception e) {
-				System.out.println("excepcion inesperada:" + e.getMessage());
-			} finally {
-				input.close();
+		} // fin de todas las IPS
+		catch (FileNotFoundException e) {
+			System.out.println("Error en la ruta del archivo.\n Error: e.message()");
+		} catch (IOException e) {
+			System.out.println("Error leyendo del archivo.\n Error: e.message()");
+		} catch (Exception e) {
+			System.out.println("excepcion inesperada:" + e.getMessage());
+		} finally {
+			input.close();
 			return empresaAmbulancia;
 		}
 	}
 
-	private static String procesarAmbulancias(
-			EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea,
+	private static String procesarAmbulancias(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea,
 			int indice) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
-		empresaAmbulancia.agregarAmbulancia(Integer.parseInt(tokens.nextToken()
-				.trim()), tokens.nextToken().trim(), tokens.nextToken().trim(),
-				indice);
+		empresaAmbulancia.agregarAmbulancia(Integer.parseInt(tokens.nextToken().trim()), tokens.nextToken().trim(),
+				tokens.nextToken().trim(), indice);
 		linea = input.nextLine();
 		return linea;
 	}
