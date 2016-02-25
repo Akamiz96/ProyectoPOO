@@ -57,6 +57,28 @@ public class Servicio implements Serializable {
 	private IPS ips;
 
 	/**
+	* @param codigo:
+	* @param paciente:
+	* @param telefono:
+	* @param tipoServicio:
+	* @param tipoDireccion:
+	* @param calle:
+	* @param carrera:
+	* @param numero:
+	*/
+	public Servicio(long codigo, String paciente, long telefono, String tipoServicio, String tipoDireccion, int calle, int carrera, int numero) {
+		super();
+		this.codigo = codigo;
+		this.paciente = paciente;
+		this.telefono = telefono;
+		this.tipoServicio = tipoServicio;
+		this.estado = "NO_ASIGNADO";
+		this.horaSolicitud = new GregorianCalendar();
+		this.asignarDireccion(tipoDireccion, calle, carrera, numero);
+		this.ips = null;
+	}
+
+	/**
 	 * @return the horaSolicitud
 	 */
 	public GregorianCalendar getHoraSolicitud() {
