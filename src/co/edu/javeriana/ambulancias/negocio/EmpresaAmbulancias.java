@@ -4,6 +4,7 @@
 package co.edu.javeriana.ambulancias.negocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -20,16 +21,27 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @attribute servicios: Indica la LISTA de servicios que se contienen en el
 	 *            sistema
 	 */
-	private Servicio[] servicios;
+	private List<Servicio> servicios;
 	/**
 	 * @attribute ambulancias: Indica la LISTA de ambulancias que se contienen
 	 *            en el sistema
 	 */
-	private Ambulancia[] ambulancias;
+	private List<Ambulancia> ambulancias;
 	/**
 	 * @attribute lasIPS: Indica la LISTA de IPS que se contienen en el sistema
 	 */
-	private IPS[] lasIPS;
+	private List<IPS> lasIPS;
+
+	/**
+	 * @param nombre
+	 */
+	public EmpresaAmbulancias(String nombre) {
+		super();
+		this.nombre = nombre;
+		this.servicios = new ArrayList<Servicio>();
+		this.ambulancias = new ArrayList<Ambulancia>();
+		this.lasIPS = new ArrayList<IPS>();
+	}
 
 	/**
 	 * @return the nombre
@@ -44,6 +56,51 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the servicios
+	 */
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+
+	/**
+	 * @param servicios
+	 *            the servicios to set
+	 */
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+
+	/**
+	 * @return the ambulancias
+	 */
+	public List<Ambulancia> getAmbulancias() {
+		return ambulancias;
+	}
+
+	/**
+	 * @param ambulancias
+	 *            the ambulancias to set
+	 */
+	public void setAmbulancias(List<Ambulancia> ambulancias) {
+		this.ambulancias = ambulancias;
+	}
+
+	/**
+	 * @return the lasIPS
+	 */
+	public List<IPS> getLasIPS() {
+		return lasIPS;
+	}
+
+	/**
+	 * @param lasIPS
+	 *            the lasIPS to set
+	 */
+	public void setLasIPS(List<IPS> lasIPS) {
+		this.lasIPS = lasIPS;
 	}
 
 	/**
@@ -64,26 +121,10 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica la posicion de la nueva IPS en el arreglo de
 	 *            empresaAmbulancia
 	 */
-	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero,
-			int indice) {
+	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
+			int numero) {
 		IPS ips = new IPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
-		lasIPS[indice] = ips;
-	}
-
-	/**
-	 * @param numIPS:
-	 *            Indica el tamaño del arreglo "lasIPS"
-	 */
-	public void arregloIPS(int numIPS) {
-		lasIPS = new IPS[numIPS];
-	}
-
-	/**
-	 * @param numAmbulancia:
-	 *            Indica el tamaño del arreglo "ambulancias"
-	 */
-	public void arregloAmbulancia(int numAmbulancia) {
-		ambulancias = new Ambulancia[numAmbulancia];
+		lasIPS.add(ips);
 	}
 
 	/**
@@ -97,9 +138,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica la posicion de la nueva ambulancia en el arreglo de
 	 *            EmpresaAmbulancia
 	 */
-	public void agregarAmbulancia(int codigo, String placa, String tipoDotacion, int indice) {
+	public void agregarAmbulancia(int codigo, String placa, String tipoDotacion) {
 		Ambulancia ambulancia = new Ambulancia(codigo, placa, tipoDotacion);
-		ambulancias[indice] = ambulancia;
+		ambulancias.add(ambulancia);
 	}
 
 	/**
@@ -114,11 +155,11 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	public boolean registrarPosicionAmbulancia(int codigo, int calle, int carrera) {
 		boolean encontro = false;
-		for (int i = 0; (i < this.ambulancias.length) && !encontro; i++) {
-			if (ambulancias[i].getCodigo() == codigo) {
-				ambulancias[i].setHoraPosicion(new GregorianCalendar());
-				ambulancias[i].setPosicionCalle(calle);
-				ambulancias[i].setPosicionCarrera(carrera);
+		for (int i = 0; (i < this.ambulancias.size()) && !encontro; i++) {
+			if (ambulancias.get(i).getCodigo() == codigo) {
+				ambulancias.get(i).setHoraPosicion(new GregorianCalendar());
+				ambulancias.get(i).setPosicionCalle(calle);
+				ambulancias.get(i).setPosicionCarrera(carrera);
 				encontro = true;
 			}
 		}
@@ -220,7 +261,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 * Calculo a partir de la geometria de Manhattan; en donde la distancia mas
 	 * cercana entre dos puntos no es la linea recta sino la distancia en
 	 * cuadrados
-	 * 
+	 *
 	 * @param calleInicio:
 	 *            Indica el numero de la calle donde se inicia el recorrido
 	 * @param carreraInicio:
