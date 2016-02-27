@@ -113,12 +113,12 @@ public class Direccion implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		if (this.tipoDireccion.equals("calle") || this.tipoDireccion.equals("CALLE"))
+		if (this.tipoDireccion.equals("calle") || this.tipoDireccion.equals("CALLE")|| this.tipoDireccion.equals("Calle"))
 			return String.format("%s %s#%s-%s", this.tipoDireccion, this.calle, this.carrera, this.numero);
 		else
 			return String.format("%s %s#%s-%s", this.tipoDireccion, this.carrera, this.calle, this.numero);

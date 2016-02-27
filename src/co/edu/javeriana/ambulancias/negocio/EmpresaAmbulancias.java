@@ -207,7 +207,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Representa el codigo unico dado a la ambulancia dentro del
 	 *            sistema
 	 * @return Ambulancia: Retorna la ambulancia a la cual corresponde el codigo
-	 *         dado
+	 *         dado (NULL en el caso de que no se encuentre dicha ambulancia)
 	 */
 	private Ambulancia buscarAmbulancia(int codigo) {
 		for (int i = 0; (i < this.ambulancias.size()); i++) {
