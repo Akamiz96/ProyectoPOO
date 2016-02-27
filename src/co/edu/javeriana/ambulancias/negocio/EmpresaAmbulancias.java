@@ -155,13 +155,12 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	public boolean registrarPosicionAmbulancia(int codigo, int calle, int carrera) {
 		boolean encontro = false;
-		for (int i = 0; (i < this.ambulancias.size()) && !encontro; i++) {
-			if (ambulancias.get(i).getCodigo() == codigo) {
-				ambulancias.get(i).setHoraPosicion(new GregorianCalendar());
-				ambulancias.get(i).setPosicionCalle(calle);
-				ambulancias.get(i).setPosicionCarrera(carrera);
-				encontro = true;
-			}
+		Ambulancia ambulancia = this.buscarAmbulancia(codigo);
+		if (ambulancia != null) {
+			ambulancia.setHoraPosicion(new GregorianCalendar());
+			ambulancia.setPosicionCalle(calle);
+			ambulancia.setPosicionCarrera(carrera);
+			encontro = true;
 		}
 		return encontro;
 	}
@@ -211,7 +210,12 @@ public class EmpresaAmbulancias implements Serializable {
 	 *         dado
 	 */
 	private Ambulancia buscarAmbulancia(int codigo) {
-
+		for (int i = 0; (i < this.ambulancias.size()); i++) {
+			if (this.ambulancias.get(i).getCodigo() == codigo) {
+				return this.ambulancias.get(i);
+			}
+		}
+		return null;
 	}
 
 	/**

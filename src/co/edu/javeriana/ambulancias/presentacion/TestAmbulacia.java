@@ -39,9 +39,18 @@ public class TestAmbulacia {
 					break;
 				case 2:
 					// ingresar las ambulancias al sistema
+					empresaAmbulancias = ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
 					break;
 				case 3:
 					// registrar la posicion actual de una ambulancia
+					System.out.println("--REGISTRAR POSICION DE AMBULANCIA indique: codigo calle carrera");
+					int codigo = input.nextInt();
+					int carrera = input.nextInt();
+					int calle = input.nextInt();
+					if(empresaAmbulancias.registrarPosicionAmbulancia(codigo, calle, carrera))
+						System.out.println("Exito en el registro de la posicion.");
+					else
+						System.out.println("Fallo en el registro de la posicion.");
 					break;
 				case 4:
 					// registrar un servicio
