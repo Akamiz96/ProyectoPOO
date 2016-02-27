@@ -179,9 +179,12 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @param numero:
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 */
-	public int registrarServicio(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
-			int numero) {
-
+	public long registrarServicio(String nombre, String tipoAtencion, String telefono, String tipoDireccion, int calle,
+			int carrera, int numero) {
+		Servicio servicio = new Servicio(nombre, Long.parseLong(telefono), tipoAtencion, tipoDireccion, calle, carrera,
+				numero);
+		this.servicios.add(servicio);
+		return servicio.getCodigo();
 	}
 
 	/**

@@ -12,9 +12,9 @@ import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
  * @author Pablo Ariza y Alejandro Castro
  */
 /**
- * Unico punto del sistema donde se pueden solicitar e imprimir informaci�n.
- * Declara e instancia una variable de tipo EmpresaAmbulancias y maneja un
- * menu para ofrecer al usuario los servicios del sistema.
+ * Unico punto del sistema donde se pueden solicitar e imprimir informacion.
+ * Declara e instancia una variable de tipo EmpresaAmbulancias y maneja un menu
+ * para ofrecer al usuario los servicios del sistema.
  */
 public class TestAmbulacia {
 
@@ -35,11 +35,11 @@ public class TestAmbulacia {
 				switch (opcion) {
 				case 1:
 					// ingresar la IPS al sistema
-					empresaAmbulancias = ManejoArchivos.cargarLasIPS(empresaAmbulancias);
+					ManejoArchivos.cargarLasIPS(empresaAmbulancias);
 					break;
 				case 2:
 					// ingresar las ambulancias al sistema
-					empresaAmbulancias = ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
+					ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
 					break;
 				case 3:
 					// registrar la posicion actual de una ambulancia
@@ -47,21 +47,25 @@ public class TestAmbulacia {
 					int codigo = input.nextInt();
 					int carrera = input.nextInt();
 					int calle = input.nextInt();
-					if(empresaAmbulancias.registrarPosicionAmbulancia(codigo, calle, carrera))
+					if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, calle, carrera))
 						System.out.println("Exito en el registro de la posicion.");
 					else
 						System.out.println("Fallo en el registro de la posicion.");
 					break;
 				case 4:
 					// registrar un servicio
-					System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio (URGENCIA o EMERGENCIA) telefono tipoDireccion (CALLE o CARRERA) calle carrera numero")
-					String nombre = input.nextLine().trim();
-					String tipoServicio = input.nextLine().trim();
-					Long telefono = input.nextLong();
-					String tipoDireccion = input.nextLine().trim();
-					int calle = input.nextInt();
-					int carrera = input.nextInt();
+					System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
+					System.out.println("          telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
+					String paciente = input.nextLine().trim();
+					String tipoServicio = input.next();
+					String telefono = input.next();
+					String tipoDireccion = input.next();
+					calle = input.nextInt();
+					carrera = input.nextInt();
 					int numero = input.nextInt();
+					long codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono,
+							tipoDireccion, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d", codigoServicio);
 					break;
 				case 5:
 					// reporte de ambulancias
