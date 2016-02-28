@@ -88,7 +88,7 @@ public class TestAmbulacia {
 
 		input.close();
 	}
-	// M�todo auxiliar para cada opcion del menu.
+	// Metodo auxiliar para cada opcion del menu.
 
 	/**
 	 * Menu de las funcionalidades del sistema y captura de la opcion deseada
