@@ -193,7 +193,12 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return String:
 	 */
 	public String asignarServicio(int codigo) {
-
+		boolean encontro = false;
+		Servicio servicio = this.buscarServicio(codigo);
+		if (servicio != null){
+			encontro = true;
+		}
+		return encontro;
 	}
 
 	/**
@@ -202,7 +207,13 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return Boolean: Retorna si el servicio fue finalizado con exito
 	 */
 	public boolean finalizarServicio(int codigo) {
-
+		boolean finalizado = false;
+		Servicio servicio = this.buscarServicio(codigo);
+		if (servicio != null){
+			servicio.estado = "FINALIZADO";
+			finalizado = true;
+		}
+		return finalizado;
 	}
 
 	/**
@@ -242,7 +253,10 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return List<Ambulancia>: Se retorna la subLISTA de disponibilidad
 	 */
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
-
+		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia> ();
+		for (Ambulancia ambulancia : this.ambulancias){
+			
+		}
 	}
 
 	/**
@@ -255,7 +269,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return Ambulancia: Se retorna la instancia de la Ambulancia mas cercana
 	 */
 	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia> listaAmbulancia, int calle, int carrera) {
+		for (Ambulancia ambulancia : this.ambulancias){
 
+		}
 	}
 
 	/**
