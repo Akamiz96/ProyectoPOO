@@ -213,9 +213,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 *         dado (NULL en el caso de que no se encuentre dicha ambulancia)
 	 */
 	private Ambulancia buscarAmbulancia(int codigo) {
-		for (int i = 0; (i < this.ambulancias.size()); i++) {
-			if (this.ambulancias.get(i).getCodigo() == codigo) {
-				return this.ambulancias.get(i);
+		for (Ambulancia ambulancia : this.ambulancias) {
+			if (ambulancia.getCodigo() == codigo) {
+				return ambulancia;
 			}
 		}
 		return null;
@@ -227,7 +227,12 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	 */
 	private Servicio buscarServicio(int codigo) {
-
+		for (Servicio servicio : this.servicios){
+			if (servicio.getCodigo() == codigo){
+				return servicio
+			}
+		}
+		retun null
 	}
 
 	/**
