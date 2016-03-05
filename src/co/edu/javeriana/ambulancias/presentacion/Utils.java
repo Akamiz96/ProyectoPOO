@@ -47,4 +47,14 @@ public class Utils {
 		int anio = fecha.get(Calendar.YEAR);
 		return anio + "-" + mes + "-" + dia;
 	}
+
+	/**
+	 * @param fecha
+	 * @return String "HH:MM"
+	 */
+	public static String convertirFechaHoraString(GregorianCalendar fecha) {
+		int hora = fecha.get(Calendar.HOUR);
+		int min = fecha.get(Calendar.MINUTE);
+		return hora + ":" + min;
+	}
 }

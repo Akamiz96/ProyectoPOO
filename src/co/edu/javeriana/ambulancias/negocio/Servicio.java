@@ -234,8 +234,13 @@ public class Servicio implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s, %s", this.codigo, this.horaSolicitud, this.paciente,
-				this.tipoServicio, this.telefono, this.direccion.toString(), this.estado);
+		if (this.estado.equals("NO_ASIGANDO"))
+			return String.format("%-4s, %-12s, %-12s, %-10s, %-7s, %s", this.codigo, this.horaSolicitud, this.paciente,
+					this.tipoServicio, this.telefono, this.direccion.toString());
+		else
+			return String.format("%-4s, %-12s, %-12s, %-10s, %-7s, %s, %s", this.codigo, this.horaSolicitud,
+					this.paciente, this.tipoServicio, this.telefono, this.direccion.toString(), this.estado);
+
 	}
 
 	/**

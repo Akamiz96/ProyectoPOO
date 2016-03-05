@@ -5,6 +5,9 @@ package co.edu.javeriana.ambulancias.negocio;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;
+import java.util.List;
+
+import co.edu.javeriana.ambulancias.presentacion.Utils;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -42,6 +45,11 @@ public class Ambulancia implements Serializable {
 	 *            la Ambulancia la ultima vez que registro su posicion
 	 */
 	private int posicionCarrera;
+	/**
+	 * @attribute servicios: Representa la lista de servicios que posee la
+	 *            ambulancia
+	 */
+	private List<Servicio> servicios;
 
 	/**
 	 * @param codigo:
@@ -58,6 +66,7 @@ public class Ambulancia implements Serializable {
 		this.placa = placa;
 		this.tipoDotacion = tipoDotacion;
 		this.codigo = codigo;
+		this.servicios = null;
 	}
 
 	/**
@@ -165,4 +174,35 @@ public class Ambulancia implements Serializable {
 		this.posicionCarrera = posicionCarrera;
 	}
 
+	/**
+	 * @return the servicios
+	 */
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+
+	/**
+	 * @param servicios
+	 *            the servicios to set
+	 */
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		for (Servicio servicio : this.servicios) {
+			if (servicio.getEstado().equals("ASIGNADO") || servicio.getEstado().equals("Asignado")
+					|| servicio.getEstado().equals("asignado"))
+				return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
+						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera,
+						servicio.getCodigo());
+		}
+		return null;
+	}
 }
