@@ -255,7 +255,7 @@ public class EmpresaAmbulancias implements Serializable {
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia> ();
 		for (Ambulancia ambulancia : this.ambulancias){
-			
+
 		}
 	}
 
@@ -269,7 +269,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return Ambulancia: Se retorna la instancia de la Ambulancia mas cercana
 	 */
 	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia> listaAmbulancia, int calle, int carrera) {
-		for (Ambulancia ambulancia : this.ambulancias){
+		for (Ambulancia ambulancia : listaAmbulancia){
 
 		}
 	}
@@ -282,7 +282,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return IPS: Retorna la IPS mas cercana a la calle y a la carrera dadas
 	 */
 	private IPS calcularIPSMasCercano(int calle, int carrera) {
+		for (IPS ips : this.lasIPS){
 
+		}
 	}
 
 	/**
