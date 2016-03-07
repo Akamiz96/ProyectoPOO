@@ -15,7 +15,7 @@ public class Servicio implements Serializable {
 	 * @attribute consecutivo: Representa el consecutivo de los servicios dentro
 	 *            del sistema
 	 */
-	private static long consecutivo;
+	private static long consecutivo=0;
 	/**
 	 * @attribute codigo: Representa el codigo unico dado al servicio dentro del
 	 *            sistema
@@ -62,14 +62,15 @@ public class Servicio implements Serializable {
 	private Ambulancia ambulancia;
 
 	/**
-	 * @param codigo:
-	 * @param paciente:
-	 * @param telefono:
-	 * @param tipoServicio:
-	 * @param tipoDireccion:
-	 * @param calle:
-	 * @param carrera:
-	 * @param numero:
+	 * @param codigo: Representa el codigo del servicio dentro del sistema
+	 * @param paciente: Representa el nombre del paciente
+	 * @param telefono: Representa el telefono del cual fue realizado el servicio
+	 * @param tipoServicio: Representa el tipo de servicio requerido
+	 * @param tipoDireccion: Indica si se encuentra sobre la carrera o sobre
+	 *            la calle
+	 * @param calle: Indica la calle en la cual se encuentra
+	 * @param carrera: Indica la carrera en la cual se encuentra
+	 * @param numero: Indica el bloque en la cuadra donde se encuentra
 	 */
 	public Servicio(String paciente, long telefono, String tipoServicio, String tipoDireccion, int calle, int carrera,
 			int numero) {

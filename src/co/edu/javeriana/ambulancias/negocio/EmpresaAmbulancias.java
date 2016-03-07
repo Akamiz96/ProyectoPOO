@@ -33,7 +33,7 @@ public class EmpresaAmbulancias implements Serializable {
 	private List<IPS> lasIPS;
 
 	/**
-	 * @param nombre
+	 * @param nombre: Indica el nombre de la empresa
 	 */
 	public EmpresaAmbulancias(String nombre) {
 		super();

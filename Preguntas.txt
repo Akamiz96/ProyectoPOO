@@ -4,3 +4,4 @@
 -> Si el codigo de Ambulancia es unico para cada ambulancia?
 -> Como saber si una ambulancia esta disponible? Toca recorrer la lista de servicios de la
 ambulancia o hay una atributo para ello
+-> revisar constructores de las clases
