@@ -191,7 +191,7 @@ public class Ambulancia implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -204,5 +204,18 @@ public class Ambulancia implements Serializable {
 						servicio.getCodigo());
 		}
 		return null;
+	}
+	/**
+	* Metodo para determinar si una ambulancia esta disponible
+	* @return true: si la ambulancia esta disponible
+	* @return false: si la ambulancia esta asignada a un servicio
+	*/
+	public boolean ambulanciaDisponible (){
+		for (Servicio servicio : this.servicios){
+			if (servicio.getEstado() == "ASIGNADO" || servicio.getEstado() == "asignado"){
+				return false;
+			}
+		}
+		return true;
 	}
 }
