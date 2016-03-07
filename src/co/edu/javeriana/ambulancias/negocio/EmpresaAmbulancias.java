@@ -193,12 +193,11 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return String:
 	 */
 	public String asignarServicio(int codigo) {
-		boolean encontro = false;
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null){
-			encontro = true;
+			return "Asignado";
 		}
-		return encontro;
+		return "No Existe el servicio";
 	}
 
 	/**
@@ -210,7 +209,7 @@ public class EmpresaAmbulancias implements Serializable {
 		boolean finalizado = false;
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null){
-			servicio.estado = "FINALIZADO";
+			servicio.setEstado("FINALIZADO");
 			finalizado = true;
 		}
 		return finalizado;
@@ -259,6 +258,7 @@ public class EmpresaAmbulancias implements Serializable {
 				ambulanciasDisponibles.add(ambulancia);
 			}
 		}
+		return ambulanciasDisponibles;
 	}
 
 	/**

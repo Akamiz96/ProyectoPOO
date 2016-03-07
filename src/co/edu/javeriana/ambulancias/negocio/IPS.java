@@ -92,7 +92,7 @@ public class IPS implements Serializable {
 	/**
 	 * @return the servicios
 	 */
-	public Servicio getServicios() {
+	public List<Servicio> getServicios() {
 		return servicios;
 	}
 
@@ -100,7 +100,7 @@ public class IPS implements Serializable {
 	 * @param servicios
 	 *            the servicios to set
 	 */
-	public void setServicios(Servicio servicios) {
+	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
 

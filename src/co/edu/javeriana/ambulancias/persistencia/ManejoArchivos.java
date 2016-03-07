@@ -20,7 +20,7 @@ import co.edu.javeriana.ambulancias.negocio.IPS;
  */
 public class ManejoArchivos {
 	// Porque se retorna EmpresaAmbulancias?????
-	public static EmpresaAmbulancias cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
+	public static void cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
 		String nombreArchivo = input.next();
 		File inFile = new File("./" + nombreArchivo + ".txt");
@@ -42,8 +42,17 @@ public class ManejoArchivos {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
 			input.close();
-			((ArrayList<IPS>) empresaAmbulancia.getLasIPS()).trimToSize();//recorta la capacidad del objeto List al numero actual de elementos
-			return empresaAmbulancia;
+			((ArrayList<IPS>) empresaAmbulancia.getLasIPS()).trimToSize();// recorta
+																			// la
+																			// capacidad
+																			// del
+																			// objeto
+																			// List
+																			// al
+																			// numero
+																			// actual
+																			// de
+																			// elementos
 		}
 	}
 
@@ -57,7 +66,7 @@ public class ManejoArchivos {
 		return linea;
 	}
 
-	public static EmpresaAmbulancias cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
+	public static void cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
 		String nombreArchivo = input.next();
 		File inFile = new File("./" + nombreArchivo + ".txt");
@@ -80,8 +89,17 @@ public class ManejoArchivos {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
 			input.close();
-			((ArrayList<Ambulancia>) empresaAmbulancia.getAmbulancias()).trimToSize();//recorta la capacidad del objeto List al numero actual de elementos
-			return empresaAmbulancia;
+			((ArrayList<Ambulancia>) empresaAmbulancia.getAmbulancias()).trimToSize();// recorta
+																						// la
+																						// capacidad
+																						// del
+																						// objeto
+																						// List
+																						// al
+																						// numero
+																						// actual
+																						// de
+																						// elementos
 		}
 	}
 
