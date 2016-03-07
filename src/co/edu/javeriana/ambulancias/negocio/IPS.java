@@ -4,6 +4,8 @@
 package co.edu.javeriana.ambulancias.negocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -24,7 +26,7 @@ public class IPS implements Serializable {
 	 *            direccion de la IPS
 	 */
 	private Direccion direccion;
-	private Servicio servicios;
+	private List<Servicio> servicios;
 
 	/**
 	 * @param nombre:Indica el nombre IPS
@@ -39,6 +41,7 @@ public class IPS implements Serializable {
 		this.nombre = nombre;
 		this.tipoAtencion = tipoAtencion;
 		asignarDireccion(tipoDireccion, calle, carrera, numero);
+		this.servicios = new ArrayList<Servicio>();
 	}
 
 	/**
