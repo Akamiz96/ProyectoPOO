@@ -255,7 +255,9 @@ public class EmpresaAmbulancias implements Serializable {
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia> ();
 		for (Ambulancia ambulancia : this.ambulancias){
-
+			if (ambulancia.ambulanciaDisponible()){
+				ambulanciasDisponibles.add(ambulancia);
+			}
 		}
 	}
 
