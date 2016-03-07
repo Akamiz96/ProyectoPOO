@@ -240,10 +240,10 @@ public class EmpresaAmbulancias implements Serializable {
 	private Servicio buscarServicio(int codigo) {
 		for (Servicio servicio : this.servicios){
 			if (servicio.getCodigo() == codigo){
-				return servicio
+				return servicio;
 			}
 		}
-		retun null
+		return null;
 	}
 
 	/**

@@ -4,6 +4,7 @@
 package co.edu.javeriana.ambulancias.negocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class Ambulancia implements Serializable {
 		this.placa = placa;
 		this.tipoDotacion = tipoDotacion;
 		this.codigo = codigo;
-		this.servicios = null;
+		this.servicios = new ArrayList<Servicio>();
 	}
 
 	/**
@@ -205,14 +206,21 @@ public class Ambulancia implements Serializable {
 		}
 		return null;
 	}
+
+	public String toString(boolean opcion) {
+		return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
+				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
+	}
+
 	/**
-	* Metodo para determinar si una ambulancia esta disponible
-	* @return true: si la ambulancia esta disponible
-	* @return false: si la ambulancia esta asignada a un servicio
-	*/
-	public boolean ambulanciaDisponible (){
-		for (Servicio servicio : this.servicios){
-			if (servicio.getEstado() == "ASIGNADO" || servicio.getEstado() == "asignado"){
+	 * Metodo para determinar si una ambulancia esta disponible
+	 *
+	 * @return true: si la ambulancia esta disponible
+	 * @return false: si la ambulancia esta asignada a un servicio
+	 */
+	public boolean ambulanciaDisponible() {
+		for (Servicio servicio : this.servicios) {
+			if (servicio.getEstado() == "ASIGNADO" || servicio.getEstado() == "asignado") {
 				return false;
 			}
 		}
