@@ -255,7 +255,12 @@ public class EmpresaAmbulancias implements Serializable {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia> ();
 		for (Ambulancia ambulancia : this.ambulancias){
 			if (ambulancia.ambulanciaDisponible()){
-				ambulanciasDisponibles.add(ambulancia);
+				if(servicio.getTipoServicio().equals("EMERGENCIA") && ambulancia.getTipoDotacion().equals("ALTA_UCI")){
+						ambulanciasDisponibles.add(ambulancia);
+				}
+				if(servicio.getTipoServicio().equals("URGENCIA")){
+						ambulanciasDisponibles.add(ambulancia);
+				}
 			}
 		}
 		return ambulanciasDisponibles;
@@ -272,6 +277,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia> listaAmbulancia, int calle, int carrera) {
 		for (Ambulancia ambulancia : listaAmbulancia){
+				int this.calcularDistancia(ambulancia.getCalle(), ambulancia.getCarrera(), calle, carrera);
 
 		}
 	}
@@ -285,7 +291,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	private IPS calcularIPSMasCercano(int calle, int carrera) {
 		for (IPS ips : this.lasIPS){
-
+				int this.calcularDistancia(ips.getCalle(), ips.getCarrera(), calle, carrera);
 		}
 	}
 
