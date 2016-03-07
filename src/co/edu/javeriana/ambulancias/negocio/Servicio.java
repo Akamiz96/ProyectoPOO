@@ -15,7 +15,7 @@ public class Servicio implements Serializable {
 	 * @attribute consecutivo: Representa el consecutivo de los servicios dentro
 	 *            del sistema
 	 */
-	private static long consecutivo=0;
+	private static long consecutivo=1;
 	/**
 	 * @attribute codigo: Representa el codigo unico dado al servicio dentro del
 	 *            sistema
