@@ -33,7 +33,8 @@ public class ManejoArchivos {
 										// CARRERA)---calle---carrera--numero
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
-				linea = procesarIPS(empresaAmbulancia, input, linea);
+				if (!linea.equals("0"))
+					linea = procesarIPS(empresaAmbulancia, input, linea);
 			} // fin de todas las IPS
 		} catch (FileNotFoundException e) {
 			System.out.println("Error en la ruta del archivo.\n Error: e.message()");
@@ -63,7 +64,6 @@ public class ManejoArchivos {
 		empresaAmbulancia.agregarIPS(tokens.nextToken().trim(), tokens.nextToken().trim(), tokens.nextToken().trim(),
 				Integer.parseInt(tokens.nextToken().trim()), Integer.parseInt(tokens.nextToken().trim()),
 				Integer.parseInt(tokens.nextToken().trim()));
-		linea = input.nextLine();
 		return linea;
 	}
 
@@ -80,7 +80,9 @@ public class ManejoArchivos {
 										// CARRERA)---calle---carrera--numero
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
-				linea = procesarAmbulancias(empresaAmbulancia, input, linea);
+				System.out.println(linea);
+				if (!linea.equals("0"))
+					linea = procesarAmbulancias(empresaAmbulancia, input, linea);
 			}
 		} // fin de todas las IPS
 		catch (FileNotFoundException e) {
@@ -91,17 +93,6 @@ public class ManejoArchivos {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
 			input.close();
-			((ArrayList<Ambulancia>) empresaAmbulancia.getAmbulancias()).trimToSize();// recorta
-																						// la
-																						// capacidad
-																						// del
-																						// objeto
-																						// List
-																						// al
-																						// numero
-																						// actual
-																						// de
-																						// elementos
 		}
 	}
 
@@ -110,7 +101,6 @@ public class ManejoArchivos {
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		empresaAmbulancia.agregarAmbulancia(Integer.parseInt(tokens.nextToken().trim()), tokens.nextToken().trim(),
 				tokens.nextToken().trim());
-		linea = input.nextLine();
 		return linea;
 	}
 }
