@@ -5,6 +5,7 @@ package co.edu.javeriana.ambulancias.presentacion;
 
 import java.util.Scanner;
 
+import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
@@ -37,9 +38,6 @@ public class TestAmbulacia {
 				case 1:
 					// ingresar la IPS al sistema
 					ManejoArchivos.cargarLasIPS(empresaAmbulancias);
-					for(IPS ips : empresaAmbulancias.getLasIPS()){
-						System.out.printf("%s", ips.toString());
-					}
 					break;
 				case 2:
 					// ingresar las ambulancias al sistema
