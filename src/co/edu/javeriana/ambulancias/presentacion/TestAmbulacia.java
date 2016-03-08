@@ -77,6 +77,13 @@ public class TestAmbulacia {
 					break;
 				case 6:
 					// asignar a un servicio una ambulancia y una IPS
+					System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
+					System.out.println("--se muestran los servicios del sistema sin asignar: ");
+					//TOSTRING para ENCABEZADO
+					System.out.println("----------------------------------------------------------------------------");
+					//Impresion de los servicios no asignados
+					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
+					//Leer codigo del servicioAasignar
 					break;
 				case 7:
 					// finalizar un servicio
