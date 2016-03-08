@@ -80,6 +80,17 @@ public class TestAmbulacia {
 					break;
 				case 7:
 					// finalizar un servicio
+					System.out.println("--FINALIZAR UN SERVICIO");
+					System.out.println("--se muestran los servicios del sistema asignados :");
+					//TOSTRING PARA ENCABEZADO
+					System.out.println("----------------------------------------------------------------------------");
+					//Impresion de los pacientes asignados del sistema
+					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
+					//leer codigo del Servicio
+					//Finalizar Servicio
+					//Servicio servicioAFinalizar = empresaAmbulancias.buscarServicio(codigo);
+					//if(servicioAFinalizar!=null)
+					//else
 					break;
 				case 8:
 					// reporte de servicios con IPS y ambulancias asignados
