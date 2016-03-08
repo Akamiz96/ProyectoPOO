@@ -72,7 +72,7 @@ public class TestAmbulacia {
 				case 5:
 					// reporte de ambulancias
 					for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()){
-						System.out.printf(%s, ambulancia.toString());
+						System.out.printf("%s", ambulancia.toString());
 					}
 					break;
 				case 6:
