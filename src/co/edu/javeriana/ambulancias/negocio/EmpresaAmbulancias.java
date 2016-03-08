@@ -276,10 +276,20 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return Ambulancia: Se retorna la instancia de la Ambulancia mas cercana
 	 */
 	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia> listaAmbulancia, int calle, int carrera) {
+		long minimo = -1;
+		Ambulancia ambCercana = null;
 		for (Ambulancia ambulancia : listaAmbulancia){
-				int this.calcularDistancia(ambulancia.getCalle(), ambulancia.getCarrera(), calle, carrera);
-
+				long distancia = this.calcularDistancia(ambulancia.getPosicionCalle(), ambulancia.getPosicionCarrera(), calle, carrera);
+				if(minimo == -1){
+					minimo = distancia;
+					ambCercana = ambulancia;
+				}else
+					if(distancia<minimo){
+						minimo = distancia;
+						ambCercana = ambulancia;
+					}
 		}
+		return ambCercana;
 	}
 
 	/**
@@ -289,10 +299,21 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica la carrera sobre la cual se calculara la cercania
 	 * @return IPS: Retorna la IPS mas cercana a la calle y a la carrera dadas
 	 */
-	private IPS calcularIPSMasCercano(int calle, int carrera) {
-		for (IPS ips : this.lasIPS){
-				int this.calcularDistancia(ips.getCalle(), ips.getCarrera(), calle, carrera);
+	private IPS calcularIPSMasCercano(List<IPS> listaIPS, int calle, int carrera) {
+		long minimo = -1;
+		IPS ipsCercana = null;
+		for (IPS ips : listaIPS){
+				long distancia = this.calcularDistancia(ips.getDireccion().getCalle(), ips.getDireccion().getCarrera(), calle, carrera);
+				if(minimo == -1){
+					minimo = distancia;
+					ipsCercana = ips;
+				}else
+					if(distancia<minimo){
+						minimo = distancia;
+						ipsCercana = ips;
+					}
 		}
+		return ipsCercana;
 	}
 
 	/**

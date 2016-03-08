@@ -22,8 +22,9 @@ public class ManejoArchivos {
 	// Porque se retorna EmpresaAmbulancias?????
 	public static void cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
+		System.out.println("Insgrese el nombre del Archivo: ");
 		String nombreArchivo = input.next();
-		File inFile = new File("./" + nombreArchivo + ".txt");
+		File inFile = new File("./" + nombreArchivo);
 		String linea;
 		try {
 			input = new Scanner(inFile);
@@ -68,8 +69,9 @@ public class ManejoArchivos {
 
 	public static void cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
+		System.out.println("Insgrese el nombre del Archivo: ");
 		String nombreArchivo = input.next();
-		File inFile = new File("./" + nombreArchivo + ".txt");
+		File inFile = new File("./" + nombreArchivo);
 		String linea;
 		try {
 			input = new Scanner(inFile);

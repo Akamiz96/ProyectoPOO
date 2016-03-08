@@ -6,6 +6,7 @@ package co.edu.javeriana.ambulancias.presentacion;
 import java.util.Scanner;
 
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
 /**
@@ -24,9 +25,9 @@ public class TestAmbulacia {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int opcion;
-		EmpresaAmbulancias empresaAmbulancias;
+		EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
-		System.out.println("Escriba el nombre del archivo: ");
+		//System.out.println("Escriba el nombre del archivo: ");
 		do {
 			opcion = menuSistema();
 			if (opcion > 10)
@@ -36,6 +37,9 @@ public class TestAmbulacia {
 				case 1:
 					// ingresar la IPS al sistema
 					ManejoArchivos.cargarLasIPS(empresaAmbulancias);
+					for(IPS ips : empresaAmbulancias.getLasIPS()){
+						System.out.printf("%s", ips.toString());
+					}
 					break;
 				case 2:
 					// ingresar las ambulancias al sistema
@@ -106,6 +110,7 @@ public class TestAmbulacia {
 		System.out.println("opcion 8: reporte de servicios con IPS y ambulancias asignados. ");
 		System.out.println("opcion 9: reporte de las IPS con servicios asociados. ");
 		System.out.println("opcion 10: terminar");
+		System.out.printf("Opcion:");
 		opcion = input.nextInt();
 		return opcion;
 	}

@@ -68,6 +68,7 @@ public class Ambulancia implements Serializable {
 		this.tipoDotacion = tipoDotacion;
 		this.codigo = codigo;
 		this.servicios = new ArrayList<Servicio>();
+		this.horaPosicion = null;
 	}
 
 	/**
@@ -197,17 +198,19 @@ public class Ambulancia implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		for (Servicio servicio : this.servicios) {
-			if (servicio.getEstado().equals("ASIGNADO") || servicio.getEstado().equals("Asignado")
-					|| servicio.getEstado().equals("asignado"))
+			if (this.servicio != null){
+				for(Servicio servicio : this.servicios){
+					if(servicio.getEstado().equals("ASIGNADO"))
+						return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
+								Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera,
+								servicio.getCodigo());
+					}
+			}else
 				return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
-						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera,
-						servicio.getCodigo());
-		}
-		return null;
+						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
 
-	public String toString(boolean opcion) {
+	public String toStringC() {
 		return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
 				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
