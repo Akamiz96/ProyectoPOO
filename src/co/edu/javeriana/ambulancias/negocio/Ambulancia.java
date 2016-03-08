@@ -208,7 +208,7 @@ public class Ambulancia implements Serializable {
 		} else
 			return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
 					Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
-		return String.format("%-6s %-8s %-14s %-4s %-4s %-4s %-4d", this.codigo, this.placa, this.tipoDotacion,
+		return String.format("%-6s %-8s %-14s %-4s %-4s %-4s", this.codigo, this.placa, this.tipoDotacion,
 				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
 
