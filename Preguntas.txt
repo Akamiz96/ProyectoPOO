@@ -5,3 +5,4 @@
 -> Como saber si una ambulancia esta disponible? Toca recorrer la lista de servicios de la
 ambulancia o hay una atributo para ello
 -> revisar constructores de las clases
+->El usuario ingresa el nombre completo del archivo con la extension y todo
