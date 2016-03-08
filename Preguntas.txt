@@ -6,3 +6,4 @@
 ambulancia o hay una atributo para ello
 -> revisar constructores de las clases
 ->El usuario ingresa el nombre completo del archivo con la extension y todo
+-> Validar asi hay o no servicio en el toString de ambulancia
