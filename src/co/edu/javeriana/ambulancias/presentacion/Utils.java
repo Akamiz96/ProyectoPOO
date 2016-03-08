@@ -53,8 +53,11 @@ public class Utils {
 	 * @return String "HH:MM"
 	 */
 	public static String convertirFechaHoraString(GregorianCalendar fecha) {
-		int hora = fecha.get(Calendar.HOUR);
+		int hora = fecha.get(Calendar.HOUR_OF_DAY);
 		int min = fecha.get(Calendar.MINUTE);
-		return hora + ":" + min;
+		if(min<10)
+			return hora + ":0" + min;
+		else
+			return hora + ":" + min;
 	}
 }

@@ -57,7 +57,7 @@ public class TestAmbulacia {
 				case 4:
 					// registrar un servicio
 					System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
-					System.out.println("          telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
+					System.out.println("            telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
 					String paciente = input.nextLine().trim();
 					String tipoServicio = input.next();
 					String telefono = input.next();
@@ -71,8 +71,11 @@ public class TestAmbulacia {
 					break;
 				case 5:
 					// reporte de ambulancias
+					System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
+					System.out.println("codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
+					System.out.println("-----------------------------------------------------------------------------------");
 					for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()){
-						System.out.printf("%s", ambulancia.toString());
+						System.out.printf("%s\n", ambulancia.toString());
 					}
 					break;
 				case 6:
