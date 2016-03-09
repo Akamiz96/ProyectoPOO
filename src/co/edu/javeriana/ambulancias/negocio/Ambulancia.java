@@ -51,7 +51,7 @@ public class Ambulancia implements Serializable {
 	 *            ambulancia
 	 */
 	private List<Servicio> servicios;
-
+	private boolean enServicio;
 	/**
 	 * @param codigo:
 	 *            Representa el codigo unico dado a la ambulancia dentro del
@@ -69,6 +69,7 @@ public class Ambulancia implements Serializable {
 		this.codigo = codigo;
 		this.servicios = new ArrayList<Servicio>();
 		this.horaPosicion = null;
+		this.enServicio = false;
 	}
 
 	/**
@@ -214,22 +215,8 @@ public class Ambulancia implements Serializable {
 		return String.format("%-6s %-8s %-14s", this.codigo, this.placa, this.tipoDotacion);
 	}
 
-	/**
-	 * Metodo para determinar si una ambulancia esta disponible
-	 *
-	 * @return true: si la ambulancia esta disponible
-	 * @return false: si la ambulancia esta asignada a un servicio
-	 */
-	public boolean ambulanciaDisponible() {
-		for (Servicio servicio : this.servicios) {
-			if (servicio.getEstado().equals("ASIGNADO") || servicio.getEstado().equals("asignado")) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public void agregarServicioAmbulancia(Servicio servicio) {
 		this.servicios.add(servicio);
+		this.enServicio = true;
 	}
 }
