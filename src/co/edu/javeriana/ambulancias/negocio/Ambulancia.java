@@ -52,6 +52,7 @@ public class Ambulancia implements Serializable {
 	 */
 	private List<Servicio> servicios;
 	private boolean enServicio;
+
 	/**
 	 * @param codigo:
 	 *            Representa el codigo unico dado a la ambulancia dentro del
@@ -200,7 +201,8 @@ public class Ambulancia implements Serializable {
 	}
 
 	/**
-	 * @param enServicio the enServicio to set
+	 * @param enServicio
+	 *            the enServicio to set
 	 */
 	public void setEnServicio(boolean enServicio) {
 		this.enServicio = enServicio;
@@ -213,19 +215,25 @@ public class Ambulancia implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		if (this.servicios.isEmpty()) {
+		if (!this.servicios.isEmpty()) {
 			for (Servicio servicio : this.servicios) {
 				if (servicio.getEstado().equals("ASIGNADO"))
-					System.out.println("hola");
-				return String.format("%-6s %-8s %-14s %-12s %-13s %-12s %-4d", this.codigo, this.placa,
-						this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
-						this.posicionCarrera, servicio.getCodigo());
+					return String.format("%-6s %-8s %-14s %-12s %-13s %-16s %-4d", this.codigo, this.placa,
+							this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
+							this.posicionCarrera, servicio.getCodigo());
+				else
+					return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa,
+							this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
+							this.posicionCarrera);
 			}
-		} else if (this.horaPosicion != null) {
-			return String.format("%-6s %-8s %-14s %-12s %-13s %-12s", this.codigo, this.placa, this.tipoDotacion,
-					Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
+		} else {
+			if (this.horaPosicion != null) {
+				return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
+						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
+			} else
+				return String.format("%-6s %-8s %-14s", this.codigo, this.placa, this.tipoDotacion);
 		}
-		return String.format("%-6s %-8s %-14s", this.codigo, this.placa, this.tipoDotacion);
+		return "error";
 	}
 
 	public String toStringC() {

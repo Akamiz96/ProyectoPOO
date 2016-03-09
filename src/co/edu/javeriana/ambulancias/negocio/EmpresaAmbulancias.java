@@ -193,7 +193,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return String:
 	 */
-	public String asignarServicio(int codigo) {
+	public String asignarServicio(long codigo) {
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
 			List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
@@ -259,7 +259,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	 */
-	private Servicio buscarServicio(int codigo) {
+	private Servicio buscarServicio(long codigo) {
 		for (Servicio servicio : this.servicios) {
 			if (servicio.getCodigo() == codigo) {
 				return servicio;

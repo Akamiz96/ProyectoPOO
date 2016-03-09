@@ -45,7 +45,12 @@ public class Utils {
 		int dia = fecha.get(Calendar.DATE);
 		int mes = fecha.get(Calendar.MONTH) + 1;
 		int anio = fecha.get(Calendar.YEAR);
-		return anio + "-" + mes + "-" + dia;
+		int hora = fecha.get(Calendar.HOUR_OF_DAY);
+		int min = fecha.get(Calendar.MINUTE);
+		if (min < 10)
+			return anio + "-" + mes + "-" + dia + hora + ":0" + min;
+		else
+			return anio + "-" + mes + "-" + dia + hora + ":" + min;
 	}
 
 	/**

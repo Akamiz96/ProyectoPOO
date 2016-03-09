@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
 /**
@@ -57,7 +58,7 @@ public class TestAmbulacia {
 					// registrar un servicio
 					System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
 					System.out.println("            telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
-					String paciente = input.nextLine().trim();
+					String paciente = input.next() + " " + input.next();
 					String tipoServicio = input.next();
 					String telefono = input.next();
 					String tipoDireccion = input.next();
@@ -83,11 +84,15 @@ public class TestAmbulacia {
 					// asignar a un servicio una ambulancia y una IPS
 					System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
 					System.out.println("--se muestran los servicios del sistema sin asignar: ");
-					// TOSTRING para ENCABEZADO
+					System.out.println("codigo horaSolicitud  paciente    tipoServicio telefono direccion ");
 					System.out.println("----------------------------------------------------------------------------");
-					// Impresion de los servicios no asignados
-					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
-					// Leer codigo del servicioAasignar
+					for (Servicio servicio : empresaAmbulancias.getServicios()) {
+						if (servicio.getEstado().equals("NO_ASIGNADO")) {
+							System.out.printf("%s\n", servicio.toString());
+						}
+					}
+					System.out.println("--cual es el codigo del servicio que desea asignar ? :");
+					System.out.println(empresaAmbulancias.asignarServicio(input.nextLong()));
 					break;
 				case 7:
 					// finalizar un servicio

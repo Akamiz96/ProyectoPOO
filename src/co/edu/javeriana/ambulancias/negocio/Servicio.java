@@ -6,6 +6,8 @@ package co.edu.javeriana.ambulancias.negocio;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
+import co.edu.javeriana.ambulancias.presentacion.Utils;
+
 /**
  * @author Pablo Ariza y Alejandro Castro
  *
@@ -242,12 +244,14 @@ public class Servicio implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		if (this.estado.equals("NO_ASIGANDO"))
-			return String.format("%-4s, %-12s, %-12s, %-10s, %-7s, %s", this.codigo, this.horaSolicitud, this.paciente,
-					this.tipoServicio, this.telefono, this.direccion.toString());
+		if (this.estado.equals("NO_ASIGNADO"))
+			return String.format("%-5s %-14s %-12s %-10s %-7s %s", this.codigo,
+					Utils.convertirFechaString(this.horaSolicitud), this.paciente, this.tipoServicio, this.telefono,
+					this.direccion.toString());
 		else
-			return String.format("%-4s, %-12s, %-12s, %-10s, %-7s, %s, %s", this.codigo, this.horaSolicitud,
-					this.paciente, this.tipoServicio, this.telefono, this.direccion.toString(), this.estado);
+			return String.format("%-5s %-14s %-12s %-10s %-7s %s %s", this.codigo,
+					Utils.convertirFechaString(this.horaSolicitud), this.paciente, this.tipoServicio, this.telefono,
+					this.direccion.toString(), this.estado);
 
 	}
 
