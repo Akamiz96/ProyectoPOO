@@ -6,13 +6,10 @@ package co.edu.javeriana.ambulancias.persistencia;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
-import co.edu.javeriana.ambulancias.negocio.IPS;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -44,17 +41,6 @@ public class ManejoArchivos {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
 			input.close();
-			((ArrayList<IPS>) empresaAmbulancia.getLasIPS()).trimToSize();// recorta
-																			// la
-																			// capacidad
-																			// del
-																			// objeto
-																			// List
-																			// al
-																			// numero
-																			// actual
-																			// de
-																			// elementos
 		}
 	}
 
@@ -80,7 +66,6 @@ public class ManejoArchivos {
 										// CARRERA)---calle---carrera--numero
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
-				System.out.println(linea);
 				if (!linea.equals("0"))
 					linea = procesarAmbulancias(empresaAmbulancia, input, linea);
 			}

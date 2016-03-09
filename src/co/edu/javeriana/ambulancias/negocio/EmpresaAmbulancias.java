@@ -33,7 +33,8 @@ public class EmpresaAmbulancias implements Serializable {
 	private List<IPS> lasIPS;
 
 	/**
-	 * @param nombre: Indica el nombre de la empresa
+	 * @param nombre:
+	 *            Indica el nombre de la empresa
 	 */
 	public EmpresaAmbulancias(String nombre) {
 		super();
@@ -194,10 +195,31 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	public String asignarServicio(int codigo) {
 		Servicio servicio = this.buscarServicio(codigo);
-		if (servicio != null){
-			return "Asignado";
+		if (servicio != null) {
+			List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
+			if (ambDisponibles != null) {
+				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
+						servicio.getDireccion().getCarrera());
+				IPS ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
+						servicio.getDireccion().getCarrera());
+				asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
+				return "Asignado";
+			}
 		}
 		return "No Existe el servicio";
+	}
+
+	/**
+	 * @param servicio
+	 * @param ambulancia
+	 * @param ips
+	 */
+	private void asignarEstadoAmbulanciaIPS(Servicio servicio, Ambulancia ambulancia, IPS ips) {
+		servicio.setAmbulancia(ambulancia);
+		ambulancia.agregarServicioAmbulancia(servicio);
+		servicio.setIps(ips);
+		ips.agregarServicioIPS(servicio);
+		servicio.setEstado("ASIGNADO");
 	}
 
 	/**
@@ -208,7 +230,7 @@ public class EmpresaAmbulancias implements Serializable {
 	public boolean finalizarServicio(int codigo) {
 		boolean finalizado = false;
 		Servicio servicio = this.buscarServicio(codigo);
-		if (servicio != null){
+		if (servicio != null) {
 			servicio.setEstado("FINALIZADO");
 			finalizado = true;
 		}
@@ -237,8 +259,8 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	 */
 	private Servicio buscarServicio(int codigo) {
-		for (Servicio servicio : this.servicios){
-			if (servicio.getCodigo() == codigo){
+		for (Servicio servicio : this.servicios) {
+			if (servicio.getCodigo() == codigo) {
 				return servicio;
 			}
 		}
@@ -252,14 +274,15 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return List<Ambulancia>: Se retorna la subLISTA de disponibilidad
 	 */
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
-		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia> ();
-		for (Ambulancia ambulancia : this.ambulancias){
-			if (ambulancia.ambulanciaDisponible()){
-				if(servicio.getTipoServicio().equals("EMERGENCIA") && ambulancia.getTipoDotacion().equals("ALTA_UCI")){
-						ambulanciasDisponibles.add(ambulancia);
+		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia>();
+		for (Ambulancia ambulancia : this.ambulancias) {
+			if (ambulancia.ambulanciaDisponible()) {
+				if (servicio.getTipoServicio().equals("EMERGENCIA")
+						&& ambulancia.getTipoDotacion().equals("ALTA_UCI")) {
+					ambulanciasDisponibles.add(ambulancia);
 				}
-				if(servicio.getTipoServicio().equals("URGENCIA")){
-						ambulanciasDisponibles.add(ambulancia);
+				if (servicio.getTipoServicio().equals("URGENCIA")) {
+					ambulanciasDisponibles.add(ambulancia);
 				}
 			}
 		}
@@ -278,16 +301,16 @@ public class EmpresaAmbulancias implements Serializable {
 	private Ambulancia calcularAmbulanciaMasCercana(List<Ambulancia> listaAmbulancia, int calle, int carrera) {
 		long minimo = -1;
 		Ambulancia ambCercana = null;
-		for (Ambulancia ambulancia : listaAmbulancia){
-				long distancia = this.calcularDistancia(ambulancia.getPosicionCalle(), ambulancia.getPosicionCarrera(), calle, carrera);
-				if(minimo == -1){
-					minimo = distancia;
-					ambCercana = ambulancia;
-				}else
-					if(distancia<minimo){
-						minimo = distancia;
-						ambCercana = ambulancia;
-					}
+		for (Ambulancia ambulancia : listaAmbulancia) {
+			long distancia = this.calcularDistancia(ambulancia.getPosicionCalle(), ambulancia.getPosicionCarrera(),
+					calle, carrera);
+			if (minimo == -1) {
+				minimo = distancia;
+				ambCercana = ambulancia;
+			} else if (distancia < minimo) {
+				minimo = distancia;
+				ambCercana = ambulancia;
+			}
 		}
 		return ambCercana;
 	}
@@ -302,16 +325,16 @@ public class EmpresaAmbulancias implements Serializable {
 	private IPS calcularIPSMasCercano(List<IPS> listaIPS, int calle, int carrera) {
 		long minimo = -1;
 		IPS ipsCercana = null;
-		for (IPS ips : listaIPS){
-				long distancia = this.calcularDistancia(ips.getDireccion().getCalle(), ips.getDireccion().getCarrera(), calle, carrera);
-				if(minimo == -1){
-					minimo = distancia;
-					ipsCercana = ips;
-				}else
-					if(distancia<minimo){
-						minimo = distancia;
-						ipsCercana = ips;
-					}
+		for (IPS ips : listaIPS) {
+			long distancia = this.calcularDistancia(ips.getDireccion().getCalle(), ips.getDireccion().getCarrera(),
+					calle, carrera);
+			if (minimo == -1) {
+				minimo = distancia;
+				ipsCercana = ips;
+			} else if (distancia < minimo) {
+				minimo = distancia;
+				ipsCercana = ips;
+			}
 		}
 		return ipsCercana;
 	}

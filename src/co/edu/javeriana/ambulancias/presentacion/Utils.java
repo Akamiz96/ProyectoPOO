@@ -55,7 +55,7 @@ public class Utils {
 	public static String convertirFechaHoraString(GregorianCalendar fecha) {
 		int hora = fecha.get(Calendar.HOUR_OF_DAY);
 		int min = fecha.get(Calendar.MINUTE);
-		if(min<10)
+		if (min < 10)
 			return hora + ":0" + min;
 		else
 			return hora + ":" + min;

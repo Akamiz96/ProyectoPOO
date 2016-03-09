@@ -222,10 +222,14 @@ public class Ambulancia implements Serializable {
 	 */
 	public boolean ambulanciaDisponible() {
 		for (Servicio servicio : this.servicios) {
-			if (servicio.getEstado() == "ASIGNADO" || servicio.getEstado() == "asignado") {
+			if (servicio.getEstado().equals("ASIGNADO") || servicio.getEstado().equals("asignado")) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	public void agregarServicioAmbulancia(Servicio servicio) {
+		this.servicios.add(servicio);
 	}
 }

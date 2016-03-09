@@ -29,13 +29,18 @@ public class IPS implements Serializable {
 	private List<Servicio> servicios;
 
 	/**
-	 * @param nombre:Indica el nombre IPS
-	 * @param tipoAtencion: Indica la especialidad del centro de salud
-	 * @param tipoDireccion: Indica si se encuentra sobre la carrera o sobre
-	 *            la calle
-	 * @param calle: Indica la calle en la cual se encuentra
-	 * @param carrera: Indica la carrera en la cual se encuentra
-	 * @param numero: Indica el bloque en la cuadra donde se encuentra
+	 * @param nombre:Indica
+	 *            el nombre IPS
+	 * @param tipoAtencion:
+	 *            Indica la especialidad del centro de salud
+	 * @param tipoDireccion:
+	 *            Indica si se encuentra sobre la carrera o sobre la calle
+	 * @param calle:
+	 *            Indica la calle en la cual se encuentra
+	 * @param carrera:
+	 *            Indica la carrera en la cual se encuentra
+	 * @param numero:
+	 *            Indica el bloque en la cuadra donde se encuentra
 	 */
 	public IPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero) {
 		this.nombre = nombre;
@@ -106,5 +111,9 @@ public class IPS implements Serializable {
 
 	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero) {
 		this.direccion = new Direccion(tipoDireccion, calle, carrera, numero);
+	}
+
+	public void agregarServicioIPS(Servicio servicio) {
+		this.servicios.add(servicio);
 	}
 }

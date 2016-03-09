@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
-import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
 /**
@@ -28,7 +27,7 @@ public class TestAmbulacia {
 		int opcion;
 		EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
-		//System.out.println("Escriba el nombre del archivo: ");
+		// System.out.println("Escriba el nombre del archivo: ");
 		do {
 			opcion = menuSistema();
 			if (opcion > 10)
@@ -72,9 +71,11 @@ public class TestAmbulacia {
 				case 5:
 					// reporte de ambulancias
 					System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
-					System.out.println("codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
-					System.out.println("-----------------------------------------------------------------------------------");
-					for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()){
+					System.out.println(
+							"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
+					System.out.println(
+							"-----------------------------------------------------------------------------------");
+					for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
 						System.out.printf("%s\n", ambulancia.toString());
 					}
 					break;
@@ -82,25 +83,26 @@ public class TestAmbulacia {
 					// asignar a un servicio una ambulancia y una IPS
 					System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
 					System.out.println("--se muestran los servicios del sistema sin asignar: ");
-					//TOSTRING para ENCABEZADO
+					// TOSTRING para ENCABEZADO
 					System.out.println("----------------------------------------------------------------------------");
-					//Impresion de los servicios no asignados
+					// Impresion de los servicios no asignados
 					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
-					//Leer codigo del servicioAasignar
+					// Leer codigo del servicioAasignar
 					break;
 				case 7:
 					// finalizar un servicio
 					System.out.println("--FINALIZAR UN SERVICIO");
 					System.out.println("--se muestran los servicios del sistema asignados :");
-					//TOSTRING PARA ENCABEZADO
+					// TOSTRING PARA ENCABEZADO
 					System.out.println("----------------------------------------------------------------------------");
-					//Impresion de los pacientes asignados del sistema
+					// Impresion de los pacientes asignados del sistema
 					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
-					//leer codigo del Servicio
-					//Finalizar Servicio
-					//Servicio servicioAFinalizar = empresaAmbulancias.buscarServicio(codigo);
-					//if(servicioAFinalizar!=null)
-					//else
+					// leer codigo del Servicio
+					// Finalizar Servicio
+					// Servicio servicioAFinalizar =
+					// empresaAmbulancias.buscarServicio(codigo);
+					// if(servicioAFinalizar!=null)
+					// else
 					break;
 				case 8:
 					// reporte de servicios con IPS y ambulancias asignados
