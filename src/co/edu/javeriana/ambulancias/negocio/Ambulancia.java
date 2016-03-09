@@ -192,6 +192,20 @@ public class Ambulancia implements Serializable {
 		this.servicios = servicios;
 	}
 
+	/**
+	 * @return the enServicio
+	 */
+	public boolean getEnServicio() {
+		return enServicio;
+	}
+
+	/**
+	 * @param enServicio the enServicio to set
+	 */
+	public void setEnServicio(boolean enServicio) {
+		this.enServicio = enServicio;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *

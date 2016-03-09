@@ -232,7 +232,7 @@ public class EmpresaAmbulancias implements Serializable {
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
 			servicio.setEstado("FINALIZADO");
-			servicio.getAmbulancia().setenServicio(false);
+			servicio.getAmbulancia().setEnServicio(false);
 			finalizado = true;
 		}
 		return finalizado;
@@ -277,7 +277,7 @@ public class EmpresaAmbulancias implements Serializable {
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia>();
 		for (Ambulancia ambulancia : this.ambulancias) {
-			if (!ambulancia.getenServicio()) {
+			if (!ambulancia.getEnServicio()) {
 				if (servicio.getTipoServicio().equals("EMERGENCIA")
 						&& ambulancia.getTipoDotacion().equals("ALTA_UCI")) {
 					ambulanciasDisponibles.add(ambulancia);

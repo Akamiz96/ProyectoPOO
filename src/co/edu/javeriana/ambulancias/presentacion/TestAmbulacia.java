@@ -66,7 +66,7 @@ public class TestAmbulacia {
 					int numero = input.nextInt();
 					long codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono,
 							tipoDireccion, calle, carrera, numero);
-					System.out.printf("El nuevo Servicio tiene codigo %d", codigoServicio);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
 					break;
 				case 5:
 					// reporte de ambulancias
