@@ -112,6 +112,16 @@ public class IPS implements Serializable {
 		this.servicios = servicios;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%-22s %-22s %-22s", nombre, tipoAtencion, direccion);
+	}
+
 	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero) {
 		this.direccion = new Direccion(tipoDireccion, calle, carrera, numero);
 	}
@@ -119,4 +129,5 @@ public class IPS implements Serializable {
 	public void agregarServicioIPS(Servicio servicio) {
 		this.servicios.add(servicio);
 	}
+
 }

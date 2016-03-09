@@ -237,7 +237,8 @@ public class Ambulancia implements Serializable {
 	}
 
 	public String toStringC() {
-		return String.format("%-6s %-8s %-14s", this.codigo, this.placa, this.tipoDotacion);
+		return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
+				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
 
 	public void agregarServicioAmbulancia(Servicio servicio) {

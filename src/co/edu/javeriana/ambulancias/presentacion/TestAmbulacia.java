@@ -83,7 +83,7 @@ public class TestAmbulacia {
 					// asignar a un servicio una ambulancia y una IPS
 					System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
 					System.out.println("--se muestran los servicios del sistema sin asignar: ");
-					System.out.println("codigo horaSolicitud  paciente    tipoServicio telefono direccion ");
+					System.out.println("codigo horaSolicitud  paciente     tipoServicio telefono direccion ");
 					System.out.println("----------------------------------------------------------------------------");
 					for (Servicio servicio : empresaAmbulancias.getServicios()) {
 						if (servicio.getEstado().equals("NO_ASIGNADO")) {
@@ -109,7 +109,31 @@ public class TestAmbulacia {
 					// else
 					break;
 				case 8:
-					// reporte de servicios con IPS y ambulancias asignados
+					System.out.println("--REPORTE DE SERVICIOS CON IPS Y AMBULANCIAS ASOCIADAS");
+					for (Servicio servicio : empresaAmbulancias.getServicios()) {
+						System.out.println("\nSERVICIO:");
+						System.out.println(
+								"codigo horaSolicitud  paciente         tipoServicio telefono  direccion        estado");
+						System.out.println(
+								"--------------------------------------------------------------------------------------");
+						if (servicio.getEstado().equals("NO_ASIGNADO"))
+							System.out.printf("%s %s\n", servicio.toString(), servicio.getEstado());
+						else
+							System.out.printf("%s\n", servicio.toString());
+						if (servicio.getIps() != null) {
+							System.out.println("\tIPS asignada:");
+							System.out.println("\tnombre                 tipoAtencion           direccion");
+							System.out.println(
+									"\t--------------------------------------------------------------------------------");
+							System.out.printf("\t%s\n", servicio.getIps().toString());
+							System.out.println("\tAmbulancia asignada:");
+							System.out.println(
+									"\tcodigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera");
+							System.out.println(
+									"\t------------------------------------------------------------------------------");
+							System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
+						}
+					}
 					break;
 				case 9:
 					// reporte de las IPS con servicios asociados
