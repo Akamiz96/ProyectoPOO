@@ -44,48 +44,47 @@ public class Utils {
 	public static String convertirFechaString(GregorianCalendar fecha) {
 		int dia = fecha.get(Calendar.DATE);
 		int mes = fecha.get(Calendar.MONTH) + 1;
-		int anio = fecha.get(Calendar.YEAR);
 		int hora = fecha.get(Calendar.HOUR_OF_DAY);
 		int min = fecha.get(Calendar.MINUTE);
-		String mesString;
-		switch (mes){
-			case 1:
-			mesString = "ene";
+		String mesString = new String();
+		switch (mes) {
+		case 1:
+			mesString = "Ene";
 			break;
-			case 2:
-			mesString = "feb";
+		case 2:
+			mesString = "Feb";
 			break;
-			case 3:
-			mesString = "mar";
+		case 3:
+			mesString = "Mar";
 			break;
-			case 4:
-			mesString = "abr";
+		case 4:
+			mesString = "Abr";
 			break;
-			case 5:
-			mesString = "may";
+		case 5:
+			mesString = "May";
 			break;
-			case 6:
-			mesString = "jun";
+		case 6:
+			mesString = "Jun";
 			break;
-			case 7:
-			mesString = "jul";
+		case 7:
+			mesString = "Jul";
 			break;
-			case 8:
-			mesString = "ago";
+		case 8:
+			mesString = "Ago";
 			break;
-			case 9:
-			mesString = "sep";
+		case 9:
+			mesString = "Sep";
 			break;
-			case 10:
-			mesString = "oct";
+		case 10:
+			mesString = "Oct";
 			break;
-			case 11:
-			mesString = "nov";
+		case 11:
+			mesString = "Nov";
 			break;
-			case 12:
-			mesString = "dic";
+		case 12:
+			mesString = "Dic";
 			break;
-			default:
+		default:
 			break;
 		}
 		if (min < 10)

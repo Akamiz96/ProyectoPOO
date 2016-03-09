@@ -33,8 +33,9 @@ public class EmpresaAmbulancias implements Serializable {
 	private List<IPS> lasIPS;
 
 	/**
-	 * Constructor de la clase EmpresaAmbulancias.
-	 * Se asigna el nombre a la variables de instancia y se instancian los arreglos
+	 * Constructor de la clase EmpresaAmbulancias. Se asigna el nombre a la
+	 * variables de instancia y se instancian los arreglos
+	 * 
 	 * @param nombre:
 	 *            Indica el nombre de la empresa
 	 */
@@ -108,6 +109,7 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo para agregar una nueva IPS en el sistema.
+	 * 
 	 * @see IPS.java
 	 * @param nombre:
 	 *            Indica el nombre de la nueva IPS
@@ -134,6 +136,7 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo para agregar una nueva ambulancia en el sistema
+	 * 
 	 * @param codigo:
 	 *            Indica el codigo de la nueva ambulancia
 	 * @param placa:
@@ -151,8 +154,10 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo para actualizar la posicion de una ambulancia dentro del sistema.
-	 * Se busca la ambulancia dado un codigo y se asigna la calle y carrera
-	 * Se utiliza la hora actual del sistema como hora en la que se registra la posicion
+	 * Se busca la ambulancia dado un codigo y se asigna la calle y carrera Se
+	 * utiliza la hora actual del sistema como hora en la que se registra la
+	 * posicion
+	 * 
 	 * @param codigo:
 	 *            Indica la ambulancia a la que se le registrara la posicion
 	 * @param calle:
@@ -176,6 +181,7 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo para adicionar un nuevo servicio al sistema
+	 * 
 	 * @see Servicio.java
 	 * @param nombre:
 	 *            Indica el nombre de la IPS
@@ -199,9 +205,10 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo para asignar un servicio a una IPS y a una Ambulancia
-	 * Se busca el servicio en la lista de servicios del sistema, se calcula la mas cercana al servicio encontrado
-	 * Se calcula la IPS mas cercana y se asignan
+	 * Metodo para asignar un servicio a una IPS y a una Ambulancia Se busca el
+	 * servicio en la lista de servicios del sistema, se calcula la mas cercana
+	 * al servicio encontrado Se calcula la IPS mas cercana y se asignan
+	 * 
 	 * @see Ambulancia.java
 	 * @see IPS.java
 	 * @param codigo:
@@ -226,12 +233,17 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo para la asignacion de atributos de relacion entre Servicio, Ambulancia e IPS
+	 * Metodo para la asignacion de atributos de relacion entre Servicio,
+	 * Ambulancia e IPS
+	 * 
 	 * @see Servicio.java
 	 * @see Ambulancia.java
-	 * @param servicio: Indica el servicio a asignar
-	 * @param ambulancia: Indica la ambulancia a la cual se le va a asignar el servicio
-	 * @param ips: Indica la IPS a la cual se le va a asignar el servicio
+	 * @param servicio:
+	 *            Indica el servicio a asignar
+	 * @param ambulancia:
+	 *            Indica la ambulancia a la cual se le va a asignar el servicio
+	 * @param ips:
+	 *            Indica la IPS a la cual se le va a asignar el servicio
 	 */
 	private void asignarEstadoAmbulanciaIPS(Servicio servicio, Ambulancia ambulancia, IPS ips) {
 		servicio.setAmbulancia(ambulancia);
@@ -243,6 +255,7 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo para cambiar el estado de un servicio a FINALIZADO
+	 * 
 	 * @param codigo:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Boolean: Retorna si el servicio fue finalizado con exito
@@ -259,7 +272,9 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo Privado para realizar la busqueda de una ambulancia en el sistema dado un codigo
+	 * Metodo Privado para realizar la busqueda de una ambulancia en el sistema
+	 * dado un codigo
+	 * 
 	 * @param codigo:
 	 *            Representa el codigo unico dado a la ambulancia dentro del
 	 *            sistema
@@ -276,7 +291,9 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo Privado para realizar la busqueda de un servicio en el sistema dado un codigo
+	 * Metodo Privado para realizar la busqueda de un servicio en el sistema
+	 * dado un codigo
+	 * 
 	 * @param codigo:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
@@ -291,7 +308,9 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo privado para la creacion de una sublista de ambulancias disponibles en el sistema
+	 * Metodo privado para la creacion de una sublista de ambulancias
+	 * disponibles en el sistema
+	 * 
 	 * @param servicio:
 	 *            Indica el servicio al cual se le realizara una subLISTA de
 	 *            disponibilidad
@@ -314,8 +333,9 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo privado para calcular la ambulancia mas cercana a una calle y a una carrera dada
-	 * Se realiza para una lista de ambulancias
+	 * Metodo privado para calcular la ambulancia mas cercana a una calle y a
+	 * una carrera dada Se realiza para una lista de ambulancias
+	 * 
 	 * @param listaAmbulancia:
 	 *            Indica la LISTA de ambulancias
 	 * @param calle:
@@ -342,8 +362,9 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * Metodo privado para calcular la IPS mas cercana a una calle y carrera dada
-	 * Se realiza para una lista de IPS 
+	 * Metodo privado para calcular la IPS mas cercana a una calle y carrera
+	 * dada Se realiza para una lista de IPS
+	 * 
 	 * @param calle:
 	 *            Indica la calle sobre la cual se calculara la cercania
 	 * @param carrera:

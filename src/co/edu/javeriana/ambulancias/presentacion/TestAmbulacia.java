@@ -141,6 +141,5 @@ public class TestAmbulacia {
 		System.out.printf("Opcion:");
 		opcion = input.nextInt();
 		return opcion;
-		input.close();
 	}
 }
