@@ -199,16 +199,19 @@ public class Ambulancia implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		if (this.servicios != null) {
+		if (this.servicios.isEmpty()) {
 			for (Servicio servicio : this.servicios) {
 				if (servicio.getEstado().equals("ASIGNADO"))
-					return String.format("%-6s %-8s %-14s %-12s %-13s %-12s %-4d", this.codigo, this.placa,
-							this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
-							this.posicionCarrera, servicio.getCodigo());
+					System.out.println("hola");
+				return String.format("%-6s %-8s %-14s %-12s %-13s %-12s %-4d", this.codigo, this.placa,
+						this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
+						this.posicionCarrera, servicio.getCodigo());
 			}
+		} else if (this.horaPosicion != null) {
+			return String.format("%-6s %-8s %-14s %-12s %-13s %-12s", this.codigo, this.placa, this.tipoDotacion,
+					Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 		}
-		return String.format("%-6s %-8s %-14s %-12s %-13s %-12s", this.codigo, this.placa, this.tipoDotacion,
-				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
+		return String.format("%-6s %-8s %-14s", this.codigo, this.placa, this.tipoDotacion);
 	}
 
 	public String toStringC() {
