@@ -27,10 +27,9 @@ public class TestAmbulacia {
 		int opcion;
 		EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
-		// System.out.println("Escriba el nombre del archivo: ");
 		do {
 			opcion = menuSistema();
-			if (opcion > 10)
+			if (opcion > 10 || opcion < 0)
 				System.out.println("Opcion invalida. Ingrese una opcion valida.");
 			else {
 				switch (opcion) {
@@ -137,5 +136,6 @@ public class TestAmbulacia {
 		System.out.printf("Opcion:");
 		opcion = input.nextInt();
 		return opcion;
+		input.close();
 	}
 }
