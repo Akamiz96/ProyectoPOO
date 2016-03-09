@@ -7,3 +7,10 @@ ambulancia o hay una atributo para ello
 -> revisar constructores de las clases
 ->El usuario ingresa el nombre completo del archivo con la extension y todo
 -> Validar asi hay o no servicio en el toString de ambulancia
+
+
+Funcion 4 revisar
+Funcion 6 probarla y arreglar cosas que mostrar
+Funcion 7 FALTA....
+Funcion 8 Reporte completo PROBAR
+FUncion 9 Reporte IPS PROBAR
