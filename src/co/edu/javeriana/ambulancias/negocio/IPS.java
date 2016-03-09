@@ -26,6 +26,9 @@ public class IPS implements Serializable {
 	 *            direccion de la IPS
 	 */
 	private Direccion direccion;
+	/**
+	* @attribute servicios: Indica la lista de servicios asociados a una IPS
+	*/
 	private List<Servicio> servicios;
 
 	/**

@@ -38,7 +38,7 @@ public class Utils {
 	 *
 	 * @param fecha
 	 *            de tipo GregorianCalendar
-	 * @return String "AAAA-MM-DD"
+	 * @return String "MMM DD"
 	 * @see GregorianCalendar
 	 */
 	public static String convertirFechaString(GregorianCalendar fecha) {
@@ -47,10 +47,51 @@ public class Utils {
 		int anio = fecha.get(Calendar.YEAR);
 		int hora = fecha.get(Calendar.HOUR_OF_DAY);
 		int min = fecha.get(Calendar.MINUTE);
+		String mesString;
+		switch (mes){
+			case 1:
+			mesString = "ene";
+			break;
+			case 2:
+			mesString = "feb";
+			break;
+			case 3:
+			mesString = "mar";
+			break;
+			case 4:
+			mesString = "abr";
+			break;
+			case 5:
+			mesString = "may";
+			break;
+			case 6:
+			mesString = "jun";
+			break;
+			case 7:
+			mesString = "jul";
+			break;
+			case 8:
+			mesString = "ago";
+			break;
+			case 9:
+			mesString = "sep";
+			break;
+			case 10:
+			mesString = "oct";
+			break;
+			case 11:
+			mesString = "nov";
+			break;
+			case 12:
+			mesString = "dic";
+			break;
+			default:
+			break;
+		}
 		if (min < 10)
-			return anio + "-" + mes + "-" + dia + hora + ":0" + min;
+			return mesString + " " + dia + " " + hora + ":0" + min;
 		else
-			return anio + "-" + mes + "-" + dia + hora + ":" + min;
+			return mesString + " " + dia + " " + hora + ":" + min;
 	}
 
 	/**
