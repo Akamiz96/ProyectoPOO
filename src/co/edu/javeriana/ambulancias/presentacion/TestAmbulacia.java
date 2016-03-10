@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
@@ -37,10 +38,12 @@ public class TestAmbulacia {
 				case 1:
 					// ingresar la IPS al sistema
 					ManejoArchivos.cargarLasIPS(empresaAmbulancias);
+					System.out.println();
 					break;
 				case 2:
 					// ingresar las ambulancias al sistema
 					ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
+					System.out.println();
 					break;
 				case 3:
 					// registrar la posicion actual de una ambulancia
@@ -52,6 +55,7 @@ public class TestAmbulacia {
 						System.out.println("Exito en el registro de la posicion.");
 					else
 						System.out.println("Fallo en el registro de la posicion.");
+					System.out.println();
 					break;
 				case 4:
 					// registrar un servicio
@@ -67,6 +71,8 @@ public class TestAmbulacia {
 					long codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono,
 							tipoDireccion, calle, carrera, numero);
 					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+					input.nextLine();
+					System.out.println();
 					break;
 				case 5:
 					// reporte de ambulancias
@@ -78,6 +84,8 @@ public class TestAmbulacia {
 					for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
 						System.out.printf("%s\n", ambulancia.toString());
 					}
+					input.nextLine();
+					System.out.println();
 					break;
 				case 6:
 					// asignar a un servicio una ambulancia y una IPS
@@ -92,6 +100,7 @@ public class TestAmbulacia {
 					}
 					System.out.println("--cual es el codigo del servicio que desea asignar ? :");
 					System.out.println(empresaAmbulancias.asignarServicio(input.nextLong()));
+					System.out.println();
 					break;
 				case 7:
 					// finalizar un servicio
@@ -107,6 +116,8 @@ public class TestAmbulacia {
 					// empresaAmbulancias.buscarServicio(codigo);
 					// if(servicioAFinalizar!=null)
 					// else
+					input.nextLine();
+					System.out.println();
 					break;
 				case 8:
 					System.out.println("--REPORTE DE SERVICIOS CON IPS Y AMBULANCIAS ASOCIADAS");
@@ -134,9 +145,27 @@ public class TestAmbulacia {
 							System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
 						}
 					}
+					input.nextLine();
+					System.out.println();
 					break;
 				case 9:
-					// reporte de las IPS con servicios asociados
+					System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
+					for (IPS ips : empresaAmbulancias.getLasIPS()) {
+						System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
+						System.out.printf("   %s\n", ips.toString());
+						if (!ips.getServicios().isEmpty()) {
+							System.out.println("   SERVICIOS:");
+							System.out.println(
+									"   codigo horaSolicitud  paciente   tipoServicio telefono direccion          estado ambul.");
+							System.out.println(
+									"   --------------------------------------------------------------------------------------");
+							for (Servicio servicio : ips.getServicios()) {
+								System.out.printf("   %s\n", servicio.toStringB());
+							}
+						}
+					}
+					input.nextLine();
+					System.out.println();
 					break;
 				}
 			}
