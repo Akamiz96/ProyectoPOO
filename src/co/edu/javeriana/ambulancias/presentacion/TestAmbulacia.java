@@ -107,15 +107,24 @@ public class TestAmbulacia {
 					System.out.println("--FINALIZAR UN SERVICIO");
 					System.out.println("--se muestran los servicios del sistema asignados :");
 					// TOSTRING PARA ENCABEZADO
+					System.out.pritln("Codigo    Paciente           Ambulancia         IPS");
 					System.out.println("----------------------------------------------------------------------------");
 					// Impresion de los pacientes asignados del sistema
+					for (Servicio servicio : empresaAmbulancias.getServicios()) {
+						if (servicio.getEstado().equals("ASIGNADO")) {
+							System.out.printf("%s\n", servicio.toStringC());
+						}
+					}
 					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
 					// leer codigo del Servicio
+					int codigoAFinalizar = input.nextInt();
 					// Finalizar Servicio
-					// Servicio servicioAFinalizar =
-					// empresaAmbulancias.buscarServicio(codigo);
-					// if(servicioAFinalizar!=null)
-					// else
+					if(empresaAmbulancias.finalizarServicio(codigoAFinalizar)){
+						System.out.prinln("Exito al finalizar el servicio: " + codigoAFinalizar);
+					}
+					else{
+						System.out.println("Fallo al finalizar el servicio: " + codigoAFinalizar);
+					}
 					input.nextLine();
 					System.out.println();
 					break;

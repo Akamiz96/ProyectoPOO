@@ -261,6 +261,10 @@ public class Servicio implements Serializable {
 				this.direccion.toString(), this.estado, this.ambulancia.getCodigo());
 	}
 
+	public String toStringC() {
+		return String.format("%-6s %-12s %d %-15s", this.codigo,
+				this.paciente, this.ambulancia.getCodigo(), this.ips.getNombre());
+	}
 	/**
 	 * @param tipoDireccion:
 	 *            Indica si la direccion es sobre la carrera o sobre la calle
