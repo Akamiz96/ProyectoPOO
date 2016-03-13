@@ -9,12 +9,12 @@ import java.io.Serializable;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
+ /**
+	* Se considera una ciudad rectangular con calles y carreras numeradas desde
+	* 1. No se consideran diagonales, ni transversales, ni indicaciones
+	* adicionales como Este, Sur, etc.
+	*/
 public class Direccion implements Serializable {
-	/**
-	 * Se considera una ciudad rectangular con calles y carreras numeradas desde
-	 * 1. No se consideran diagonales, ni transversales, ni indicaciones
-	 * adicionales como Este, Sur, etc.
-	 */
 	/**
 	 * @attribute tipoDIreccion: Indica si se encuentra sobre la carrera o sobre
 	 *            la calle

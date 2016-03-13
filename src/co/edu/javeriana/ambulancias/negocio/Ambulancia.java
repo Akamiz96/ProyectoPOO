@@ -240,7 +240,10 @@ public class Ambulancia implements Serializable {
 		return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
 				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
-
+	/**
+	* Metodo que agrega un servicio dado a la ambulancia
+	* Tambien realiza el cambio de estado a la ambulancia de false a true en el atributo enServicio.
+	*/
 	public void agregarServicioAmbulancia(Servicio servicio) {
 		this.servicios.add(servicio);
 		this.enServicio = true;

@@ -10,7 +10,7 @@ import co.edu.javeriana.ambulancias.presentacion.Utils;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
- *
+ * 
  */
 public class Servicio implements Serializable {
 	/**

@@ -14,3 +14,10 @@ Funcion 6 probarla y arreglar cosas que mostrar
 Funcion 7 FALTA....
 Funcion 8 Reporte completo PROBAR
 FUncion 9 Reporte IPS PROBAR
+
+
+->toString de la ambulancia puede fallar
+  Verificar el ciclo......
+->Verificar validacion de NULL en EmpresaAmbulancia
+  calcularIPSMasCercano
+  calcularAmbulanciaMasCercana
