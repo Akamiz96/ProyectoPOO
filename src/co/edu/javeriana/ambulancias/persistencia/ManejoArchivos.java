@@ -36,9 +36,9 @@ public class ManejoArchivos {
 					linea = procesarIPS(empresaAmbulancia, input, linea);
 			} // fin de todas las IPS
 		} catch (FileNotFoundException e) {
-			System.out.println("Error en la ruta del archivo.\n Error: e.message()");
+			System.out.println("Error en la ruta del archivo.\n Error: " + e.getMessage());
 		} catch (IOException e) {
-			System.out.println("Error leyendo del archivo.\n Error: e.message()");
+			System.out.println("Error leyendo del archivo.\n Error: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
@@ -78,9 +78,9 @@ public class ManejoArchivos {
 			}
 		} // fin de todas las IPS
 		catch (FileNotFoundException e) {
-			System.out.println("Error en la ruta del archivo.\n Error: e.message()");
+			System.out.println("Error en la ruta del archivo.\n Error: " + e.getMessage());
 		} catch (IOException e) {
-			System.out.println("Error leyendo del archivo.\n Error: e.message()");
+			System.out.println("Error leyendo del archivo.\n Error:" + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
 		} finally {
