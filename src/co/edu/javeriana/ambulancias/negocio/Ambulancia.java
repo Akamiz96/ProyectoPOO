@@ -215,17 +215,12 @@ public class Ambulancia implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		if (!this.servicios.isEmpty()) {
-			for (Servicio servicio : this.servicios) {
-				if (servicio.getEstado().equals("ASIGNADO"))
-					return String.format("%-6s %-8s %-14s %-12s %-13s %-16s %-4d", this.codigo, this.placa,
-							this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
-							this.posicionCarrera, servicio.getCodigo());
-				else
-					return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa,
-							this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
-							this.posicionCarrera);
-			}
+		if (enServicio) {
+			Servicio servicio = buscarServicio("ASIGNADO");
+			if (servicio != null)
+				return String.format("%-6s %-8s %-14s %-12s %-13s %-16s %-4d", this.codigo, this.placa,
+						this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
+						this.posicionCarrera, servicio.getCodigo());
 		} else {
 			if (this.horaPosicion != null) {
 				return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
@@ -240,12 +235,31 @@ public class Ambulancia implements Serializable {
 		return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
 				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
+
 	/**
-	* Metodo que agrega un servicio dado a la ambulancia
-	* Tambien realiza el cambio de estado a la ambulancia de false a true en el atributo enServicio.
-	*/
+	 * Metodo que agrega un servicio dado a la ambulancia Tambien realiza el
+	 * cambio de estado a la ambulancia de false a true en el atributo
+	 * enServicio.
+	 */
 	public void agregarServicioAmbulancia(Servicio servicio) {
 		this.servicios.add(servicio);
 		this.enServicio = true;
+	}
+
+	/**
+	 * Metodo Privado para realizar la busqueda de un servicio en el sistema
+	 * dado un codigo
+	 *
+	 * @param codigo:
+	 *            Representa el codigo unico dado al servicio dentro del sistema
+	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
+	 */
+	private Servicio buscarServicio(String estado) {
+		for (Servicio servicio : this.servicios) {
+			if (servicio.getEstado().equals(estado)) {
+				return servicio;
+			}
+		}
+		return null;
 	}
 }

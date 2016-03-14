@@ -77,12 +77,16 @@ public class TestAmbulacia {
 				case 5:
 					// reporte de ambulancias
 					System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
-					System.out.println(
-							"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
-					System.out.println(
-							"-----------------------------------------------------------------------------------");
-					for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
-						System.out.printf("%s\n", ambulancia.toString());
+					if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
+						System.out.println(
+								"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
+						System.out.println(
+								"-----------------------------------------------------------------------------------");
+						for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
+							System.out.printf("%s\n", ambulancia.toString());
+						}
+					} else {
+						System.out.println("No se han registrado las ambulancias");
 					}
 					input.nextLine();
 					System.out.println();
@@ -90,41 +94,46 @@ public class TestAmbulacia {
 				case 6:
 					// asignar a un servicio una ambulancia y una IPS
 					System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
-					System.out.println("--se muestran los servicios del sistema sin asignar: ");
-					System.out.println("codigo horaSolicitud  paciente     tipoServicio telefono direccion ");
-					System.out.println("----------------------------------------------------------------------------");
-					for (Servicio servicio : empresaAmbulancias.getServicios()) {
-						if (servicio.getEstado().equals("NO_ASIGNADO")) {
-							System.out.printf("%s\n", servicio.toString());
+					if (!empresaAmbulancias.getServicios().isEmpty()) {
+						System.out.println("codigo horaSolicitud  paciente     tipoServicio telefono direccion ");
+						System.out.println(
+								"----------------------------------------------------------------------------");
+						for (Servicio servicio : empresaAmbulancias.getServicios()) {
+							if (servicio.getEstado().equals("NO_ASIGNADO")) {
+								System.out.printf("%s\n", servicio.toString());
+							}
 						}
-					}
-					System.out.println("--cual es el codigo del servicio que desea asignar ? :");
-					System.out.println(empresaAmbulancias.asignarServicio(input.nextLong()));
+						System.out.println("--cual es el codigo del servicio que desea asignar ? :");
+						System.out.println(empresaAmbulancias.asignarServicio(input.nextLong()));
+					} else
+						System.out.println("\nNo se han registrado servicio");
 					System.out.println();
 					break;
 				case 7:
 					// finalizar un servicio
 					System.out.println("--FINALIZAR UN SERVICIO");
-					System.out.println("--se muestran los servicios del sistema asignados :");
-					// TOSTRING PARA ENCABEZADO
-					System.out.pritln("Codigo    Paciente           Ambulancia         IPS");
-					System.out.println("----------------------------------------------------------------------------");
-					// Impresion de los pacientes asignados del sistema
-					for (Servicio servicio : empresaAmbulancias.getServicios()) {
-						if (servicio.getEstado().equals("ASIGNADO")) {
-							System.out.printf("%s\n", servicio.toStringC());
+					if (!empresaAmbulancias.getServicios().isEmpty()) {
+						// TOSTRING PARA ENCABEZADO
+						System.out.println("Codigo    Paciente           Ambulancia         IPS");
+						System.out.println(
+								"----------------------------------------------------------------------------");
+						// Impresion de los pacientes asignados del sistema
+						for (Servicio servicio : empresaAmbulancias.getServicios()) {
+							if (servicio.getEstado().equals("ASIGNADO")) {
+								System.out.printf("%s\n", servicio.toStringC());
+							}
 						}
-					}
-					System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
-					// leer codigo del Servicio
-					int codigoAFinalizar = input.nextInt();
-					// Finalizar Servicio
-					if(empresaAmbulancias.finalizarServicio(codigoAFinalizar)){
-						System.out.prinln("Exito al finalizar el servicio: " + codigoAFinalizar);
-					}
-					else{
-						System.out.println("Fallo al finalizar el servicio: " + codigoAFinalizar);
-					}
+						System.out.println("--cual es el codigo del servicio que desea finalizar ? :");
+						// leer codigo del Servicio
+						int codigoAFinalizar = input.nextInt();
+						// Finalizar Servicio
+						if (empresaAmbulancias.finalizarServicio(codigoAFinalizar)) {
+							System.out.println("Exito al finalizar el servicio: " + codigoAFinalizar);
+						} else {
+							System.out.println("Fallo al finalizar el servicio: " + codigoAFinalizar);
+						}
+					} else
+						System.out.println("\nNo se han registrado servicio");
 					input.nextLine();
 					System.out.println();
 					break;
@@ -190,7 +199,7 @@ public class TestAmbulacia {
 	public static int menuSistema() {
 		int opcion;
 		Scanner input = new Scanner(System.in);
-		System.out.println("opcion 1 : ingresar la IPS al sistema.");
+		System.out.println("opcion 1: ingresar la IPS al sistema.");
 		System.out.println("opcion 2: ingresar las ambulancias al sistema. ");
 		System.out.println("opcion 3: registrar la posicion actual de una ambulancia. ");
 		System.out.println("opcion 4: registrar un servicio. ");

@@ -206,9 +206,10 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo para asignar un servicio a una IPS y a una Ambulancia Se busca el
-	 * servicio en la lista de servicios del sistema. Se crea una lista con las ambulancias disponibles
-	 * de la cual se calcula la mas cercana
-	 * al servicio encontrado. Tambien se calcula la IPS mas cercana y se asignan al servicio
+	 * servicio en la lista de servicios del sistema. Se crea una lista con las
+	 * ambulancias disponibles de la cual se calcula la mas cercana al servicio
+	 * encontrado. Tambien se calcula la IPS mas cercana y se asignan al
+	 * servicio
 	 *
 	 * @see Ambulancia.java
 	 * @see IPS.java
@@ -226,9 +227,14 @@ public class EmpresaAmbulancias implements Serializable {
 						servicio.getDireccion().getCarrera());
 				IPS ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
-				asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
-				return "Asignado";
+				if(ips != null){
+					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
+					return "Asignado";
+				} else {
+					return "No se han registrado IPS";
+				}
 			}
+			return "Todas las ambulancias estan ocupadas";
 		}
 		return "No Existe el servicio";
 	}
@@ -252,6 +258,7 @@ public class EmpresaAmbulancias implements Serializable {
 		servicio.setIps(ips);
 		ips.agregarServicioIPS(servicio);
 		servicio.setEstado("ASIGNADO");
+
 	}
 
 	/**
