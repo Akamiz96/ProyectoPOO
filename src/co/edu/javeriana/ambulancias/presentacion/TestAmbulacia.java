@@ -167,6 +167,7 @@ public class TestAmbulacia {
 					System.out.println();
 					break;
 				case 9:
+				//Reporte IPS con servicios asociados 
 					System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
 					for (IPS ips : empresaAmbulancias.getLasIPS()) {
 						System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
