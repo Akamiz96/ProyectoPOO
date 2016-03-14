@@ -79,7 +79,7 @@ public class TestAmbulacia {
 					System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
 					if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
 						System.out.println(
-								"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
+								"codigo placa    tipoDotacion   horaPosicion posicionCarrera posicionCalle servicio");
 						System.out.println(
 								"-----------------------------------------------------------------------------------");
 						for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
@@ -167,7 +167,7 @@ public class TestAmbulacia {
 					System.out.println();
 					break;
 				case 9:
-				//Reporte IPS con servicios asociados 
+				//Reporte IPS con servicios asociados
 					System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
 					if (!empresaAmbulancias.getLasIPS().isEmpty()) {
 						for (IPS ips : empresaAmbulancias.getLasIPS()) {
@@ -184,7 +184,7 @@ public class TestAmbulacia {
 										System.out.printf("   %s\n", servicio.toStringB());
 									}
 								} else
-									System.out.println("Sin servicio asignado");
+									System.out.println("Sin servicios asignado");
 							}
 						}
 					} else
