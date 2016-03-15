@@ -17,8 +17,9 @@ import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
  */
 public class ManejoArchivos {
 	/**
-	* Metodo Estatico para cargar las IPS a memoria a partir de un nombre de archivo de texto dado
-	*/
+	 * Metodo Estatico para cargar las IPS a memoria a partir de un nombre de
+	 * archivo de texto dado
+	 */
 	public static void cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Ingrese el nombre del Archivo: ");
@@ -35,20 +36,22 @@ public class ManejoArchivos {
 				if (!linea.equals("0"))
 					linea = procesarIPS(empresaAmbulancia, input, linea);
 			} // fin de todas las IPS
+			input.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error en la ruta del archivo.\n Error: " + e.getMessage());
 		} catch (IOException e) {
 			System.out.println("Error leyendo del archivo.\n Error: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
-		} finally {
-			input.close();
-		}
+		} 
 	}
+
 	/**
-	* Metodo Privado Estatico para procesar una IPS e invocar metodo agregarIPS de la clase empresaAmbulancia
-	* @see EmpresaAmbulancias#agregarIPS
-	*/
+	 * Metodo Privado Estatico para procesar una IPS e invocar metodo agregarIPS
+	 * de la clase empresaAmbulancia
+	 * 
+	 * @see EmpresaAmbulancias#agregarIPS
+	 */
 	private static String procesarIPS(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
@@ -57,9 +60,11 @@ public class ManejoArchivos {
 				Integer.parseInt(tokens.nextToken().trim()));
 		return linea;
 	}
+
 	/**
-	* Metodo Estatico para cargar las ambulancias a memoria a partir de un nombre de archivo de texto dado
-	*/
+	 * Metodo Estatico para cargar las ambulancias a memoria a partir de un
+	 * nombre de archivo de texto dado
+	 */
 	public static void cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Insgrese el nombre del Archivo: ");
@@ -76,6 +81,7 @@ public class ManejoArchivos {
 				if (!linea.equals("0"))
 					linea = procesarAmbulancias(empresaAmbulancia, input, linea);
 			}
+			input.close();
 		} // fin de todas las IPS
 		catch (FileNotFoundException e) {
 			System.out.println("Error en la ruta del archivo.\n Error: " + e.getMessage());
@@ -83,14 +89,15 @@ public class ManejoArchivos {
 			System.out.println("Error leyendo del archivo.\n Error:" + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
-		} finally {
-			input.close();
-		}
+		} 
 	}
+
 	/**
- 	* Metodo Privado Estatico para procesar una ambulancia e invocar metodo agregarIPS de la clase empresaAmbulancia
- 	* @see EmpresaAmbulancias#agregarAmbulancia
- 	*/
+	 * Metodo Privado Estatico para procesar una ambulancia e invocar metodo
+	 * agregarIPS de la clase empresaAmbulancia
+	 * 
+	 * @see EmpresaAmbulancias#agregarAmbulancia
+	 */
 	private static String procesarAmbulancias(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");

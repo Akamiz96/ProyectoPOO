@@ -227,12 +227,11 @@ public class EmpresaAmbulancias implements Serializable {
 						servicio.getDireccion().getCarrera());
 				IPS ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
-				if(ips != null){
+				if (ips != null) {
 					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
 					return "Asignado";
-				} else {
+				} else
 					return "No se han registrado IPS";
-				}
 			}
 			return "Todas las ambulancias estan ocupadas";
 		}

@@ -27,6 +27,7 @@ public class TestAmbulacia {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int opcion;
+		int calle, carrera, codigo;
 		EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
 		do {
@@ -47,15 +48,18 @@ public class TestAmbulacia {
 					break;
 				case 3:
 					// registrar la posicion actual de una ambulancia
-					System.out.println("--REGISTRAR POSICION DE AMBULANCIA indique: codigo calle carrera");
-					int codigo = input.nextInt();
-					int carrera = input.nextInt();
-					int calle = input.nextInt();
-					if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, calle, carrera))
-						System.out.println("Exito en el registro de la posicion.");
-					else
-						System.out.println("Fallo en el registro de la posicion.");
-					System.out.println();
+					if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
+						System.out.println("--REGISTRAR POSICION DE AMBULANCIA indique: codigo calle carrera");
+						codigo = input.nextInt();
+						carrera = input.nextInt();
+						calle = input.nextInt();
+						if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, calle, carrera))
+							System.out.println("Exito en el registro de la posicion.");
+						else
+							System.out.println("Fallo en el registro de la posicion.");
+						System.out.println();
+					} else
+						System.out.println("No hay ambulancias registrada\n");
 					break;
 				case 4:
 					// registrar un servicio
@@ -139,56 +143,59 @@ public class TestAmbulacia {
 					break;
 				case 8:
 					System.out.println("--REPORTE DE SERVICIOS CON IPS Y AMBULANCIAS ASOCIADAS");
-					for (Servicio servicio : empresaAmbulancias.getServicios()) {
-						System.out.println("\nSERVICIO:");
-						System.out.println(
-								"codigo horaSolicitud  paciente         tipoServicio telefono  direccion        estado");
-						System.out.println(
-								"--------------------------------------------------------------------------------------");
-						if (servicio.getEstado().equals("NO_ASIGNADO"))
-							System.out.printf("%s %s\n", servicio.toString(), servicio.getEstado());
-						else
-							System.out.printf("%s\n", servicio.toString());
-						if (servicio.getIps() != null) {
-							System.out.println("\tIPS asignada:");
-							System.out.println("\tnombre                 tipoAtencion           direccion");
+					if (!empresaAmbulancias.getServicios().isEmpty()) {
+						for (Servicio servicio : empresaAmbulancias.getServicios()) {
+							System.out.println("\nSERVICIO:");
 							System.out.println(
-									"\t--------------------------------------------------------------------------------");
-							System.out.printf("\t%s\n", servicio.getIps().toString());
-							System.out.println("\tAmbulancia asignada:");
+									"codigo horaSolicitud  paciente         tipoServicio telefono  direccion        estado");
 							System.out.println(
-									"\tcodigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera");
-							System.out.println(
-									"\t------------------------------------------------------------------------------");
-							System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
+									"--------------------------------------------------------------------------------------");
+							if (servicio.getEstado().equals("NO_ASIGNADO"))
+								System.out.printf("%s %s\n", servicio.toString(), servicio.getEstado());
+							else
+								System.out.printf("%s\n", servicio.toString());
+							if (servicio.getIps() != null) {
+								System.out.println("\tIPS asignada:");
+								System.out.println("\tnombre                 tipoAtencion           direccion");
+								System.out.println(
+										"\t--------------------------------------------------------------------------------");
+								System.out.printf("\t%s\n", servicio.getIps().toString());
+								System.out.println("\tAmbulancia asignada:");
+								System.out.println(
+										"\tcodigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera");
+								System.out.println(
+										"\t------------------------------------------------------------------------------");
+								System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
+							} else
+								System.out.println("\nAl servicio no se le han asignado la IPS y la Ambulancias");
 						}
-					}
+					} else
+						System.out.println("\nNo se han registrado servicio\n");
 					input.nextLine();
 					System.out.println();
 					break;
 				case 9:
-				//Reporte IPS con servicios asociados
+					// Reporte IPS con servicios asociados
 					System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
 					if (!empresaAmbulancias.getLasIPS().isEmpty()) {
 						for (IPS ips : empresaAmbulancias.getLasIPS()) {
 							System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
 							System.out.printf("   %s\n", ips.toString());
+							System.out.println("\n   SERVICIOS:");
+							System.out.println(
+									"   codigo horaSolicitud  paciente   tipoServicio telefono direccion          estado ambul.");
+							System.out.println(
+									"   --------------------------------------------------------------------------------------");
 							if (!ips.getServicios().isEmpty()) {
-								System.out.println("   SERVICIOS:");
-								System.out.println(
-										"   codigo horaSolicitud  paciente   tipoServicio telefono direccion          estado ambul.");
-								System.out.println(
-										"   --------------------------------------------------------------------------------------");
-								if (!ips.getServicios().isEmpty()) {
-									for (Servicio servicio : ips.getServicios()) {
-										System.out.printf("   %s\n", servicio.toStringB());
-									}
-								} else
-									System.out.println("Sin servicios asignado");
-							}
+								for (Servicio servicio : ips.getServicios()) {
+									System.out.printf("   %s\n", servicio.toStringB());
+								}
+							} else
+								System.out.println("   Sin servicios asignado");
+
 						}
 					} else
-						System.out.println("\nNo hay IPS registrada");
+						System.out.println("\n\nNo hay IPS registrada");
 					input.nextLine();
 					System.out.println();
 					break;
