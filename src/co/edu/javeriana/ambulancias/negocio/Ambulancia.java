@@ -12,7 +12,10 @@ import co.edu.javeriana.ambulancias.presentacion.Utils;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
- *
+ */
+/**
+ * 
+ * Representacion de una Ambulancia
  *
  */
 public class Ambulancia implements Serializable {
