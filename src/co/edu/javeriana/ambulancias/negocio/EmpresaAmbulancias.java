@@ -47,7 +47,7 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * @return the nombre
+	 * @return the nombre: Indica el nombre de la empresa de ambulancias
 	 */
 	public String getNombre() {
 		return this.nombre;
@@ -55,14 +55,16 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * @param nombre
-	 *            the nombre to set
+	 *            the nombre to set: Indica el nombre de la empresa de
+	 *            ambulancias
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
 	/**
-	 * @return the servicios
+	 * @return the servicios: Indica la LISTA de servicios que se contienen en
+	 *         el sistema
 	 */
 	public List<Servicio> getServicios() {
 		return servicios;
@@ -70,14 +72,16 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * @param servicios
-	 *            the servicios to set
+	 *            the servicios to set: Indica la LISTA de servicios que se
+	 *            contienen en el sistema
 	 */
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
 
 	/**
-	 * @return the ambulancias
+	 * @return the ambulancias: Indica la LISTA de ambulancias que se contienen
+	 *         en el sistema
 	 */
 	public List<Ambulancia> getAmbulancias() {
 		return ambulancias;
@@ -85,14 +89,15 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * @param ambulancias
-	 *            the ambulancias to set
+	 *            the ambulancias to set: Indica la LISTA de ambulancias que se
+	 *            contienen en el sistema
 	 */
 	public void setAmbulancias(List<Ambulancia> ambulancias) {
 		this.ambulancias = ambulancias;
 	}
 
 	/**
-	 * @return the lasIPS
+	 * @return the lasIPS: Indica la LISTA de IPS que se contienen en el sistema
 	 */
 	public List<IPS> getLasIPS() {
 		return lasIPS;
@@ -100,7 +105,8 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * @param lasIPS
-	 *            the lasIPS to set
+	 *            the lasIPS to set: Indica la LISTA de IPS que se contienen en
+	 *            el sistema
 	 */
 	public void setLasIPS(List<IPS> lasIPS) {
 		this.lasIPS = lasIPS;
@@ -109,7 +115,7 @@ public class EmpresaAmbulancias implements Serializable {
 	/**
 	 * Metodo para agregar una nueva IPS en el sistema.
 	 *
-	 * {@link} co.edu.javeriana.ambulancias.negocio.IPS
+	 * @see IPS
 	 * 
 	 * @param nombre:
 	 *            Indica el nombre de la nueva IPS
@@ -208,8 +214,8 @@ public class EmpresaAmbulancias implements Serializable {
 	 * encontrado. Tambien se calcula la IPS mas cercana y se asignan al
 	 * servicio
 	 *
-	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.Ambulancia.java
-	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.IPS.java
+	 * @see Ambulancia
+	 * @see IPS
 	 * 
 	 * @param codigo:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
@@ -240,8 +246,8 @@ public class EmpresaAmbulancias implements Serializable {
 	 * Metodo para la asignacion de atributos de relacion entre Servicio,
 	 * Ambulancia e IPS
 	 *
-	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.Servicio.java
-	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.Ambulancia.java
+	 * @see Servicio
+	 * @see Ambulancia
 	 * 
 	 * @param servicio:
 	 *            Indica el servicio a asignar

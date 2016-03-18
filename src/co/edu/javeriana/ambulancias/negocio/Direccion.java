@@ -16,7 +16,7 @@ import java.io.Serializable;
 	*/
 public class Direccion implements Serializable {
 	/**
-	 * tipoDIreccion: Indica si se encuentra sobre la carrera o sobre
+	 * tipoDireccion: Indica si se encuentra sobre la carrera o sobre
 	 *            la calle
 	 */
 	private String tipoDireccion;
@@ -52,7 +52,8 @@ public class Direccion implements Serializable {
 	}
 
 	/**
-	 * @return the tipoDireccion
+	 * @return the tipoDireccion: Indica si se encuentra sobre la carrera o sobre
+	 *            la calle
 	 */
 	public String getTipoDireccion() {
 		return tipoDireccion;
@@ -60,14 +61,15 @@ public class Direccion implements Serializable {
 
 	/**
 	 * @param tipoDireccion
-	 *            the tipoDireccion to set
+	 *            the tipoDireccion to set: Indica si se encuentra sobre la carrera o sobre
+	 *            la calle
 	 */
 	public void setTipoDireccion(String tipoDireccion) {
 		this.tipoDireccion = tipoDireccion;
 	}
 
 	/**
-	 * @return the calle
+	 * @return the calle: Indica la calle en la cual se encuentra
 	 */
 	public int getCalle() {
 		return calle;
@@ -75,14 +77,14 @@ public class Direccion implements Serializable {
 
 	/**
 	 * @param calle
-	 *            the calle to set
+	 *            the calle to set: Indica la calle en la cual se encuentra
 	 */
 	public void setCalle(int calle) {
 		this.calle = calle;
 	}
 
 	/**
-	 * @return the carrera
+	 * @return the carrera: Indica la carrera en la cual se encuentra
 	 */
 	public int getCarrera() {
 		return carrera;
@@ -90,14 +92,14 @@ public class Direccion implements Serializable {
 
 	/**
 	 * @param carrera
-	 *            the carrera to set
+	 *            the carrera to set: Indica la carrera en la cual se encuentra
 	 */
 	public void setCarrera(int carrera) {
 		this.carrera = carrera;
 	}
 
 	/**
-	 * @return the numero
+	 * @return the numero: Indica el bloque en la cuadra donde se encuentra
 	 */
 	public int getNumero() {
 		return numero;
@@ -105,7 +107,7 @@ public class Direccion implements Serializable {
 
 	/**
 	 * @param numero
-	 *            the numero to set
+	 *            the numero to set: Indica el bloque en la cuadra donde se encuentra
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
@@ -115,6 +117,11 @@ public class Direccion implements Serializable {
 	 * (non-Javadoc)
 	 *
 	 * @see java.lang.Object#toString()
+	 */
+	/**
+	 * ToString para reporte del servicio
+	 * tipoDireccion-calle/carrera-#-calle/carrera-numero
+	 * @return String con el formato mencionado anteriormente
 	 */
 	@Override
 	public String toString() {

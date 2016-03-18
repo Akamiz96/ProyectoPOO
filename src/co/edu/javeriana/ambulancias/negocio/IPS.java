@@ -53,7 +53,7 @@ public class IPS implements Serializable {
 	}
 
 	/**
-	 * @return the nombre
+	 * @return the nombre: Representa el nombre de la IPS
 	 */
 	public String getNombre() {
 		return nombre;
@@ -61,14 +61,15 @@ public class IPS implements Serializable {
 
 	/**
 	 * @param nombre
-	 *            the nombre to set
+	 *            the nombre to set: Representa el nombre de la IPS
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
 	/**
-	 * @return the tipoAtencion
+	 * @return the tipoAtencion: Texto que representa el tipo de atencion
+	 *         especializado de la entidad
 	 */
 	public String getTipoAtencion() {
 		return tipoAtencion;
@@ -76,14 +77,17 @@ public class IPS implements Serializable {
 
 	/**
 	 * @param tipoAtencion
-	 *            the tipoAtencion to set
+	 *            the tipoAtencion to set: Texto que representa el tipo de
+	 *            atencion especializado de la entidad
 	 */
 	public void setTipoAtencion(String tipoAtencion) {
 		this.tipoAtencion = tipoAtencion;
 	}
 
 	/**
-	 * @return the direccion
+	 * @return the direccion: Instancia de la clase Direccion que indica la
+	 *         direccion de la IPS
+	 * @see Direccion
 	 */
 	public Direccion getDireccion() {
 		return direccion;
@@ -91,14 +95,17 @@ public class IPS implements Serializable {
 
 	/**
 	 * @param direccion
-	 *            the direccion to set
+	 *            the direccion to set: Instancia de la clase Direccion que
+	 *            indica la direccion de la IPS
+	 * @see Direccion
 	 */
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 
 	/**
-	 * @return the servicios
+	 * @return the servicios: Indica la lista de servicios asociados a una IPS
+	 * @see Servicio
 	 */
 	public List<Servicio> getServicios() {
 		return servicios;
@@ -106,7 +113,9 @@ public class IPS implements Serializable {
 
 	/**
 	 * @param servicios
-	 *            the servicios to set
+	 *            the servicios to set: Indica la lista de servicios asociados a
+	 *            una IPS
+	 * @see Servicio
 	 */
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
@@ -116,6 +125,12 @@ public class IPS implements Serializable {
 	 * (non-Javadoc)
 	 *
 	 * @see java.lang.Object#toString()
+	 */
+	/**
+	 * ToString para reporte de IPS nombre-tipoAtencion-direccion
+	 * 
+	 * @see Servicio#toString()
+	 * @return String con el formato anteriormente mencionado
 	 */
 	@Override
 	public String toString() {
@@ -142,7 +157,7 @@ public class IPS implements Serializable {
 	 * Metodo para agregar un servicio dado a la lista de servicios de una IPS
 	 * 
 	 * @param servicio:
-	 *            Indica el servicio a agregar em la lista de IPS
+	 *            Indica el servicio a agregar en la lista de IPS
 	 */
 	public void agregarServicioIPS(Servicio servicio) {
 		this.servicios.add(servicio);

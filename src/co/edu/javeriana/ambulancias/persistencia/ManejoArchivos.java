@@ -76,6 +76,10 @@ public class ManejoArchivos {
 	/**
 	 * Metodo Estatico para cargar las ambulancias a memoria a partir de un
 	 * nombre de archivo de texto dado
+	 * 
+	 * @param empresaAmbulancia:
+	 *            Indica el objeto de empresa ambulancia para el cual se le
+	 *            adicionara las IPS
 	 */
 	public static void cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);

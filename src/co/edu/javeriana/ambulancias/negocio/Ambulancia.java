@@ -20,40 +20,42 @@ import co.edu.javeriana.ambulancias.presentacion.Utils;
  */
 public class Ambulancia implements Serializable {
 	/**
-	 * codigo: Representa el codigo unico dado a la ambulancia dentro
-	 *            del sistema
+	 * codigo: Representa el codigo unico dado a la ambulancia dentro del
+	 * sistema
 	 */
 	private int codigo;
 	/**
-	 * placa: Representa la placa de la ambulancia (Identificacion de
-	 *            la ambulancia hacia entidades gubernamentales)
+	 * placa: Representa la placa de la ambulancia (Identificacion de la
+	 * ambulancia hacia entidades gubernamentales)
 	 */
 	private String placa;
 	/**
-	 * tipoDotacion: Representa la dotacion llevada dentro de la
-	 *            ambulancia para atender servicios (MEDICALIZADA/ALTA_UCI)
+	 * tipoDotacion: Representa la dotacion llevada dentro de la ambulancia para
+	 * atender servicios (MEDICALIZADA/ALTA_UCI)
 	 */
 	private String tipoDotacion;
 	/**
-	 * horaPosicion: Representa la ultima vez que dicha Ambulancia
-	 *            registro su posicion
+	 * horaPosicion: Representa la ultima vez que dicha Ambulancia registro su
+	 * posicion
 	 */
 	private GregorianCalendar horaPosicion;
 	/**
-	 * posicionCalle: Representa la calle en la cual se encuentra la
-	 *            Ambulancia la ultima vez que registro su posicion
+	 * posicionCalle: Representa la calle en la cual se encuentra la Ambulancia
+	 * la ultima vez que registro su posicion
 	 */
 	private int posicionCalle;
 	/**
-	 * posicionCarrera: Representa la carrera en la cual se encuentra
-	 *            la Ambulancia la ultima vez que registro su posicion
+	 * posicionCarrera: Representa la carrera en la cual se encuentra la
+	 * Ambulancia la ultima vez que registro su posicion
 	 */
 	private int posicionCarrera;
 	/**
-	 * servicios: Representa la lista de servicios que posee la
-	 *            ambulancia
+	 * servicios: Representa la lista de servicios que posee la ambulancia
 	 */
 	private List<Servicio> servicios;
+	/**
+	 * enServicio: Indica si la ambulancia esta en servicio (true) o no (false)
+	 */
 	private boolean enServicio;
 
 	/**
@@ -216,6 +218,13 @@ public class Ambulancia implements Serializable {
 	 *
 	 * @see java.lang.Object#toString()
 	 */
+	/**
+	 * ToString para reporte de ambulancias
+	 * codigo-placa-tipoDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio
+	 * ese espacio
+	 * @return String con el formato mencionado anteriormente
+	 */
 	@Override
 	public String toString() {
 		if (enServicio) {
@@ -234,6 +243,12 @@ public class Ambulancia implements Serializable {
 		return "error";
 	}
 
+	/**
+	 * ToString usado para reporte de ambulancia
+	 * codigo-placa-tipoDeDotacion-horaPosicion-posicionCalle-posicionCarrera
+	 * 
+	 * @return String con el orden determinado anteriormente
+	 */
 	public String toStringC() {
 		return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
 				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
@@ -243,7 +258,9 @@ public class Ambulancia implements Serializable {
 	 * Metodo que agrega un servicio dado a la ambulancia Tambien realiza el
 	 * cambio de estado a la ambulancia de false a true en el atributo
 	 * enServicio.
-	 * @param servicio: Indica el servicio a ser agregado a la lista de servicios.
+	 * 
+	 * @param servicio:
+	 *            Indica el servicio a ser agregado a la lista de servicios.
 	 */
 	public void agregarServicioAmbulancia(Servicio servicio) {
 		this.servicios.add(servicio);
