@@ -19,6 +19,10 @@ public class ManejoArchivos {
 	/**
 	 * Metodo Estatico para cargar las IPS a memoria a partir de un nombre de
 	 * archivo de texto dado
+	 * 
+	 * @param empresaAmbulancia:
+	 *            Indica el objeto de empresa ambulancia para el cual se le
+	 *            adicionara las IPS
 	 */
 	public static void cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
 		Scanner input = new Scanner(System.in);
@@ -43,13 +47,21 @@ public class ManejoArchivos {
 			System.out.println("Error leyendo del archivo.\n Error: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
-		} 
+		}
 	}
 
 	/**
 	 * Metodo Privado Estatico para procesar una IPS e invocar metodo agregarIPS
 	 * de la clase empresaAmbulancia
 	 * 
+	 * @param input:
+	 *            Indica el Scanner a ser usado dentro de la clase
+	 * @param linea:
+	 *            Indica la linea de texto que es una IPS a ser procesada
+	 * @param empresaAmbulancia:
+	 *            Indica la empresa de ambulancias a agregar la IPS luego de su
+	 *            procesamiento
+	 * @return String: Retorna el resto de la linea luego de ser procesada
 	 * @see EmpresaAmbulancias#agregarIPS
 	 */
 	private static String procesarIPS(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
@@ -89,7 +101,7 @@ public class ManejoArchivos {
 			System.out.println("Error leyendo del archivo.\n Error:" + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("excepcion inesperada:" + e.getMessage());
-		} 
+		}
 	}
 
 	/**

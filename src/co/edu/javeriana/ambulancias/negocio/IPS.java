@@ -13,21 +13,21 @@ import java.util.List;
  */
 public class IPS implements Serializable {
 	/**
-	 * @attribute nombre: Representa el nombre de la IPS
+	 * nombre: Representa el nombre de la IPS
 	 */
 	private String nombre;
 	/**
-	 * @attribute tipoAtencion: Texto que representa el tipo de atencion
-	 *            especializado de la entidad
+	 * tipoAtencion: Texto que representa el tipo de atencion especializado de
+	 * la entidad
 	 */
 	private String tipoAtencion;
 	/**
-	 * @attribute direccion: Instancia de la clase Direccion que indica la
-	 *            direccion de la IPS
+	 * direccion: Instancia de la clase Direccion que indica la direccion de la
+	 * IPS
 	 */
 	private Direccion direccion;
 	/**
-	 * @attribute servicios: Indica la lista de servicios asociados a una IPS
+	 * servicios: Indica la lista de servicios asociados a una IPS
 	 */
 	private List<Servicio> servicios;
 
@@ -121,15 +121,29 @@ public class IPS implements Serializable {
 	public String toString() {
 		return String.format("%-22s %-22s %-22s", nombre, tipoAtencion, direccion);
 	}
+
 	/**
-	* Metodo para asignar la direccion a una IPS
-	*/
+	 * Metodo para asignar la direccion a una IPS
+	 * 
+	 * @param tipoDireccion:
+	 *            Indica si la direccion es CARRERA/CALLE
+	 * @param calle:
+	 *            Indica el numero de calle de la direccion
+	 * @param carrera:
+	 *            Indica el numero de carrera de la direccion
+	 * @param numero:
+	 *            Indica el bloque de la cuadra en donde es la direccion
+	 */
 	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero) {
 		this.direccion = new Direccion(tipoDireccion, calle, carrera, numero);
 	}
- /**
- * Metodo para agregar un servicio dado a la lista de servicios de una IPS 
- */
+
+	/**
+	 * Metodo para agregar un servicio dado a la lista de servicios de una IPS
+	 * 
+	 * @param servicio:
+	 *            Indica el servicio a agregar em la lista de IPS
+	 */
 	public void agregarServicioIPS(Servicio servicio) {
 		this.servicios.add(servicio);
 	}

@@ -94,7 +94,11 @@ public class Utils {
 	}
 
 	/**
-	 * @param fecha
+	 * Dada un afecha en GregoriaCalendar, retorna la hora de esta en formato
+	 * HH:MM
+	 * 
+	 * @param fecha:
+	 *            fecha a convertir la hora y minutos a String
 	 * @return String "HH:MM"
 	 */
 	public static String convertirFechaHoraString(GregorianCalendar fecha) {

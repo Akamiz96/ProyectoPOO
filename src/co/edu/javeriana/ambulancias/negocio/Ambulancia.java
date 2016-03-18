@@ -14,43 +14,43 @@ import co.edu.javeriana.ambulancias.presentacion.Utils;
  * @author Pablo Ariza y Alejandro Castro
  */
 /**
- * 
+ *
  * Representacion de una Ambulancia
  *
  */
 public class Ambulancia implements Serializable {
 	/**
-	 * @attribute codigo: Representa el codigo unico dado a la ambulancia dentro
+	 * codigo: Representa el codigo unico dado a la ambulancia dentro
 	 *            del sistema
 	 */
 	private int codigo;
 	/**
-	 * @attribute placa: Representa la placa de la ambulancia (Identificacion de
+	 * placa: Representa la placa de la ambulancia (Identificacion de
 	 *            la ambulancia hacia entidades gubernamentales)
 	 */
 	private String placa;
 	/**
-	 * @attribute tipoDotacion: Representa la dotacion llevada dentro de la
+	 * tipoDotacion: Representa la dotacion llevada dentro de la
 	 *            ambulancia para atender servicios (MEDICALIZADA/ALTA_UCI)
 	 */
 	private String tipoDotacion;
 	/**
-	 * @attribute horaPosicion: Representa la ultima vez que dicha Ambulancia
+	 * horaPosicion: Representa la ultima vez que dicha Ambulancia
 	 *            registro su posicion
 	 */
 	private GregorianCalendar horaPosicion;
 	/**
-	 * @attribute posicionCalle: Representa la calle en la cual se encuentra la
+	 * posicionCalle: Representa la calle en la cual se encuentra la
 	 *            Ambulancia la ultima vez que registro su posicion
 	 */
 	private int posicionCalle;
 	/**
-	 * @attribute posicionCarrera: Representa la carrera en la cual se encuentra
+	 * posicionCarrera: Representa la carrera en la cual se encuentra
 	 *            la Ambulancia la ultima vez que registro su posicion
 	 */
 	private int posicionCarrera;
 	/**
-	 * @attribute servicios: Representa la lista de servicios que posee la
+	 * servicios: Representa la lista de servicios que posee la
 	 *            ambulancia
 	 */
 	private List<Servicio> servicios;
@@ -243,6 +243,7 @@ public class Ambulancia implements Serializable {
 	 * Metodo que agrega un servicio dado a la ambulancia Tambien realiza el
 	 * cambio de estado a la ambulancia de false a true en el atributo
 	 * enServicio.
+	 * @param servicio: Indica el servicio a ser agregado a la lista de servicios.
 	 */
 	public void agregarServicioAmbulancia(Servicio servicio) {
 		this.servicios.add(servicio);
@@ -253,7 +254,7 @@ public class Ambulancia implements Serializable {
 	 * Metodo Privado para realizar la busqueda de un servicio en el sistema
 	 * dado un codigo
 	 *
-	 * @param codigo:
+	 * @param estado:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	 */

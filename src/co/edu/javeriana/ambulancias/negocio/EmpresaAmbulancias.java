@@ -14,21 +14,20 @@ import java.util.List;
  */
 public class EmpresaAmbulancias implements Serializable {
 	/**
-	 * @attribute nombre: Indica el nombre de la empresa de ambulancias
+	 * nombre: Indica el nombre de la empresa de ambulancias
 	 */
 	private String nombre;
 	/**
-	 * @attribute servicios: Indica la LISTA de servicios que se contienen en el
-	 *            sistema
+	 * servicios: Indica la LISTA de servicios que se contienen en el sistema
 	 */
 	private List<Servicio> servicios;
 	/**
-	 * @attribute ambulancias: Indica la LISTA de ambulancias que se contienen
-	 *            en el sistema
+	 * ambulancias: Indica la LISTA de ambulancias que se contienen en el
+	 * sistema
 	 */
 	private List<Ambulancia> ambulancias;
 	/**
-	 * @attribute lasIPS: Indica la LISTA de IPS que se contienen en el sistema
+	 * lasIPS: Indica la LISTA de IPS que se contienen en el sistema
 	 */
 	private List<IPS> lasIPS;
 
@@ -110,7 +109,8 @@ public class EmpresaAmbulancias implements Serializable {
 	/**
 	 * Metodo para agregar una nueva IPS en el sistema.
 	 *
-	 * @see IPS.java
+	 * {@link} co.edu.javeriana.ambulancias.negocio.IPS
+	 * 
 	 * @param nombre:
 	 *            Indica el nombre de la nueva IPS
 	 * @param tipoAtencion:
@@ -124,9 +124,6 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica el numero de la carrera de la nueva IPS
 	 * @param numero:
 	 *            Indica la posicion de la nueva IPS en la calle o en la carrera
-	 * @param indice:
-	 *            Indica la posicion de la nueva IPS en el arreglo de
-	 *            empresaAmbulancia
 	 */
 	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
 			int numero) {
@@ -143,9 +140,6 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica la placa de la nueva ambulancia
 	 * @param tipoDotacion:
 	 *            Indica el equipamiento de la nueva ambulancia
-	 * @param indice:
-	 *            Indica la posicion de la nueva ambulancia en el arreglo de
-	 *            EmpresaAmbulancia
 	 */
 	public void agregarAmbulancia(int codigo, String placa, String tipoDotacion) {
 		Ambulancia ambulancia = new Ambulancia(codigo, placa, tipoDotacion);
@@ -182,19 +176,22 @@ public class EmpresaAmbulancias implements Serializable {
 	/**
 	 * Metodo para adicionar un nuevo servicio al sistema
 	 *
-	 * @see Servicio.java
+	 * @see Servicio
 	 * @param nombre:
 	 *            Indica el nombre de la IPS
 	 * @param tipoAtencion:
 	 *            Indica el tipo de especializacion de la IPS
 	 * @param tipoDireccion:
 	 *            Indica si se encuentra sobre la carrera o sobre la calle
+	 * @param telefono:
+	 *            Indica el telefono desde el cual se realizo el servicio
 	 * @param calle:
 	 *            Indica la calle en la cual se encuentra
 	 * @param carrera:
 	 *            Indica la carrera en la cual se encuentra
 	 * @param numero:
 	 *            Indica el bloque en la cuadra donde se encuentra
+	 * @return long: Codigo del servicio registrado
 	 */
 	public long registrarServicio(String nombre, String tipoAtencion, String telefono, String tipoDireccion, int calle,
 			int carrera, int numero) {
@@ -211,8 +208,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 * encontrado. Tambien se calcula la IPS mas cercana y se asignan al
 	 * servicio
 	 *
-	 * @see Ambulancia.java
-	 * @see IPS.java
+	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.Ambulancia.java
+	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.IPS.java
+	 * 
 	 * @param codigo:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return String: "Asignado" si fue una asignacion exitosa
@@ -242,8 +240,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 * Metodo para la asignacion de atributos de relacion entre Servicio,
 	 * Ambulancia e IPS
 	 *
-	 * @see Servicio.java
-	 * @see Ambulancia.java
+	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.Servicio.java
+	 * {@link} co.javeriana.edu.javeriana.ambulancias.negocio.Ambulancia.java
+	 * 
 	 * @param servicio:
 	 *            Indica el servicio a asignar
 	 * @param ambulancia:
@@ -321,7 +320,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @param servicio:
 	 *            Indica el servicio al cual se le realizara una subLISTA de
 	 *            disponibilidad
-	 * @return List<Ambulancia>: Se retorna la subLISTA de disponibilidad
+	 * @return List: Se retorna la subLISTA de disponibilidad de ambulancias
 	 */
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia>();
@@ -376,6 +375,9 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            Indica la calle sobre la cual se calculara la cercania
 	 * @param carrera:
 	 *            Indica la carrera sobre la cual se calculara la cercania
+	 * @param listaIPS:
+	 *            Indica la lista de IPS del sistema para calcular la mas
+	 *            cercana
 	 * @return IPS: Retorna la IPS mas cercana a la calle y a la carrera dadas
 	 */
 	private IPS calcularIPSMasCercano(List<IPS> listaIPS, int calle, int carrera) {

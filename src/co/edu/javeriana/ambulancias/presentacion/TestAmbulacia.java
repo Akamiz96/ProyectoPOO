@@ -22,7 +22,8 @@ import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 public class TestAmbulacia {
 
 	/**
-	 * @param args
+	 * @param args:
+	 *            Indica los argumentos de inicio del programa
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -209,6 +210,8 @@ public class TestAmbulacia {
 
 	/**
 	 * Menu de las funcionalidades del sistema y captura de la opcion deseada
+	 * 
+	 * @return int: retorna la opcion escogida por el usuario
 	 */
 	public static int menuSistema() {
 		int opcion;

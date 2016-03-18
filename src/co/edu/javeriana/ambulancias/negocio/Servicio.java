@@ -14,52 +14,50 @@ import co.edu.javeriana.ambulancias.presentacion.Utils;
  */
 public class Servicio implements Serializable {
 	/**
-	 * @attribute consecutivo: Representa el consecutivo de los servicios dentro
-	 *            del sistema
+	 * consecutivo: Representa el consecutivo de los servicios dentro del
+	 * sistema
 	 */
 	private static long consecutivo = 1;
 	/**
-	 * @attribute codigo: Representa el codigo unico dado al servicio dentro del
-	 *            sistema
+	 * codigo: Representa el codigo unico dado al servicio dentro del sistema
 	 */
 	private long codigo;
 	/**
-	 * @attribute horaSolicitud: Representa la hora en la cual se hizo el pedido
-	 *            de dicho servicio
+	 * horaSolicitud: Representa la hora en la cual se hizo el pedido de dicho
+	 * servicio
 	 */
 	private GregorianCalendar horaSolicitud;
 	/**
-	 * @attribute paciente: Representa el nombre del paciente para el cual es
-	 *            dicho servicio
+	 * paciente: Representa el nombre del paciente para el cual es dicho
+	 * servicio
 	 */
 	private String paciente;
 	/**
-	 * @attribute telefono: Representa el telefono del cual se realizo el pedido
-	 *            de dicho servicio
+	 * telefono: Representa el telefono del cual se realizo el pedido de dicho
+	 * servicio
 	 */
 	private long telefono;
 	/**
-	 * @attribute tipoServicio: Representa el tipo de servicio requerido
-	 *            (URGENCIA/EMERGENCIA)
+	 * tipoServicio: Representa el tipo de servicio requerido
+	 * (URGENCIA/EMERGENCIA)
 	 */
 	private String tipoServicio;
 	/**
-	 * @attribute estado: Indica si el servicio esta: No_ASIGNADO, ASIGNADO o
-	 *            FINALIZADO
+	 * estado: Indica si el servicio esta: No_ASIGNADO, ASIGNADO o FINALIZADO
 	 */
 	private String estado;
 	/**
-	 * @attribute direccion: Instancia de la clase Direccion que indica la
-	 *            direccion del servicio
+	 * direccion: Instancia de la clase Direccion que indica la direccion del
+	 * servicio
 	 */
 	private Direccion direccion;
 	/**
-	 * @attribute ips: Instancia de la clase IPS que indica la ips asignada al
-	 *            servicio
+	 * ips: Instancia de la clase IPS que indica la ips asignada al servicio
 	 */
 	private IPS ips;
 	/**
-	 * @attribute ambulancia
+	 * ambulancia: Instancia de la clase Ambulancia que indica la ambulancia
+	 * asignada al servicio
 	 */
 	private Ambulancia ambulancia;
 
@@ -262,9 +260,10 @@ public class Servicio implements Serializable {
 	}
 
 	public String toStringC() {
-		return String.format("%-6s %-12s %d %-15s", this.codigo,
-				this.paciente, this.ambulancia.getCodigo(), this.ips.getNombre());
+		return String.format("%-6s %-12s %d %-15s", this.codigo, this.paciente, this.ambulancia.getCodigo(),
+				this.ips.getNombre());
 	}
+
 	/**
 	 * @param tipoDireccion:
 	 *            Indica si la direccion es sobre la carrera o sobre la calle

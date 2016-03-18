@@ -16,20 +16,20 @@ import java.io.Serializable;
 	*/
 public class Direccion implements Serializable {
 	/**
-	 * @attribute tipoDIreccion: Indica si se encuentra sobre la carrera o sobre
+	 * tipoDIreccion: Indica si se encuentra sobre la carrera o sobre
 	 *            la calle
 	 */
 	private String tipoDireccion;
 	/**
-	 * @attribute calle: Indica la calle en la cual se encuentra
+	 * calle: Indica la calle en la cual se encuentra
 	 */
 	private int calle;
 	/**
-	 * @attribute carrera: Indica la carrera en la cual se encuentra
+	 * carrera: Indica la carrera en la cual se encuentra
 	 */
 	private int carrera;
 	/**
-	 * @attribute numero: Indica el bloque en la cuadra donde se encuentra
+	 * numero: Indica el bloque en la cuadra donde se encuentra
 	 */
 	private int numero;
 
