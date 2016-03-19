@@ -66,8 +66,9 @@ public class TestAmbulacia {
 					// registrar un servicio
 					System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
 					System.out.println("            telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
-					input.nextLine();
 					String paciente = input.nextLine();
+					if(paciente.equals(""))
+						paciente =input.nextLine();
 					String tipoServicio = input.next();
 					String telefono = input.next();
 					String tipoDireccion = input.next();
