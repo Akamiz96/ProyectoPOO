@@ -66,7 +66,8 @@ public class TestAmbulacia {
 					// registrar un servicio
 					System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
 					System.out.println("            telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
-					String paciente = input.next() + " " + input.next();
+					input.nextLine();
+					String paciente = input.nextLine();
 					String tipoServicio = input.next();
 					String telefono = input.next();
 					String tipoDireccion = input.next();
@@ -93,6 +94,7 @@ public class TestAmbulacia {
 					} else {
 						System.out.println("No se han registrado las ambulancias");
 					}
+					System.out.printf("Presione enter para continuar.");
 					input.nextLine();
 					System.out.println();
 					break;
@@ -172,6 +174,7 @@ public class TestAmbulacia {
 						}
 					} else
 						System.out.println("\nNo se han registrado servicio\n");
+					System.out.printf("Presione enter para continuar.");
 					input.nextLine();
 					System.out.println();
 					break;
@@ -197,6 +200,7 @@ public class TestAmbulacia {
 						}
 					} else
 						System.out.println("\n\nNo hay IPS registrada");
+					System.out.printf("Presione enter para continuar.");
 					input.nextLine();
 					System.out.println();
 					break;
