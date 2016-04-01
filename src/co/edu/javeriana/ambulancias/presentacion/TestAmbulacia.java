@@ -3,11 +3,13 @@
  */
 package co.edu.javeriana.ambulancias.presentacion;
 
+import java.util.Collections;
 import java.util.Scanner;
 
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
+import co.edu.javeriana.ambulancias.negocio.PosicionCallePosicionCarreraComparator;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
@@ -52,8 +54,8 @@ public class TestAmbulacia {
 					if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
 						System.out.println("--REGISTRAR POSICION DE AMBULANCIA indique: codigo calle carrera");
 						codigo = input.nextInt();
-						carrera = input.nextInt();
 						calle = input.nextInt();
+						carrera = input.nextInt();
 						if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, calle, carrera))
 							System.out.println("Exito en el registro de la posicion.");
 						else
@@ -86,7 +88,7 @@ public class TestAmbulacia {
 					System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
 					if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
 						System.out.println(
-								"codigo placa    tipoDotacion   horaPosicion posicionCarrera posicionCalle servicio");
+								"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
 						System.out.println(
 								"-----------------------------------------------------------------------------------");
 						for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
@@ -146,6 +148,7 @@ public class TestAmbulacia {
 					System.out.println();
 					break;
 				case 8:
+					//reporte de servicios con IPS y ambulancias asignados.
 					System.out.println("--REPORTE DE SERVICIOS CON IPS Y AMBULANCIAS ASOCIADAS");
 					if (!empresaAmbulancias.getServicios().isEmpty()) {
 						for (Servicio servicio : empresaAmbulancias.getServicios()) {
@@ -205,9 +208,21 @@ public class TestAmbulacia {
 					input.nextLine();
 					System.out.println();
 					break;
+				case 10: 
+					//Reporte ordenado de las ambulancias segun localizacion
+					Collections.sort(empresaAmbulancias.getAmbulancias(),new PosicionCallePosicionCarreraComparator());
+					//Collections.reverse(empresaAmbulancias.getAmbulancias());
+					System.out.println("AMBULANCIAS: ");
+					System.out.println(
+							"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
+					System.out.println(
+							"-----------------------------------------------------------------------------------");
+					for(Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()){
+						System.out.printf("%s\n", ambulancia.toString());
+					}
 				}
 			}
-		} while (opcion != 10);
+		} while (opcion != 11);
 
 		input.close();
 	}
@@ -230,7 +245,8 @@ public class TestAmbulacia {
 		System.out.println("opcion 7: finalizar un servicio. ");
 		System.out.println("opcion 8: reporte de servicios con IPS y ambulancias asignados. ");
 		System.out.println("opcion 9: reporte de las IPS con servicios asociados. ");
-		System.out.println("opcion 10: terminar");
+		System.out.println("opcion 10: reporte ordenado de las ambulancias segun localizacion. ");
+		System.out.println("opcion 11: terminar");
 		System.out.printf("Opcion:");
 		opcion = input.nextInt();
 		return opcion;

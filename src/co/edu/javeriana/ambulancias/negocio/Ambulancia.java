@@ -230,15 +230,15 @@ public class Ambulancia implements Serializable {
 		if (enServicio) {
 			Servicio servicio = buscarServicio("ASIGNADO");
 			if (servicio != null)
-				return String.format("%-6s %-8s %-14s %-12s %-13s %-16s %-4d", this.codigo, this.placa,
+				return String.format("%-6s %-8s %-16s %-12s %-13s %-20s %-4d", this.codigo, this.placa,
 						this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
 						this.posicionCarrera, servicio.getCodigo());
 		} else {
 			if (this.horaPosicion != null) {
-				return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
+				return String.format("%-6s %-8s %-16s %-12s %-13s %-20s", this.codigo, this.placa, this.tipoDotacion,
 						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 			} else
-				return String.format("%-6s %-8s %-14s", this.codigo, this.placa, this.tipoDotacion);
+				return String.format("%-6s %-8s %-16s", this.codigo, this.placa, this.tipoDotacion);
 		}
 		return "error";
 	}
