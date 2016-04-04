@@ -32,12 +32,11 @@ public class TestAmbulacia {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int opcion;
-		int calle, carrera, codigo;
 		EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
 		do {
 			opcion = menuSistema();
-			if (opcion > 10 || opcion < 0)
+			if (opcion > 12 || opcion < 0)
 				System.out.println("Opcion invalida. Ingrese una opcion valida.");
 			else {
 				switch (opcion) {
@@ -70,28 +69,22 @@ public class TestAmbulacia {
 					finalizarServicio(empresaAmbulancias, input);
 					break;
 				case 8:
-					//reporte de servicios con IPS y ambulancias asignados.
+					// reporte de servicios con IPS y ambulancias asignados.
 					reporteServiciosIpsAmbulancia(empresaAmbulancias, input);
 					break;
 				case 9:
 					// Reporte IPS con servicios asociados
 					reporteIpsServicios(empresaAmbulancias, input);
 					break;
-				case 10: 
-					//Reporte ordenado de las ambulancias segun localizacion
-					Collections.sort(empresaAmbulancias.getAmbulancias(),new PosicionCallePosicionCarreraComparator());
-					//Collections.reverse(empresaAmbulancias.getAmbulancias());
-					System.out.println("AMBULANCIAS: ");
-					System.out.println(
-							"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
-					System.out.println(
-							"-----------------------------------------------------------------------------------");
-					for(Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()){
-						System.out.printf("%s\n", ambulancia.toString());
-					}
+				case 10:
+					// Estadisticas de las ambulancias disponibles
+					break;
+				case 11:
+					// Pacientes atendidos
+					break;
 				}
 			}
-		} while (opcion != 11);
+		} while (opcion != 12);
 
 		input.close();
 	}
@@ -103,9 +96,9 @@ public class TestAmbulacia {
 	 */
 	private static void reporteIpsServicios(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
-		Map <String,IPS> ips = empresaAmbulancias.getLasIPS();
+		Map<String, IPS> ips = empresaAmbulancias.getLasIPS();
 		if (!ips.isEmpty()) {
-			Set <String> ipsNombres = empresaAmbulancias.getLasIPS().keySet();
+			Set<String> ipsNombres = empresaAmbulancias.getLasIPS().keySet();
 			for (String ipsNombre : ipsNombres) {
 				System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
 				System.out.printf("   %s\n", ips.get(ipsNombre).toString());
@@ -153,8 +146,7 @@ public class TestAmbulacia {
 							"\t--------------------------------------------------------------------------------");
 					System.out.printf("\t%s\n", servicio.getIps().toString());
 					System.out.println("\tAmbulancia asignada:");
-					System.out.println(
-							"\tcodigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera");
+					System.out.println("\tcodigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera");
 					System.out.println(
 							"\t------------------------------------------------------------------------------");
 					System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
@@ -177,8 +169,7 @@ public class TestAmbulacia {
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			// TOSTRING PARA ENCABEZADO
 			System.out.println("Codigo    Paciente           Ambulancia         IPS");
-			System.out.println(
-					"----------------------------------------------------------------------------");
+			System.out.println("----------------------------------------------------------------------------");
 			// Impresion de los pacientes asignados del sistema
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
 				if (servicio.getEstado().equals("ASIGNADO")) {
@@ -208,8 +199,7 @@ public class TestAmbulacia {
 		System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			System.out.println("codigo horaSolicitud  paciente     tipoServicio telefono direccion ");
-			System.out.println(
-					"----------------------------------------------------------------------------");
+			System.out.println("----------------------------------------------------------------------------");
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
 				if (servicio.getEstado().equals("NO_ASIGNADO")) {
 					System.out.printf("%s\n", servicio.toString());
@@ -229,10 +219,8 @@ public class TestAmbulacia {
 	private static void reporteAmbulancias(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
 		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
-			System.out.println(
-					"codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
-			System.out.println(
-					"-----------------------------------------------------------------------------------");
+			System.out.println("codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
+			System.out.println("-----------------------------------------------------------------------------------");
 			for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
 				System.out.printf("%s\n", ambulancia.toString());
 			}
@@ -254,16 +242,16 @@ public class TestAmbulacia {
 		System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
 		System.out.println("            telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
 		String paciente = input.nextLine();
-		if(paciente.equals(""))
-			paciente =input.nextLine();
+		if (paciente.equals(""))
+			paciente = input.nextLine();
 		String tipoServicio = input.next();
 		String telefono = input.next();
 		String tipoDireccion = input.next();
 		calle = input.nextInt();
 		carrera = input.nextInt();
 		int numero = input.nextInt();
-		long codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono,
-				tipoDireccion, calle, carrera, numero);
+		long codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono, tipoDireccion,
+				calle, carrera, numero);
 		System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
 		input.nextLine();
 		System.out.println();
@@ -324,8 +312,9 @@ public class TestAmbulacia {
 		System.out.println("opcion 7: finalizar un servicio. ");
 		System.out.println("opcion 8: reporte de servicios con IPS y ambulancias asignados. ");
 		System.out.println("opcion 9: reporte de las IPS con servicios asociados. ");
-		System.out.println("opcion 10: reporte ordenado de las ambulancias segun localizacion. ");
-		System.out.println("opcion 11: terminar");
+		System.out.println("opcion 10: estadisticas de las ambulancias disponibles. ");
+		System.out.println("opcion 11: pacientes atendidos. ");
+		System.out.println("opcion 12: terminar");
 		System.out.printf("Opcion:");
 		opcion = input.nextInt();
 		return opcion;
