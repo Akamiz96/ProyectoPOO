@@ -91,8 +91,13 @@ public class TestAmbulacia {
 	// Metodo auxiliar para cada opcion del menu.
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 9 del Sistema: Reporte de las IPS con los servicios asociados
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void reporteIpsServicios(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
@@ -123,8 +128,14 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 8 del Sistema: Reporte de Servicios con la IPS y la Ambulancia
+	 * asociada
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void reporteServiciosIpsAmbulancia(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--REPORTE DE SERVICIOS CON IPS Y AMBULANCIAS ASOCIADAS");
@@ -161,8 +172,13 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 7 del Sistema: Funcionalidad para finalizar un servicio
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void finalizarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--FINALIZAR UN SERVICIO");
@@ -192,8 +208,14 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 6 del Sistema: Funcionalidad para que se asigne la ambulancia e
+	 * IPS mas cercana al servicio
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void asignarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
@@ -213,8 +235,13 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 5 del Sistema: Reporte de Ambulancias
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void reporteAmbulancias(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
@@ -233,8 +260,13 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 4 del Sistema: Funcionalidad para registrar un servicio al sistema
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void registrarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		int calle;
@@ -258,8 +290,14 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
-	 * @param input
+	 * Opcion 3 del Sistema: Funcionalidad para registrar la posicion de una
+	 * ambulancia en el sistema
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
+	 * @param input:
+	 *            Scanner para leer datos
 	 */
 	private static void registrarPosicionAmbulancia(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		int calle;
@@ -280,7 +318,12 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
+	 * Funcion 2 del Sistema: Funcionalidad para cargar las Ambulancias al
+	 * sistema
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
 	 */
 	private static void ingresarAmbulanciasAlSistema(EmpresaAmbulancias empresaAmbulancias) {
 		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
@@ -288,7 +331,11 @@ public class TestAmbulacia {
 	}
 
 	/**
-	 * @param empresaAmbulancias
+	 * Funcion 3 del Sistema: Funcionalidad para cargar las IPS al sistema
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
+	 *            el sistema
 	 */
 	private static void ingresarIpsAlsistema(EmpresaAmbulancias empresaAmbulancias) {
 		ManejoArchivos.cargarLasIPS(empresaAmbulancias);
