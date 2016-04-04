@@ -6,7 +6,10 @@ package co.edu.javeriana.ambulancias.negocio;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -27,9 +30,10 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	private List<Ambulancia> ambulancias;
 	/**
-	 * lasIPS: Indica la LISTA de IPS que se contienen en el sistema
+	 * lasIPS: Indica el map de IPS que se contienen en el sistema Llave: String
+	 * Valor: Objeto de tipo IPS
 	 */
-	private List<IPS> lasIPS;
+	private Map<String, IPS> lasIPS;
 
 	/**
 	 * Constructor de la clase EmpresaAmbulancias. Se asigna el nombre a la
@@ -43,7 +47,7 @@ public class EmpresaAmbulancias implements Serializable {
 		this.nombre = nombre;
 		this.servicios = new ArrayList<Servicio>();
 		this.ambulancias = new ArrayList<Ambulancia>();
-		this.lasIPS = new ArrayList<IPS>();
+		this.lasIPS = new Hashtable<String, IPS>();
 	}
 
 	/**
@@ -97,18 +101,19 @@ public class EmpresaAmbulancias implements Serializable {
 	}
 
 	/**
-	 * @return the lasIPS: Indica la LISTA de IPS que se contienen en el sistema
+	 * @return the lasIPS: Indica el map de IPS que se contienen en el sistema
+	 *         Llave: String Valor: Objeto de tipo IPS
 	 */
-	public List<IPS> getLasIPS() {
+	public Map<String, IPS> getLasIPS() {
 		return lasIPS;
 	}
 
 	/**
 	 * @param lasIPS
-	 *            the lasIPS to set: Indica la LISTA de IPS que se contienen en
-	 *            el sistema
+	 *            the lasIPS to set: Indica el map de IPS que se contienen en el
+	 *            sistema Llave: String Valor: Objeto de tipo IPS
 	 */
-	public void setLasIPS(List<IPS> lasIPS) {
+	public void setLasIPS(Map<String, IPS> lasIPS) {
 		this.lasIPS = lasIPS;
 	}
 
@@ -134,7 +139,7 @@ public class EmpresaAmbulancias implements Serializable {
 	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
 			int numero) {
 		IPS ips = new IPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
-		lasIPS.add(ips);
+		lasIPS.put(nombre, ips);
 	}
 
 	/**
@@ -375,29 +380,32 @@ public class EmpresaAmbulancias implements Serializable {
 
 	/**
 	 * Metodo privado para calcular la IPS mas cercana a una calle y carrera
-	 * dada Se realiza para una lista de IPS
+	 * dada Se realiza para un map de IPS
 	 *
 	 * @param calle:
 	 *            Indica la calle sobre la cual se calculara la cercania
 	 * @param carrera:
 	 *            Indica la carrera sobre la cual se calculara la cercania
-	 * @param listaIPS:
-	 *            Indica la lista de IPS del sistema para calcular la mas
+	 * @param mapIPS:
+	 *            Indica el map de IPS del sistema para calcular la mas
 	 *            cercana
 	 * @return IPS: Retorna la IPS mas cercana a la calle y a la carrera dadas
 	 */
-	private IPS calcularIPSMasCercano(List<IPS> listaIPS, int calle, int carrera) {
+	private IPS calcularIPSMasCercano(Map<String, IPS> mapIPS, int calle, int carrera) {
 		long minimo = -1;
 		IPS ipsCercana = null;
-		for (IPS ips : listaIPS) {
-			long distancia = this.calcularDistancia(ips.getDireccion().getCalle(), ips.getDireccion().getCarrera(),
-					calle, carrera);
-			if (minimo == -1) {
-				minimo = distancia;
-				ipsCercana = ips;
-			} else if (distancia < minimo) {
-				minimo = distancia;
-				ipsCercana = ips;
+		Set<String> llaves = mapIPS.keySet();
+		for (String llave : llaves) {
+			if (mapIPS.containsKey(llave)) {
+				long distancia = this.calcularDistancia(mapIPS.get(llave).getDireccion().getCalle(),
+						mapIPS.get(llave).getDireccion().getCarrera(), calle, carrera);
+				if (minimo == -1) {
+					minimo = distancia;
+					ipsCercana = mapIPS.get(llave);
+				} else if (distancia < minimo) {
+					minimo = distancia;
+					ipsCercana = mapIPS.get(llave);
+				}
 			}
 		}
 		return ipsCercana;

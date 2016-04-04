@@ -4,7 +4,9 @@
 package co.edu.javeriana.ambulancias.presentacion;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
@@ -185,17 +187,19 @@ public class TestAmbulacia {
 				case 9:
 					// Reporte IPS con servicios asociados
 					System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
-					if (!empresaAmbulancias.getLasIPS().isEmpty()) {
-						for (IPS ips : empresaAmbulancias.getLasIPS()) {
+					Map <String,IPS> ips = empresaAmbulancias.getLasIPS();
+					if (!ips.isEmpty()) {
+						Set <String> ipsNombres = empresaAmbulancias.getLasIPS().keySet();
+						for (String ipsNombre : ipsNombres) {
 							System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
-							System.out.printf("   %s\n", ips.toString());
+							System.out.printf("   %s\n", ips.get(ipsNombre).toString());
 							System.out.println("\n   SERVICIOS:");
 							System.out.println(
 									"   codigo horaSolicitud  paciente   tipoServicio telefono direccion          estado ambul.");
 							System.out.println(
 									"   --------------------------------------------------------------------------------------");
-							if (!ips.getServicios().isEmpty()) {
-								for (Servicio servicio : ips.getServicios()) {
+							if (!ips.get(ipsNombre).getServicios().isEmpty()) {
+								for (Servicio servicio : ips.get(ipsNombre).getServicios()) {
 									System.out.printf("   %s\n", servicio.toStringB());
 								}
 							} else
