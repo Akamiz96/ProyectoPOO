@@ -23,12 +23,12 @@ public class Ambulancia implements Serializable {
 	 * codigo: Representa el codigo unico dado a la ambulancia dentro del
 	 * sistema
 	 */
-	private int codigo;
+	protected int codigo;
 	/**
 	 * placa: Representa la placa de la ambulancia (Identificacion de la
 	 * ambulancia hacia entidades gubernamentales)
 	 */
-	private String placa;
+	protected String placa;
 	/**
 	 * tipoDotacion: Representa la dotacion llevada dentro de la ambulancia para
 	 * atender servicios (MEDICALIZADA/ALTA_UCI)
@@ -38,17 +38,17 @@ public class Ambulancia implements Serializable {
 	 * horaPosicion: Representa la ultima vez que dicha Ambulancia registro su
 	 * posicion
 	 */
-	private GregorianCalendar horaPosicion;
+	protected GregorianCalendar horaPosicion;
 	/**
 	 * posicionCalle: Representa la calle en la cual se encuentra la Ambulancia
 	 * la ultima vez que registro su posicion
 	 */
-	private int posicionCalle;
+	protected int posicionCalle;
 	/**
 	 * posicionCarrera: Representa la carrera en la cual se encuentra la
 	 * Ambulancia la ultima vez que registro su posicion
 	 */
-	private int posicionCarrera;
+	protected int posicionCarrera;
 	/**
 	 * servicios: Representa la lista de servicios que posee la ambulancia
 	 */
@@ -56,8 +56,20 @@ public class Ambulancia implements Serializable {
 	/**
 	 * enServicio: Indica si la ambulancia esta en servicio (true) o no (false)
 	 */
-	private boolean enServicio;
+	protected boolean enServicio;
+	/**
+	 * TARIFA_BASE: Indica la tarifa base de las ambulancias del sistema
+	 * para esta entrega se asigna el valor 80000
+	 */
+	protected static long TARIFA_BASE = 80000;
 
+	/**
+	 * 
+	 */
+	public long calcularTarifa(){
+		return 0;
+	}
+	
 	/**
 	 * @param codigo:
 	 *            Representa el codigo unico dado a la ambulancia dentro del

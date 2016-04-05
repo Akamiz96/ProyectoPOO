@@ -10,6 +10,10 @@ package co.edu.javeriana.ambulancias.negocio;
 public class AmbulanciaNoMedicalizada extends Ambulancia {
 
 	/**
+	 * 
+	 */
+	private String enfermero;
+	/**
 	 * @param codigo
 	 * @param placa
 	 * @param tipoDotacion
@@ -18,5 +22,11 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 		super(codigo, placa, tipoDotacion);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/**
+	 * 
+	 */
+	public long calcularTarifa(){
+		return 0;
+	}
 }

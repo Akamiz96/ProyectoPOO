@@ -18,5 +18,11 @@ public class AmbulanciaBasica extends AmbulanciaMedicalizada {
 		super(codigo, placa, tipoDotacion);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/**
+	 * 
+	 */
+	public long calcularTarifa(){
+		return 0;
+	}
 }

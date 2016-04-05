@@ -10,6 +10,10 @@ package co.edu.javeriana.ambulancias.negocio;
 public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 
 	/**
+	 * 
+	 */
+	private String tipoUCI;
+	/**
 	 * @param codigo
 	 * @param placa
 	 * @param tipoDotacion
@@ -18,5 +22,10 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 		super(codigo, placa, tipoDotacion);
 		// TODO Auto-generated constructor stub
 	}
-
+	/**
+	 * 
+	 */
+	public long calcularTarifa(){
+		return 0;
+	}
 }
