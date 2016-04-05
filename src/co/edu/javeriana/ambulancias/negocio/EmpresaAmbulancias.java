@@ -152,8 +152,19 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @param tipoDotacion:
 	 *            Indica el equipamiento de la nueva ambulancia
 	 */
-	public void agregarAmbulancia(int codigo, String placa, String tipoDotacion) {
-		Ambulancia ambulancia = new Ambulancia(codigo, placa, tipoDotacion);
+	public void agregarAmbulancia(String tipoAmbulancia, int codigo, String placa, String medicoEnfermero, String tipoDotacion) {
+		Ambulancia ambulancia = null;
+		switch (tipoAmbulancia){
+			case "BASICA":
+				ambulancia = new AmbulanciaBasica(codigo, placa, tipoDotacion);
+				break;
+			case "NOMEDICALIZADA":
+				ambulancia = new AmbulanciaNoMedicalizada(codigo, placa, tipoDotacion);
+				break;
+			case "UCI":
+				ambulancia = new AmbulanciaUCI(codigo, placa, tipoDotacion);
+				break;
+		}
 		ambulancias.put(codigo, ambulancia);
 	}
 
