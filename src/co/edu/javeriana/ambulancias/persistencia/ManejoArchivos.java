@@ -67,9 +67,13 @@ public class ManejoArchivos {
 	private static String procesarIPS(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
-		empresaAmbulancia.agregarIPS(tokens.nextToken().trim(), tokens.nextToken().trim(), tokens.nextToken().trim(),
-				Integer.parseInt(tokens.nextToken().trim()), Integer.parseInt(tokens.nextToken().trim()),
-				Integer.parseInt(tokens.nextToken().trim()));
+		String nombre = tokens.nextToken().trim();
+		String tipoAtencion = tokens.nextToken().trim();
+		String tipoDireccion = tokens.nextToken().trim();
+		int calle = Integer.parseInt(tokens.nextToken().trim());
+		int carrera = Integer.parseInt(tokens.nextToken().trim());
+		int numero = Integer.parseInt(tokens.nextToken().trim());
+		empresaAmbulancia.agregarIPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
 		return linea;
 	}
 
@@ -89,6 +93,10 @@ public class ManejoArchivos {
 		String linea;
 		try {
 			input = new Scanner(inFile);
+			linea = input.nextLine();// #valores de tipoAmbulancia:
+										// BASICA,UCI,NOMEDICALIZADA
+			linea = input.nextLine();// #valores de tipoUCI: CARDIOVASCULAR o
+										// PEDIATRICA
 			linea = input.nextLine(); // #nombre--
 										// tipoAtencion--tipoDireccion(CALLE o
 										// CARRERA)---calle---carrera--numero
@@ -117,8 +125,15 @@ public class ManejoArchivos {
 	private static String procesarAmbulancias(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
-		empresaAmbulancia.agregarAmbulancia(Integer.parseInt(tokens.nextToken().trim()), tokens.nextToken().trim(),
-				tokens.nextToken().trim());
+		String tipoAmbulancia = tokens.nextToken().trim();
+		int codigo = Integer.parseInt(tokens.nextToken().trim());
+		String placa = tokens.nextToken().trim();
+		String medicoEnfermero = tokens.nextToken().trim();
+		String tipoUCI = null;
+		if(tipoAmbulancia.equals("UCI")){
+			tipoUCI = tokens.nextToken().trim();
+		}
+		empresaAmbulancia.agregarAmbulancia(tipoAmbulancia, codigo, placa, medicoEnfermero, tipoUCI);
 		return linea;
 	}
 }
