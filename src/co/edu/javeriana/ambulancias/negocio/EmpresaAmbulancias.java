@@ -25,10 +25,10 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	private List<Servicio> servicios;
 	/**
-	 * ambulancias: Indica la LISTA de ambulancias que se contienen en el
-	 * sistema
+	 * ambulancias: Indica el map de ambulancias que se contienen en el sistema
+	 * Llave: Codigo de la ambulancia (Integer) Valor: Objeto de tipo Ambulancia
 	 */
-	private List<Ambulancia> ambulancias;
+	private Map<Integer, Ambulancia> ambulancias;
 	/**
 	 * lasIPS: Indica el map de IPS que se contienen en el sistema Llave: String
 	 * Valor: Objeto de tipo IPS
@@ -46,7 +46,7 @@ public class EmpresaAmbulancias implements Serializable {
 		super();
 		this.nombre = nombre;
 		this.servicios = new ArrayList<Servicio>();
-		this.ambulancias = new ArrayList<Ambulancia>();
+		this.ambulancias = new Hashtable<Integer, Ambulancia>();
 		this.lasIPS = new Hashtable<String, IPS>();
 	}
 
@@ -87,7 +87,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @return the ambulancias: Indica la LISTA de ambulancias que se contienen
 	 *         en el sistema
 	 */
-	public List<Ambulancia> getAmbulancias() {
+	public Map<Integer, Ambulancia> getAmbulancias() {
 		return ambulancias;
 	}
 
@@ -96,7 +96,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 *            the ambulancias to set: Indica la LISTA de ambulancias que se
 	 *            contienen en el sistema
 	 */
-	public void setAmbulancias(List<Ambulancia> ambulancias) {
+	public void setAmbulancias(Map<Integer, Ambulancia> ambulancias) {
 		this.ambulancias = ambulancias;
 	}
 
@@ -154,7 +154,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	public void agregarAmbulancia(int codigo, String placa, String tipoDotacion) {
 		Ambulancia ambulancia = new Ambulancia(codigo, placa, tipoDotacion);
-		ambulancias.add(ambulancia);
+		ambulancias.put(codigo, ambulancia);
 	}
 
 	/**
@@ -299,12 +299,10 @@ public class EmpresaAmbulancias implements Serializable {
 	 *         dado (NULL en el caso de que no se encuentre dicha ambulancia)
 	 */
 	private Ambulancia buscarAmbulancia(int codigo) {
-		for (Ambulancia ambulancia : this.ambulancias) {
-			if (ambulancia.getCodigo() == codigo) {
-				return ambulancia;
-			}
-		}
-		return null;
+		if (this.ambulancias.containsKey(codigo))
+			return this.ambulancias.get(codigo);
+		else
+			return null;
 	}
 
 	/**
@@ -335,14 +333,20 @@ public class EmpresaAmbulancias implements Serializable {
 	 */
 	private List<Ambulancia> construirAmbulanciasDisponiblesServicio(Servicio servicio) {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia>();
-		for (Ambulancia ambulancia : this.ambulancias) {
-			if (!ambulancia.getEnServicio()) {
+		Set<Integer> llaves = this.ambulancias.keySet();
+		for (Integer llave : llaves) {
+			if (!this.ambulancias.get(llave).getEnServicio()) {
 				if (servicio.getTipoServicio().equals("EMERGENCIA")
-						&& ambulancia.getTipoDotacion().equals("ALTA_UCI")) {
-					ambulanciasDisponibles.add(ambulancia);
+						&& this.ambulancias.get(llave) instanceof AmbulanciaUCI) {
+					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}
-				if (servicio.getTipoServicio().equals("URGENCIA")) {
-					ambulanciasDisponibles.add(ambulancia);
+				if (servicio.getTipoServicio().equals("URGENCIA")
+						&& this.ambulancias.get(llave) instanceof AmbulanciaMedicalizada) {
+					ambulanciasDisponibles.add(this.ambulancias.get(llave));
+				}
+				if (servicio.getTipoServicio().equals("DOMICILIO")
+						&& this.ambulancias.get(llave) instanceof AmbulanciaBasica) {
+					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}
 			}
 		}
@@ -387,8 +391,7 @@ public class EmpresaAmbulancias implements Serializable {
 	 * @param carrera:
 	 *            Indica la carrera sobre la cual se calculara la cercania
 	 * @param mapIPS:
-	 *            Indica el map de IPS del sistema para calcular la mas
-	 *            cercana
+	 *            Indica el map de IPS del sistema para calcular la mas cercana
 	 * @return IPS: Retorna la IPS mas cercana a la calle y a la carrera dadas
 	 */
 	private IPS calcularIPSMasCercano(Map<String, IPS> mapIPS, int calle, int carrera) {

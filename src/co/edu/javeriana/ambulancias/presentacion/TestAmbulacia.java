@@ -246,10 +246,11 @@ public class TestAmbulacia {
 	private static void reporteAmbulancias(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
 		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
+			Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
 			System.out.println("codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
 			System.out.println("-----------------------------------------------------------------------------------");
-			for (Ambulancia ambulancia : empresaAmbulancias.getAmbulancias()) {
-				System.out.printf("%s\n", ambulancia.toString());
+			for (Integer llave : llaves) {
+				System.out.printf("%s\n", empresaAmbulancias.getAmbulancias().get(llave).toString());
 			}
 		} else {
 			System.out.println("No se han registrado las ambulancias");
