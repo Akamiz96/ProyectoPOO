@@ -30,11 +30,6 @@ public class Ambulancia implements Serializable {
 	 */
 	protected String placa;
 	/**
-	 * tipoDotacion: Representa la dotacion llevada dentro de la ambulancia para
-	 * atender servicios (MEDICALIZADA/ALTA_UCI)
-	 */
-	private String tipoDotacion;
-	/**
 	 * horaPosicion: Representa la ultima vez que dicha Ambulancia registro su
 	 * posicion
 	 */
@@ -58,18 +53,18 @@ public class Ambulancia implements Serializable {
 	 */
 	protected boolean enServicio;
 	/**
-	 * TARIFA_BASE: Indica la tarifa base de las ambulancias del sistema
-	 * para esta entrega se asigna el valor 80000
+	 * TARIFA_BASE: Indica la tarifa base de las ambulancias del sistema para
+	 * esta entrega se asigna el valor 80000
 	 */
 	protected static long TARIFA_BASE = 80000;
 
 	/**
 	 * 
 	 */
-	public long calcularTarifa(){
+	public long calcularTarifa() {
 		return 0;
 	}
-	
+
 	/**
 	 * @param codigo:
 	 *            Representa el codigo unico dado a la ambulancia dentro del
@@ -81,9 +76,8 @@ public class Ambulancia implements Serializable {
 	 *            Representa la dotacion llevada dentro de la ambulancia para
 	 *            atender servicios (MEDICALIZADA/ALTA_UCI)
 	 */
-	public Ambulancia(int codigo, String placa, String tipoDotacion) {
+	public Ambulancia(int codigo, String placa) {
 		this.placa = placa;
-		this.tipoDotacion = tipoDotacion;
 		this.codigo = codigo;
 		this.servicios = new ArrayList<Servicio>();
 		this.horaPosicion = null;
@@ -123,24 +117,6 @@ public class Ambulancia implements Serializable {
 	 */
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	}
-
-	/**
-	 * @return the tipoDotacion: Representa la dotacion llevada dentro de la
-	 *         ambulancia para atender servicios (MEDICALIZADA/ALTA_UCI)
-	 */
-	public String getTipoDotacion() {
-		return tipoDotacion;
-	}
-
-	/**
-	 * @param tipoDotacion
-	 *            the tipoDotacion to set: Representa la dotacion llevada dentro
-	 *            de la ambulancia para atender servicios
-	 *            (MEDICALIZADA/ALTA_UCI)
-	 */
-	public void setTipoDotacion(String tipoDotacion) {
-		this.tipoDotacion = tipoDotacion;
 	}
 
 	/**
@@ -233,8 +209,9 @@ public class Ambulancia implements Serializable {
 	/**
 	 * ToString para reporte de ambulancias
 	 * codigo-placa-tipoDotacion-horaPosicion-posicionCalle-posicionCarrera-
-	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio
-	 * ese espacio
+	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio ese
+	 * espacio
+	 * 
 	 * @return String con el formato mencionado anteriormente
 	 */
 	@Override
@@ -242,15 +219,15 @@ public class Ambulancia implements Serializable {
 		if (enServicio) {
 			Servicio servicio = buscarServicio("ASIGNADO");
 			if (servicio != null)
-				return String.format("%-6s %-8s %-16s %-12s %-13s %-20s %-4d", this.codigo, this.placa,
-						this.tipoDotacion, Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle,
-						this.posicionCarrera, servicio.getCodigo());
+				return String.format("%-6s %-8s %-12s %-13s %-20s %-4d", this.codigo, this.placa,
+						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera,
+						servicio.getCodigo());
 		} else {
 			if (this.horaPosicion != null) {
-				return String.format("%-6s %-8s %-16s %-12s %-13s %-20s", this.codigo, this.placa, this.tipoDotacion,
+				return String.format("%-6s %-8s %-12s %-13s %-20s", this.codigo, this.placa,
 						Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 			} else
-				return String.format("%-6s %-8s %-16s", this.codigo, this.placa, this.tipoDotacion);
+				return String.format("%-6s %-8s", this.codigo, this.placa);
 		}
 		return "error";
 	}
@@ -262,7 +239,7 @@ public class Ambulancia implements Serializable {
 	 * @return String con el orden determinado anteriormente
 	 */
 	public String toStringC() {
-		return String.format("%-6s %-8s %-14s %-12s %-13s %-16s", this.codigo, this.placa, this.tipoDotacion,
+		return String.format("%-6s %-8s %-12s %-13s %-16s", this.codigo, this.placa,
 				Utils.convertirFechaHoraString(this.horaPosicion), this.posicionCalle, this.posicionCarrera);
 	}
 

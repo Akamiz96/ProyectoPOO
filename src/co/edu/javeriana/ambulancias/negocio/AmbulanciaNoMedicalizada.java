@@ -18,8 +18,9 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	 * @param placa
 	 * @param tipoDotacion
 	 */
-	public AmbulanciaNoMedicalizada(int codigo, String placa, String tipoDotacion) {
-		super(codigo, placa, tipoDotacion);
+	public AmbulanciaNoMedicalizada(int codigo, String placa, String enfermero) {
+		super(codigo, placa);
+		this.enfermero = enfermero;
 		// TODO Auto-generated constructor stub
 	}
 	
