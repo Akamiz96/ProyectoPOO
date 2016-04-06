@@ -7,7 +7,7 @@ package co.edu.javeriana.ambulancias.negocio;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
-public class AmbulanciaMedicalizada extends Ambulancia {
+public abstract class AmbulanciaMedicalizada extends Ambulancia {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class AmbulanciaMedicalizada extends Ambulancia {
 	/**
 	 * @param codigo
 	 * @param placa
-	 * @param tipoDotacion
+	 * @param medico
 	 */
 	public AmbulanciaMedicalizada(int codigo, String placa, String medico) {
 		super(codigo, placa);
@@ -24,6 +24,20 @@ public class AmbulanciaMedicalizada extends Ambulancia {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * @return the medico
+	 */
+	public String getMedico() {
+		return medico;
+	}
+
+	/**
+	 * @param medico the medico to set
+	 */
+	public void setMedico(String medico) {
+		this.medico = medico;
+	}
+
 	/**
 	 * 
 	 */

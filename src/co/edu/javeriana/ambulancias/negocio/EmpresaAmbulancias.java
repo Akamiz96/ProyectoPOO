@@ -155,17 +155,12 @@ public class EmpresaAmbulancias implements Serializable {
 	public void agregarAmbulancia(String tipoAmbulancia, int codigo, String placa, String medicoEnfermero,
 			String tipoUCI) {
 		Ambulancia ambulancia = null;
-		switch (tipoAmbulancia) {
-		case "BASICA":
+		if (tipoAmbulancia.equals("BASICA"))
 			ambulancia = new AmbulanciaBasica(codigo, placa, medicoEnfermero);
-			break;
-		case "NOMEDICALIZADA":
+		else if (tipoAmbulancia.equals("NOMEDICALIZADA"))
 			ambulancia = new AmbulanciaNoMedicalizada(codigo, placa, medicoEnfermero);
-			break;
-		case "UCI":
+		else if (tipoAmbulancia.equals("UCI"))
 			ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, tipoUCI);
-			break;
-		}
 		ambulancias.put(codigo, ambulancia);
 	}
 

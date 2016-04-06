@@ -12,7 +12,7 @@ public class AmbulanciaBasica extends AmbulanciaMedicalizada {
 	/**
 	 * @param codigo
 	 * @param placa
-	 * @param tipoDotacion
+	 * @param medico
 	 */
 	public AmbulanciaBasica(int codigo, String placa, String medico) {
 		super(codigo, placa, medico);

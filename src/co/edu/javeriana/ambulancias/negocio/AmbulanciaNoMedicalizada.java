@@ -20,10 +20,24 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	 */
 	public AmbulanciaNoMedicalizada(int codigo, String placa, String enfermero) {
 		super(codigo, placa);
-		this.enfermero = enfermero;
+		this.setEnfermero(enfermero);
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * @return the enfermero
+	 */
+	public String getEnfermero() {
+		return enfermero;
+	}
+
+	/**
+	 * @param enfermero the enfermero to set
+	 */
+	public void setEnfermero(String enfermero) {
+		this.enfermero = enfermero;
+	}
+
 	/**
 	 * 
 	 */

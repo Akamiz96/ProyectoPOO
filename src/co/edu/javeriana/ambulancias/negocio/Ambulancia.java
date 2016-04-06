@@ -18,7 +18,7 @@ import co.edu.javeriana.ambulancias.presentacion.Utils;
  * Representacion de una Ambulancia
  *
  */
-public class Ambulancia implements Serializable {
+public abstract class Ambulancia implements Serializable {
 	/**
 	 * codigo: Representa el codigo unico dado a la ambulancia dentro del
 	 * sistema
@@ -47,7 +47,7 @@ public class Ambulancia implements Serializable {
 	/**
 	 * servicios: Representa la lista de servicios que posee la ambulancia
 	 */
-	private List<Servicio> servicios;
+	protected List<Servicio> servicios;
 	/**
 	 * enServicio: Indica si la ambulancia esta en servicio (true) o no (false)
 	 */
@@ -264,7 +264,7 @@ public class Ambulancia implements Serializable {
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	 */
-	private Servicio buscarServicio(String estado) {
+	protected Servicio buscarServicio(String estado) {
 		for (Servicio servicio : this.servicios) {
 			if (servicio.getEstado().equals(estado)) {
 				return servicio;

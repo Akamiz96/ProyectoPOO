@@ -16,12 +16,24 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 	/**
 	 * @param codigo
 	 * @param placa
-	 * @param tipoDotacion
+	 * @param medico
 	 */
 	public AmbulanciaUCI(int codigo, String placa, String medico, String tipoUCI) {
 		super(codigo, placa, medico);
-		this.tipoUCI = tipoUCI;
+		this.setTipoUCI(tipoUCI);
 		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @return the tipoUCI
+	 */
+	public String getTipoUCI() {
+		return tipoUCI;
+	}
+	/**
+	 * @param tipoUCI the tipoUCI to set
+	 */
+	public void setTipoUCI(String tipoUCI) {
+		this.tipoUCI = tipoUCI;
 	}
 	/**
 	 * 
