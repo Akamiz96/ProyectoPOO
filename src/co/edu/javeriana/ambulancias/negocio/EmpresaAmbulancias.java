@@ -347,8 +347,7 @@ public class EmpresaAmbulancias implements Serializable {
 						&& this.ambulancias.get(llave) instanceof AmbulanciaUCI) {
 					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}
-				if (servicio.getTipoServicio().equals("URGENCIA")
-						&& this.ambulancias.get(llave) instanceof AmbulanciaMedicalizada) {
+				if (servicio.getTipoServicio().equals("URGENCIA")) {
 					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}
 				if (servicio.getTipoServicio().equals("DOMICILIO")
