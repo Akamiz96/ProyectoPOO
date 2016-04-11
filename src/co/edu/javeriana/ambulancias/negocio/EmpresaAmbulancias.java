@@ -241,6 +241,7 @@ public class EmpresaAmbulancias implements Serializable {
 			if (!ambDisponibles.isEmpty()) {
 				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
+				// if (!servicio.getTipoServicio().equals("DOMICILIO")) {
 				IPS ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
 				if (ips != null) {
