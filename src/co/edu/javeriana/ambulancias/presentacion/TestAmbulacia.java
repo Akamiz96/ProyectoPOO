@@ -5,22 +5,16 @@ package co.edu.javeriana.ambulancias.presentacion;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
 
-import co.edu.javeriana.ambulancias.negocio.Ambulancia;
-<<<<<<< HEAD
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaBasica;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
-=======
 import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
->>>>>>> 1f098ee79e18fda57c24411aeb60c263c211e590
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
