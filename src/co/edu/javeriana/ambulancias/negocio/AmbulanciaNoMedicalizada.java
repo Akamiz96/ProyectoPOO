@@ -42,6 +42,6 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	 * 
 	 */
 	public long calcularTarifa(){
-		return 0;
+		return TARIFA_BASE;
 	}
 }
