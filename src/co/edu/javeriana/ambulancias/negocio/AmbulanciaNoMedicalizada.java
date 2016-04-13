@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package co.edu.javeriana.ambulancias.negocio;
 
@@ -10,9 +10,10 @@ package co.edu.javeriana.ambulancias.negocio;
 public class AmbulanciaNoMedicalizada extends Ambulancia {
 
 	/**
-	 * 
+	 *
 	 */
 	private String enfermero;
+
 	/**
 	 * @param codigo
 	 * @param placa
@@ -23,7 +24,7 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 		this.setEnfermero(enfermero);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @return the enfermero
 	 */
@@ -32,14 +33,29 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	}
 
 	/**
-	 * @param enfermero the enfermero to set
+	 * @param enfermero
+	 *            the enfermero to set
 	 */
 	public void setEnfermero(String enfermero) {
 		this.enfermero = enfermero;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%s %-20s", super.toString(), enfermero);
+	}
+
+	public String toStringC() {
+		return String.format("%s %-20s", super.toStringC(), enfermero);
+	}
+
 	/**
-	 * 
+	 *
 	 */
 	public long calcularTarifa(){
 		return TARIFA_BASE;
