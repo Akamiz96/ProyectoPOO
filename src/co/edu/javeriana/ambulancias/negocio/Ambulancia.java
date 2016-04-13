@@ -61,9 +61,7 @@ public abstract class Ambulancia implements Serializable {
 	/**
 	 * 
 	 */
-	public long calcularTarifa() {
-		return 0;
-	}
+	public abstract long calcularTarifa();
 
 	/**
 	 * @param codigo:

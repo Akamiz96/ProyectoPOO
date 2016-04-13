@@ -41,7 +41,5 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 	/**
 	 * 
 	 */
-	public long calcularTarifa(){
-		return 0;
-	}
+	public abstract long calcularTarifa();
 }
