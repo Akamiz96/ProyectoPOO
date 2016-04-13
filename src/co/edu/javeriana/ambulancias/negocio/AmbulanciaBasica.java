@@ -18,11 +18,25 @@ public class AmbulanciaBasica extends AmbulanciaMedicalizada {
 		super(codigo, placa, medico);
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%s", super.toString());
+	}
+
+	public String toStringC() {
+		return String.format("%s", super.toStringC());
+	}
+
 	/**
 	 * 
 	 */
-	public long calcularTarifa(){
+	public long calcularTarifa() {
 		return 0;
 	}
 }

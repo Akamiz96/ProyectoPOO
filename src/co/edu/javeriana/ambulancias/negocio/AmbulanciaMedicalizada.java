@@ -13,6 +13,7 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 	 * 
 	 */
 	protected String medico;
+
 	/**
 	 * @param codigo
 	 * @param placa
@@ -23,7 +24,7 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 		this.medico = medico;
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @return the medico
 	 */
@@ -32,10 +33,25 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 	}
 
 	/**
-	 * @param medico the medico to set
+	 * @param medico
+	 *            the medico to set
 	 */
 	public void setMedico(String medico) {
 		this.medico = medico;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%s %-20s", super.toString(), medico);
+	}
+
+	public String toStringC() {
+		return String.format("%s %-20s", super.toStringC(), medico);
 	}
 
 	/**

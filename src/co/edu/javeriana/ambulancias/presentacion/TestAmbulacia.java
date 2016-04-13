@@ -3,12 +3,18 @@
  */
 package co.edu.javeriana.ambulancias.presentacion;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
+
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
+import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
@@ -150,13 +156,14 @@ public class TestAmbulacia {
 				else
 					System.out.printf("%s\n", servicio.toString());
 				if (servicio.getIps() != null) {
-					System.out.println("\tIPS asignada:");
+					System.out.println("\n\tIPS asignada:");
 					System.out.println("\tnombre                 tipoAtencion           direccion");
 					System.out.println(
 							"\t--------------------------------------------------------------------------------");
 					System.out.printf("\t%s\n", servicio.getIps().toString());
-					System.out.println("\tAmbulancia asignada:");
-					System.out.println("\tcodigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera");
+					System.out.println("\n\tAmbulancia asignada:");
+					System.out.printf("\t%-6s %-6s %-12s %-13s %-15s  %-20s %-16s\n", "codigo", "placa", "horaPosicion",
+							"posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
 					System.out.println(
 							"\t------------------------------------------------------------------------------");
 					System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
@@ -246,9 +253,13 @@ public class TestAmbulacia {
 		System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
 		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
 			Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
-			System.out.println("codigo placa    tipoDotacion   horaPosicion posicionCalle posicionCarrera servicio");
-			System.out.println("-----------------------------------------------------------------------------------");
-			for (Integer llave : llaves) {
+			List<Integer> orLlaves = new ArrayList<Integer>(llaves);
+			Collections.sort(orLlaves, new CodigoComparator());
+			System.out.printf("%-6s %-6s %-12s %-13s %-15s %-6s  %-20s %-16s\n", "codigo", "placa", "horaPosicion",
+					"posicionCalle", "posicionCarrera", "codigo", "medico/enfermero", "tipoUCI");
+			System.out.println(
+					"-------------------------------------------------------------------------------------------------------------------------------");
+			for (Integer llave : orLlaves) {
 				System.out.printf("%s\n", empresaAmbulancias.getAmbulancias().get(llave).toString());
 			}
 		} else {
@@ -271,7 +282,8 @@ public class TestAmbulacia {
 	private static void registrarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		int calle;
 		int carrera;
-		System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA o EMERGENCIA)");
+		long codigoServicio;
+		System.out.println("--REGISTRAR SERVICIO indique: paciente tipoServicio(URGENCIA, EMERGENCIA o DOMICILIO)");
 		System.out.println("            telefono  tipoDireccion(CALLE o CARRERA)  calle  carrera  numero");
 		String paciente = input.nextLine();
 		if (paciente.equals(""))
@@ -282,9 +294,13 @@ public class TestAmbulacia {
 		calle = input.nextInt();
 		carrera = input.nextInt();
 		int numero = input.nextInt();
-		long codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono, tipoDireccion,
-				calle, carrera, numero);
-		System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+		if ((tipoServicio.equals("URGENCIA") || tipoServicio.equals("EMERGENCIA") || tipoServicio.equals("DOMICILIO"))
+				&& (tipoDireccion.equals("CALLE") || tipoDireccion.equals("CARRERA"))) {
+			codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono, tipoDireccion,
+					calle, carrera, numero);
+			System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+		} else
+			System.out.println("Fallo en el registro del servicio");
 		input.nextLine();
 		System.out.println();
 	}

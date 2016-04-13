@@ -9,9 +9,9 @@ import java.util.Comparator;
  * @author Usuario
  *
  */
-public class CodigoComparator implements Comparator<Ambulancia>{
+public class CodigoComparator implements Comparator<Integer> {
 
-	public int compare(Ambulancia ambulancia1, Ambulancia ambulancia2){
-		return ambulancia1.getCodigo()-ambulancia2.getCodigo();
+	public int compare(Integer ambulancia1, Integer ambulancia2) {
+		return ambulancia1 - ambulancia2;
 	}
 }

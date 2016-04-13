@@ -15,7 +15,7 @@ import java.util.Set;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
-public class EmpresaAmbulancias implements Serializable {
+public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	/**
 	 * nombre: Indica el nombre de la empresa de ambulancias
 	 */
