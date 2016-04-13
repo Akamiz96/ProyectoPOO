@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package co.edu.javeriana.ambulancias.negocio;
 
@@ -10,7 +10,7 @@ package co.edu.javeriana.ambulancias.negocio;
 public class AmbulanciaNoMedicalizada extends Ambulancia {
 
 	/**
-	 * 
+	 *
 	 */
 	private String enfermero;
 
@@ -42,7 +42,7 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -55,9 +55,9 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	public long calcularTarifa() {
-		return 0;
+	public long calcularTarifa(){
+		return TARIFA_BASE;
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package co.edu.javeriana.ambulancias.negocio;
 
@@ -10,7 +10,7 @@ package co.edu.javeriana.ambulancias.negocio;
 public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 
 	/**
-	 * 
+	 *
 	 */
 	private String tipoUCI;
 
@@ -42,7 +42,7 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -55,9 +55,13 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	public long calcularTarifa() {
+	public long calcularTarifa(){
+		if(this.tipoUCI.equals("CARDIOVASCULAR"))
+			return (long)(TARIFA_BASE * 1.50);
+		if(this.tipoUCI.equals("PEDIATRICA"))
+			return (long)(TARIFA_BASE * 1.60);
 		return 0;
 	}
 }
