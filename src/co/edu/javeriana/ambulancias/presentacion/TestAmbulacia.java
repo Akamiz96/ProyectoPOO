@@ -114,7 +114,7 @@ public class TestAmbulacia {
 
 	/**
 	 * Opcion 9 del Sistema: Reporte de las IPS con los servicios asociados
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -152,7 +152,7 @@ public class TestAmbulacia {
 	/**
 	 * Opcion 8 del Sistema: Reporte de Servicios con la IPS y la Ambulancia
 	 * asociada
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -164,14 +164,14 @@ public class TestAmbulacia {
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
 				System.out.println("\nSERVICIO:");
+				System.out.printf("%-6s %-14s %-18s %-12s %-9s %-16s %-10s %-10s\n", "codigo", "horaSolicitud",
+						"paciente", "tipoServicio", "telefono", "direccion", "estado", "valor");
 				System.out.println(
-						"codigo horaSolicitud  paciente         tipoServicio telefono  direccion        estado");
-				System.out.println(
-						"--------------------------------------------------------------------------------------");
+						"------------------------------------------------------------------------------------------------------");
 				if (servicio.getEstado().equals("NO_ASIGNADO"))
-					System.out.printf("%s %s\n", servicio.toString(), servicio.getEstado());
-				else
 					System.out.printf("%s\n", servicio.toString());
+				else
+					System.out.printf("%s %-10d\n", servicio.toString(), servicio.getAmbulancia().calcularTarifa());
 				if (servicio.getIps() != null) {
 					System.out.println("\n\tIPS asignada:");
 					System.out.println("\tnombre                 tipoAtencion           direccion");
@@ -179,7 +179,7 @@ public class TestAmbulacia {
 							"\t--------------------------------------------------------------------------------");
 					System.out.printf("\t%s\n", servicio.getIps().toString());
 					System.out.println("\n\tAmbulancia asignada:");
-					System.out.printf("\t%-6s %-6s %-12s %-13s %-15s  %-20s %-16s\n", "codigo", "placa", "horaPosicion",
+					System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa", "horaPosicion",
 							"posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
 					System.out.println(
 							"\t------------------------------------------------------------------------------");
@@ -196,7 +196,7 @@ public class TestAmbulacia {
 
 	/**
 	 * Opcion 7 del Sistema: Funcionalidad para finalizar un servicio
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -233,7 +233,7 @@ public class TestAmbulacia {
 	/**
 	 * Opcion 6 del Sistema: Funcionalidad para que se asigne la ambulancia e
 	 * IPS mas cercana al servicio
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -259,7 +259,7 @@ public class TestAmbulacia {
 
 	/**
 	 * Opcion 5 del Sistema: Reporte de Ambulancias
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -289,7 +289,7 @@ public class TestAmbulacia {
 
 	/**
 	 * Opcion 4 del Sistema: Funcionalidad para registrar un servicio al sistema
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -325,7 +325,7 @@ public class TestAmbulacia {
 	/**
 	 * Opcion 3 del Sistema: Funcionalidad para registrar la posicion de una
 	 * ambulancia en el sistema
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -353,7 +353,7 @@ public class TestAmbulacia {
 	/**
 	 * Funcion 2 del Sistema: Funcionalidad para cargar las Ambulancias al
 	 * sistema
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -365,7 +365,7 @@ public class TestAmbulacia {
 
 	/**
 	 * Funcion 3 del Sistema: Funcionalidad para cargar las IPS al sistema
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
@@ -377,7 +377,7 @@ public class TestAmbulacia {
 
 	/**
 	 * Menu de las funcionalidades del sistema y captura de la opcion deseada
-	 * 
+	 *
 	 * @return int: retorna la opcion escogida por el usuario
 	 */
 	public static int menuSistema() {

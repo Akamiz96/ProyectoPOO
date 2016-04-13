@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Pablo 
+ * @author Pablo
  *
  */
 public interface IServiciosAmbulancias {

@@ -130,7 +130,7 @@ public class ManejoArchivos {
 		String placa = tokens.nextToken().trim();
 		String medicoEnfermero = tokens.nextToken().trim();
 		String tipoUCI = null;
-		if(tipoAmbulancia.equals("UCI")){
+		if (tipoAmbulancia.equals("UCI")) {
 			tipoUCI = tokens.nextToken().trim();
 		}
 		empresaAmbulancia.agregarAmbulancia(tipoAmbulancia, codigo, placa, medicoEnfermero, tipoUCI);

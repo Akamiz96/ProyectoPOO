@@ -9,15 +9,14 @@ import java.io.Serializable;
  * @author Pablo Ariza y Alejandro Castro
  *
  */
- /**
-	* Se considera una ciudad rectangular con calles y carreras numeradas desde
-	* 1. No se consideran diagonales, ni transversales, ni indicaciones
-	* adicionales como Este, Sur, etc.
-	*/
+/**
+ * Se considera una ciudad rectangular con calles y carreras numeradas desde 1.
+ * No se consideran diagonales, ni transversales, ni indicaciones adicionales
+ * como Este, Sur, etc.
+ */
 public class Direccion implements Serializable {
 	/**
-	 * tipoDireccion: Indica si se encuentra sobre la carrera o sobre
-	 *            la calle
+	 * tipoDireccion: Indica si se encuentra sobre la carrera o sobre la calle
 	 */
 	private String tipoDireccion;
 	/**
@@ -52,8 +51,8 @@ public class Direccion implements Serializable {
 	}
 
 	/**
-	 * @return the tipoDireccion: Indica si se encuentra sobre la carrera o sobre
-	 *            la calle
+	 * @return the tipoDireccion: Indica si se encuentra sobre la carrera o
+	 *         sobre la calle
 	 */
 	public String getTipoDireccion() {
 		return tipoDireccion;
@@ -61,8 +60,8 @@ public class Direccion implements Serializable {
 
 	/**
 	 * @param tipoDireccion
-	 *            the tipoDireccion to set: Indica si se encuentra sobre la carrera o sobre
-	 *            la calle
+	 *            the tipoDireccion to set: Indica si se encuentra sobre la
+	 *            carrera o sobre la calle
 	 */
 	public void setTipoDireccion(String tipoDireccion) {
 		this.tipoDireccion = tipoDireccion;
@@ -107,7 +106,8 @@ public class Direccion implements Serializable {
 
 	/**
 	 * @param numero
-	 *            the numero to set: Indica el bloque en la cuadra donde se encuentra
+	 *            the numero to set: Indica el bloque en la cuadra donde se
+	 *            encuentra
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
@@ -121,11 +121,13 @@ public class Direccion implements Serializable {
 	/**
 	 * ToString para reporte del servicio
 	 * tipoDireccion-calle/carrera-#-calle/carrera-numero
+	 * 
 	 * @return String con el formato mencionado anteriormente
 	 */
 	@Override
 	public String toString() {
-		if (this.tipoDireccion.equals("calle") || this.tipoDireccion.equals("CALLE")|| this.tipoDireccion.equals("Calle"))
+		if (this.tipoDireccion.equals("calle") || this.tipoDireccion.equals("CALLE")
+				|| this.tipoDireccion.equals("Calle"))
 			return String.format("%s %s#%s-%s", this.tipoDireccion, this.calle, this.carrera, this.numero);
 		else
 			return String.format("%s %s#%s-%s", this.tipoDireccion, this.carrera, this.calle, this.numero);

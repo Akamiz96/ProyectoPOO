@@ -57,11 +57,11 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 	/**
 	 *
 	 */
-	public long calcularTarifa(){
-		if(this.tipoUCI.equals("CARDIOVASCULAR"))
-			return (long)(TARIFA_BASE * 1.50);
-		if(this.tipoUCI.equals("PEDIATRICA"))
-			return (long)(TARIFA_BASE * 1.60);
+	public long calcularTarifa() {
+		if (this.tipoUCI.equals("CARDIOVASCULAR"))
+			return (long) (TARIFA_BASE * 1.50);
+		if (this.tipoUCI.equals("PEDIATRICA"))
+			return (long) (TARIFA_BASE * 1.60);
 		return 0;
 	}
 }
