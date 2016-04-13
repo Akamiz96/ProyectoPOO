@@ -9,6 +9,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 import co.edu.javeriana.ambulancias.negocio.Ambulancia;
+import co.edu.javeriana.ambulancias.negocio.AmbulanciaBasica;
+import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
+import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
@@ -77,6 +80,24 @@ public class TestAmbulacia {
 					break;
 				case 10:
 					// Estadisticas de las ambulancias disponibles
+					int ambulanciasBasicas = 0;
+					int ambulanciasUCI = 0;
+					int ambulanciasNoMedicalizadas = 0;
+					Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
+					for (Integer llave : llaves) {
+						if (!empresaAmbulancias.getAmbulancias().get(llave).getEnServicio()) {
+							if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaBasica)
+								ambulanciasBasicas++;
+							if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaNoMedicalizada)
+								ambulanciasNoMedicalizadas++;
+							if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaUCI)
+								ambulanciasUCI++;
+						}
+					}
+					System.out.println("---Estadisticas de las ambulancias disponibles");
+					System.out.printf("Cantidad de ambulancias basicas: %d",ambulanciasBasicas);
+					System.out.printf("Cantidad de ambulancias no medicalizadaas: %d",ambulanciasNoMedicalizadas);
+					System.out.printf("Cantidad de ambulancias UCI: %d",ambulanciasUCI);
 					break;
 				case 11:
 					// Pacientes atendidos
