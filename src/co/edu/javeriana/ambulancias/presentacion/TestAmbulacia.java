@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaBasica;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
@@ -98,9 +97,9 @@ public class TestAmbulacia {
 						}
 					}
 					System.out.println("---Estadisticas de las ambulancias disponibles");
-					System.out.printf("Cantidad de ambulancias basicas: %d",ambulanciasBasicas);
-					System.out.printf("Cantidad de ambulancias no medicalizadaas: %d",ambulanciasNoMedicalizadas);
-					System.out.printf("Cantidad de ambulancias UCI: %d",ambulanciasUCI);
+					System.out.printf("Cantidad de ambulancias basicas: %d", ambulanciasBasicas);
+					System.out.printf("Cantidad de ambulancias no medicalizadaas: %d", ambulanciasNoMedicalizadas);
+					System.out.printf("Cantidad de ambulancias UCI: %d", ambulanciasUCI);
 					break;
 				case 11:
 					// Pacientes atendidos
