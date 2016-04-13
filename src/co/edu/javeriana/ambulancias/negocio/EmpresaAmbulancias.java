@@ -241,9 +241,12 @@ public class EmpresaAmbulancias implements Serializable {
 			if (!ambDisponibles.isEmpty()) {
 				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
-				// if (!servicio.getTipoServicio().equals("DOMICILIO")) {
-				IPS ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
-						servicio.getDireccion().getCarrera());
+				IPS ips;
+				if (!servicio.getTipoServicio().equals("DOMICILIO")) {
+					ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
+							servicio.getDireccion().getCarrera());
+				} else
+					ips = null;
 				if (ips != null) {
 					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
 					return "Asignado";

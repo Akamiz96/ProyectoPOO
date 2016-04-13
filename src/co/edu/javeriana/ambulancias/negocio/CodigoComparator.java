@@ -6,7 +6,7 @@ package co.edu.javeriana.ambulancias.negocio;
 import java.util.Comparator;
 
 /**
- * @author Usuario
+ * @author Pablo Ariza y Alejandro Castro
  *
  */
 public class CodigoComparator implements Comparator<Ambulancia>{

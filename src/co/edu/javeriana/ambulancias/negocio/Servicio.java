@@ -4,6 +4,7 @@
 package co.edu.javeriana.ambulancias.negocio;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import co.edu.javeriana.ambulancias.presentacion.Utils;
@@ -39,7 +40,7 @@ public class Servicio implements Serializable {
 	private long telefono;
 	/**
 	 * tipoServicio: Representa el tipo de servicio requerido
-	 * (URGENCIA/EMERGENCIA)
+	 * (URGENCIA/EMERGENCIA/DOMICILIO)
 	 */
 	private String tipoServicio;
 	/**
@@ -60,6 +61,10 @@ public class Servicio implements Serializable {
 	 * asignada al servicio
 	 */
 	private Ambulancia ambulancia;
+	/**
+	 * valor: Indica el valor que se le debe cobrar a dicho servicio
+	 */
+	private long valor;
 
 	/**
 	 * @param codigo:
@@ -260,6 +265,21 @@ public class Servicio implements Serializable {
 		this.ambulancia = ambulancia;
 	}
 
+	/**
+	 * @return the valor
+	 */
+	public long getValor() {
+		return valor;
+	}
+
+	/**
+	 * @param valor
+	 *            the valor to set
+	 */
+	public void setValor(long valor) {
+		this.valor = valor;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -325,5 +345,22 @@ public class Servicio implements Serializable {
 	 */
 	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero) {
 		this.direccion = new Direccion(tipoDireccion, calle, carrera, numero);
+	}
+
+	/**
+	 * Metodo para realizar el calculo del valor del servicio.
+	 * 
+	 * @return long: Indica el valor del servicio (-1 para cuando aun no se
+	 *         asignado ninguna ambulancia) si el servicio es pedido en dia
+	 *         Sabado o Domingo tiene un incremento de 20%
+	 */
+	public long calcularValor() {
+		long valorInicial = -1;
+		if (this.ambulancia != null) {
+			valorInicial = this.ambulancia.calcularTarifa();
+			if (this.horaSolicitud.get(Calendar.DAY_OF_WEEK) == 1 || this.horaSolicitud.get(Calendar.DAY_OF_WEEK) == 7)
+				valorInicial *= 1.20;
+		}
+		return valorInicial;
 	}
 }
