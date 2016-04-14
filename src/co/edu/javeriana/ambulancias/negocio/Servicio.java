@@ -332,6 +332,29 @@ public class Servicio implements Serializable {
 	}
 
 	/**
+	 * ToStringD para reporte de Pacientes Atendidos
+	 * horaSolicitud-paciente-tipoServicio-telefono-Direccion-estado-Medico/
+	 * Enfermero
+	 * 
+	 * @return String con el formato anteriormente mencionado
+	 */
+	public String toStringD() {
+		if (this.ambulancia instanceof AmbulanciaMedicalizada) {
+			return String.format("%-6s %-12s %d %-15s %-10s %-10s %-10s",
+					Utils.convertirFechaString(this.horaSolicitud), this.paciente, this.tipoServicio, this.telefono,
+					this.direccion.toString(), this.estado, ((AmbulanciaMedicalizada) this.ambulancia).getMedico());
+		}
+		if (this.ambulancia instanceof AmbulanciaNoMedicalizada) {
+			return String.format("%-6s %-12s %d %-15s %-10s %-10s %-10s",
+					Utils.convertirFechaString(this.horaSolicitud), this.paciente, this.tipoServicio, this.telefono,
+					this.direccion.toString(), this.estado,
+					((AmbulanciaNoMedicalizada) this.ambulancia).getEnfermero());
+		}
+		return String.format("%-6s %-12s %d %-15s %-10s %-10", Utils.convertirFechaString(this.horaSolicitud),
+				this.paciente, this.tipoServicio, this.telefono, this.direccion.toString(), this.estado);
+	}
+
+	/**
 	 * Metodo para asignar una direccion a un Servicio
 	 * 
 	 * @param tipoDireccion:

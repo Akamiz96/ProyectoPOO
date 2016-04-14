@@ -15,6 +15,7 @@ import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
 import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.HoraSolicitudComparator;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
@@ -82,27 +83,11 @@ public class TestAmbulacia {
 					break;
 				case 10:
 					// Estadisticas de las ambulancias disponibles
-					int ambulanciasBasicas = 0;
-					int ambulanciasUCI = 0;
-					int ambulanciasNoMedicalizadas = 0;
-					Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
-					for (Integer llave : llaves) {
-						if (!empresaAmbulancias.getAmbulancias().get(llave).getEnServicio()) {
-							if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaBasica)
-								ambulanciasBasicas++;
-							if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaNoMedicalizada)
-								ambulanciasNoMedicalizadas++;
-							if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaUCI)
-								ambulanciasUCI++;
-						}
-					}
-					System.out.println("---Estadisticas de las ambulancias disponibles");
-					System.out.printf("Cantidad de ambulancias basicas: %d", ambulanciasBasicas);
-					System.out.printf("Cantidad de ambulancias no medicalizadaas: %d", ambulanciasNoMedicalizadas);
-					System.out.printf("Cantidad de ambulancias UCI: %d", ambulanciasUCI);
+					estadisticasAmbulanciasDisponibles(empresaAmbulancias);
 					break;
 				case 11:
 					// Pacientes atendidos
+					pacientesAtendidos(empresaAmbulancias);
 					break;
 				}
 			}
@@ -110,7 +95,54 @@ public class TestAmbulacia {
 
 		input.close();
 	}
+
+	/**
+	 * Opcion 11 del Sistema: reporte de Pacientes atendidos ordenado por
+	 * horaSolicitud
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
+	 *            sistema
+	 */
+	private static void pacientesAtendidos(EmpresaAmbulancias empresaAmbulancias) {
+		Collections.sort(empresaAmbulancias.getServicios(), new HoraSolicitudComparator());
+		System.out.printf("%-10s %-10s %-10s %-10s %-10s %-10s %-10s\n", "horaSolicitud", "Paciente", "tipoServicio",
+				"telefono", "direccion", "Estado", "Medico/Enfermero");
+		System.out.println("----------------------------------------------------------------------------------");
+		for (Servicio servicio : empresaAmbulancias.getServicios()) {
+			System.out.printf("%s\n", servicio.toStringD());
+		}
+	}
 	// Metodo auxiliar para cada opcion del menu.
+
+	/**
+	 * Opcion 10 del Sistema: Estadisticas de las ambulancias Disponibles Se
+	 * contabiliza cuantas ambulancias de cada tipo hay y se imprime un informe
+	 * 
+	 * @param empresaAmbulancias:
+	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
+	 *            sistema
+	 */
+	private static void estadisticasAmbulanciasDisponibles(EmpresaAmbulancias empresaAmbulancias) {
+		int ambulanciasBasicas = 0;
+		int ambulanciasUCI = 0;
+		int ambulanciasNoMedicalizadas = 0;
+		Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
+		for (Integer llave : llaves) {
+			if (!empresaAmbulancias.getAmbulancias().get(llave).getEnServicio()) {
+				if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaBasica)
+					ambulanciasBasicas++;
+				if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaNoMedicalizada)
+					ambulanciasNoMedicalizadas++;
+				if (empresaAmbulancias.getAmbulancias().get(llave) instanceof AmbulanciaUCI)
+					ambulanciasUCI++;
+			}
+		}
+		System.out.println("---Estadisticas de las ambulancias disponibles");
+		System.out.printf("Cantidad de ambulancias basicas: %d", ambulanciasBasicas);
+		System.out.printf("Cantidad de ambulancias no medicalizadaas: %d", ambulanciasNoMedicalizadas);
+		System.out.printf("Cantidad de ambulancias UCI: %d", ambulanciasUCI);
+	}
 
 	/**
 	 * Opcion 9 del Sistema: Reporte de las IPS con los servicios asociados
