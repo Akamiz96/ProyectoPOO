@@ -204,20 +204,31 @@ public class TestAmbulacia {
 					System.out.printf("%s\n", servicio.toString());
 				else
 					System.out.printf("%s %-10d\n", servicio.toString(), servicio.getAmbulancia().calcularTarifa());
-				if (servicio.getIps() != null) {
-					System.out.println("\n\tIPS asignada:");
-					System.out.println("\tnombre                 tipoAtencion           direccion");
-					System.out.println(
-							"\t--------------------------------------------------------------------------------");
-					System.out.printf("\t%s\n", servicio.getIps().toString());
-					System.out.println("\n\tAmbulancia asignada:");
-					System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa", "horaPosicion",
-							"posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
-					System.out.println(
-							"\t------------------------------------------------------------------------------");
-					System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
-				} else
-					System.out.println("\nAl servicio no se le han asignado la IPS y la Ambulancias");
+				if (!servicio.getTipoServicio().equals("DOMICILIO"))
+					if (servicio.getIps() != null) {
+						System.out.println("\n\tIPS asignada:");
+						System.out.println("\tnombre                 tipoAtencion           direccion");
+						System.out.println(
+								"\t--------------------------------------------------------------------------------");
+						System.out.printf("\t%s\n", servicio.getIps().toString());
+						System.out.println("\n\tAmbulancia asignada:");
+						System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa",
+								"horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
+						System.out.println(
+								"\t------------------------------------------------------------------------------");
+						System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
+					} else
+						System.out.println("\nAl servicio no se le han asignado la IPS y la Ambulancias");
+				else {
+					if (servicio.getAmbulancia() != null) {
+						System.out.println("\n\tAmbulancia asignada:");
+						System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa",
+								"horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
+						System.out.println(
+								"\t------------------------------------------------------------------------------");
+						System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
+					}
+				}
 			}
 		} else
 			System.out.println("\nNo se han registrado servicio\n");

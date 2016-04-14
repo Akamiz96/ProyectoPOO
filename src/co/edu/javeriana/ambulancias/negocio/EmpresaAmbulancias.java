@@ -121,7 +121,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 * Metodo para agregar una nueva IPS en el sistema.
 	 *
 	 * @see IPS
-	 * 
+	 *
 	 * @param nombre:
 	 *            Indica el nombre de la nueva IPS
 	 * @param tipoAtencion:
@@ -228,7 +228,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *
 	 * @see Ambulancia
 	 * @see IPS
-	 * 
+	 *
 	 * @param codigo:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return String: "Asignado" si fue una asignacion exitosa
@@ -238,6 +238,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
 			List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
+			;
 			if (!ambDisponibles.isEmpty()) {
 				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
@@ -247,11 +248,15 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 							servicio.getDireccion().getCarrera());
 				} else
 					ips = null;
-				if (ips != null) {
+				if (ips != null && !servicio.getTipoServicio().equals("DOMICILIO")) {
 					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
 					return "Asignado";
-				} else
+				} else if (servicio.getTipoServicio().equals("DOMICILIO")) {
+					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
+					return "Asignado";
+				} else {
 					return "No se han registrado IPS";
+				}
 			}
 			return "Todas las ambulancias estan ocupadas";
 		}
@@ -264,7 +269,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *
 	 * @see Servicio
 	 * @see Ambulancia
-	 * 
+	 *
 	 * @param servicio:
 	 *            Indica el servicio a asignar
 	 * @param ambulancia:
@@ -276,7 +281,8 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		servicio.setAmbulancia(ambulancia);
 		ambulancia.agregarServicioAmbulancia(servicio);
 		servicio.setIps(ips);
-		ips.agregarServicioIPS(servicio);
+		if (ips != null)
+			ips.agregarServicioIPS(servicio);
 		servicio.setEstado("ASIGNADO");
 
 	}
@@ -346,7 +352,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		List<Ambulancia> ambulanciasDisponibles = new ArrayList<Ambulancia>();
 		Set<Integer> llaves = this.ambulancias.keySet();
 		for (Integer llave : llaves) {
-			if (!this.ambulancias.get(llave).getEnServicio()) {
+			if (!this.ambulancias.get(llave).getEnServicio() && this.ambulancias.get(llave).getHoraPosicion() != null) {
 				if (servicio.getTipoServicio().equals("EMERGENCIA")
 						&& this.ambulancias.get(llave) instanceof AmbulanciaUCI) {
 					ambulanciasDisponibles.add(this.ambulancias.get(llave));

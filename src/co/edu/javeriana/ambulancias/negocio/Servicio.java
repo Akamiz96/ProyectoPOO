@@ -327,8 +327,11 @@ public class Servicio implements Serializable {
 	 * @return String con el formato anteriormente mencionado
 	 */
 	public String toStringC() {
-		return String.format("%-6s %-12s %d %-15s", this.codigo, this.paciente, this.ambulancia.getCodigo(),
-				this.ips.getNombre());
+		if (!tipoServicio.equals("DOMICILIO"))
+			return String.format("%-9s %-18s %-18d %-15s", this.codigo, this.paciente, this.ambulancia.getCodigo(),
+					this.ips.getNombre());
+		else
+			return String.format("%-9s %-18s %-18d", this.codigo, this.paciente, this.ambulancia.getCodigo());
 	}
 
 	/**
