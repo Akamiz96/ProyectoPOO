@@ -87,7 +87,7 @@ public class TestAmbulacia {
 					break;
 				case 11:
 					// Pacientes atendidos
-					pacientesAtendidos(empresaAmbulancias);
+					pacientesAtendidos(empresaAmbulancias, input);
 					break;
 				}
 			}
@@ -104,13 +104,22 @@ public class TestAmbulacia {
 	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
 	 *            sistema
 	 */
-	private static void pacientesAtendidos(EmpresaAmbulancias empresaAmbulancias) {
-		Collections.sort(empresaAmbulancias.getServicios(), new HoraSolicitudComparator());
-		System.out.printf("%-10s %-10s %-10s %-10s %-10s %-10s %-10s\n", "horaSolicitud", "Paciente", "tipoServicio",
-				"telefono", "direccion", "Estado", "Medico/Enfermero");
-		System.out.println("----------------------------------------------------------------------------------");
-		for (Servicio servicio : empresaAmbulancias.getServicios()) {
-			System.out.printf("%s\n", servicio.toStringD());
+	private static void pacientesAtendidos(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+		if (!empresaAmbulancias.getServicios().isEmpty()) {
+			Collections.sort(empresaAmbulancias.getServicios(), new HoraSolicitudComparator());
+			System.out.printf("%-10s %-10s %-10s %-10s %-10s %-10s %-10s\n", "horaSolicitud", "Paciente",
+					"tipoServicio", "telefono", "direccion", "Estado", "Medico/Enfermero");
+			System.out.println("----------------------------------------------------------------------------------");
+			for (Servicio servicio : empresaAmbulancias.getServicios()) {
+				System.out.printf("%s\n", servicio.toStringD());
+			}
+		}
+		else
+		{
+			System.out.println("No existen Servicios registrados.");
+			System.out.printf("Presione enter para continuar.");
+			input.nextLine();
+			System.out.println();
 		}
 	}
 	// Metodo auxiliar para cada opcion del menu.
