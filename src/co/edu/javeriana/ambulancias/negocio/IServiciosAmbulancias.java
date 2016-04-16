@@ -27,4 +27,6 @@ public interface IServiciosAmbulancias {
 	List<Servicio> getServicios();
 
 	Map<Integer, Ambulancia> getAmbulancias();
+
+	Map<String, IPS> getLasIPS();
 }

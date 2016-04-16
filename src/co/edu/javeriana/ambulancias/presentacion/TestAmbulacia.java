@@ -17,6 +17,7 @@ import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.HoraSolicitudComparator;
 import co.edu.javeriana.ambulancias.negocio.IPS;
+import co.edu.javeriana.ambulancias.negocio.IServiciosAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
@@ -37,7 +38,7 @@ public class TestAmbulacia {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int opcion;
-		EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
+		IServiciosAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
 		do {
 			opcion = menuSistema();
@@ -104,7 +105,7 @@ public class TestAmbulacia {
 	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
 	 *            sistema
 	 */
-	private static void pacientesAtendidos(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void pacientesAtendidos(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			Collections.sort(empresaAmbulancias.getServicios(), new HoraSolicitudComparator());
 			System.out.printf("\n%-13s %-18s %-12s %-8s %-15s %-10s  %-10s\n", "horaSolicitud", "Paciente",
@@ -134,7 +135,7 @@ public class TestAmbulacia {
 	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
 	 *            sistema
 	 */
-	private static void estadisticasAmbulanciasDisponibles(EmpresaAmbulancias empresaAmbulancias) {
+	private static void estadisticasAmbulanciasDisponibles(IServiciosAmbulancias empresaAmbulancias) {
 		int ambulanciasBasicas = 0;
 		int ambulanciasUCI = 0;
 		int ambulanciasNoMedicalizadas = 0;
@@ -164,7 +165,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void reporteIpsServicios(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void reporteIpsServicios(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.printf("--REPORTE DE LAS IPS CON SERVICIOS ASOCIADOS");
 		Map<String, IPS> ips = empresaAmbulancias.getLasIPS();
 		if (!ips.isEmpty()) {
@@ -206,7 +207,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void reporteServiciosIpsAmbulancia(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void reporteServiciosIpsAmbulancia(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--REPORTE DE SERVICIOS CON IPS Y AMBULANCIAS ASOCIADAS");
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
@@ -261,7 +262,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void finalizarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void finalizarServicio(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--FINALIZAR UN SERVICIO");
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			// TOSTRING PARA ENCABEZADO
@@ -298,7 +299,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void asignarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void asignarServicio(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--ASIGNAR UN SERVICIO A UNA AMBULANCIA Y A UNA IPS");
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			System.out.println("codigo horaSolicitud  paciente     tipoServicio telefono direccion ");
@@ -328,7 +329,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void reporteAmbulancias(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void reporteAmbulancias(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		System.out.println("--REPORTE DE LAS AMBULANCIAS DEL SISTEMA\n");
 		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
 			Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
@@ -358,7 +359,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void registrarServicio(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void registrarServicio(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		int calle;
 		int carrera;
 		long codigoServicio;
@@ -394,7 +395,7 @@ public class TestAmbulacia {
 	 * @param input:
 	 *            Scanner para leer datos
 	 */
-	private static void registrarPosicionAmbulancia(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
+	private static void registrarPosicionAmbulancia(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		int calle;
 		int carrera;
 		int codigo;
@@ -420,7 +421,7 @@ public class TestAmbulacia {
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
 	 */
-	private static void ingresarAmbulanciasAlSistema(EmpresaAmbulancias empresaAmbulancias) {
+	private static void ingresarAmbulanciasAlSistema(IServiciosAmbulancias empresaAmbulancias) {
 		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
 		System.out.println();
 	}
@@ -432,7 +433,7 @@ public class TestAmbulacia {
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
 	 */
-	private static void ingresarIpsAlsistema(EmpresaAmbulancias empresaAmbulancias) {
+	private static void ingresarIpsAlsistema(IServiciosAmbulancias empresaAmbulancias) {
 		ManejoArchivos.cargarLasIPS(empresaAmbulancias);
 		System.out.println();
 	}

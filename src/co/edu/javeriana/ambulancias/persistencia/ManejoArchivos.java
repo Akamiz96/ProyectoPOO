@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.IServiciosAmbulancias;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -24,7 +25,7 @@ public class ManejoArchivos {
 	 *            Indica el objeto de empresa ambulancia para el cual se le
 	 *            adicionara las IPS
 	 */
-	public static void cargarLasIPS(EmpresaAmbulancias empresaAmbulancia) {
+	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Ingrese el nombre del Archivo: ");
 		String nombreArchivo = input.next();
@@ -38,7 +39,7 @@ public class ManejoArchivos {
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
 				if (!linea.equals("0"))
-					linea = procesarIPS(empresaAmbulancia, input, linea);
+					linea = procesarIPS(empresaAmbulancias, input, linea);
 			} // fin de todas las IPS
 			input.close();
 		} catch (FileNotFoundException e) {
@@ -64,7 +65,7 @@ public class ManejoArchivos {
 	 * @return String: Retorna el resto de la linea luego de ser procesada
 	 * @see EmpresaAmbulancias#agregarIPS
 	 */
-	private static String procesarIPS(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
+	private static String procesarIPS(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		String nombre = tokens.nextToken().trim();
@@ -73,7 +74,7 @@ public class ManejoArchivos {
 		int calle = Integer.parseInt(tokens.nextToken().trim());
 		int carrera = Integer.parseInt(tokens.nextToken().trim());
 		int numero = Integer.parseInt(tokens.nextToken().trim());
-		empresaAmbulancia.agregarIPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
+		empresaAmbulancias.agregarIPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
 		return linea;
 	}
 
@@ -85,7 +86,7 @@ public class ManejoArchivos {
 	 *            Indica el objeto de empresa ambulancia para el cual se le
 	 *            adicionara las IPS
 	 */
-	public static void cargarLasAmbulancias(EmpresaAmbulancias empresaAmbulancia) {
+	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Insgrese el nombre del Archivo: ");
 		String nombreArchivo = input.next();
@@ -103,7 +104,7 @@ public class ManejoArchivos {
 			while (!linea.equals("0")) {
 				linea = input.nextLine().trim(); // vienen datos de una IPS
 				if (!linea.equals("0"))
-					linea = procesarAmbulancias(empresaAmbulancia, input, linea);
+					linea = procesarAmbulancias(empresaAmbulancias, input, linea);
 			}
 			input.close();
 		} // fin de todas las IPS
@@ -122,7 +123,7 @@ public class ManejoArchivos {
 	 * 
 	 * @see EmpresaAmbulancias#agregarAmbulancia
 	 */
-	private static String procesarAmbulancias(EmpresaAmbulancias empresaAmbulancia, Scanner input, String linea) {
+	private static String procesarAmbulancias(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) {
 		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		String tipoAmbulancia = tokens.nextToken().trim();
@@ -133,7 +134,7 @@ public class ManejoArchivos {
 		if (tipoAmbulancia.equals("UCI")) {
 			tipoUCI = tokens.nextToken().trim();
 		}
-		empresaAmbulancia.agregarAmbulancia(tipoAmbulancia, codigo, placa, medicoEnfermero, tipoUCI);
+		empresaAmbulancias.agregarAmbulancia(tipoAmbulancia, codigo, placa, medicoEnfermero, tipoUCI);
 		return linea;
 	}
 }
