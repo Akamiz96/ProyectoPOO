@@ -17,6 +17,7 @@ import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.HoraSolicitudComparator;
 import co.edu.javeriana.ambulancias.negocio.IPS;
+import co.edu.javeriana.ambulancias.negocio.NombreComparator;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
@@ -99,7 +100,7 @@ public class TestAmbulacia {
 	/**
 	 * Opcion 11 del Sistema: reporte de Pacientes atendidos ordenado por
 	 * horaSolicitud
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
 	 *            sistema
@@ -113,9 +114,7 @@ public class TestAmbulacia {
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
 				System.out.printf("%s\n", servicio.toStringD());
 			}
-		}
-		else
-		{
+		} else {
 			System.out.println("No existen Servicios registrados.");
 			System.out.printf("Presione enter para continuar.");
 			input.nextLine();
@@ -127,7 +126,7 @@ public class TestAmbulacia {
 	/**
 	 * Opcion 10 del Sistema: Estadisticas de las ambulancias Disponibles Se
 	 * contabiliza cuantas ambulancias de cada tipo hay y se imprime un informe
-	 * 
+	 *
 	 * @param empresaAmbulancias:
 	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
 	 *            sistema
@@ -147,10 +146,10 @@ public class TestAmbulacia {
 					ambulanciasUCI++;
 			}
 		}
-		System.out.println("---Estadisticas de las ambulancias disponibles");
-		System.out.printf("Cantidad de ambulancias basicas: %d", ambulanciasBasicas);
-		System.out.printf("Cantidad de ambulancias no medicalizadaas: %d", ambulanciasNoMedicalizadas);
-		System.out.printf("Cantidad de ambulancias UCI: %d", ambulanciasUCI);
+		System.out.println("\n---Estadisticas de las ambulancias disponibles");
+		System.out.printf("Cantidad de ambulancias basicas: %d\n", ambulanciasBasicas);
+		System.out.printf("Cantidad de ambulancias no medicalizadaas: %d\n", ambulanciasNoMedicalizadas);
+		System.out.printf("Cantidad de ambulancias UCI: %d\n\n", ambulanciasUCI);
 	}
 
 	/**
@@ -167,7 +166,9 @@ public class TestAmbulacia {
 		Map<String, IPS> ips = empresaAmbulancias.getLasIPS();
 		if (!ips.isEmpty()) {
 			Set<String> ipsNombres = empresaAmbulancias.getLasIPS().keySet();
-			for (String ipsNombre : ipsNombres) {
+			List<String> listIps = new ArrayList<String>(ipsNombres);
+			Collections.sort(listIps, new NombreComparator());
+			for (String ipsNombre : listIps) {
 				System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
 				System.out.printf("   %s\n", ips.get(ipsNombre).toString());
 				System.out.println("\n   SERVICIOS:");
@@ -176,6 +177,8 @@ public class TestAmbulacia {
 				System.out.println(
 						"   --------------------------------------------------------------------------------------");
 				if (!ips.get(ipsNombre).getServicios().isEmpty()) {
+					List<Servicio> listServicio = ips.get(ipsNombre).getServicios();
+					Collections.sort(listServicio, new HoraSolicitudComparator());
 					for (Servicio servicio : ips.get(ipsNombre).getServicios()) {
 						System.out.printf("   %s\n", servicio.toStringB());
 					}
