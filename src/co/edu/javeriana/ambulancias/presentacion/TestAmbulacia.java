@@ -108,7 +108,7 @@ public class TestAmbulacia {
 	private static void pacientesAtendidos(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			Collections.sort(empresaAmbulancias.getServicios(), new HoraSolicitudComparator());
-			System.out.printf("\n%-13s %-18s %-12s %-8s %-15s %-10s %-10s\n", "horaSolicitud", "Paciente",
+			System.out.printf("\n%-13s %-18s %-12s %-8s %-15s %-10s  %-10s\n", "horaSolicitud", "Paciente",
 					"tipoServicio", "telefono", "direccion", "Estado", "Medico/Enfermero");
 			System.out.println(
 					"------------------------------------------------------------------------------------------------");
