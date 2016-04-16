@@ -108,12 +108,16 @@ public class TestAmbulacia {
 	private static void pacientesAtendidos(EmpresaAmbulancias empresaAmbulancias, Scanner input) {
 		if (!empresaAmbulancias.getServicios().isEmpty()) {
 			Collections.sort(empresaAmbulancias.getServicios(), new HoraSolicitudComparator());
-			System.out.printf("%-10s %-10s %-10s %-10s %-10s %-10s %-10s\n", "horaSolicitud", "Paciente",
+			System.out.printf("\n%-13s %-18s %-12s %-8s %-15s %-10s %-10s\n", "horaSolicitud", "Paciente",
 					"tipoServicio", "telefono", "direccion", "Estado", "Medico/Enfermero");
-			System.out.println("----------------------------------------------------------------------------------");
+			System.out.println(
+					"------------------------------------------------------------------------------------------------");
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
 				System.out.printf("%s\n", servicio.toStringD());
 			}
+			System.out.printf("\nPresione enter para continuar.");
+			input.nextLine();
+			System.out.println();
 		} else {
 			System.out.println("No existen Servicios registrados.");
 			System.out.printf("Presione enter para continuar.");
@@ -167,7 +171,7 @@ public class TestAmbulacia {
 		if (!ips.isEmpty()) {
 			Set<String> ipsNombres = empresaAmbulancias.getLasIPS().keySet();
 			List<String> listIps = new ArrayList<String>(ipsNombres);
-			Collections.sort(listIps, new NombreComparator());
+			Collections.sort(listIps);
 			for (String ipsNombre : listIps) {
 				System.out.println("\nIPS: nombre                 tipoAtencion           direccion");
 				System.out.printf("   %s\n", ips.get(ipsNombre).toString());
@@ -175,7 +179,7 @@ public class TestAmbulacia {
 				System.out.println(
 						"   codigo horaSolicitud  paciente   tipoServicio telefono direccion          estado ambul.");
 				System.out.println(
-						"   --------------------------------------------------------------------------------------");
+						"   --------------------------------------------------------------------------------------------");
 				if (!ips.get(ipsNombre).getServicios().isEmpty()) {
 					List<Servicio> listServicio = ips.get(ipsNombre).getServicios();
 					Collections.sort(listServicio, new HoraSolicitudComparator());
@@ -227,7 +231,7 @@ public class TestAmbulacia {
 						System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa",
 								"horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
 						System.out.println(
-								"\t------------------------------------------------------------------------------");
+								"\t-----------------------------------------------------------------------------------------------");
 						System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
 					} else
 						System.out.println("\nAl servicio no se le han asignado la IPS y la Ambulancias");
@@ -306,7 +310,11 @@ public class TestAmbulacia {
 				}
 			}
 			System.out.println("--cual es el codigo del servicio que desea asignar ? :");
-			System.out.println(empresaAmbulancias.asignarServicio(input.nextLong()));
+			long servicio = input.nextLong();
+			if (!empresaAmbulancias.getServicios().get((int) servicio - 1).getEstado().equals("FINALIZADO"))
+				System.out.println(empresaAmbulancias.asignarServicio(servicio));
+			else
+				System.out.println("El servicio ya fue asignado");
 		} else
 			System.out.println("\nNo se han registrado servicio");
 		System.out.println();

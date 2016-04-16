@@ -343,17 +343,17 @@ public class Servicio implements Serializable {
 	 */
 	public String toStringD() {
 		if (this.ambulancia instanceof AmbulanciaMedicalizada) {
-			return String.format("%-6s %-12s %d %-15s %-10s %-10s %-10s",
+			return String.format("%-13s %-18s %-12s %-8d %-15s %-10s %-10s",
 					Utils.convertirFechaString(this.horaSolicitud), this.paciente, this.tipoServicio, this.telefono,
 					this.direccion.toString(), this.estado, ((AmbulanciaMedicalizada) this.ambulancia).getMedico());
 		}
 		if (this.ambulancia instanceof AmbulanciaNoMedicalizada) {
-			return String.format("%-6s %-12s %d %-15s %-10s %-10s %-10s",
+			return String.format("%-13s %-18s %-12s %-8d %-15s %-10s %-10s",
 					Utils.convertirFechaString(this.horaSolicitud), this.paciente, this.tipoServicio, this.telefono,
 					this.direccion.toString(), this.estado,
 					((AmbulanciaNoMedicalizada) this.ambulancia).getEnfermero());
 		}
-		return String.format("%-6s %-12s %d %-15s %-10s %-10", Utils.convertirFechaString(this.horaSolicitud),
+		return String.format("%-13s %-18s %-12s %-8d %-15s %-10s", Utils.convertirFechaString(this.horaSolicitud),
 				this.paciente, this.tipoServicio, this.telefono, this.direccion.toString(), this.estado);
 	}
 
