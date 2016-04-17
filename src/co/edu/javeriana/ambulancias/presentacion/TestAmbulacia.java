@@ -219,34 +219,58 @@ public class TestAmbulacia {
 						"paciente", "tipoServicio", "telefono", "direccion", "estado", "valor");
 				System.out.println(
 						"------------------------------------------------------------------------------------------------------");
-				if (servicio.getEstado().equals("NO_ASIGNADO"))
-					System.out.printf("%s\n", servicio.toString());
+				if (servicio.getEstado().equals("NO_ASIGNADO") || servicio.getEstado().equals("FINALIZADO"))
+					System.out.printf("%s %-10s\n", servicio.toString(), servicio.getEstado());
 				else
 					System.out.printf("%s %-10d\n", servicio.toString(), servicio.getAmbulancia().calcularTarifa());
-				if (!servicio.getTipoServicio().equals("DOMICILIO"))
+				if (!servicio.getTipoServicio().equals("DOMICILIO")) {
 					if (servicio.getIps() != null) {
 						System.out.println("\n\tIPS asignada:");
 						System.out.println("\tnombre                 tipoAtencion           direccion");
 						System.out.println(
-								"\t--------------------------------------------------------------------------------");
+								"\t-----------------------------------------------------------------------------------");
 						System.out.printf("\t%s\n", servicio.getIps().toString());
 						System.out.println("\n\tAmbulancia asignada:");
-						System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa",
-								"horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
-						System.out.println(
-								"\t-----------------------------------------------------------------------------------------------");
-						System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
+						if (servicio.getAmbulancia() instanceof AmbulanciaBasica) {
+							System.out.printf("\t%-10s %-6s %-8s %-12s %-13s %-16s  %-20s %-6s\n", "tipoAmb", "codigo",
+									"placa", "horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero",
+									"tarifa");
+							System.out.println(
+									"\t-------------------------------------------------------------------------------------------------------------------------------");
+							System.out.printf("\t%-10s %s %-6d\n", "BASICA", servicio.getAmbulancia().toStringC(),
+									servicio.getAmbulancia().calcularTarifa());
+						}
+						if (servicio.getAmbulancia() instanceof AmbulanciaUCI) {
+							System.out.printf("\t%-10s %-6s %-8s %-12s %-13s %-16s  %-20s %-10s %-2s\n", "tipoAmb",
+									"codigo", "placa", "horaPosicion", "posicionCalle", "posicionCarrera",
+									"medico/enfermero", "TipoUCI", "tarifa");
+							System.out.println(
+									"\t----------------------------------------------------------------------------------------------------------");
+							System.out.printf("\t%-10s %s %-2d\n", "UCI", servicio.getAmbulancia().toStringC(),
+									servicio.getAmbulancia().calcularTarifa());
+						}
+						if (servicio.getAmbulancia() instanceof AmbulanciaNoMedicalizada) {
+							System.out.printf("\t%-10s %-6s %-8s %-12s %-13s %-16s  %-20s %-6s\n", "tipoAmb", "codigo",
+									"placa", "horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero",
+									"tarifa");
+							System.out.println(
+									"\t-------------------------------------------------------------------------------------------------------");
+							System.out.printf("\t%-10s %s %-6d\n", "NoMED", servicio.getAmbulancia().toStringC(),
+									servicio.getAmbulancia().calcularTarifa());
+						}
 					} else
 						System.out.println("\nAl servicio no se le han asignado la IPS y la Ambulancias");
-				else {
+				} else {
 					if (servicio.getAmbulancia() != null) {
 						System.out.println("\n\tAmbulancia asignada:");
-						System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-16s\n", "codigo", "placa",
-								"horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero", "tipoUCI");
+						System.out.printf("\t%-6s %-8s %-12s %-13s %-16s  %-20s %-10s\n", "codigo", "placa",
+								"horaPosicion", "posicionCalle", "posicionCarrera", "medico/enfermero", "tarifa");
 						System.out.println(
-								"\t------------------------------------------------------------------------------");
-						System.out.printf("\t%s\n", servicio.getAmbulancia().toStringC());
-					}
+								"\t------------------------------------------------------------------------------------------");
+						System.out.printf("\t%s %-7d\n", servicio.getAmbulancia().toStringC(),
+								servicio.getAmbulancia().calcularTarifa());
+					} else
+						System.out.println("\nAl servicio no se le han asignado la IPS y la Ambulancias");
 				}
 			}
 		} else

@@ -54,6 +54,9 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	/**
 	 * Metodo que formatea el toString de la superClase y le adiciona el nombre
 	 * del enfermero que va en la ambulancia
+	 * codigo-placa-tipoDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio ese
+	 * espacio-enfermero
 	 */
 	public String toString() {
 		return String.format("%s %-20s", super.toString(), enfermero);
@@ -62,13 +65,16 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	/**
 	 * Metodo que formatea el toStringC de la superClase y le adiciona el nombre
 	 * del enfermero que va en la ambulancia
+	 * codigo-placa-tipoDeDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * enfermero
 	 */
 	public String toStringC() {
 		return String.format("%s %-20s", super.toStringC(), enfermero);
 	}
 
 	/**
-	 *
+	 * Metodo implementado de la superClase La tarifa es la indicada en
+	 * TARIFA_BASE
 	 */
 	public long calcularTarifa() {
 		return TARIFA_BASE;

@@ -54,6 +54,9 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 	/**
 	 * Metodo que realiza el formateo del toString de la superClase y adiciona
 	 * el nombre del medico que encuentra en la ambulancia
+	 * codigo-placa-tipoDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio ese
+	 * espacio-medico
 	 */
 	public String toString() {
 		return String.format("%s %-20s", super.toString(), medico);
@@ -62,14 +65,16 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 	/**
 	 * Metodo que realiza el formateo del toStringC de la superClase y adiciona
 	 * el nombre del medico que se encuentra en la ambulancia
+	 * codigo-placa-tipoDeDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * medico
 	 */
 	public String toStringC() {
 		return String.format("%s %-20s", super.toStringC(), medico);
 	}
 
 	/**
-	 * Metodo abstracto que sera implementado por las subclases 
-	 * Metodo para calcular el valor de la tarifa de la ambulancia.
+	 * Metodo abstracto que sera implementado por las subclases Metodo para
+	 * calcular el valor de la tarifa de la ambulancia.
 	 */
 	public abstract long calcularTarifa();
 }

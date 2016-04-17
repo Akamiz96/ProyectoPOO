@@ -11,12 +11,9 @@ import java.util.List;
 import co.edu.javeriana.ambulancias.presentacion.Utils;
 
 /**
- * @author Pablo Ariza y Alejandro Castro
- */
-/**
- *
  * Representacion de una Ambulancia
- *
+ * 
+ * @author Pablo Ariza y Alejandro Castro
  */
 public abstract class Ambulancia implements Serializable {
 	/**
@@ -59,8 +56,8 @@ public abstract class Ambulancia implements Serializable {
 	protected static long TARIFA_BASE = 80000;
 
 	/**
-	 * Metodo Abstracto para calcular la tarifa de cada ambulancia 
-	 * Este metodo es implementado por las subClase de Ambulancia
+	 * Metodo Abstracto para calcular la tarifa de cada ambulancia Este metodo
+	 * es implementado por las subClase de Ambulancia
 	 */
 	public abstract long calcularTarifa();
 

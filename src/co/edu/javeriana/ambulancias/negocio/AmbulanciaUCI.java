@@ -56,6 +56,9 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 	/**
 	 * Metodo que formatea el ToString de la superClase y le adiciona el tipo de
 	 * ambulancia TIPOUCI
+	 * codigo-placa-tipoDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio ese
+	 * espacio-medico-tipoUCI
 	 */
 	@Override
 	public String toString() {
@@ -65,13 +68,15 @@ public class AmbulanciaUCI extends AmbulanciaMedicalizada {
 	/**
 	 * Metodo que formatea el ToStringC de la superClase y le adiciona el tipo
 	 * de ambulancia TIPOUCI
+	 * codigo-placa-tipoDeDotacion-horaPosicion-posicionCalle-posicionCarrera-medico-tipoUCI
 	 */
 	public String toStringC() {
-		return String.format("%s %-16s", super.toStringC(), tipoUCI);
+		return String.format("%s %-16s", super.toStringC(), this.tipoUCI);
 	}
 
 	/**
-	 *
+	 * Metodo para calcular la tarifa de una ambulancia UCI Cardiovascular:
+	 * TARIFA_BASE * 1.50 Pediatrica: TARIFA_BASE * 1.60
 	 */
 	public long calcularTarifa() {
 		if (this.tipoUCI.equals("CARDIOVASCULAR"))

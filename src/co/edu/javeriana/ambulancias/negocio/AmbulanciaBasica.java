@@ -33,7 +33,9 @@ public class AmbulanciaBasica extends AmbulanciaMedicalizada {
 	@Override
 	/**
 	 * Metodo que realiza el formateo del toString de la superClase
-	 * 
+	 * codigo-placa-tipoDotacion-horaPosicion-posicionCalle-posicionCarrera-
+	 * getCodigo(Servicio) Si aun no hay un servicio asignado se deja vacio ese
+	 * espacio-medico
 	 * @see AmbulanciaMedicalizada#toString
 	 */
 	public String toString() {
@@ -42,7 +44,7 @@ public class AmbulanciaBasica extends AmbulanciaMedicalizada {
 
 	/**
 	 * Metodo que realiza el formateo del toStringC de la superClase
-	 * 
+	 * codigo-placa-tipoDeDotacion-horaPosicion-posicionCalle-posicionCarrera-medico
 	 * @see AmbulanciaMedicalizada#toStringC
 	 */
 	public String toStringC() {
