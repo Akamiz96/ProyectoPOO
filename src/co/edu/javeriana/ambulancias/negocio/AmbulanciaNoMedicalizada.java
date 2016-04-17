@@ -10,14 +10,19 @@ package co.edu.javeriana.ambulancias.negocio;
 public class AmbulanciaNoMedicalizada extends Ambulancia {
 
 	/**
-	 *
+	 * enfermero: Indica el nombre del enfermero que se encuentra en la
+	 * ambulancia
 	 */
 	private String enfermero;
 
 	/**
-	 * @param codigo
-	 * @param placa
-	 * @param tipoDotacion
+	 * @param codigo:
+	 *            Indica la identificacion unica de la ambulancia dentro del
+	 *            sistema
+	 * @param placa:
+	 *            Indica la identificacion unica de la ambulancia en el distrito
+	 * @param enfermero:
+	 *            Indica el nombre del enfermero que va en la ambulancia
 	 */
 	public AmbulanciaNoMedicalizada(int codigo, String placa, String enfermero) {
 		super(codigo, placa);
@@ -46,10 +51,18 @@ public class AmbulanciaNoMedicalizada extends Ambulancia {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
+	/**
+	 * Metodo que formatea el toString de la superClase y le adiciona el nombre
+	 * del enfermero que va en la ambulancia
+	 */
 	public String toString() {
 		return String.format("%s %-20s", super.toString(), enfermero);
 	}
 
+	/**
+	 * Metodo que formatea el toStringC de la superClase y le adiciona el nombre
+	 * del enfermero que va en la ambulancia
+	 */
 	public String toStringC() {
 		return String.format("%s %-20s", super.toStringC(), enfermero);
 	}

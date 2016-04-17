@@ -10,7 +10,9 @@ import java.util.Comparator;
  *
  */
 public class CodigoComparator implements Comparator<Integer> {
-
+	/**
+	 * Metodo compare implementado para INTEGER
+	 */
 	public int compare(Integer ambulancia1, Integer ambulancia2) {
 		return ambulancia1 - ambulancia2;
 	}

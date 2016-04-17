@@ -84,7 +84,7 @@ public class TestAmbulacia {
 					break;
 				case 10:
 					// Estadisticas de las ambulancias disponibles
-					estadisticasAmbulanciasDisponibles(empresaAmbulancias);
+					estadisticasAmbulanciasDisponibles(empresaAmbulancias, input);
 					break;
 				case 11:
 					// Pacientes atendidos
@@ -135,7 +135,7 @@ public class TestAmbulacia {
 	 *            Indica el objeto de tipo EmpresaAmbulancia que significa el
 	 *            sistema
 	 */
-	private static void estadisticasAmbulanciasDisponibles(IServiciosAmbulancias empresaAmbulancias) {
+	private static void estadisticasAmbulanciasDisponibles(IServiciosAmbulancias empresaAmbulancias, Scanner input) {
 		int ambulanciasBasicas = 0;
 		int ambulanciasUCI = 0;
 		int ambulanciasNoMedicalizadas = 0;
@@ -154,6 +154,9 @@ public class TestAmbulacia {
 		System.out.printf("Cantidad de ambulancias basicas: %d\n", ambulanciasBasicas);
 		System.out.printf("Cantidad de ambulancias no medicalizadaas: %d\n", ambulanciasNoMedicalizadas);
 		System.out.printf("Cantidad de ambulancias UCI: %d\n\n", ambulanciasUCI);
+		System.out.printf("Presione enter para continuar.");
+		input.nextLine();
+		System.out.println();
 	}
 
 	/**

@@ -10,14 +10,19 @@ package co.edu.javeriana.ambulancias.negocio;
 public abstract class AmbulanciaMedicalizada extends Ambulancia {
 
 	/**
-	 * 
+	 * medico: Indica el nombre del medico que esta en la Ambulancia
 	 */
 	protected String medico;
 
 	/**
-	 * @param codigo
-	 * @param placa
-	 * @param medico
+	 * @param codigo:
+	 *            Indica el codigo unico de la Ambulancia dentro del sistema
+	 * @param placa:
+	 *            Indica la identificacion unica de la Ambulancia dentro del
+	 *            distrito
+	 * @param medico:
+	 *            Indica el nombre del medico que se encuentra dentro de la
+	 *            Ambulancia
 	 */
 	public AmbulanciaMedicalizada(int codigo, String placa, String medico) {
 		super(codigo, placa);
@@ -46,16 +51,25 @@ public abstract class AmbulanciaMedicalizada extends Ambulancia {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
+	/**
+	 * Metodo que realiza el formateo del toString de la superClase y adiciona
+	 * el nombre del medico que encuentra en la ambulancia
+	 */
 	public String toString() {
 		return String.format("%s %-20s", super.toString(), medico);
 	}
 
+	/**
+	 * Metodo que realiza el formateo del toStringC de la superClase y adiciona
+	 * el nombre del medico que se encuentra en la ambulancia
+	 */
 	public String toStringC() {
 		return String.format("%s %-20s", super.toStringC(), medico);
 	}
 
 	/**
-	 * 
+	 * Metodo abstracto que sera implementado por las subclases 
+	 * Metodo para calcular el valor de la tarifa de la ambulancia.
 	 */
 	public abstract long calcularTarifa();
 }

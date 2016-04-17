@@ -59,7 +59,8 @@ public abstract class Ambulancia implements Serializable {
 	protected static long TARIFA_BASE = 80000;
 
 	/**
-	 * 
+	 * Metodo Abstracto para calcular la tarifa de cada ambulancia 
+	 * Este metodo es implementado por las subClase de Ambulancia
 	 */
 	public abstract long calcularTarifa();
 

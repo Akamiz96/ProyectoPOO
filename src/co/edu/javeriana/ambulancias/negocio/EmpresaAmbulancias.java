@@ -238,7 +238,6 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
 			List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
-			;
 			if (!ambDisponibles.isEmpty()) {
 				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
