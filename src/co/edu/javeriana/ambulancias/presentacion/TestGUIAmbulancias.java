@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class TestGUIAmbulancias extends JFrame {
 
@@ -47,15 +48,47 @@ public class TestGUIAmbulancias extends JFrame {
 	 */
 	public TestGUIAmbulancias() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 927, 584);
+		setBounds(100, 100, 964, 617);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(5, 5, 906, 540);
+		tabbedPane.setBounds(5, 5, 943, 573);
 		contentPane.add(tabbedPane);
+		
+		JPanel reporteServicios = new JPanel();
+		tabbedPane.addTab("Reporte Servicios con IPS y ambulancias asignados", null, reporteServicios, null);
+		reporteServicios.setLayout(null);
+		
+		JLabel lblReporteDeServicios = new JLabel("Reporte de servicios con IPS y ambulancias asignados ");
+		lblReporteDeServicios.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 30));
+		lblReporteDeServicios.setBounds(10, 11, 881, 51);
+		reporteServicios.add(lblReporteDeServicios);
+		
+		JLabel lblServicios_2 = new JLabel("Servicios");
+		lblServicios_2.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
+		lblServicios_2.setBounds(10, 73, 228, 35);
+		reporteServicios.add(lblServicios_2);
+		
+		JLabel lblIpsAsignada = new JLabel("IPS asignada");
+		lblIpsAsignada.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
+		lblIpsAsignada.setBounds(10, 189, 228, 35);
+		reporteServicios.add(lblIpsAsignada);
+		
+		JLabel lblAmbulanciaAsignada = new JLabel("Ambulancia asignada");
+		lblAmbulanciaAsignada.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
+		lblAmbulanciaAsignada.setBounds(10, 299, 293, 35);
+		reporteServicios.add(lblAmbulanciaAsignada);
+		
+		JButton btnRegresar_5 = new JButton("Regresar");
+		btnRegresar_5.setBounds(772, 434, 119, 51);
+		reporteServicios.add(btnRegresar_5);
+		
+		JButton btnMostrar = new JButton("Mostrar IPS y ambulancia asignadas");
+		btnMostrar.setBounds(589, 114, 249, 35);
+		reporteServicios.add(btnMostrar);
 		
 		JPanel registrarServicio = new JPanel();
 		tabbedPane.addTab("Registrar un Servicio", null, registrarServicio, null);
@@ -67,65 +100,134 @@ public class TestGUIAmbulancias extends JFrame {
 		registrarServicio.add(lblDatosDelNuevo);
 		
 		JLabel lblPaciente = new JLabel("Paciente");
-		lblPaciente.setBounds(81, 116, 46, 14);
+		lblPaciente.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblPaciente.setBounds(81, 77, 316, 47);
 		registrarServicio.add(lblPaciente);
 		
 		JLabel lblTipoDeServicio = new JLabel("Tipo de servicio");
-		lblTipoDeServicio.setBounds(81, 141, 46, 14);
+		lblTipoDeServicio.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblTipoDeServicio.setBounds(81, 134, 316, 47);
 		registrarServicio.add(lblTipoDeServicio);
 		
 		JLabel lblTelefono = new JLabel("Telefono");
-		lblTelefono.setBounds(81, 196, 46, 14);
+		lblTelefono.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblTelefono.setBounds(81, 190, 316, 47);
 		registrarServicio.add(lblTelefono);
 		
 		JLabel lblTipoDeDireccion = new JLabel("Tipo de direccion");
-		lblTipoDeDireccion.setBounds(81, 221, 46, 14);
+		lblTipoDeDireccion.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblTipoDeDireccion.setBounds(81, 248, 316, 47);
 		registrarServicio.add(lblTipoDeDireccion);
 		
 		JLabel lblCalle_1 = new JLabel("Calle");
-		lblCalle_1.setBounds(81, 246, 46, 14);
+		lblCalle_1.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblCalle_1.setBounds(81, 306, 316, 47);
 		registrarServicio.add(lblCalle_1);
 		
 		JLabel lblCarrera_1 = new JLabel("Carrera");
-		lblCarrera_1.setBounds(81, 271, 46, 14);
+		lblCarrera_1.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblCarrera_1.setBounds(81, 364, 316, 47);
 		registrarServicio.add(lblCarrera_1);
 		
 		JLabel lblNumero = new JLabel("Numero");
-		lblNumero.setBounds(81, 296, 46, 14);
+		lblNumero.setFont(new Font("Stencil", Font.ITALIC, 32));
+		lblNumero.setBounds(81, 422, 316, 47);
 		registrarServicio.add(lblNumero);
 		
 		paciente = new JTextField();
-		paciente.setBounds(188, 101, 86, 20);
+		paciente.setBounds(418, 81, 316, 47);
 		registrarServicio.add(paciente);
 		paciente.setColumns(10);
 		
 		telefono = new JTextField();
-		telefono.setBounds(188, 193, 86, 20);
+		telefono.setBounds(418, 194, 316, 47);
 		registrarServicio.add(telefono);
 		telefono.setColumns(10);
 		
 		calleServicio = new JTextField();
-		calleServicio.setBounds(188, 243, 86, 20);
+		calleServicio.setBounds(418, 310, 316, 47);
 		registrarServicio.add(calleServicio);
 		calleServicio.setColumns(10);
 		
 		carreraServicio = new JTextField();
-		carreraServicio.setBounds(198, 268, 86, 20);
+		carreraServicio.setBounds(418, 426, 316, 47);
 		registrarServicio.add(carreraServicio);
 		carreraServicio.setColumns(10);
 		
 		numeroServicio = new JTextField();
-		numeroServicio.setBounds(188, 293, 86, 20);
+		numeroServicio.setBounds(418, 368, 316, 47);
 		registrarServicio.add(numeroServicio);
 		numeroServicio.setColumns(10);
 		
-		JPanel reporteServicios = new JPanel();
-		tabbedPane.addTab("Reporte Servicios con IPS y ambulancias asignados", null, reporteServicios, null);
-		reporteServicios.setLayout(null);
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setBounds(763, 11, 128, 76);
+		registrarServicio.add(btnRegistrar);
+		
+		JButton btnRegresar_2 = new JButton("Regresar");
+		btnRegresar_2.setBounds(763, 409, 128, 76);
+		registrarServicio.add(btnRegresar_2);
+		
+		JComboBox comboBoxTipo = new JComboBox();
+		comboBoxTipo.setBounds(418, 138, 316, 47);
+		registrarServicio.add(comboBoxTipo);
+		
+		JComboBox comboBoxDireccion = new JComboBox();
+		comboBoxDireccion.setBounds(418, 252, 316, 47);
+		registrarServicio.add(comboBoxDireccion);
 		
 		JPanel asignarServicio = new JPanel();
 		tabbedPane.addTab("Asignar un Servicio a una Ambulancia y una IPS", null, asignarServicio, null);
 		asignarServicio.setLayout(null);
+		
+		JLabel lblAsignarUnServicio = new JLabel("Asignar un servicio a una ambulancia y una IPS");
+		lblAsignarUnServicio.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 31));
+		lblAsignarUnServicio.setBounds(10, 11, 800, 51);
+		asignarServicio.add(lblAsignarUnServicio);
+		
+		JLabel lblServicios = new JLabel("Servicios");
+		lblServicios.setFont(new Font("Yu Gothic Light", Font.BOLD, 30));
+		lblServicios.setBounds(10, 85, 146, 51);
+		asignarServicio.add(lblServicios);
+		
+		JLabel lblIps = new JLabel("IPS");
+		lblIps.setFont(new Font("Yu Gothic Light", Font.BOLD, 30));
+		lblIps.setBounds(10, 162, 61, 51);
+		asignarServicio.add(lblIps);
+		
+		JLabel lblAmbulancias_1 = new JLabel("Ambulancias");
+		lblAmbulancias_1.setFont(new Font("Yu Gothic Light", Font.BOLD, 30));
+		lblAmbulancias_1.setBounds(10, 248, 189, 51);
+		asignarServicio.add(lblAmbulancias_1);
+		
+		JButton btnRegresar_3 = new JButton("Regresar");
+		btnRegresar_3.setBounds(768, 428, 123, 57);
+		asignarServicio.add(btnRegresar_3);
+		
+		JButton btnAsignarServicioSeleccionado = new JButton("Asignar servicio seleccionado");
+		btnAsignarServicioSeleccionado.setBounds(318, 378, 171, 51);
+		asignarServicio.add(btnAsignarServicioSeleccionado);
+		
+		JPanel finalizarServicio = new JPanel();
+		tabbedPane.addTab("Finalizar un Servicio", null, finalizarServicio, null);
+		finalizarServicio.setLayout(null);
+		
+		JLabel lblFinalizarUnServicio = new JLabel("Finalizar un servicio");
+		lblFinalizarUnServicio.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 38));
+		lblFinalizarUnServicio.setBounds(10, 11, 401, 45);
+		finalizarServicio.add(lblFinalizarUnServicio);
+		
+		JLabel lblServicios_1 = new JLabel("Servicios");
+		lblServicios_1.setFont(new Font("Rockwell Condensed", Font.PLAIN, 40));
+		lblServicios_1.setBounds(20, 67, 129, 61);
+		finalizarServicio.add(lblServicios_1);
+		
+		JButton btnRegresar_4 = new JButton("Regresar");
+		btnRegresar_4.setBounds(750, 424, 141, 61);
+		finalizarServicio.add(btnRegresar_4);
+		
+		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
+		btnFinalizarServicioSeleccionado.setBounds(536, 116, 202, 39);
+		finalizarServicio.add(btnFinalizarServicioSeleccionado);
 		
 		JPanel registrarPosicionAmbulancia = new JPanel();
 		tabbedPane.addTab("Registrar Posicion Ambulancia", null, registrarPosicionAmbulancia, null);
@@ -205,10 +307,6 @@ public class TestGUIAmbulancias extends JFrame {
 		btnReporteDeLa.setBounds(472, 248, 363, 55);
 		menuServicios.add(btnReporteDeLa);
 		
-		JPanel finalizarServicio = new JPanel();
-		tabbedPane.addTab("Finalizar un Servicio", null, finalizarServicio, null);
-		finalizarServicio.setLayout(null);
-		
 		JPanel ingresarIPSyAmbulancias = new JPanel();
 		tabbedPane.addTab("Ingresar IPS y Ambulancias", null, ingresarIPSyAmbulancias, null);
 		ingresarIPSyAmbulancias.setLayout(null);
@@ -238,5 +336,32 @@ public class TestGUIAmbulancias extends JFrame {
 		JPanel reporteIPS = new JPanel();
 		tabbedPane.addTab("Reporte de IPS con servicios asociados", null, reporteIPS, null);
 		reporteIPS.setLayout(null);
+		
+		JLabel lblReporteDeIps = new JLabel("Reporte de IPS con servicios asociados");
+		lblReporteDeIps.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 32));
+		lblReporteDeIps.setBounds(10, 11, 691, 46);
+		reporteIPS.add(lblReporteDeIps);
+		
+		JLabel lblIps_1 = new JLabel("IPS");
+		lblIps_1.setFont(new Font("Sylfaen", Font.ITALIC, 38));
+		lblIps_1.setBounds(10, 68, 128, 46);
+		reporteIPS.add(lblIps_1);
+		
+		JLabel lblServiciosAsociados = new JLabel("Servicios asociados");
+		lblServiciosAsociados.setFont(new Font("Sylfaen", Font.ITALIC, 38));
+		lblServiciosAsociados.setBounds(10, 231, 338, 46);
+		reporteIPS.add(lblServiciosAsociados);
+		
+		JComboBox comboBoxIPS = new JComboBox();
+		comboBoxIPS.setBounds(362, 68, 505, 46);
+		reporteIPS.add(comboBoxIPS);
+		
+		JButton btnMostrarServiciosAsociados = new JButton("Mostrar servicios asociados");
+		btnMostrarServiciosAsociados.setBounds(121, 163, 254, 56);
+		reporteIPS.add(btnMostrarServiciosAsociados);
+		
+		JButton btnRegresar_6 = new JButton("Regresar");
+		btnRegresar_6.setBounds(780, 462, 148, 56);
+		reporteIPS.add(btnRegresar_6);
 	}
 }
