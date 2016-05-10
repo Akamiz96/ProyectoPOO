@@ -45,7 +45,7 @@ public class IPS implements Serializable {
 	 * @param numero:
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 */
-	public IPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero) {
+	public IPS(String nombre, String tipoAtencion, TipoDireccion tipoDireccion, int calle, int carrera, int numero) {
 		this.nombre = nombre;
 		this.tipoAtencion = tipoAtencion;
 		asignarDireccion(tipoDireccion, calle, carrera, numero);
@@ -149,7 +149,7 @@ public class IPS implements Serializable {
 	 * @param numero:
 	 *            Indica el bloque de la cuadra en donde es la direccion
 	 */
-	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero) {
+	public void asignarDireccion(TipoDireccion tipoDireccion, int calle, int carrera, int numero) {
 		this.direccion = new Direccion(tipoDireccion, calle, carrera, numero);
 	}
 

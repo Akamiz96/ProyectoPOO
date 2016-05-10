@@ -18,7 +18,7 @@ public class Direccion implements Serializable {
 	/**
 	 * tipoDireccion: Indica si se encuentra sobre la carrera o sobre la calle
 	 */
-	private String tipoDireccion;
+	private TipoDireccion tipoDireccion;
 	/**
 	 * calle: Indica la calle en la cual se encuentra
 	 */
@@ -42,7 +42,7 @@ public class Direccion implements Serializable {
 	 * @param numero:
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 */
-	public Direccion(String tipoDireccion, int calle, int carrera, int numero) {
+	public Direccion(TipoDireccion tipoDireccion, int calle, int carrera, int numero) {
 		super();
 		this.tipoDireccion = tipoDireccion;
 		this.calle = calle;
@@ -54,7 +54,7 @@ public class Direccion implements Serializable {
 	 * @return the tipoDireccion: Indica si se encuentra sobre la carrera o
 	 *         sobre la calle
 	 */
-	public String getTipoDireccion() {
+	public TipoDireccion getTipoDireccion() {
 		return tipoDireccion;
 	}
 
@@ -63,7 +63,7 @@ public class Direccion implements Serializable {
 	 *            the tipoDireccion to set: Indica si se encuentra sobre la
 	 *            carrera o sobre la calle
 	 */
-	public void setTipoDireccion(String tipoDireccion) {
+	public void setTipoDireccion(TipoDireccion tipoDireccion) {
 		this.tipoDireccion = tipoDireccion;
 	}
 

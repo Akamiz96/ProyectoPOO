@@ -42,11 +42,11 @@ public class Servicio implements Serializable {
 	 * tipoServicio: Representa el tipo de servicio requerido
 	 * (URGENCIA/EMERGENCIA/DOMICILIO)
 	 */
-	private String tipoServicio;
+	private TipoServicio tipoServicio;
 	/**
 	 * estado: Indica si el servicio esta: No_ASIGNADO, ASIGNADO o FINALIZADO
 	 */
-	private String estado;
+	private EstadoServicio estado;
 	/**
 	 * direccion: Instancia de la clase Direccion que indica la direccion del
 	 * servicio
@@ -84,14 +84,14 @@ public class Servicio implements Serializable {
 	 * @param numero:
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 */
-	public Servicio(String paciente, long telefono, String tipoServicio, String tipoDireccion, int calle, int carrera,
+	public Servicio(String paciente, long telefono, TipoServicio tipoServicio, TipoDireccion tipoDireccion, int calle, int carrera,
 			int numero) {
 		super();
 		this.codigo = Servicio.consecutivo++;
 		this.paciente = paciente;
 		this.telefono = telefono;
 		this.tipoServicio = tipoServicio;
-		this.estado = "NO_ASIGNADO";
+		this.estado = EstadoServicio.NO_ASIGNADO;
 		this.horaSolicitud = new GregorianCalendar();
 		this.asignarDireccion(tipoDireccion, calle, carrera, numero);
 		this.ips = null;
@@ -153,7 +153,7 @@ public class Servicio implements Serializable {
 	 * @return the tipoServicio: Representa el tipo de servicio requerido
 	 *         (URGENCIA/EMERGENCIA)
 	 */
-	public String getTipoServicio() {
+	public TipoServicio getTipoServicio() {
 		return tipoServicio;
 	}
 
@@ -162,7 +162,7 @@ public class Servicio implements Serializable {
 	 *            the tipoServicio to set: Representa el tipo de servicio
 	 *            requerido (URGENCIA/EMERGENCIA)
 	 */
-	public void setTipoServicio(String tipoServicio) {
+	public void setTipoServicio(TipoServicio tipoServicio) {
 		this.tipoServicio = tipoServicio;
 	}
 
@@ -170,7 +170,7 @@ public class Servicio implements Serializable {
 	 * @return the estado: Indica si el servicio esta: No_ASIGNADO, ASIGNADO o
 	 *         FINALIZADO
 	 */
-	public String getEstado() {
+	public EstadoServicio getEstado() {
 		return estado;
 	}
 
@@ -179,7 +179,7 @@ public class Servicio implements Serializable {
 	 *            the estado to set: Indica si el servicio esta: No_ASIGNADO,
 	 *            ASIGNADO o FINALIZADO
 	 */
-	public void setEstado(String estado) {
+	public void setEstado(EstadoServicio estado) {
 		this.estado = estado;
 	}
 
@@ -369,7 +369,7 @@ public class Servicio implements Serializable {
 	 * @param numero:
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 */
-	public void asignarDireccion(String tipoDireccion, int calle, int carrera, int numero) {
+	public void asignarDireccion(TipoDireccion tipoDireccion, int calle, int carrera, int numero) {
 		this.direccion = new Direccion(tipoDireccion, calle, carrera, numero);
 	}
 

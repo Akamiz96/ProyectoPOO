@@ -138,8 +138,13 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 */
 	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
 			int numero) {
-		IPS ips = new IPS(nombre, tipoAtencion, tipoDireccion, calle, carrera, numero);
-		lasIPS.put(nombre, ips);
+		if (tipoDireccion.equals("CALLE")) {
+			IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CALLE, calle, carrera, numero);
+			lasIPS.put(nombre, ips);
+		} else {
+			IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CARRERA, calle, carrera, numero);
+			lasIPS.put(nombre, ips);
+		}
 	}
 
 	/**
@@ -211,7 +216,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 * @return long: Codigo del servicio registrado
 	 */
-	public long registrarServicio(String nombre, String tipoAtencion, String telefono, String tipoDireccion, int calle,
+	public long registrarServicio(String nombre, TipoServicio tipoAtencion, String telefono, TipoDireccion tipoDireccion, int calle,
 			int carrera, int numero) {
 		Servicio servicio = new Servicio(nombre, Long.parseLong(telefono), tipoAtencion, tipoDireccion, calle, carrera,
 				numero);
@@ -282,7 +287,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		servicio.setIps(ips);
 		if (ips != null)
 			ips.agregarServicioIPS(servicio);
-		servicio.setEstado("ASIGNADO");
+		servicio.setEstado(EstadoServicio.ASIGNADO);
 
 	}
 
@@ -297,7 +302,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		boolean finalizado = false;
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
-			servicio.setEstado("FINALIZADO");
+			servicio.setEstado(EstadoServicio.FINALIZADO);
 			servicio.getAmbulancia().setEnServicio(false);
 			finalizado = true;
 		}
@@ -352,14 +357,14 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 		Set<Integer> llaves = this.ambulancias.keySet();
 		for (Integer llave : llaves) {
 			if (!this.ambulancias.get(llave).getEnServicio() && this.ambulancias.get(llave).getHoraPosicion() != null) {
-				if (servicio.getTipoServicio().equals("EMERGENCIA")
+				if ((servicio.getTipoServicio() == TipoServicio.EMERGENCIA)
 						&& this.ambulancias.get(llave) instanceof AmbulanciaUCI) {
 					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}
-				if (servicio.getTipoServicio().equals("URGENCIA")) {
+				if (servicio.getTipoServicio() == TipoServicio.URGENCIA) {
 					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}
-				if (servicio.getTipoServicio().equals("DOMICILIO")
+				if ((servicio.getTipoServicio() == TipoServicio.DOMICILIO)
 						&& this.ambulancias.get(llave) instanceof AmbulanciaNoMedicalizada) {
 					ambulanciasDisponibles.add(this.ambulancias.get(llave));
 				}

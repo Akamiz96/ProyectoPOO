@@ -15,10 +15,13 @@ import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
 import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.EstadoServicio;
 import co.edu.javeriana.ambulancias.negocio.HoraSolicitudComparator;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.IServiciosAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
+import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
+import co.edu.javeriana.ambulancias.negocio.TipoServicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
 
 /**
@@ -219,11 +222,11 @@ public class TestAmbulacia {
 						"paciente", "tipoServicio", "telefono", "direccion", "estado", "valor");
 				System.out.println(
 						"------------------------------------------------------------------------------------------------------");
-				if (servicio.getEstado().equals("NO_ASIGNADO") || servicio.getEstado().equals("FINALIZADO"))
+				if ((servicio.getEstado() == EstadoServicio.NO_ASIGNADO) || (servicio.getEstado() == EstadoServicio.FINALIZADO))
 					System.out.printf("%s %-10s\n", servicio.toString(), servicio.getEstado());
 				else
 					System.out.printf("%s %-10d\n", servicio.toString(), servicio.getAmbulancia().calcularTarifa());
-				if (!servicio.getTipoServicio().equals("DOMICILIO")) {
+				if (!(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
 					if (servicio.getIps() != null) {
 						System.out.println("\n\tIPS asignada:");
 						System.out.println("\tnombre                 tipoAtencion           direccion");
@@ -297,7 +300,7 @@ public class TestAmbulacia {
 			System.out.println("----------------------------------------------------------------------------");
 			// Impresion de los pacientes asignados del sistema
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
-				if (servicio.getEstado().equals("ASIGNADO")) {
+				if (servicio.getEstado() == EstadoServicio.ASIGNADO) {
 					System.out.printf("%s\n", servicio.toStringC());
 				}
 			}
@@ -332,13 +335,13 @@ public class TestAmbulacia {
 			System.out.println("codigo horaSolicitud  paciente     tipoServicio telefono direccion ");
 			System.out.println("----------------------------------------------------------------------------");
 			for (Servicio servicio : empresaAmbulancias.getServicios()) {
-				if (servicio.getEstado().equals("NO_ASIGNADO")) {
+				if (servicio.getEstado() == EstadoServicio.NO_ASIGNADO) {
 					System.out.printf("%s\n", servicio.toString());
 				}
 			}
 			System.out.println("--cual es el codigo del servicio que desea asignar ? :");
 			long servicio = input.nextLong();
-			if (!empresaAmbulancias.getServicios().get((int) servicio - 1).getEstado().equals("FINALIZADO"))
+			if (!(empresaAmbulancias.getServicios().get((int) servicio - 1).getEstado() == EstadoServicio.FINALIZADO))
 				System.out.println(empresaAmbulancias.asignarServicio(servicio));
 			else
 				System.out.println("El servicio ya fue asignado");
@@ -403,9 +406,37 @@ public class TestAmbulacia {
 		int numero = input.nextInt();
 		if ((tipoServicio.equals("URGENCIA") || tipoServicio.equals("EMERGENCIA") || tipoServicio.equals("DOMICILIO"))
 				&& (tipoDireccion.equals("CALLE") || tipoDireccion.equals("CARRERA"))) {
-			codigoServicio = empresaAmbulancias.registrarServicio(paciente, tipoServicio, telefono, tipoDireccion,
-					calle, carrera, numero);
-			System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+			if (tipoServicio.equals("URGENCIA")) {
+				if (tipoDireccion.equals("CALLE")) {
+					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+							TipoDireccion.CALLE, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+				} else {
+					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+							TipoDireccion.CARRERA, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+				}
+			} else if (tipoServicio.equals("EMERGENCIA")) {
+				if (tipoDireccion.equals("CALLE")) {
+					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+							TipoDireccion.CALLE, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+				} else {
+					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+							TipoDireccion.CARRERA, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+				}
+			} else if (tipoServicio.equals("DOMICILIO")) {
+				if (tipoDireccion.equals("CALLE")) {
+					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+							TipoDireccion.CALLE, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+				} else {
+					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+							TipoDireccion.CARRERA, calle, carrera, numero);
+					System.out.printf("El nuevo Servicio tiene codigo %d\n", codigoServicio);
+				}
+			}
 		} else
 			System.out.println("Fallo en el registro del servicio");
 		input.nextLine();

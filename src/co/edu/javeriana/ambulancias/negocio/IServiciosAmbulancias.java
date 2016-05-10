@@ -80,7 +80,7 @@ public interface IServiciosAmbulancias {
 	 *            Indica el numero de la cuadra donde se encuentra el servicio
 	 * @return long: Indica el codigo del servicio recien ingresado
 	 */
-	long registrarServicio(String nombre, String tipoAtencion, String telefono, String tipoDireccion, int calle,
+	long registrarServicio(String nombre, TipoServicio tipoAtencion, String telefono, TipoDireccion tipoDireccion, int calle,
 			int carrera, int numero);
 
 	/**
