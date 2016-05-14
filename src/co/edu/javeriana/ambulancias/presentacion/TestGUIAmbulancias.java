@@ -389,6 +389,8 @@ public class TestGUIAmbulancias extends JFrame {
 		JButton btnRegresar_6 = new JButton("Regresar");
 		btnRegresar_6.setBounds(780, 462, 148, 56);
 		reporteIPS.add(btnRegresar_6);
+		
+		this.getTabbedPane().setSelectedIndex(5);
 	}
 
 	public JTextField getPaciente() {
@@ -428,11 +430,11 @@ public class TestGUIAmbulancias extends JFrame {
 		elemento = String.valueOf(TipoDireccion.CARRERA);
 		this.comboBoxDireccion.addItem(elemento);
 		elemento = String.valueOf(TipoServicio.DOMICILIO);
-		this.comboBoxDireccion.addItem(elemento);
+		this.comboBoxTipo.addItem(elemento);
 		elemento = String.valueOf(TipoServicio.EMERGENCIA);
-		this.comboBoxDireccion.addItem(elemento);
+		this.comboBoxTipo.addItem(elemento);
 		elemento = String.valueOf(TipoServicio.URGENCIA);
-		this.comboBoxDireccion.addItem(elemento);
+		this.comboBoxTipo.addItem(elemento);
 	}
 
 	private void registrarServicio(ActionEvent e) {
