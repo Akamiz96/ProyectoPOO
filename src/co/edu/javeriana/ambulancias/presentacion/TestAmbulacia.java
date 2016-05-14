@@ -5,6 +5,7 @@ package co.edu.javeriana.ambulancias.presentacion;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -39,7 +40,6 @@ public class TestAmbulacia {
 	 *            Indica los argumentos de inicio del programa
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int opcion;
 		IServiciosAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 		Scanner input = new Scanner(System.in);
@@ -59,11 +59,19 @@ public class TestAmbulacia {
 					break;
 				case 3:
 					// registrar la posicion actual de una ambulancia
-					registrarPosicionAmbulancia(empresaAmbulancias, input);
+					try {
+						registrarPosicionAmbulancia(empresaAmbulancias, input);
+					} catch (InputMismatchException e) {
+						System.out.println("Error leyendo los datos.\n Error: " + e + '\n');
+					}
 					break;
 				case 4:
 					// registrar un servicio
-					registrarServicio(empresaAmbulancias, input);
+					try {
+						registrarServicio(empresaAmbulancias, input);
+					} catch (InputMismatchException e) {
+						System.out.println("Error leyendo los datos.\n Error: " + e + '\n');
+					}
 					break;
 				case 5:
 					// reporte de ambulancias
@@ -222,7 +230,8 @@ public class TestAmbulacia {
 						"paciente", "tipoServicio", "telefono", "direccion", "estado", "valor");
 				System.out.println(
 						"------------------------------------------------------------------------------------------------------");
-				if ((servicio.getEstado() == EstadoServicio.NO_ASIGNADO) || (servicio.getEstado() == EstadoServicio.FINALIZADO))
+				if ((servicio.getEstado() == EstadoServicio.NO_ASIGNADO)
+						|| (servicio.getEstado() == EstadoServicio.FINALIZADO))
 					System.out.printf("%s %-10s\n", servicio.toString(), servicio.getEstado());
 				else
 					System.out.printf("%s %-10d\n", servicio.toString(), servicio.getAmbulancia().calcularTarifa());
