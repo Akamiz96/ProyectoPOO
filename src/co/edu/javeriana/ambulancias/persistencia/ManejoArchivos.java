@@ -24,8 +24,9 @@ public class ManejoArchivos {
 	 * @param empresaAmbulancia:
 	 *            Indica el objeto de empresa ambulancia para el cual se le
 	 *            adicionara las IPS
+	 * @throws PersistenceException 
 	 */
-	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias) {
+	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias) throws PersistenceException {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Ingrese el nombre del Archivo: ");
 		String nombreArchivo = input.next();
@@ -43,11 +44,11 @@ public class ManejoArchivos {
 			} // fin de todas las IPS
 			input.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("Error en la ruta del archivo.\n Error: " + e.getMessage());
+			throw new PersistenceException("Error en la ruta del archivo.\n Error: " + e.getMessage());
 		} catch (IOException e) {
-			System.out.println("Error leyendo del archivo.\n Error: " + e.getMessage());
+			throw new PersistenceException("Error leyendo del archivo.\n Error: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("excepcion inesperada:" + e.getMessage());
+			throw new PersistenceException("Excepcion inesperada:" + e.getMessage());
 		}
 	}
 
@@ -85,8 +86,9 @@ public class ManejoArchivos {
 	 * @param empresaAmbulancia:
 	 *            Indica el objeto de empresa ambulancia para el cual se le
 	 *            adicionara las IPS
+	 * @throws PersistenceException 
 	 */
-	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias) {
+	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias) throws PersistenceException {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Insgrese el nombre del Archivo: ");
 		String nombreArchivo = input.next();
@@ -109,11 +111,11 @@ public class ManejoArchivos {
 			input.close();
 		} // fin de todas las IPS
 		catch (FileNotFoundException e) {
-			System.out.println("Error en la ruta del archivo.\n Error: " + e.getMessage());
+			throw new PersistenceException("Error en la ruta del archivo.\n Error: " + e.getMessage());
 		} catch (IOException e) {
-			System.out.println("Error leyendo del archivo.\n Error:" + e.getMessage());
+			throw new PersistenceException("Error leyendo del archivo.\n Error:" + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("excepcion inesperada:" + e.getMessage());
+			throw new PersistenceException("excepcion inesperada:" + e.getMessage());
 		}
 	}
 

@@ -24,6 +24,7 @@ import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
 import co.edu.javeriana.ambulancias.negocio.TipoServicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
+import co.edu.javeriana.ambulancias.persistencia.PersistenceException;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -51,11 +52,19 @@ public class TestAmbulacia {
 				switch (opcion) {
 				case 1:
 					// ingresar la IPS al sistema
-					ingresarIpsAlsistema(empresaAmbulancias);
+					try {
+						ingresarIpsAlsistema(empresaAmbulancias);
+					} catch (PersistenceException e) {
+						System.out.println(e);
+					}
 					break;
 				case 2:
 					// ingresar las ambulancias al sistema
-					ingresarAmbulanciasAlSistema(empresaAmbulancias);
+					try {
+						ingresarAmbulanciasAlSistema(empresaAmbulancias);
+					} catch (PersistenceException e) {
+						System.out.println(e);
+					}
 					break;
 				case 3:
 					// registrar la posicion actual de una ambulancia
@@ -487,8 +496,10 @@ public class TestAmbulacia {
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
+	 * @throws PersistenceException
 	 */
-	private static void ingresarAmbulanciasAlSistema(IServiciosAmbulancias empresaAmbulancias) {
+	private static void ingresarAmbulanciasAlSistema(IServiciosAmbulancias empresaAmbulancias)
+			throws PersistenceException {
 		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
 		System.out.println();
 	}
@@ -499,8 +510,9 @@ public class TestAmbulacia {
 	 * @param empresaAmbulancias:
 	 *            Representa el objeto de tipo EmpresaAmbulancias que representa
 	 *            el sistema
+	 * @throws PersistenceException
 	 */
-	private static void ingresarIpsAlsistema(IServiciosAmbulancias empresaAmbulancias) {
+	private static void ingresarIpsAlsistema(IServiciosAmbulancias empresaAmbulancias) throws PersistenceException {
 		ManejoArchivos.cargarLasIPS(empresaAmbulancias);
 		System.out.println();
 	}
