@@ -228,13 +228,11 @@ public class TestGUIAmbulancias extends JFrame {
 
 		calle = new JTextField();
 		calle.setBounds(408, 313, 109, 34);
-		calle.setEditable(false);
 		registrarPosicionAmbulancia.add(calle);
 		calle.setColumns(10);
 
 		carrera = new JTextField();
 		carrera.setBounds(408, 362, 109, 34);
-		carrera.setEditable(false);
 		registrarPosicionAmbulancia.add(carrera);
 		carrera.setColumns(10);
 
