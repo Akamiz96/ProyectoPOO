@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
 import co.edu.javeriana.ambulancias.negocio.TipoServicio;
+import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
+import co.edu.javeriana.ambulancias.persistencia.PersistenceException;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
@@ -32,7 +34,8 @@ public class TestGUIAmbulancias extends JFrame {
 	 */
 	private final static int menuServicios = 0;
 	/*
-	 * Atributo que indica el tab en cual se encuentra Registrar la posicion de la ambulancia
+	 * Atributo que indica el tab en cual se encuentra Registrar la posicion de
+	 * la ambulancia
 	 */
 	private final static int registrarPosicion = 2;
 	/*
@@ -48,13 +51,20 @@ public class TestGUIAmbulancias extends JFrame {
 	 */
 	private final static int finalizarServicio = 3;
 	/*
-	 * Atributo que indica el tab en cual se encuentra Reporte de Servicios con IPS y Ambulancias asociados
+	 * Atributo que indica el tab en cual se encuentra Reporte de Servicios con
+	 * IPS y Ambulancias asociados
 	 */
 	private final static int reporteServicios = 5;
 	/*
-	 * Atributo que indica el tab en cual se encuentra Reporte de IPS con Servicios Asociados
+	 * Atributo que indica el tab en cual se encuentra Reporte de IPS con
+	 * Servicios Asociados
 	 */
 	private final static int reporteIPS = 7;
+	/*
+	 * Atributo que indica el tab en cual se encuentra Ingresar IPS y
+	 * Ambulancias
+	 */
+	private final static int ingresarIPSAmbulancias = 1;
 	private EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 	private JPanel contentPane;
 	private JTextField calle;
@@ -118,61 +128,78 @@ public class TestGUIAmbulancias extends JFrame {
 
 		JPanel menuServicios_1 = new JPanel();
 		tabbedPane.addTab("Menu Servicios", null, menuServicios_1, null);
-		menuServicios_1.setLayout(null);
 
 		btnRegistrarLaPosicion = new JButton("Registrar la posicion actual de una ambulancia");
+		btnRegistrarLaPosicion.setBounds(80, 115, 363, 55);
 		btnRegistrarLaPosicion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irRegistrarPosicion(e);
 			}
 		});
-		btnRegistrarLaPosicion.setBounds(80, 115, 363, 55);
+		menuServicios_1.setLayout(null);
 		menuServicios_1.add(btnRegistrarLaPosicion);
 
 		JButton btnRegistrarUnServicio = new JButton("Registrar un servicio ");
+		btnRegistrarUnServicio.setBounds(80, 181, 363, 55);
 		btnRegistrarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarRegistroServicio(e);
 			}
 		});
-		btnRegistrarUnServicio.setBounds(80, 181, 363, 55);
 		menuServicios_1.add(btnRegistrarUnServicio);
 
 		JButton btnAsignarUnServicio = new JButton("Asignar a un servicio una ambulancia y una IPS");
+		btnAsignarUnServicio.setBounds(80, 248, 363, 55);
 		btnAsignarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irAsignarServicio(e);
 			}
 		});
-		btnAsignarUnServicio.setBounds(80, 248, 363, 55);
 		menuServicios_1.add(btnAsignarUnServicio);
 
 		JButton btnFinalizarUnServicio = new JButton("Finalizar un servicio");
+		btnFinalizarUnServicio.setBounds(472, 115, 363, 55);
 		btnFinalizarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irFinalizarServicio(e);
 			}
 		});
-		btnFinalizarUnServicio.setBounds(472, 115, 363, 55);
 		menuServicios_1.add(btnFinalizarUnServicio);
 
 		JButton btnReporteServicios = new JButton("Reporte de servicios con IPS y ambulancias asignados");
+		btnReporteServicios.setBounds(472, 181, 363, 55);
 		btnReporteServicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irReporteServicios(e);
 			}
 		});
-		btnReporteServicios.setBounds(472, 181, 363, 55);
 		menuServicios_1.add(btnReporteServicios);
 
 		JButton btnReporteDeLa = new JButton("Reporte de la IPS con servicios asociados");
+		btnReporteDeLa.setBounds(472, 248, 363, 55);
 		btnReporteDeLa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irReporteIPS(e);
 			}
 		});
-		btnReporteDeLa.setBounds(472, 248, 363, 55);
 		menuServicios_1.add(btnReporteDeLa);
+
+		JButton ingresarIPSAmbulancias = new JButton("Ingresar IPS y Ambulancias");
+		ingresarIPSAmbulancias.setBounds(148, 351, 242, 73);
+		ingresarIPSAmbulancias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				irIngresarIPSAmbulancias(arg0);
+			}
+		});
+		menuServicios_1.add(ingresarIPSAmbulancias);
+
+		JButton btnSalvarSi = new JButton("Salvar datos del sistema");
+		btnSalvarSi.setBounds(548, 333, 225, 62);
+		menuServicios_1.add(btnSalvarSi);
+
+		JButton btnCargarDatosDel = new JButton("Cargar datos del sistema");
+		btnCargarDatosDel.setBounds(548, 413, 225, 62);
+		menuServicios_1.add(btnCargarDatosDel);
 
 		JPanel ingresarIPSyAmbulancias = new JPanel();
 		tabbedPane.addTab("Ingresar IPS y Ambulancias", null, ingresarIPSyAmbulancias, null);
@@ -181,12 +208,18 @@ public class TestGUIAmbulancias extends JFrame {
 		JButton btnSeleccionarArchivoDe = new JButton("Seleccionar archivo de IPS");
 		btnSeleccionarArchivoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				seleccionarIPS(e);
 			}
 		});
 		btnSeleccionarArchivoDe.setBounds(274, 123, 337, 84);
 		ingresarIPSyAmbulancias.add(btnSeleccionarArchivoDe);
 
 		JButton btnSeleccionarArchivoDe_1 = new JButton("Seleccionar archivo de ambulancias");
+		btnSeleccionarArchivoDe_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				seleccionarAmbulancias(arg0);
+			}
+		});
 		btnSeleccionarArchivoDe_1.setBounds(274, 218, 337, 84);
 		ingresarIPSyAmbulancias.add(btnSeleccionarArchivoDe_1);
 
@@ -196,7 +229,7 @@ public class TestGUIAmbulancias extends JFrame {
 				regresar(e);
 			}
 		});
-		btnRegresar.setBounds(732, 419, 159, 66);
+		btnRegresar.setBounds(712, 403, 159, 66);
 		ingresarIPSyAmbulancias.add(btnRegresar);
 
 		JLabel lblIngresarIpsY = new JLabel("Ingresar IPS y ambulancias");
@@ -657,16 +690,40 @@ public class TestGUIAmbulancias extends JFrame {
 	private void irRegistrarPosicion(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.registrarPosicion);
 	}
+
 	private void irAsignarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.asignarServicio);
 	}
+
 	private void irFinalizarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.finalizarServicio);
 	}
+
 	private void irReporteServicios(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.reporteServicios);
 	}
+
 	private void irReporteIPS(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.reporteIPS);
+	}
+
+	private void irIngresarIPSAmbulancias(ActionEvent arg0) {
+		this.getTabbedPane().setSelectedIndex(this.ingresarIPSAmbulancias);
+	}
+
+	private void seleccionarIPS(ActionEvent e) {
+		try {
+			ManejoArchivos.cargarLasIPS(empresaAmbulancias);
+		} catch (PersistenceException exception) {
+			JOptionPane.showMessageDialog(null, exception.getMessage());
+		}
+	}
+
+	private void seleccionarAmbulancias(ActionEvent arg0) {
+		try {
+			ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
+		} catch (PersistenceException exception) {
+			JOptionPane.showMessageDialog(null, exception.getMessage());
+		}
 	}
 }
