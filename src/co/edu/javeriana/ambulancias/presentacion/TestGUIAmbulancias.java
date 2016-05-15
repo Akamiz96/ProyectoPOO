@@ -22,6 +22,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class TestGUIAmbulancias extends JFrame {
 
@@ -37,6 +39,15 @@ public class TestGUIAmbulancias extends JFrame {
 	private JComboBox comboBoxTipo;
 	private JComboBox comboBoxDireccion;
 	private JTabbedPane tabbedPane;
+	private JTable tablaAmbulancias;
+	private JTable tablaServicios;
+	private JTable tablaServicios1;
+	private JTable tablaServicio;
+	private JTable tablaAmbulancia;
+	private JTable tablaServicios2;
+	private JTable tablaServicios3;
+	private JTable tablaIPS;
+	private JTable tablaAmbulancias3;
 
 	/**
 	 * Launch the application.
@@ -68,6 +79,47 @@ public class TestGUIAmbulancias extends JFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(5, 5, 943, 573);
 		contentPane.add(tabbedPane);
+		
+				JPanel menuServicios = new JPanel();
+				tabbedPane.addTab("Menu Servicios", null, menuServicios, null);
+				menuServicios.setLayout(null);
+				
+						JButton btnRegistrarLaPosicion = new JButton("Registrar la posicion actual de una ambulancia");
+						btnRegistrarLaPosicion.setBounds(80, 115, 363, 55);
+						menuServicios.add(btnRegistrarLaPosicion);
+						
+								JButton btnRegistrarUnServicio = new JButton("Registrar un servicio ");
+								btnRegistrarUnServicio.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										mostrarRegistroServicio(e);
+									}
+								});
+								btnRegistrarUnServicio.setBounds(80, 181, 363, 55);
+								menuServicios.add(btnRegistrarUnServicio);
+								
+										JButton btnAsignarUnServicio = new JButton("Asignar a un servicio una ambulancia y una IPS");
+										btnAsignarUnServicio.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+											}
+										});
+										btnAsignarUnServicio.setBounds(80, 248, 363, 55);
+										menuServicios.add(btnAsignarUnServicio);
+										
+												JButton btnFinalizarUnServicio = new JButton("Finalizar un servicio");
+												btnFinalizarUnServicio.setBounds(472, 115, 363, 55);
+												menuServicios.add(btnFinalizarUnServicio);
+												
+														JButton btnReporteServicios = new JButton("Reporte de servicios con IPS y ambulancias asignados");
+														btnReporteServicios.addActionListener(new ActionListener() {
+															public void actionPerformed(ActionEvent e) {
+															}
+														});
+														btnReporteServicios.setBounds(472, 181, 363, 55);
+														menuServicios.add(btnReporteServicios);
+														
+																JButton btnReporteDeLa = new JButton("Reporte de la IPS con servicios asociados");
+																btnReporteDeLa.setBounds(472, 248, 363, 55);
+																menuServicios.add(btnReporteDeLa);
 
 		JPanel reporteServicios = new JPanel();
 		tabbedPane.addTab("Reporte Servicios con IPS y ambulancias asignados", null, reporteServicios, null);
@@ -80,26 +132,47 @@ public class TestGUIAmbulancias extends JFrame {
 
 		JLabel lblServicios_2 = new JLabel("Servicios");
 		lblServicios_2.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
-		lblServicios_2.setBounds(10, 73, 228, 35);
+		lblServicios_2.setBounds(10, 60, 228, 35);
 		reporteServicios.add(lblServicios_2);
 
 		JLabel lblIpsAsignada = new JLabel("IPS asignada");
 		lblIpsAsignada.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
-		lblIpsAsignada.setBounds(10, 189, 228, 35);
+		lblIpsAsignada.setBounds(10, 212, 228, 35);
 		reporteServicios.add(lblIpsAsignada);
 
 		JLabel lblAmbulanciaAsignada = new JLabel("Ambulancia asignada");
 		lblAmbulanciaAsignada.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
-		lblAmbulanciaAsignada.setBounds(10, 299, 293, 35);
+		lblAmbulanciaAsignada.setBounds(10, 366, 293, 35);
 		reporteServicios.add(lblAmbulanciaAsignada);
 
 		JButton btnRegresar_5 = new JButton("Regresar");
-		btnRegresar_5.setBounds(772, 434, 119, 51);
+		btnRegresar_5.setBounds(729, 483, 199, 35);
 		reporteServicios.add(btnRegresar_5);
 
 		JButton btnMostrar = new JButton("Mostrar IPS y ambulancia asignadas");
-		btnMostrar.setBounds(589, 114, 249, 35);
+		btnMostrar.setBounds(668, 207, 260, 51);
 		reporteServicios.add(btnMostrar);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 89, 918, 112);
+		reporteServicios.add(scrollPane_2);
+		
+		tablaServicios1 = new JTable();
+		scrollPane_2.setViewportView(tablaServicios1);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(10, 265, 918, 90);
+		reporteServicios.add(scrollPane_3);
+		
+		tablaServicio = new JTable();
+		scrollPane_3.setViewportView(tablaServicio);
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(10, 398, 918, 80);
+		reporteServicios.add(scrollPane_4);
+		
+		tablaAmbulancia = new JTable();
+		scrollPane_4.setViewportView(tablaAmbulancia);
 
 		JPanel registrarServicio = new JPanel();
 		tabbedPane.addTab("Registrar un Servicio", null, registrarServicio, null);
@@ -206,40 +279,61 @@ public class TestGUIAmbulancias extends JFrame {
 		asignarServicio.add(lblAsignarUnServicio);
 
 		JLabel lblServicios = new JLabel("Servicios");
-		lblServicios.setFont(new Font("Yu Gothic Light", Font.BOLD, 30));
-		lblServicios.setBounds(10, 85, 146, 51);
+		lblServicios.setFont(new Font("Yu Gothic Light", Font.BOLD, 26));
+		lblServicios.setBounds(10, 54, 146, 31);
 		asignarServicio.add(lblServicios);
 
 		JLabel lblIps = new JLabel("IPS");
-		lblIps.setFont(new Font("Yu Gothic Light", Font.BOLD, 30));
-		lblIps.setBounds(10, 162, 61, 51);
+		lblIps.setFont(new Font("Yu Gothic Light", Font.BOLD, 26));
+		lblIps.setBounds(10, 226, 61, 31);
 		asignarServicio.add(lblIps);
 
 		JLabel lblAmbulancias_1 = new JLabel("Ambulancias");
-		lblAmbulancias_1.setFont(new Font("Yu Gothic Light", Font.BOLD, 30));
-		lblAmbulancias_1.setBounds(10, 248, 189, 51);
+		lblAmbulancias_1.setFont(new Font("Yu Gothic Light", Font.BOLD, 26));
+		lblAmbulancias_1.setBounds(10, 345, 189, 31);
 		asignarServicio.add(lblAmbulancias_1);
 
 		JButton btnRegresar_3 = new JButton("Regresar");
-		btnRegresar_3.setBounds(768, 428, 123, 57);
+		btnRegresar_3.setBounds(739, 487, 189, 31);
 		asignarServicio.add(btnRegresar_3);
 
 		JButton btnAsignarServicioSeleccionado = new JButton("Asignar servicio seleccionado");
-		btnAsignarServicioSeleccionado.setBounds(318, 378, 171, 51);
+		btnAsignarServicioSeleccionado.setBounds(695, 228, 233, 36);
 		asignarServicio.add(btnAsignarServicioSeleccionado);
+		
+		JScrollPane scrollPane_6 = new JScrollPane();
+		scrollPane_6.setBounds(10, 93, 918, 134);
+		asignarServicio.add(scrollPane_6);
+		
+		tablaServicios3 = new JTable();
+		scrollPane_6.setViewportView(tablaServicios3);
+		
+		JScrollPane scrollPane_7 = new JScrollPane();
+		scrollPane_7.setBounds(10, 268, 918, 74);
+		asignarServicio.add(scrollPane_7);
+		
+		tablaIPS = new JTable();
+		scrollPane_7.setViewportView(tablaIPS);
+		
+		JScrollPane scrollPane_8 = new JScrollPane();
+		scrollPane_8.setBounds(10, 374, 918, 102);
+		asignarServicio.add(scrollPane_8);
+		
+		tablaAmbulancias3 = new JTable();
+		scrollPane_8.setViewportView(tablaAmbulancias3);
 
 		JPanel finalizarServicio = new JPanel();
 		tabbedPane.addTab("Finalizar un Servicio", null, finalizarServicio, null);
 		finalizarServicio.setLayout(null);
 
 		JLabel lblFinalizarUnServicio = new JLabel("Finalizar un servicio");
-		lblFinalizarUnServicio.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 38));
 		lblFinalizarUnServicio.setBounds(10, 11, 401, 45);
+		lblFinalizarUnServicio.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 38));
 		finalizarServicio.add(lblFinalizarUnServicio);
 
 		JLabel lblServicios_1 = new JLabel("Servicios");
-		lblServicios_1.setFont(new Font("Rockwell Condensed", Font.PLAIN, 40));
 		lblServicios_1.setBounds(20, 67, 129, 61);
+		lblServicios_1.setFont(new Font("Rockwell Condensed", Font.PLAIN, 40));
 		finalizarServicio.add(lblServicios_1);
 
 		JButton btnRegresar_4 = new JButton("Regresar");
@@ -247,91 +341,64 @@ public class TestGUIAmbulancias extends JFrame {
 		finalizarServicio.add(btnRegresar_4);
 
 		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
-		btnFinalizarServicioSeleccionado.setBounds(536, 116, 202, 39);
+		btnFinalizarServicioSeleccionado.setBounds(273, 446, 202, 39);
 		finalizarServicio.add(btnFinalizarServicioSeleccionado);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 125, 918, 262);
+		finalizarServicio.add(scrollPane_1);
+		
+		tablaServicios = new JTable();
+		scrollPane_1.setViewportView(tablaServicios);
 
 		JPanel registrarPosicionAmbulancia = new JPanel();
 		tabbedPane.addTab("Registrar Posicion Ambulancia", null, registrarPosicionAmbulancia, null);
 		registrarPosicionAmbulancia.setLayout(null);
 
 		JLabel lblAmbulancias = new JLabel("Ambulancias");
+		lblAmbulancias.setBounds(0, 11, 291, 34);
 		lblAmbulancias.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmbulancias.setToolTipText("");
 		lblAmbulancias.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 38));
-		lblAmbulancias.setBounds(0, 11, 291, 34);
 		registrarPosicionAmbulancia.add(lblAmbulancias);
 
 		JLabel lblCalle = new JLabel("Calle");
-		lblCalle.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 31));
 		lblCalle.setBounds(283, 313, 109, 34);
+		lblCalle.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 31));
 		registrarPosicionAmbulancia.add(lblCalle);
 
 		JLabel lblCarrera = new JLabel("Carrera");
-		lblCarrera.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 31));
 		lblCarrera.setBounds(283, 362, 109, 34);
+		lblCarrera.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 31));
 		registrarPosicionAmbulancia.add(lblCarrera);
 
 		calle = new JTextField();
-		calle.setEditable(false);
 		calle.setBounds(408, 313, 109, 34);
+		calle.setEditable(false);
 		registrarPosicionAmbulancia.add(calle);
 		calle.setColumns(10);
 
 		carrera = new JTextField();
-		carrera.setEditable(false);
 		carrera.setBounds(408, 362, 109, 34);
+		carrera.setEditable(false);
 		registrarPosicionAmbulancia.add(carrera);
 		carrera.setColumns(10);
 
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setFont(new Font("Script MT Bold", Font.ITALIC, 35));
 		btnActualizar.setBounds(327, 435, 200, 50);
+		btnActualizar.setFont(new Font("Script MT Bold", Font.ITALIC, 35));
 		registrarPosicionAmbulancia.add(btnActualizar);
 
 		JButton btnRegresar_1 = new JButton("Regresar");
 		btnRegresar_1.setBounds(760, 435, 131, 50);
 		registrarPosicionAmbulancia.add(btnRegresar_1);
-
-		JPanel menuServicios = new JPanel();
-		tabbedPane.addTab("Menu Servicios", null, menuServicios, null);
-		menuServicios.setLayout(null);
-
-		JButton btnRegistrarLaPosicion = new JButton("Registrar la posicion actual de una ambulancia");
-		btnRegistrarLaPosicion.setBounds(80, 115, 363, 55);
-		menuServicios.add(btnRegistrarLaPosicion);
-
-		JButton btnRegistrarUnServicio = new JButton("Registrar un servicio ");
-		btnRegistrarUnServicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mostrarRegistroServicio(e);
-			}
-		});
-		btnRegistrarUnServicio.setBounds(80, 181, 363, 55);
-		menuServicios.add(btnRegistrarUnServicio);
-
-		JButton btnAsignarUnServicio = new JButton("Asignar a un servicio una ambulancia y una IPS");
-		btnAsignarUnServicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAsignarUnServicio.setBounds(80, 248, 363, 55);
-		menuServicios.add(btnAsignarUnServicio);
-
-		JButton btnFinalizarUnServicio = new JButton("Finalizar un servicio");
-		btnFinalizarUnServicio.setBounds(472, 115, 363, 55);
-		menuServicios.add(btnFinalizarUnServicio);
-
-		JButton btnReporteServicios = new JButton("Reporte de servicios con IPS y ambulancias asignados");
-		btnReporteServicios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnReporteServicios.setBounds(472, 181, 363, 55);
-		menuServicios.add(btnReporteServicios);
-
-		JButton btnReporteDeLa = new JButton("Reporte de la IPS con servicios asociados");
-		btnReporteDeLa.setBounds(472, 248, 363, 55);
-		menuServicios.add(btnReporteDeLa);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 56, 918, 234);
+		registrarPosicionAmbulancia.add(scrollPane);
+		
+		tablaAmbulancias = new JTable();
+		scrollPane.setViewportView(tablaAmbulancias);
 
 		JPanel ingresarIPSyAmbulancias = new JPanel();
 		tabbedPane.addTab("Ingresar IPS y Ambulancias", null, ingresarIPSyAmbulancias, null);
@@ -389,6 +456,13 @@ public class TestGUIAmbulancias extends JFrame {
 		JButton btnRegresar_6 = new JButton("Regresar");
 		btnRegresar_6.setBounds(780, 462, 148, 56);
 		reporteIPS.add(btnRegresar_6);
+		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBounds(10, 288, 918, 161);
+		reporteIPS.add(scrollPane_5);
+		
+		tablaServicios2 = new JTable();
+		scrollPane_5.setViewportView(tablaServicios2);
 		
 		this.getTabbedPane().setSelectedIndex(5);
 	}
