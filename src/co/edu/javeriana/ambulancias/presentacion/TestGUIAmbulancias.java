@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
 import co.edu.javeriana.ambulancias.negocio.TipoServicio;
 import co.edu.javeriana.ambulancias.persistencia.ManejoArchivos;
@@ -16,6 +17,11 @@ import co.edu.javeriana.ambulancias.persistencia.PersistenceException;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -65,6 +71,46 @@ public class TestGUIAmbulancias extends JFrame {
 	 * Ambulancias
 	 */
 	private final static int ingresarIPSAmbulancias = 1;
+	/*
+	 * Nombres de los encabezados para registrar la posicion de una ambulancia
+	 */
+	private String[] nombreColumAmbulancias = { "codigo", "tipo", "placa", "medico/enfermero", "tipo UCI",
+			"hora posicion", "calle", "carrera" };
+	/*
+	 * Nombres de los encabezados para registrar la posicion de una ambulancia
+	 */
+	private Vector nombreColumAmbulanciasV;
+	/*
+	 * Vector de vectores de datos para registrar la posicion de una ambulancia
+	 */
+	private Vector filaDatosAmbulancias;
+	/*
+	 * Nombres de los encabezados para finalizar un servicio
+	 */
+	private String[] nombreColumServicios = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
+			"direccion", "estado", "IPS", "ambul." };
+	/*
+	 * Nombres de los encabezados para finalizar un servicio
+	 */
+	private Vector nombreColumServiciosV;
+	/*
+	 * Vector de vectores de datos para finalizar un servicio
+	 */
+	private Vector filaDatosServicios;
+	/*
+	 * Nombres de los encabezados para reporte IPS con servicios asociados
+	 */
+	private String[] nombreColumServicios2 = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
+			"direccion", "estado", "IPS", "ambul." };
+	/*
+	 * Nombres de los encabezados para reporte IPS con servicios asociados
+	 */
+	private Vector nombreColumServiciosV2;
+	/*
+	 * Vector de vectores de datos para reporte IPS con servicios asociados
+	 */
+	private Vector filaDatosServicios2;
+
 	private EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 	private JPanel contentPane;
 	private JTextField calle;
@@ -93,6 +139,10 @@ public class TestGUIAmbulancias extends JFrame {
 	private JButton btnRegresar_1;
 	private JButton btnRegresar;
 	private JButton btnRegistrarLaPosicion;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JScrollPane scrollPane_5;
+	private JComboBox comboBoxIPS;
 
 	/**
 	 * Launch the application.
@@ -208,7 +258,11 @@ public class TestGUIAmbulancias extends JFrame {
 		JButton btnSeleccionarArchivoDe = new JButton("Seleccionar archivo de IPS");
 		btnSeleccionarArchivoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				seleccionarIPS(e);
+				try {
+					seleccionarIPS(e);
+				} catch (PersistenceException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+				}
 			}
 		});
 		btnSeleccionarArchivoDe.setBounds(274, 123, 337, 84);
@@ -217,7 +271,11 @@ public class TestGUIAmbulancias extends JFrame {
 		JButton btnSeleccionarArchivoDe_1 = new JButton("Seleccionar archivo de ambulancias");
 		btnSeleccionarArchivoDe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				seleccionarAmbulancias(arg0);
+				try {
+					seleccionarAmbulancias(arg0);
+				} catch (PersistenceException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+				}
 			}
 		});
 		btnSeleccionarArchivoDe_1.setBounds(274, 218, 337, 84);
@@ -283,11 +341,11 @@ public class TestGUIAmbulancias extends JFrame {
 		btnRegresar_1.setBounds(760, 435, 131, 50);
 		registrarPosicionAmbulancia.add(btnRegresar_1);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 56, 918, 234);
 		registrarPosicionAmbulancia.add(scrollPane);
 
-		tablaAmbulancias = new JTable();
+		tablaAmbulancias = getTablaAmbulancias();
 		scrollPane.setViewportView(tablaAmbulancias);
 
 		JPanel finalizarServicio = new JPanel();
@@ -314,14 +372,14 @@ public class TestGUIAmbulancias extends JFrame {
 		finalizarServicio.add(btnRegresar_4);
 
 		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
-		btnFinalizarServicioSeleccionado.setBounds(273, 446, 202, 39);
+		btnFinalizarServicioSeleccionado.setBounds(262, 413, 241, 72);
 		finalizarServicio.add(btnFinalizarServicioSeleccionado);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 125, 918, 262);
 		finalizarServicio.add(scrollPane_1);
 
-		tablaServicios = new JTable();
+		tablaServicios = getTablaServicios();
 		scrollPane_1.setViewportView(tablaServicios);
 
 		JPanel registrarServicio = new JPanel();
@@ -554,7 +612,7 @@ public class TestGUIAmbulancias extends JFrame {
 		lblServiciosAsociados.setBounds(10, 231, 338, 46);
 		reporteIPS.add(lblServiciosAsociados);
 
-		JComboBox comboBoxIPS = new JComboBox();
+		comboBoxIPS = new JComboBox();
 		comboBoxIPS.setBounds(362, 68, 505, 46);
 		reporteIPS.add(comboBoxIPS);
 
@@ -571,11 +629,11 @@ public class TestGUIAmbulancias extends JFrame {
 		btnRegresar_6.setBounds(780, 462, 148, 56);
 		reporteIPS.add(btnRegresar_6);
 
-		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5 = new JScrollPane();
 		scrollPane_5.setBounds(10, 288, 918, 161);
 		reporteIPS.add(scrollPane_5);
 
-		tablaServicios2 = new JTable();
+		tablaServicios2 = this.getTablaServicios2();
 		scrollPane_5.setViewportView(tablaServicios2);
 
 		this.getTabbedPane().setSelectedIndex(5);
@@ -705,25 +763,69 @@ public class TestGUIAmbulancias extends JFrame {
 
 	private void irReporteIPS(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.reporteIPS);
+		comboBoxIPS.removeAllItems();
+		Set<String> llaves1 = empresaAmbulancias.getLasIPS().keySet();
+		List<String> llaves = new ArrayList<String>(llaves1);
+		for (String llave : llaves) {
+			IPS ips = empresaAmbulancias.getLasIPS().get(llave);
+			String item = ips.getNombre() + "-" + ips.getDireccion().toString();
+			comboBoxIPS.addItem(item);
+		}
 	}
 
 	private void irIngresarIPSAmbulancias(ActionEvent arg0) {
 		this.getTabbedPane().setSelectedIndex(this.ingresarIPSAmbulancias);
 	}
 
-	private void seleccionarIPS(ActionEvent e) {
-		try {
-			ManejoArchivos.cargarLasIPS(empresaAmbulancias);
-		} catch (PersistenceException exception) {
-			JOptionPane.showMessageDialog(null, exception.getMessage());
-		}
+	private void seleccionarIPS(ActionEvent e) throws PersistenceException {
+		ManejoArchivos.cargarLasIPS(empresaAmbulancias);
 	}
 
-	private void seleccionarAmbulancias(ActionEvent arg0) {
-		try {
-			ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
-		} catch (PersistenceException exception) {
-			JOptionPane.showMessageDialog(null, exception.getMessage());
+	private void seleccionarAmbulancias(ActionEvent arg0) throws PersistenceException {
+		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public JTable getTablaAmbulancias() {
+		if (tablaAmbulancias == null) {
+			filaDatosAmbulancias = new Vector();
+			nombreColumAmbulanciasV = new Vector(Arrays.asList(this.nombreColumAmbulancias));
+			tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
 		}
+		return tablaAmbulancias;
+
+	}
+
+	public JScrollPane getScrollPane_1() {
+		return scrollPane_1;
+	}
+
+	public JTable getTablaServicios() {
+		if (tablaServicios == null) {
+			filaDatosServicios = new Vector();
+			nombreColumServiciosV = new Vector(Arrays.asList(this.nombreColumServicios));
+			tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
+		}
+		return tablaServicios;
+	}
+
+	public JScrollPane getScrollPane_5() {
+		return scrollPane_5;
+	}
+
+	public JTable getTablaServicios2() {
+		if (tablaServicios2 == null) {
+			filaDatosServicios2 = new Vector();
+			nombreColumServiciosV2 = new Vector(Arrays.asList(this.nombreColumServicios2));
+			tablaServicios2 = new JTable(filaDatosServicios2, nombreColumServiciosV2);
+		}
+		return tablaServicios2;
+	}
+
+	public JComboBox getComboBoxIPS() {
+		return comboBoxIPS;
 	}
 }
