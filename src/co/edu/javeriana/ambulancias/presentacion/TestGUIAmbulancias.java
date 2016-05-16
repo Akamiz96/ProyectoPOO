@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
@@ -635,8 +637,24 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios2 = this.getTablaServicios2();
 		scrollPane_5.setViewportView(tablaServicios2);
-
-		this.getTabbedPane().setSelectedIndex(5);
+		/*
+		 * Reaccion al cambio de tabs dentro de la interfaz
+		 */
+		ChangeListener changeListener = new ChangeListener() {
+			public void stateChanged(ChangeEvent changeEvent) {
+				JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+				int index = sourceTabbedPane.getSelectedIndex();
+				switch (index) {
+				case 4:
+					mostrarRegistroServicio(null);
+					break;
+				case 7:
+					irReporteIPS(null);
+					break;
+				}
+			}
+		};
+		tabbedPane.addChangeListener(changeListener);
 	}
 
 	public JTextField getPaciente() {
