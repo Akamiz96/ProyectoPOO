@@ -66,7 +66,7 @@ public class TestGUIAmbulancias extends JFrame {
 		contentPane.setLayout(null);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(5, 5, 943, 573);
+		tabbedPane.setBounds(0, 0, 948, 578);
 		contentPane.add(tabbedPane);
 
 		JPanel reporteServicios = new JPanel();
@@ -389,7 +389,7 @@ public class TestGUIAmbulancias extends JFrame {
 		JButton btnRegresar_6 = new JButton("Regresar");
 		btnRegresar_6.setBounds(780, 462, 148, 56);
 		reporteIPS.add(btnRegresar_6);
-		
+
 		this.getTabbedPane().setSelectedIndex(5);
 	}
 
