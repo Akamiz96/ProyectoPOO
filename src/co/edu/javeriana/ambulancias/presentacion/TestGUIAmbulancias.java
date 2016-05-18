@@ -728,61 +728,6 @@ public class TestGUIAmbulancias extends JFrame {
 		reporteServicios.add(txtTarifa);
 		txtTarifa.setColumns(10);
 
-		textField = new JTextField();
-		textField.setBounds(10, 289, 86, 20);
-		reporteServicios.add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setBounds(152, 289, 86, 20);
-		reporteServicios.add(textField_1);
-		textField_1.setColumns(10);
-
-		textField_2 = new JTextField();
-		textField_2.setBounds(289, 289, 86, 20);
-		reporteServicios.add(textField_2);
-		textField_2.setColumns(10);
-
-		textField_3 = new JTextField();
-		textField_3.setBounds(20, 440, 86, 20);
-		reporteServicios.add(textField_3);
-		textField_3.setColumns(10);
-
-		textField_4 = new JTextField();
-		textField_4.setBounds(152, 440, 86, 20);
-		reporteServicios.add(textField_4);
-		textField_4.setColumns(10);
-
-		textField_5 = new JTextField();
-		textField_5.setBounds(289, 440, 86, 20);
-		reporteServicios.add(textField_5);
-		textField_5.setColumns(10);
-
-		textField_6 = new JTextField();
-		textField_6.setBounds(428, 440, 86, 20);
-		reporteServicios.add(textField_6);
-		textField_6.setColumns(10);
-
-		textField_7 = new JTextField();
-		textField_7.setBounds(581, 443, 86, 20);
-		reporteServicios.add(textField_7);
-		textField_7.setColumns(10);
-
-		textField_8 = new JTextField();
-		textField_8.setBounds(726, 440, 86, 20);
-		reporteServicios.add(textField_8);
-		textField_8.setColumns(10);
-
-		textField_9 = new JTextField();
-		textField_9.setBounds(830, 443, 86, 20);
-		reporteServicios.add(textField_9);
-		textField_9.setColumns(10);
-
-		textField_10 = new JTextField();
-		textField_10.setBounds(20, 498, 86, 20);
-		reporteServicios.add(textField_10);
-		textField_10.setColumns(10);
-
 		nombreIPS = new JTextField();
 		nombreIPS.setEditable(false);
 		nombreIPS.setBounds(10, 289, 86, 20);
@@ -848,20 +793,19 @@ public class TestGUIAmbulancias extends JFrame {
 		tarifaAmbulancia.setBounds(20, 498, 86, 20);
 		reporteServicios.add(tarifaAmbulancia);
 		tarifaAmbulancia.setColumns(10);
-		
+
 		txtTipoUci = new JTextField();
 		txtTipoUci.setEditable(false);
 		txtTipoUci.setText("Tipo UCI");
 		txtTipoUci.setBounds(152, 471, 86, 20);
 		reporteServicios.add(txtTipoUci);
 		txtTipoUci.setColumns(10);
-		
+
 		tipoUCIAmbulancia = new JTextField();
 		tipoUCIAmbulancia.setEditable(false);
 		tipoUCIAmbulancia.setBounds(152, 498, 86, 20);
 		reporteServicios.add(tipoUCIAmbulancia);
 		tipoUCIAmbulancia.setColumns(10);
-
 
 		JPanel asignarServicio = new JPanel();
 		tabbedPane.addTab("Asignar un Servicio a una Ambulancia y una IPS", null, asignarServicio, null);
@@ -1479,25 +1423,28 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
-
 	private void asignarServicio(ActionEvent e) {
 		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
 		TableModel model = tablaServicios.getModel();
 		long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
 		JOptionPane.showMessageDialog(this, empresaAmbulancias.asignarServicio(codigo), "Asignar Servicio",
 				JOptionPane.INFORMATION_MESSAGE);
-		Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
-		fila.set(6, EstadoServicio.ASIGNADO);
+		Servicio servicio = ((EmpresaAmbulancias) empresaAmbulancias).buscarServicio(codigo);
+		if (servicio.getAmbulancia() != null) {
+			Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
+			fila.set(6, EstadoServicio.ASIGNADO);
+			if (servicio.getTipoServicio() != TipoServicio.DOMICILIO)
+				fila.set(7, servicio.getIps());
+			fila.set(8, servicio.getAmbulancia());
+		}
 	}
-
-}
 
 	private void mostrarIpsAmbulancia(ActionEvent e) {
 		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
 		TableModel model = tablaServicios.getModel();
-		int codigo = (int)model.getValueAt(indexFilaSeleccionada, 0);
-		Servicio servicio = ((EmpresaAmbulancias)empresaAmbulancias).buscarServicio(codigo);
-		if(servicio.getEstado()==EstadoServicio.ASIGNADO||servicio.getEstado()==EstadoServicio.FINALIZADO){
+		int codigo = (int) model.getValueAt(indexFilaSeleccionada, 0);
+		Servicio servicio = ((EmpresaAmbulancias) empresaAmbulancias).buscarServicio(codigo);
+		if (servicio.getEstado() == EstadoServicio.ASIGNADO || servicio.getEstado() == EstadoServicio.FINALIZADO) {
 			codigoAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getCodigo()));
 			horaAmbulancia.setText(Utils.convertirFechaHoraString(servicio.getAmbulancia().getHoraPosicion()));
 			carreraAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getPosicionCarrera()));
@@ -1507,23 +1454,20 @@ public class TestGUIAmbulancias extends JFrame {
 			nombreIPS.setText(servicio.getIps().getNombre());
 			DireccionIPS.setText(servicio.getIps().getDireccion().toString());
 			tipoAtencionIPS.setText(servicio.getIps().getTipoAtencion());
-			if(servicio.getAmbulancia() instanceof AmbulanciaBasica)
-			{
+			if (servicio.getAmbulancia() instanceof AmbulanciaBasica) {
 				tipoAmbulancia.setText("BASICA");
 				tipoUCIAmbulancia.setText("");
-				medicoAmbulancia.setText("");				
+				medicoAmbulancia.setText("");
 			}
-			if(servicio.getAmbulancia() instanceof AmbulanciaUCI)
-			{
+			if (servicio.getAmbulancia() instanceof AmbulanciaUCI) {
 				tipoAmbulancia.setText("UCI");
-				tipoUCIAmbulancia.setText(((AmbulanciaUCI)servicio.getAmbulancia()).getTipoUCI().toString());
-				medicoAmbulancia.setText(((AmbulanciaMedicalizada)servicio.getAmbulancia()).getMedico());
+				tipoUCIAmbulancia.setText(((AmbulanciaUCI) servicio.getAmbulancia()).getTipoUCI().toString());
+				medicoAmbulancia.setText(((AmbulanciaMedicalizada) servicio.getAmbulancia()).getMedico());
 			}
-			if(servicio.getAmbulancia() instanceof AmbulanciaNoMedicalizada)
-			{
+			if (servicio.getAmbulancia() instanceof AmbulanciaNoMedicalizada) {
 				tipoAmbulancia.setText("NO MEDICALIZADA");
 				tipoUCIAmbulancia.setText("");
-				medicoAmbulancia.setText(((AmbulanciaMedicalizada)servicio.getAmbulancia()).getMedico());
+				medicoAmbulancia.setText(((AmbulanciaMedicalizada) servicio.getAmbulancia()).getMedico());
 			}
 		}
 	}
@@ -1571,9 +1515,8 @@ public class TestGUIAmbulancias extends JFrame {
 	public JTextField getTipoAtencionIPS() {
 		return tipoAtencionIPS;
 	}
-	
+
 	public JTextField getTipoUCIAmbulancia() {
 		return tipoUCIAmbulancia;
 	}
 }
-
