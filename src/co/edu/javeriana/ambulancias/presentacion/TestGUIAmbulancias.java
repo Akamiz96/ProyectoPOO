@@ -127,37 +127,6 @@ public class TestGUIAmbulancias extends JFrame {
 	 */
 	private Vector filaDatosServicios1;
 	/*
-	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
-	 * asignados
-	 */
-	private String[] nombreColumIPS1 = { "nombre", "tipo atencion", "direccion" };
-	/*
-	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
-	 * asignados
-	 */
-	private Vector nombreColumIPSV1;
-	/*
-	 * Vector de vectores de datos para reporte Servicios con IPS y Ambulancias
-	 * asignados
-	 */
-	private Vector filaDatosIPS1;
-	/*
-	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
-	 * asignados
-	 */
-	private String[] nombreColumAmbulancia = { "codigo", "tipo", "placa", "medico/enfermero", "hora posicion", "calle",
-			"tarifa" };
-	/*
-	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
-	 * asignados
-	 */
-	private Vector nombreColumAmbulanciaV;
-	/*
-	 * Vector de vectores de datos para reporte Servicios con IPS y Ambulancias
-	 * asignados
-	 */
-	private Vector filaDatosAmbulanciaV;
-	/*
 	 * Nombres de los encabezados para reporte IPS con servicios asociados
 	 */
 	private String[] nombreColumServicios2 = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
@@ -233,8 +202,6 @@ public class TestGUIAmbulancias extends JFrame {
 	private JTable tablaAmbulancias;
 	private JTable tablaServicios;
 	private JTable tablaServicios1;
-	private JTable tablaIPS1;
-	private JTable tablaAmbulancia;
 	private JTable tablaServicios2;
 	private JTable tablaServicios3;
 	private JTable tablaIPS;
@@ -251,12 +218,32 @@ public class TestGUIAmbulancias extends JFrame {
 	private JScrollPane scrollPane_5;
 	private JComboBox comboBoxIPS;
 	private JScrollPane scrollPane_2;
-	private JScrollPane scrollPane_3;
-	private JScrollPane scrollPane_4;
 	private JButton btnActualizar;
 	private JScrollPane scrollPane_6;
 	private JScrollPane scrollPane_7;
 	private JScrollPane scrollPane_8;
+	private JTextField txtNombre;
+	private JTextField txtTipoAtencion;
+	private JTextField txtDireccion;
+	private JTextField txtCodigo;
+	private JTextField txtTipo;
+	private JTextField txtPlaca;
+	private JTextField txtMedicoEnfermero;
+	private JTextField txtHoraSolicitud;
+	private JTextField txtCalle;
+	private JTextField txtCarrera;
+	private JTextField txtTarifa;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
 
 	/**
 	 * Launch the application.
@@ -654,20 +641,138 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios1 = getTablaServicios1();
 		scrollPane_2.setViewportView(tablaServicios1);
-
-		scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(10, 265, 918, 90);
-		reporteServicios.add(scrollPane_3);
-
-		tablaIPS1 = this.getTablaIPS1();
-		scrollPane_3.setViewportView(tablaIPS1);
-
-		scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(10, 398, 918, 80);
-		reporteServicios.add(scrollPane_4);
-
-		tablaAmbulancia = this.getTablaAmbulancia();
-		scrollPane_4.setViewportView(tablaAmbulancia);
+		
+		txtNombre = new JTextField();
+		txtNombre.setEditable(false);
+		txtNombre.setText("Nombre");
+		txtNombre.setBounds(20, 258, 86, 20);
+		reporteServicios.add(txtNombre);
+		txtNombre.setColumns(10);
+		
+		txtTipoAtencion = new JTextField();
+		txtTipoAtencion.setEditable(false);
+		txtTipoAtencion.setText("Tipo atencion");
+		txtTipoAtencion.setBounds(152, 258, 86, 20);
+		reporteServicios.add(txtTipoAtencion);
+		txtTipoAtencion.setColumns(10);
+		
+		txtDireccion = new JTextField();
+		txtDireccion.setEditable(false);
+		txtDireccion.setText("Direccion ");
+		txtDireccion.setBounds(289, 258, 86, 20);
+		reporteServicios.add(txtDireccion);
+		txtDireccion.setColumns(10);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setEditable(false);
+		txtCodigo.setText("Codigo");
+		txtCodigo.setBounds(20, 412, 86, 20);
+		reporteServicios.add(txtCodigo);
+		txtCodigo.setColumns(10);
+		
+		txtTipo = new JTextField();
+		txtTipo.setEditable(false);
+		txtTipo.setText("Tipo");
+		txtTipo.setBounds(152, 412, 86, 20);
+		reporteServicios.add(txtTipo);
+		txtTipo.setColumns(10);
+		
+		txtPlaca = new JTextField();
+		txtPlaca.setEditable(false);
+		txtPlaca.setText("Placa");
+		txtPlaca.setBounds(289, 412, 86, 20);
+		reporteServicios.add(txtPlaca);
+		txtPlaca.setColumns(10);
+		
+		txtMedicoEnfermero = new JTextField();
+		txtMedicoEnfermero.setEditable(false);
+		txtMedicoEnfermero.setText("Medico/ enfermero");
+		txtMedicoEnfermero.setBounds(428, 412, 86, 20);
+		reporteServicios.add(txtMedicoEnfermero);
+		txtMedicoEnfermero.setColumns(10);
+		
+		txtHoraSolicitud = new JTextField();
+		txtHoraSolicitud.setEditable(false);
+		txtHoraSolicitud.setText("Hora solicitud");
+		txtHoraSolicitud.setBounds(581, 412, 86, 20);
+		reporteServicios.add(txtHoraSolicitud);
+		txtHoraSolicitud.setColumns(10);
+		
+		txtCalle = new JTextField();
+		txtCalle.setEditable(false);
+		txtCalle.setText("Calle");
+		txtCalle.setBounds(716, 412, 86, 20);
+		reporteServicios.add(txtCalle);
+		txtCalle.setColumns(10);
+		
+		txtCarrera = new JTextField();
+		txtCarrera.setEditable(false);
+		txtCarrera.setText("Carrera");
+		txtCarrera.setBounds(830, 412, 86, 20);
+		reporteServicios.add(txtCarrera);
+		txtCarrera.setColumns(10);
+		
+		txtTarifa = new JTextField();
+		txtTarifa.setEditable(false);
+		txtTarifa.setText("Tarifa");
+		txtTarifa.setBounds(20, 471, 86, 20);
+		reporteServicios.add(txtTarifa);
+		txtTarifa.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 289, 86, 20);
+		reporteServicios.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(152, 289, 86, 20);
+		reporteServicios.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(289, 289, 86, 20);
+		reporteServicios.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(20, 440, 86, 20);
+		reporteServicios.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(152, 440, 86, 20);
+		reporteServicios.add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(289, 440, 86, 20);
+		reporteServicios.add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(428, 440, 86, 20);
+		reporteServicios.add(textField_6);
+		textField_6.setColumns(10);
+		
+		textField_7 = new JTextField();
+		textField_7.setBounds(581, 443, 86, 20);
+		reporteServicios.add(textField_7);
+		textField_7.setColumns(10);
+		
+		textField_8 = new JTextField();
+		textField_8.setBounds(726, 440, 86, 20);
+		reporteServicios.add(textField_8);
+		textField_8.setColumns(10);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(830, 443, 86, 20);
+		reporteServicios.add(textField_9);
+		textField_9.setColumns(10);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(20, 498, 86, 20);
+		reporteServicios.add(textField_10);
+		textField_10.setColumns(10);
 
 		JPanel asignarServicio = new JPanel();
 		tabbedPane.addTab("Asignar un Servicio a una Ambulancia y una IPS", null, asignarServicio, null);
@@ -1121,32 +1226,6 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaServicios1 = new JTable(filaDatosServicios1, nombreColumServiciosV1);
 		}
 		return tablaServicios1;
-	}
-
-	public JScrollPane getScrollPane_3() {
-		return scrollPane_3;
-	}
-
-	public JTable getTablaIPS1() {
-		if (tablaIPS1 == null) {
-			filaDatosIPS1 = new Vector();
-			nombreColumIPSV1 = new Vector(Arrays.asList(this.nombreColumIPS1));
-			tablaIPS1 = new JTable(filaDatosIPS1, nombreColumIPSV1);
-		}
-		return tablaIPS1;
-	}
-
-	public JScrollPane getScrollPane_4() {
-		return scrollPane_4;
-	}
-
-	public JTable getTablaAmbulancia() {
-		if (tablaAmbulancia == null) {
-			filaDatosAmbulanciaV = new Vector();
-			nombreColumAmbulanciaV = new Vector(Arrays.asList(this.nombreColumAmbulancia));
-			tablaAmbulancia = new JTable(filaDatosAmbulanciaV, nombreColumAmbulanciaV);
-		}
-		return tablaAmbulancia;
 	}
 
 	public JButton getBtnActualizar() {
