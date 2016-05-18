@@ -177,7 +177,7 @@ public class TestGUIAmbulancias extends JFrame {
 	 * asignados
 	 */
 	private String[] nombreColumAmbulancias3 = { "codigo", "tipo", "placa", "medico/enfermero", "hora posicion",
-			"calle", "tarifa" };
+			"calle", "carrera" };
 	/*
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
