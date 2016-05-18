@@ -16,6 +16,7 @@ import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
 import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.EstadoServicio;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.IServiciosAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
@@ -500,6 +501,11 @@ public class TestGUIAmbulancias extends JFrame {
 		finalizarServicio.add(btnRegresar_4);
 
 		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
+		btnFinalizarServicioSeleccionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finalizarServicio(e);
+			}
+		});
 		btnFinalizarServicioSeleccionado.setBounds(262, 413, 241, 72);
 		finalizarServicio.add(btnFinalizarServicioSeleccionado);
 
@@ -989,13 +995,19 @@ public class TestGUIAmbulancias extends JFrame {
 			fila.add(servicio.getTelefono());
 			fila.add(servicio.getDireccion().toString());
 			fila.add(servicio.getEstado().toString());
-			fila.add(servicio.getIps().getNombre());
-			fila.add(servicio.getAmbulancia().getCodigo());
+			if (servicio.getIps() != null)
+				fila.add(servicio.getIps().getNombre());
+			else
+				fila.add("");
+			if (servicio.getAmbulancia() != null)
+				fila.add(servicio.getAmbulancia().getCodigo());
+			else
+				fila.add("");
 			filaDatosServicios.add(fila);
 		}
 		// refrescar visualmente el JTable dentro del scroll:
 		tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
-		scrollPane.setViewportView(getTablaServicios());
+		scrollPane_1.setViewportView(getTablaServicios());
 	}
 
 	private void irReporteServicios(ActionEvent e) {
@@ -1213,6 +1225,22 @@ public class TestGUIAmbulancias extends JFrame {
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo", JOptionPane.ERROR_MESSAGE);
 			}
+		}
+	}
+
+	private void finalizarServicio(ActionEvent e) {
+		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
+		TableModel model = tablaServicios.getModel();
+		long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
+		if (empresaAmbulancias.finalizarServicio(codigo)) {
+			Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
+			fila.set(6, EstadoServicio.FINALIZADO);
+			tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
+			scrollPane_1.setViewportView(getTablaServicios());
+		} else {
+			JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente", "fallo finalizacion",
+					JOptionPane.ERROR_MESSAGE);
+
 		}
 	}
 }

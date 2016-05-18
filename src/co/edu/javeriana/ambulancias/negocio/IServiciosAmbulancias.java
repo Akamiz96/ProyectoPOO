@@ -102,7 +102,7 @@ public interface IServiciosAmbulancias {
 	 *            Indica el codigo del servicio a finalizar
 	 * @return boolean: Indica si se pudo o no se pudo finalizar el servicio
 	 */
-	boolean finalizarServicio(int codigo);
+	boolean finalizarServicio(long codigo);
 
 	/**
 	 * Metodo para obtener la lista de servicios del sistema
