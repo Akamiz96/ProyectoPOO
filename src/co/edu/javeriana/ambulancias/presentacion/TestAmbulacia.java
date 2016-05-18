@@ -500,7 +500,7 @@ public class TestAmbulacia {
 	 */
 	private static void ingresarAmbulanciasAlSistema(IServiciosAmbulancias empresaAmbulancias)
 			throws PersistenceException {
-		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
+		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias, "./", "pruebaambulancias.txt");
 		System.out.println();
 	}
 
@@ -513,7 +513,7 @@ public class TestAmbulacia {
 	 * @throws PersistenceException
 	 */
 	private static void ingresarIpsAlsistema(IServiciosAmbulancias empresaAmbulancias) throws PersistenceException {
-		ManejoArchivos.cargarLasIPS(empresaAmbulancias);
+		ManejoArchivos.cargarLasIPS(empresaAmbulancias, "./", "pruebaips.txt");
 		System.out.println();
 	}
 

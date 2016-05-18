@@ -32,6 +32,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -892,11 +893,39 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	private void seleccionarIPS(ActionEvent e) throws PersistenceException {
-		ManejoArchivos.cargarLasIPS(empresaAmbulancias);
+		// muestra otra ventana proponiendo directorio ./data:
+		JFileChooser chooser = new JFileChooser("./");
+		int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			// captura selección del usuario
+			String pathArchivo = chooser.getSelectedFile().getParent();
+			String nombreArchivo = chooser.getSelectedFile().getName();
+			try { // cargar el archivo como ObjectInputStream
+				ManejoArchivos.cargarLasIPS(empresaAmbulancias, pathArchivo, nombreArchivo);
+				JOptionPane.showMessageDialog(this, "Universidad cargada con exito", "Informacion",
+						JOptionPane.WARNING_MESSAGE);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	private void seleccionarAmbulancias(ActionEvent arg0) throws PersistenceException {
-		ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias);
+		// muestra otra ventana proponiendo directorio ./data:
+		JFileChooser chooser = new JFileChooser("./");
+		int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			// captura selección del usuario
+			String pathArchivo = chooser.getSelectedFile().getParent();
+			String nombreArchivo = chooser.getSelectedFile().getName();
+			try { // cargar el archivo como ObjectInputStream
+				ManejoArchivos.cargarLasAmbulancias(empresaAmbulancias, pathArchivo, nombreArchivo);
+				JOptionPane.showMessageDialog(this, "Universidad cargada con exito", "Informacion",
+						JOptionPane.WARNING_MESSAGE);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	public JScrollPane getScrollPane() {
