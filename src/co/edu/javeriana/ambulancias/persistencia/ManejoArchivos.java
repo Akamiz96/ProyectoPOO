@@ -26,11 +26,9 @@ public class ManejoArchivos {
 	 *            adicionara las IPS
 	 * @throws PersistenceException 
 	 */
-	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias) throws PersistenceException {
+	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias, String pathArchivo, String nombreArchivo) throws PersistenceException {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Ingrese el nombre del Archivo: ");
-		String nombreArchivo = input.next();
-		File inFile = new File("./" + nombreArchivo);
+		File inFile = new File(pathArchivo + "/" + nombreArchivo);
 		String linea;
 		try {
 			input = new Scanner(inFile);
@@ -88,11 +86,9 @@ public class ManejoArchivos {
 	 *            adicionara las IPS
 	 * @throws PersistenceException 
 	 */
-	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias) throws PersistenceException {
+	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias, String pathArchivo, String nombreArchivo) throws PersistenceException {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Insgrese el nombre del Archivo: ");
-		String nombreArchivo = input.next();
-		File inFile = new File("./" + nombreArchivo);
+		File inFile = new File(pathArchivo + "/" + nombreArchivo);
 		String linea;
 		try {
 			input = new Scanner(inFile);
