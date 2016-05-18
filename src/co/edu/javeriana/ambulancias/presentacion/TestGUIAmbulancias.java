@@ -904,47 +904,7 @@ public class TestGUIAmbulancias extends JFrame {
 			Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
 			List<Integer> orLlaves = new ArrayList<Integer>(llaves);
 			Collections.sort(orLlaves, new CodigoComparator());
-			for (Integer llave : orLlaves) {
-				Ambulancia ambulancia = empresaAmbulancias.getAmbulancias().get(llave);
-				Vector fila = new Vector();
-				if (ambulancia instanceof AmbulanciaUCI) {
-					fila.add(ambulancia.getCodigo());
-					fila.add("UCI");
-					fila.add(ambulancia.getPlaca());
-					fila.add(((AmbulanciaUCI) ambulancia).getMedico());
-					fila.add(((AmbulanciaUCI) ambulancia).getTipoUCI());
-					if (ambulancia.getHoraPosicion() != null) {
-						fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
-						fila.add(ambulancia.getPosicionCalle());
-						fila.add(ambulancia.getPosicionCarrera());
-					}
-				} else if (ambulancia instanceof AmbulanciaBasica) {
-					fila.add(ambulancia.getCodigo());
-					fila.add("Basica");
-					fila.add(ambulancia.getPlaca());
-					fila.add(((AmbulanciaBasica) ambulancia).getMedico());
-					fila.add("");
-					if (ambulancia.getHoraPosicion() != null) {
-						fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
-						fila.add(ambulancia.getPosicionCalle());
-						fila.add(ambulancia.getPosicionCarrera());
-					}
-				} else if (ambulancia instanceof AmbulanciaNoMedicalizada) {
-					fila.add(ambulancia.getCodigo());
-					fila.add("Basica");
-					fila.add(ambulancia.getPlaca());
-					fila.add(((AmbulanciaNoMedicalizada) ambulancia).getEnfermero());
-					fila.add("");
-					if (ambulancia.getHoraPosicion() != null) {
-						fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
-						fila.add(ambulancia.getPosicionCalle());
-						fila.add(ambulancia.getPosicionCarrera());
-					}
-				}
-				// agregar fila al vector de datos del JTable:
-				filaDatosAmbulancias.add(fila);
-				// refrescar el Jtable dentro del JScrollPane
-			}
+			llenarFilasAmbulancias(orLlaves, filaDatosAmbulancias);
 			tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
 			scrollPane.setViewportView(getTablaAmbulancias());
 		}
@@ -975,6 +935,62 @@ public class TestGUIAmbulancias extends JFrame {
 
 	private void irAsignarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.asignarServicio);
+		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
+			filaDatosAmbulancias3V = new Vector();
+			Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
+			List<Integer> orLlaves = new ArrayList<Integer>(llaves);
+			Collections.sort(orLlaves, new CodigoComparator());
+			llenarFilasAmbulancias(orLlaves, filaDatosAmbulancias3V);
+			// refrescar el Jtable dentro del JScrollPane
+			tablaAmbulancias3 = new JTable(filaDatosAmbulancias3V, nombreColumAmbulancias3V);
+			scrollPane_8.setViewportView(getTablaAmbulancias3());
+		}
+	}
+
+	/**
+	 * @param orLlaves
+	 */
+	private void llenarFilasAmbulancias(List<Integer> orLlaves, Vector filasDatos) {
+		for (Integer llave : orLlaves) {
+			Ambulancia ambulancia = empresaAmbulancias.getAmbulancias().get(llave);
+			Vector fila = new Vector();
+			if (ambulancia instanceof AmbulanciaUCI) {
+				fila.add(ambulancia.getCodigo());
+				fila.add("UCI");
+				fila.add(ambulancia.getPlaca());
+				fila.add(((AmbulanciaUCI) ambulancia).getMedico());
+				fila.add(((AmbulanciaUCI) ambulancia).getTipoUCI());
+				if (ambulancia.getHoraPosicion() != null) {
+					fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
+					fila.add(ambulancia.getPosicionCalle());
+					fila.add(ambulancia.getPosicionCarrera());
+				}
+			} else if (ambulancia instanceof AmbulanciaBasica) {
+				fila.add(ambulancia.getCodigo());
+				fila.add("Basica");
+				fila.add(ambulancia.getPlaca());
+				fila.add(((AmbulanciaBasica) ambulancia).getMedico());
+				fila.add("");
+				if (ambulancia.getHoraPosicion() != null) {
+					fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
+					fila.add(ambulancia.getPosicionCalle());
+					fila.add(ambulancia.getPosicionCarrera());
+				}
+			} else if (ambulancia instanceof AmbulanciaNoMedicalizada) {
+				fila.add(ambulancia.getCodigo());
+				fila.add("Basica");
+				fila.add(ambulancia.getPlaca());
+				fila.add(((AmbulanciaNoMedicalizada) ambulancia).getEnfermero());
+				fila.add("");
+				if (ambulancia.getHoraPosicion() != null) {
+					fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
+					fila.add(ambulancia.getPosicionCalle());
+					fila.add(ambulancia.getPosicionCarrera());
+				}
+			}
+			// agregar fila al vector de datos del JTable:
+			filasDatos.add(fila);
+		}
 	}
 
 	private void irFinalizarServicio(ActionEvent e) {
@@ -986,6 +1002,16 @@ public class TestGUIAmbulancias extends JFrame {
 																	// datos del
 																	// JTable
 																	// datosNegocio
+		llenarFilasServicio(items, filaDatosServicios);
+		// refrescar visualmente el JTable dentro del scroll:
+		tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
+		scrollPane_1.setViewportView(getTablaServicios());
+	}
+
+	/**
+	 * @param items
+	 */
+	private void llenarFilasServicio(List<Servicio> items, Vector filasDatos) {
 		for (Servicio servicio : items) {
 			Vector fila = new Vector();
 			fila.add(servicio.getCodigo());
@@ -1003,11 +1029,8 @@ public class TestGUIAmbulancias extends JFrame {
 				fila.add(servicio.getAmbulancia().getCodigo());
 			else
 				fila.add("");
-			filaDatosServicios.add(fila);
+			filasDatos.add(fila);
 		}
-		// refrescar visualmente el JTable dentro del scroll:
-		tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
-		scrollPane_1.setViewportView(getTablaServicios());
 	}
 
 	private void irReporteServicios(ActionEvent e) {
