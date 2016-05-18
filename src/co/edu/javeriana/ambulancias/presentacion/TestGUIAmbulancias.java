@@ -893,13 +893,20 @@ public class TestGUIAmbulancias extends JFrame {
 			fila.add(servicio.getTelefono());
 			fila.add(servicio.getDireccion().toString());
 			fila.add(servicio.getEstado().toString());
-			fila.add(servicio.getIps().getNombre());
-			fila.add(servicio.getAmbulancia().getCodigo());
+			if (servicio.getIps() != null)
+				fila.add(servicio.getIps().getNombre());
+			else
+				fila.add("");
+			if (servicio.getAmbulancia() != null)
+				fila.add(servicio.getAmbulancia().getCodigo());
+			else
+				fila.add("");
+			System.out.println(fila);
 			filaDatosServicios.add(fila);
 		}
 		// refrescar visualmente el JTable dentro del scroll:
 		tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
-		scrollPane.setViewportView(getTablaServicios());
+		scrollPane_1.setViewportView(getTablaServicios());
 	}
 
 	private void irReporteServicios(ActionEvent e) {
