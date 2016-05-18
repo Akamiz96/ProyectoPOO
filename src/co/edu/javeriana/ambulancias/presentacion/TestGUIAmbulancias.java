@@ -17,6 +17,7 @@ import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
 import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
+import co.edu.javeriana.ambulancias.negocio.IServiciosAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
 import co.edu.javeriana.ambulancias.negocio.TipoServicio;
@@ -216,7 +217,7 @@ public class TestGUIAmbulancias extends JFrame {
 	 */
 	private Vector filaDatosAmbulancias3V;
 
-	private EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
+	private IServiciosAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 	private JPanel contentPane;
 	private JTextField calle;
 	private JTextField carrera;
@@ -356,10 +357,20 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(ingresarIPSAmbulancias);
 
 		JButton btnSalvarSi = new JButton("Salvar datos del sistema");
+		btnSalvarSi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guardarArchivo(e);
+			}
+		});
 		btnSalvarSi.setBounds(548, 333, 225, 62);
 		menuServicios_1.add(btnSalvarSi);
 
 		JButton btnCargarDatosDel = new JButton("Cargar datos del sistema");
+		btnCargarDatosDel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarDatos(e);
+			}
+		});
 		btnCargarDatosDel.setBounds(548, 413, 225, 62);
 		menuServicios_1.add(btnCargarDatosDel);
 
@@ -1167,6 +1178,41 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaAmbulancias3 = new JTable(filaDatosAmbulancias3V, nombreColumAmbulancias3V);
 		}
 		return tablaAmbulancias3;
+	}
 
+	private void guardarArchivo(ActionEvent e) {
+		// muestra otra ventana proponiendo directorio ./data:
+		JFileChooser chooser = new JFileChooser("./data");
+		int returnVal = chooser.showSaveDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			// captura selección del usuario:
+			String pathArchivo = chooser.getSelectedFile().getParent();
+			String nombreArchivo = chooser.getSelectedFile().getName();
+			try { // guardar el archivo como ObjectOutputStream
+				ManejoArchivos.guardarDatos(this.empresaAmbulancias, pathArchivo, nombreArchivo);
+				JOptionPane.showMessageDialog(this, "Sistema guardado con exito", "Informacion",
+						JOptionPane.WARNING_MESSAGE);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo ", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	private void cargarDatos(ActionEvent e) {
+		// muestra otra ventana proponiendo directorio ./data:
+		JFileChooser chooser = new JFileChooser("./data");
+		int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			// captura selección del usuario
+			String pathArchivo = chooser.getSelectedFile().getParent();
+			String nombreArchivo = chooser.getSelectedFile().getName();
+			try { // cargar el archivo como ObjectInputStream
+				empresaAmbulancias = ManejoArchivos.cargarDatos(pathArchivo, nombreArchivo);
+				JOptionPane.showMessageDialog(this, "Sistema cargado con exito", "Informacion",
+						JOptionPane.WARNING_MESSAGE);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 }

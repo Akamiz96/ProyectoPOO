@@ -4,8 +4,12 @@
 package co.edu.javeriana.ambulancias.persistencia;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -24,9 +28,10 @@ public class ManejoArchivos {
 	 * @param empresaAmbulancia:
 	 *            Indica el objeto de empresa ambulancia para el cual se le
 	 *            adicionara las IPS
-	 * @throws PersistenceException 
+	 * @throws PersistenceException
 	 */
-	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias, String pathArchivo, String nombreArchivo) throws PersistenceException {
+	public static void cargarLasIPS(IServiciosAmbulancias empresaAmbulancias, String pathArchivo, String nombreArchivo)
+			throws PersistenceException {
 		Scanner input = new Scanner(System.in);
 		File inFile = new File(pathArchivo + "/" + nombreArchivo);
 		String linea;
@@ -65,7 +70,6 @@ public class ManejoArchivos {
 	 * @see EmpresaAmbulancias#agregarIPS
 	 */
 	private static String procesarIPS(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) {
-		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		String nombre = tokens.nextToken().trim();
 		String tipoAtencion = tokens.nextToken().trim();
@@ -84,9 +88,10 @@ public class ManejoArchivos {
 	 * @param empresaAmbulancia:
 	 *            Indica el objeto de empresa ambulancia para el cual se le
 	 *            adicionara las IPS
-	 * @throws PersistenceException 
+	 * @throws PersistenceException
 	 */
-	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias, String pathArchivo, String nombreArchivo) throws PersistenceException {
+	public static void cargarLasAmbulancias(IServiciosAmbulancias empresaAmbulancias, String pathArchivo,
+			String nombreArchivo) throws PersistenceException {
 		Scanner input = new Scanner(System.in);
 		File inFile = new File(pathArchivo + "/" + nombreArchivo);
 		String linea;
@@ -122,7 +127,6 @@ public class ManejoArchivos {
 	 * @see EmpresaAmbulancias#agregarAmbulancia
 	 */
 	private static String procesarAmbulancias(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) {
-		// TODO Auto-generated method stub
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		String tipoAmbulancia = tokens.nextToken().trim();
 		int codigo = Integer.parseInt(tokens.nextToken().trim());
@@ -134,5 +138,44 @@ public class ManejoArchivos {
 		}
 		empresaAmbulancias.agregarAmbulancia(tipoAmbulancia, codigo, placa, medicoEnfermero, tipoUCI);
 		return linea;
+	}
+
+	public static void guardarDatos(IServiciosAmbulancias empresaAmbulancias, String pathArchivo, String nombreArchivo)
+			throws PersistenceException {
+		File outFile = new File(pathArchivo + "/" + nombreArchivo);
+		FileOutputStream outStream = null;
+		ObjectOutputStream dataOutStream = null;
+		try {
+			outStream = new FileOutputStream(outFile);
+			dataOutStream = new ObjectOutputStream(outStream);
+			dataOutStream.writeObject(empresaAmbulancias);
+			dataOutStream.close();
+			outStream.close();
+		} catch (FileNotFoundException e) {
+			throw new PersistenceException("Error en la ruta del archivo.\n Error: " + e.getMessage());
+		} catch (IOException e) {
+			throw new PersistenceException("Error leyendo del archivo.\n Error: " + e.getMessage());
+		} catch (Exception e) {
+			throw new PersistenceException("Excepcion inesperada:" + e.getMessage());
+		}
+	}
+
+	public static IServiciosAmbulancias cargarDatos(String pathArchivo, String nombreArchivo) throws PersistenceException {
+		File inFile = new File(pathArchivo + "/" + nombreArchivo);
+		FileInputStream inStream = null;
+		ObjectInputStream dataInStream = null;
+		IServiciosAmbulancias empresaAmbulancia = null;
+		try {
+			inStream = new FileInputStream(inFile);
+			dataInStream = new ObjectInputStream(inStream);
+			empresaAmbulancia = (IServiciosAmbulancias) dataInStream.readObject();
+			dataInStream.close();
+			inStream.close();
+		} catch (FileNotFoundException e) {
+			throw new PersistenceException("El archivo no existe " + e.getMessage());
+		} catch (Exception e) {
+			throw new PersistenceException("Ocurrio un error leyendo el archivo " + e.getMessage());
+		}
+		return empresaAmbulancia;
 	}
 }
