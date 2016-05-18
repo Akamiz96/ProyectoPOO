@@ -159,6 +159,47 @@ public class TestGUIAmbulancias extends JFrame {
 	 * Vector de vectores de datos para reporte IPS con servicios asociados
 	 */
 	private Vector filaDatosServicios2;
+	/*
+	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una Ambulancia
+	 */
+	private String[] nombreColumServicios3 = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
+			"direccion", "estado", "IPS", "ambul." };
+	/*
+	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una Ambulancia
+	 */
+	private Vector nombreColumServiciosV3;
+	/*
+	 * Vector de vectores de datos para Asignar un Servicio a una IPS y a una Ambulancia
+	 */
+	private Vector filaDatosServicios3;
+	/*
+	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una Ambulancia
+	 */
+	private String[] nombreColumIPS = { "nombre", "tipo de atencion", "direccion" };
+	/*
+	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una Ambulancia
+	 */
+	private Vector nombreColumIPSV;
+	/*
+	 * Vector de vectores de datos para Asignar un Servicio a una IPS y a una Ambulancia
+	 */
+	private Vector filaDatosIPS;
+	/*
+	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
+	 * asignados
+	 */
+	private String[] nombreColumAmbulancias3 = { "codigo", "tipo", "placa", "medico/enfermero", "hora posicion", "calle",
+			"tarifa" };
+	/*
+	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
+	 * asignados
+	 */
+	private Vector nombreColumAmbulancias3V;
+	/*
+	 * Vector de vectores de datos para reporte Servicios con IPS y Ambulancias
+	 * asignados
+	 */
+	private Vector filaDatosAmbulancias3V;
 
 	private EmpresaAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
 	private JPanel contentPane;
@@ -195,6 +236,9 @@ public class TestGUIAmbulancias extends JFrame {
 	private JScrollPane scrollPane_2;
 	private JScrollPane scrollPane_3;
 	private JScrollPane scrollPane_4;
+	private JScrollPane scrollPane_6;
+	private JScrollPane scrollPane_7;
+	private JScrollPane scrollPane_8;
 
 	/**
 	 * Launch the application.
@@ -624,25 +668,25 @@ public class TestGUIAmbulancias extends JFrame {
 		btnAsignarServicioSeleccionado.setBounds(695, 228, 233, 36);
 		asignarServicio.add(btnAsignarServicioSeleccionado);
 
-		JScrollPane scrollPane_6 = new JScrollPane();
+		scrollPane_6 = new JScrollPane();
 		scrollPane_6.setBounds(10, 93, 918, 134);
 		asignarServicio.add(scrollPane_6);
 
-		tablaServicios3 = new JTable();
+		tablaServicios3 = getTablaServicios3();
 		scrollPane_6.setViewportView(tablaServicios3);
 
-		JScrollPane scrollPane_7 = new JScrollPane();
+		scrollPane_7 = new JScrollPane();
 		scrollPane_7.setBounds(10, 268, 918, 74);
 		asignarServicio.add(scrollPane_7);
 
-		tablaIPS = new JTable();
+		tablaIPS = getTablaIPS();
 		scrollPane_7.setViewportView(tablaIPS);
 
-		JScrollPane scrollPane_8 = new JScrollPane();
+		scrollPane_8 = new JScrollPane();
 		scrollPane_8.setBounds(10, 374, 918, 102);
 		asignarServicio.add(scrollPane_8);
 
-		tablaAmbulancias3 = new JTable();
+		tablaAmbulancias3 = getTablaAmbulancias3();
 		scrollPane_8.setViewportView(tablaAmbulancias3);
 
 		JPanel reporteIPS = new JPanel();
@@ -933,8 +977,41 @@ public class TestGUIAmbulancias extends JFrame {
 		if (tablaAmbulancia == null) {
 			filaDatosAmbulanciaV = new Vector();
 			nombreColumAmbulanciaV = new Vector(Arrays.asList(this.nombreColumAmbulancia));
-			tablaAmbulancia = new JTable(filaDatosIPS1, nombreColumAmbulanciaV);
+			tablaAmbulancia = new JTable(filaDatosAmbulanciaV, nombreColumAmbulanciaV);
 		}
 		return tablaAmbulancia;
+	}
+	public JScrollPane getScrollPane_6() {
+		return scrollPane_6;
+	}
+	public JTable getTablaServicios3() {
+		if (tablaServicios3 == null) {
+			filaDatosServicios3 = new Vector();
+			nombreColumServiciosV3 = new Vector(Arrays.asList(this.nombreColumServicios3));
+			tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
+		}
+		return tablaServicios3;
+	}
+	public JScrollPane getScrollPane_7() {
+		return scrollPane_7;
+	}
+	public JTable getTablaIPS() {
+		if (tablaIPS == null) {
+			filaDatosIPS = new Vector();
+			nombreColumIPSV = new Vector(Arrays.asList(this.nombreColumIPS));
+			tablaIPS = new JTable(filaDatosIPS, nombreColumIPSV);
+		}
+		return tablaIPS;
+	}
+	public JScrollPane getScrollPane_8() {
+		return scrollPane_8;
+	}
+	public JTable getTablaAmbulancias3() {
+		if (tablaAmbulancias3 == null) {
+			filaDatosAmbulancias3V = new Vector();
+			nombreColumAmbulancias3V = new Vector(Arrays.asList(this.nombreColumAmbulancias3));
+			tablaAmbulancias3 = new JTable(filaDatosAmbulancias3V, nombreColumAmbulancias3V);
+		}
+		return tablaAmbulancias3;
 	}
 }
