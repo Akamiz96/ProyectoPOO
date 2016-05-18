@@ -164,8 +164,13 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 			ambulancia = new AmbulanciaBasica(codigo, placa, medicoEnfermero);
 		else if (tipoAmbulancia.equals("NOMEDICALIZADA"))
 			ambulancia = new AmbulanciaNoMedicalizada(codigo, placa, medicoEnfermero);
-		else if (tipoAmbulancia.equals("UCI"))
-			ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, tipoUCI);
+		else if (tipoAmbulancia.equals("UCI")) {
+			if (tipoUCI.equals("CARDIOVASCULAR"))
+				ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, TipoUCI.CARDIOVASCULAR);
+			if (tipoUCI.equals("PEDIATRICA"))
+				ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, TipoUCI.PEDIATRICA);
+
+		}
 		ambulancias.put(codigo, ambulancia);
 	}
 
@@ -216,8 +221,8 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *            Indica el bloque en la cuadra donde se encuentra
 	 * @return long: Codigo del servicio registrado
 	 */
-	public long registrarServicio(String nombre, TipoServicio tipoAtencion, String telefono, TipoDireccion tipoDireccion, int calle,
-			int carrera, int numero) {
+	public long registrarServicio(String nombre, TipoServicio tipoAtencion, String telefono,
+			TipoDireccion tipoDireccion, int calle, int carrera, int numero) {
 		Servicio servicio = new Servicio(nombre, Long.parseLong(telefono), tipoAtencion, tipoDireccion, calle, carrera,
 				numero);
 		this.servicios.add(servicio);
@@ -301,7 +306,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	public boolean finalizarServicio(long codigo) {
 		boolean finalizado = false;
 		Servicio servicio = this.buscarServicio(codigo);
-		if (servicio != null && servicio.getAmbulancia()!=null) {
+		if (servicio != null && servicio.getAmbulancia() != null) {
 			servicio.setEstado(EstadoServicio.FINALIZADO);
 			servicio.getAmbulancia().setEnServicio(false);
 			finalizado = true;
@@ -327,14 +332,14 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	}
 
 	/**
-	 * Metodo Privado para realizar la busqueda de un servicio en el sistema
+	 * Metodo Publico para realizar la busqueda de un servicio en el sistema
 	 * dado un codigo
 	 *
 	 * @param codigo:
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Servicio: Retorna el servicio al cual corresponde el codigo dado
 	 */
-	private Servicio buscarServicio(long codigo) {
+	public Servicio buscarServicio(long codigo) {
 		for (Servicio servicio : this.servicios) {
 			if (servicio.getCodigo() == codigo) {
 				return servicio;
