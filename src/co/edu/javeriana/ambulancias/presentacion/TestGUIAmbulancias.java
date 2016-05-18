@@ -641,134 +641,134 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios1 = getTablaServicios1();
 		scrollPane_2.setViewportView(tablaServicios1);
-		
+
 		txtNombre = new JTextField();
 		txtNombre.setEditable(false);
 		txtNombre.setText("Nombre");
 		txtNombre.setBounds(20, 258, 86, 20);
 		reporteServicios.add(txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		txtTipoAtencion = new JTextField();
 		txtTipoAtencion.setEditable(false);
 		txtTipoAtencion.setText("Tipo atencion");
 		txtTipoAtencion.setBounds(152, 258, 86, 20);
 		reporteServicios.add(txtTipoAtencion);
 		txtTipoAtencion.setColumns(10);
-		
+
 		txtDireccion = new JTextField();
 		txtDireccion.setEditable(false);
 		txtDireccion.setText("Direccion ");
 		txtDireccion.setBounds(289, 258, 86, 20);
 		reporteServicios.add(txtDireccion);
 		txtDireccion.setColumns(10);
-		
+
 		txtCodigo = new JTextField();
 		txtCodigo.setEditable(false);
 		txtCodigo.setText("Codigo");
 		txtCodigo.setBounds(20, 412, 86, 20);
 		reporteServicios.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		
+
 		txtTipo = new JTextField();
 		txtTipo.setEditable(false);
 		txtTipo.setText("Tipo");
 		txtTipo.setBounds(152, 412, 86, 20);
 		reporteServicios.add(txtTipo);
 		txtTipo.setColumns(10);
-		
+
 		txtPlaca = new JTextField();
 		txtPlaca.setEditable(false);
 		txtPlaca.setText("Placa");
 		txtPlaca.setBounds(289, 412, 86, 20);
 		reporteServicios.add(txtPlaca);
 		txtPlaca.setColumns(10);
-		
+
 		txtMedicoEnfermero = new JTextField();
 		txtMedicoEnfermero.setEditable(false);
 		txtMedicoEnfermero.setText("Medico/ enfermero");
 		txtMedicoEnfermero.setBounds(428, 412, 86, 20);
 		reporteServicios.add(txtMedicoEnfermero);
 		txtMedicoEnfermero.setColumns(10);
-		
+
 		txtHoraSolicitud = new JTextField();
 		txtHoraSolicitud.setEditable(false);
 		txtHoraSolicitud.setText("Hora solicitud");
 		txtHoraSolicitud.setBounds(581, 412, 86, 20);
 		reporteServicios.add(txtHoraSolicitud);
 		txtHoraSolicitud.setColumns(10);
-		
+
 		txtCalle = new JTextField();
 		txtCalle.setEditable(false);
 		txtCalle.setText("Calle");
 		txtCalle.setBounds(716, 412, 86, 20);
 		reporteServicios.add(txtCalle);
 		txtCalle.setColumns(10);
-		
+
 		txtCarrera = new JTextField();
 		txtCarrera.setEditable(false);
 		txtCarrera.setText("Carrera");
 		txtCarrera.setBounds(830, 412, 86, 20);
 		reporteServicios.add(txtCarrera);
 		txtCarrera.setColumns(10);
-		
+
 		txtTarifa = new JTextField();
 		txtTarifa.setEditable(false);
 		txtTarifa.setText("Tarifa");
 		txtTarifa.setBounds(20, 471, 86, 20);
 		reporteServicios.add(txtTarifa);
 		txtTarifa.setColumns(10);
-		
+
 		textField = new JTextField();
 		textField.setBounds(10, 289, 86, 20);
 		reporteServicios.add(textField);
 		textField.setColumns(10);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setBounds(152, 289, 86, 20);
 		reporteServicios.add(textField_1);
 		textField_1.setColumns(10);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setBounds(289, 289, 86, 20);
 		reporteServicios.add(textField_2);
 		textField_2.setColumns(10);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setBounds(20, 440, 86, 20);
 		reporteServicios.add(textField_3);
 		textField_3.setColumns(10);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setBounds(152, 440, 86, 20);
 		reporteServicios.add(textField_4);
 		textField_4.setColumns(10);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setBounds(289, 440, 86, 20);
 		reporteServicios.add(textField_5);
 		textField_5.setColumns(10);
-		
+
 		textField_6 = new JTextField();
 		textField_6.setBounds(428, 440, 86, 20);
 		reporteServicios.add(textField_6);
 		textField_6.setColumns(10);
-		
+
 		textField_7 = new JTextField();
 		textField_7.setBounds(581, 443, 86, 20);
 		reporteServicios.add(textField_7);
 		textField_7.setColumns(10);
-		
+
 		textField_8 = new JTextField();
 		textField_8.setBounds(726, 440, 86, 20);
 		reporteServicios.add(textField_8);
 		textField_8.setColumns(10);
-		
+
 		textField_9 = new JTextField();
 		textField_9.setBounds(830, 443, 86, 20);
 		reporteServicios.add(textField_9);
 		textField_9.setColumns(10);
-		
+
 		textField_10 = new JTextField();
 		textField_10.setBounds(20, 498, 86, 20);
 		reporteServicios.add(textField_10);
@@ -808,6 +808,11 @@ public class TestGUIAmbulancias extends JFrame {
 		asignarServicio.add(btnRegresar_3);
 
 		JButton btnAsignarServicioSeleccionado = new JButton("Asignar servicio seleccionado");
+		btnAsignarServicioSeleccionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				asignarServicio(e);
+			}
+		});
 		btnAsignarServicioSeleccionado.setBounds(695, 228, 233, 36);
 		asignarServicio.add(btnAsignarServicioSeleccionado);
 
@@ -819,6 +824,7 @@ public class TestGUIAmbulancias extends JFrame {
 		scrollPane_6.setViewportView(tablaServicios3);
 
 		scrollPane_7 = new JScrollPane();
+		scrollPane_7.setEnabled(false);
 		scrollPane_7.setBounds(10, 268, 918, 74);
 		asignarServicio.add(scrollPane_7);
 
@@ -826,6 +832,7 @@ public class TestGUIAmbulancias extends JFrame {
 		scrollPane_7.setViewportView(tablaIPS);
 
 		scrollPane_8 = new JScrollPane();
+		scrollPane_8.setEnabled(false);
 		scrollPane_8.setBounds(10, 374, 918, 102);
 		asignarServicio.add(scrollPane_8);
 
@@ -1050,6 +1057,29 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaAmbulancias3 = new JTable(filaDatosAmbulancias3V, nombreColumAmbulancias3V);
 			scrollPane_8.setViewportView(getTablaAmbulancias3());
 		}
+		if (!empresaAmbulancias.getLasIPS().isEmpty()) {
+			filaDatosIPS = new Vector();
+			Set<String> llaves = empresaAmbulancias.getLasIPS().keySet();
+			List<String> orLlaves = new ArrayList<String>(llaves);
+			Collections.sort(orLlaves);
+			for (String llave : orLlaves) {
+				IPS ips = empresaAmbulancias.getLasIPS().get(llave);
+				Vector fila = new Vector();
+				fila.add(ips.getNombre());
+				fila.add(ips.getTipoAtencion());
+				fila.add(ips.getDireccion());
+				filaDatosIPS.add(fila);
+			}
+			tablaIPS = new JTable(filaDatosIPS, nombreColumIPSV);
+			scrollPane_7.setViewportView(getTablaIPS());
+		}
+		if (!empresaAmbulancias.getServicios().isEmpty()) {
+			filaDatosServicios3 = new Vector();
+			List<Servicio> items = empresaAmbulancias.getServicios();
+			llenarFilasServicio(items, filaDatosServicios3);
+			tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
+			scrollPane_6.setViewportView(getTablaServicios3());
+		}
 	}
 
 	/**
@@ -1083,7 +1113,7 @@ public class TestGUIAmbulancias extends JFrame {
 				}
 			} else if (ambulancia instanceof AmbulanciaNoMedicalizada) {
 				fila.add(ambulancia.getCodigo());
-				fila.add("Basica");
+				fila.add("No Medicalizada");
 				fila.add(ambulancia.getPlaca());
 				fila.add(((AmbulanciaNoMedicalizada) ambulancia).getEnfermero());
 				fila.add("");
@@ -1101,7 +1131,6 @@ public class TestGUIAmbulancias extends JFrame {
 	private void irFinalizarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.finalizarServicio);
 		filaDatosServicios = new Vector(); // obtener items de venta actual:
-		int indexVentaActual = empresaAmbulancias.getServicios().size() - 1;
 		List<Servicio> items = empresaAmbulancias.getServicios(); // llenar el
 																	// vector de
 																	// datos del
@@ -1277,6 +1306,8 @@ public class TestGUIAmbulancias extends JFrame {
 			filaDatosIPS = new Vector();
 			nombreColumIPSV = new Vector(Arrays.asList(this.nombreColumIPS));
 			tablaIPS = new JTable(filaDatosIPS, nombreColumIPSV);
+			tablaIPS.setEnabled(false);
+			tablaIPS.setRowSelectionAllowed(false);
 		}
 		return tablaIPS;
 	}
@@ -1290,6 +1321,7 @@ public class TestGUIAmbulancias extends JFrame {
 			filaDatosAmbulancias3V = new Vector();
 			nombreColumAmbulancias3V = new Vector(Arrays.asList(this.nombreColumAmbulancias3));
 			tablaAmbulancias3 = new JTable(filaDatosAmbulancias3V, nombreColumAmbulancias3V);
+			tablaAmbulancias3.setEnabled(false);
 		}
 		return tablaAmbulancias3;
 	}
@@ -1305,7 +1337,7 @@ public class TestGUIAmbulancias extends JFrame {
 			try { // guardar el archivo como ObjectOutputStream
 				ManejoArchivos.guardarDatos(this.empresaAmbulancias, pathArchivo, nombreArchivo);
 				JOptionPane.showMessageDialog(this, "Sistema guardado con exito", "Informacion",
-						JOptionPane.WARNING_MESSAGE);
+						JOptionPane.INFORMATION_MESSAGE);
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo ", JOptionPane.ERROR_MESSAGE);
 			}
@@ -1323,7 +1355,7 @@ public class TestGUIAmbulancias extends JFrame {
 			try { // cargar el archivo como ObjectInputStream
 				empresaAmbulancias = ManejoArchivos.cargarDatos(pathArchivo, nombreArchivo);
 				JOptionPane.showMessageDialog(this, "Sistema cargado con exito", "Informacion",
-						JOptionPane.WARNING_MESSAGE);
+						JOptionPane.INFORMATION_MESSAGE);
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(this, e1.getMessage(), "problema archivo", JOptionPane.ERROR_MESSAGE);
 			}
@@ -1342,7 +1374,17 @@ public class TestGUIAmbulancias extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente", "fallo finalizacion",
 					JOptionPane.ERROR_MESSAGE);
-
 		}
 	}
+
+	private void asignarServicio(ActionEvent e) {
+		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
+		TableModel model = tablaServicios.getModel();
+		long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
+		JOptionPane.showMessageDialog(this, empresaAmbulancias.asignarServicio(codigo), "Asignar Servicio",
+				JOptionPane.INFORMATION_MESSAGE);
+		Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
+		fila.set(6, EstadoServicio.ASIGNADO);
+	}
+
 }
