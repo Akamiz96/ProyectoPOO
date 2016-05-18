@@ -16,6 +16,7 @@ import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
 import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
 import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.EstadoServicio;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.Servicio;
 import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
@@ -489,6 +490,11 @@ public class TestGUIAmbulancias extends JFrame {
 		finalizarServicio.add(btnRegresar_4);
 
 		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
+		btnFinalizarServicioSeleccionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finalizarServicio(e);
+			}
+		});
 		btnFinalizarServicioSeleccionado.setBounds(262, 413, 241, 72);
 		finalizarServicio.add(btnFinalizarServicioSeleccionado);
 
@@ -986,7 +992,6 @@ public class TestGUIAmbulancias extends JFrame {
 				fila.add(servicio.getAmbulancia().getCodigo());
 			else
 				fila.add("");
-			System.out.println(fila);
 			filaDatosServicios.add(fila);
 		}
 		// refrescar visualmente el JTable dentro del scroll:
@@ -1174,6 +1179,20 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaAmbulancias3 = new JTable(filaDatosAmbulancias3V, nombreColumAmbulancias3V);
 		}
 		return tablaAmbulancias3;
-
+	}
+	private void finalizarServicio(ActionEvent e) {
+		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
+		TableModel model = tablaServicios.getModel();
+		long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
+		if (empresaAmbulancias.finalizarServicio(codigo)) {
+			Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
+			fila.set(6, EstadoServicio.FINALIZADO);
+			tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
+			scrollPane_1.setViewportView(getTablaServicios());
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente", "fallo finalizacion", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

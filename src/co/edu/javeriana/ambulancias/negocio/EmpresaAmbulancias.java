@@ -298,10 +298,10 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *            Representa el codigo unico dado al servicio dentro del sistema
 	 * @return Boolean: Retorna si el servicio fue finalizado con exito
 	 */
-	public boolean finalizarServicio(int codigo) {
+	public boolean finalizarServicio(long codigo) {
 		boolean finalizado = false;
 		Servicio servicio = this.buscarServicio(codigo);
-		if (servicio != null) {
+		if (servicio != null && servicio.getAmbulancia()!=null) {
 			servicio.setEstado(EstadoServicio.FINALIZADO);
 			servicio.getAmbulancia().setEnServicio(false);
 			finalizado = true;
