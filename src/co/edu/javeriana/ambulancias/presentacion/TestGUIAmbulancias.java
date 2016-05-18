@@ -8,7 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.TableModel;
 
+import co.edu.javeriana.ambulancias.negocio.Ambulancia;
+import co.edu.javeriana.ambulancias.negocio.AmbulanciaBasica;
+import co.edu.javeriana.ambulancias.negocio.AmbulanciaNoMedicalizada;
+import co.edu.javeriana.ambulancias.negocio.AmbulanciaUCI;
+import co.edu.javeriana.ambulancias.negocio.CodigoComparator;
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IPS;
 import co.edu.javeriana.ambulancias.negocio.TipoDireccion;
@@ -21,6 +27,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -196,6 +203,7 @@ public class TestGUIAmbulancias extends JFrame {
 	private JScrollPane scrollPane_2;
 	private JScrollPane scrollPane_3;
 	private JScrollPane scrollPane_4;
+	private JButton btnActualizar;
 
 	/**
 	 * Launch the application.
@@ -380,7 +388,12 @@ public class TestGUIAmbulancias extends JFrame {
 		registrarPosicionAmbulancia.add(carrera);
 		carrera.setColumns(10);
 
-		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registrarPosicionActual(e);
+			}
+		});
 		btnActualizar.setBounds(327, 435, 200, 50);
 		btnActualizar.setFont(new Font("Script MT Bold", Font.ITALIC, 35));
 		registrarPosicionAmbulancia.add(btnActualizar);
@@ -818,6 +831,78 @@ public class TestGUIAmbulancias extends JFrame {
 
 	private void irRegistrarPosicion(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.registrarPosicion);
+		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
+			filaDatosAmbulancias = new Vector();
+			Set<Integer> llaves = empresaAmbulancias.getAmbulancias().keySet();
+			List<Integer> orLlaves = new ArrayList<Integer>(llaves);
+			Collections.sort(orLlaves, new CodigoComparator());
+			for (Integer llave : orLlaves) {
+				Ambulancia ambulancia = empresaAmbulancias.getAmbulancias().get(llave);
+				Vector fila = new Vector();
+				if (ambulancia instanceof AmbulanciaUCI) {
+					fila.add(ambulancia.getCodigo());
+					fila.add("UCI");
+					fila.add(ambulancia.getPlaca());
+					fila.add(((AmbulanciaUCI) ambulancia).getMedico());
+					fila.add(((AmbulanciaUCI) ambulancia).getTipoUCI());
+					if (ambulancia.getHoraPosicion() != null) {
+						fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
+						fila.add(ambulancia.getPosicionCalle());
+						fila.add(ambulancia.getPosicionCarrera());
+					}
+				} else if (ambulancia instanceof AmbulanciaBasica) {
+					fila.add(ambulancia.getCodigo());
+					fila.add("Basica");
+					fila.add(ambulancia.getPlaca());
+					fila.add(((AmbulanciaBasica) ambulancia).getMedico());
+					fila.add("");
+					if (ambulancia.getHoraPosicion() != null) {
+						fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
+						fila.add(ambulancia.getPosicionCalle());
+						fila.add(ambulancia.getPosicionCarrera());
+					}
+				} else if (ambulancia instanceof AmbulanciaNoMedicalizada) {
+					fila.add(ambulancia.getCodigo());
+					fila.add("Basica");
+					fila.add(ambulancia.getPlaca());
+					fila.add(((AmbulanciaNoMedicalizada) ambulancia).getEnfermero());
+					fila.add("");
+					if (ambulancia.getHoraPosicion() != null) {
+						fila.add(Utils.convertirFechaHoraString(ambulancia.getHoraPosicion()));
+						fila.add(ambulancia.getPosicionCalle());
+						fila.add(ambulancia.getPosicionCarrera());
+					}
+				}
+				// agregar fila al vector de datos del JTable:
+				filaDatosAmbulancias.add(fila);
+				// refrescar el Jtable dentro del JScrollPane
+			}
+			tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
+			scrollPane.setViewportView(getTablaAmbulancias());
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void registrarPosicionActual(ActionEvent e) {
+		int indexFilaSeleccionada = tablaAmbulancias.getSelectedRow();
+		TableModel model = tablaAmbulancias.getModel();
+		int codigo = (Integer) model.getValueAt(indexFilaSeleccionada, 0);
+		int nuevaCalle = Integer.parseInt(this.calle.getText());
+		int nuevaCarrera = Integer.parseInt(this.carrera.getText());
+		if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, nuevaCalle, nuevaCarrera)) {
+			Vector fila = (Vector) filaDatosAmbulancias.get(indexFilaSeleccionada);
+			fila.set(5,
+					Utils.convertirFechaHoraString(empresaAmbulancias.getAmbulancias().get(codigo).getHoraPosicion()));
+			fila.set(6, nuevaCalle);
+			fila.set(7, nuevaCarrera);
+
+			tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
+			scrollPane.setViewportView(getTablaAmbulancias());
+		}
+		this.calle.setText(null);
+		this.carrera.setText(null);
 	}
 
 	private void irAsignarServicio(ActionEvent e) {
@@ -965,5 +1050,9 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaAmbulancia = new JTable(filaDatosIPS1, nombreColumAmbulanciaV);
 		}
 		return tablaAmbulancia;
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
 	}
 }
