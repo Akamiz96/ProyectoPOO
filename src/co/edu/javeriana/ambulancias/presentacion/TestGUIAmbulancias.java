@@ -1460,8 +1460,21 @@ public class TestGUIAmbulancias extends JFrame {
 			fila.set(8, servicio.getAmbulancia().getCodigo());
 			tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
 			scrollPane_6.setViewportView(getTablaServicios3());
+			int numFila;
+			for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++){
+				Vector auxFila = (Vector) filaDatosAmbulancias3V.get(numFila);
+				if((Integer)auxFila.get(0) == servicio.getAmbulancia().getCodigo())
+					break;
+			}
+			tablaAmbulancias3.changeSelection(numFila, 0, false, false);
+			for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++){
+				Vector auxFila = (Vector) filaDatosIPS.get(numFila);
+				if(auxFila.get(0).equals(servicio.getIps().getNombre()))
+					break;
+			}
+			tablaIPS.changeSelection(numFila, 0, false, false);
 		} else {
-			JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente", "fallo finalizacion",
+			JOptionPane.showMessageDialog(this, "No pudo ser asignado el servicio exitosamente", "fallo finalizacion",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
