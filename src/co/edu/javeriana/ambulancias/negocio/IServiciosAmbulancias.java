@@ -90,10 +90,9 @@ public interface IServiciosAmbulancias {
 	 * 
 	 * @param codigo:
 	 *            Indica el codigo del servicio a asignar
-	 * @return String: "Asignado" si fue una asignacion exitosa
-	 * @return String: "No Existe el servicio" si NO fue una asignacion exitosa
+	 * @@return boolean: Indica si se pudo o no se pudo finalizar el servicio
 	 */
-	String asignarServicio(long codigo);
+	boolean asignarServicio(long codigo);
 
 	/**
 	 * Metodo para finalizar un servicio existente dentro del sistema

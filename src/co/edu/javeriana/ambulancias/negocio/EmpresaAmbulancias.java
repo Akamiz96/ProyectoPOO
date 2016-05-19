@@ -244,7 +244,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 * @return String: "Asignado" si fue una asignacion exitosa
 	 * @return String: "No Existe el servicio" si NO fue una asignacion exitosa
 	 */
-	public String asignarServicio(long codigo) {
+	public boolean asignarServicio(long codigo) {
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
 			List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
@@ -252,24 +252,24 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
 				IPS ips;
-				if (!servicio.getTipoServicio().equals("DOMICILIO")) {
+				if (!(servicio.getTipoServicio()== TipoServicio.DOMICILIO)) {
 					ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
 							servicio.getDireccion().getCarrera());
 				} else
 					ips = null;
-				if (ips != null && !servicio.getTipoServicio().equals("DOMICILIO")) {
+				if (ips != null && !(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
 					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
-					return "Asignado";
-				} else if (servicio.getTipoServicio().equals("DOMICILIO")) {
+					return true;
+				} else if (servicio.getTipoServicio() == TipoServicio.DOMICILIO) {
 					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
-					return "Asignado";
+					return true;
 				} else {
-					return "No se han registrado IPS";
+					return false;
 				}
 			}
-			return "Todas las ambulancias estan ocupadas";
+			return false;
 		}
-		return "No Existe el servicio";
+		return false;
 	}
 
 	/**
