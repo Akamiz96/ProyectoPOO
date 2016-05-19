@@ -176,8 +176,8 @@ public class TestGUIAmbulancias extends JFrame {
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
-	private String[] nombreColumAmbulancias3 = { "codigo", "tipo", "placa", "medico/enfermero", "hora posicion",
-			"calle", "carrera" };
+	private String[] nombreColumAmbulancias3 = { "codigo", "tipo", "placa", "medico/enfermero", "Tipo UCI",
+			"hora posicion", "calle", "carrera" };
 	/*
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
@@ -924,8 +924,20 @@ public class TestGUIAmbulancias extends JFrame {
 				JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
 				int index = sourceTabbedPane.getSelectedIndex();
 				switch (index) {
+				case 2:
+					irRegistrarPosicion(null);
+					break;
+				case 3:
+					irFinalizarServicio(null);
+					break;
 				case 4:
 					mostrarRegistroServicio(null);
+					break;
+				case 5:
+					irReporteServicios(null);
+					break;
+				case 6:
+					irAsignarServicio(null);
 					break;
 				case 7:
 					irReporteIPS(null);
@@ -1060,22 +1072,34 @@ public class TestGUIAmbulancias extends JFrame {
 	 */
 	private void registrarPosicionActual(ActionEvent e) {
 		int indexFilaSeleccionada = tablaAmbulancias.getSelectedRow();
-		TableModel model = tablaAmbulancias.getModel();
-		int codigo = (Integer) model.getValueAt(indexFilaSeleccionada, 0);
-		int nuevaCalle = Integer.parseInt(this.calle.getText());
-		int nuevaCarrera = Integer.parseInt(this.carrera.getText());
-		if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, nuevaCalle, nuevaCarrera)) {
-			Vector fila = (Vector) filaDatosAmbulancias.get(indexFilaSeleccionada);
-			fila.set(5,
-					Utils.convertirFechaHoraString(empresaAmbulancias.getAmbulancias().get(codigo).getHoraPosicion()));
-			fila.set(6, nuevaCalle);
-			fila.set(7, nuevaCarrera);
+		if (indexFilaSeleccionada != -1) {
+			TableModel model = tablaAmbulancias.getModel();
+			int codigo = (Integer) model.getValueAt(indexFilaSeleccionada, 0);
+			String nuevaCalleS = this.calle.getText();
+			String nuevaCarreraS = this.carrera.getText();
+			if (nuevaCalleS.length() != 0 && nuevaCarreraS.length() != 0) {
+				int nuevaCalle = Integer.parseInt(nuevaCalleS);
+				int nuevaCarrera = Integer.parseInt(nuevaCarreraS);
+				if (empresaAmbulancias.registrarPosicionAmbulancia(codigo, nuevaCalle, nuevaCarrera)) {
+					Vector fila = (Vector) filaDatosAmbulancias.get(indexFilaSeleccionada);
+					fila.set(5, Utils.convertirFechaHoraString(
+							empresaAmbulancias.getAmbulancias().get(codigo).getHoraPosicion()));
+					fila.set(6, nuevaCalle);
+					fila.set(7, nuevaCarrera);
 
-			tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
-			scrollPane.setViewportView(getTablaAmbulancias());
+					tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
+					scrollPane.setViewportView(getTablaAmbulancias());
+				}
+				this.calle.setText(null);
+				this.carrera.setText(null);
+			} else {
+				JOptionPane.showMessageDialog(this, "No se ha escrito la calle o la carrera", "Escritura de datos",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			JOptionPane.showMessageDialog(this, "No se ha seleccionado una Ambulancia", "Seleccion de ambulancia",
+					JOptionPane.ERROR_MESSAGE);
 		}
-		this.calle.setText(null);
-		this.carrera.setText(null);
 	}
 
 	private void irAsignarServicio(ActionEvent e) {
