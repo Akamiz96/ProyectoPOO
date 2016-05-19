@@ -138,13 +138,27 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 */
 	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
 			int numero) {
-		if (tipoDireccion.equals("CALLE")) {
-			IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CALLE, calle, carrera, numero);
-			lasIPS.put(nombre, ips);
-		} else {
-			IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CARRERA, calle, carrera, numero);
-			lasIPS.put(nombre, ips);
+		boolean ipsRep = buscarips(nombre);
+		if (!ipsRep) {
+			if (tipoDireccion.equals("CALLE")) {
+				IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CALLE, calle, carrera, numero);
+				lasIPS.put(nombre, ips);
+			} else {
+				IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CARRERA, calle, carrera, numero);
+				lasIPS.put(nombre, ips);
+			}
 		}
+	}
+
+	private boolean buscarips(String nombre2) {
+		if (!this.lasIPS.isEmpty()) {
+			Set<String> llaves = this.lasIPS.keySet();
+			for (String llave : llaves) {
+				if (nombre2.equals(llave))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -252,7 +266,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
 						servicio.getDireccion().getCarrera());
 				IPS ips;
-				if (!(servicio.getTipoServicio()== TipoServicio.DOMICILIO)) {
+				if (!(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
 					ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
 							servicio.getDireccion().getCarrera());
 				} else
