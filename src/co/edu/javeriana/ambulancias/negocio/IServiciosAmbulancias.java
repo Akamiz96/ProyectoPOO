@@ -6,6 +6,8 @@ package co.edu.javeriana.ambulancias.negocio;
 import java.util.List;
 import java.util.Map;
 
+import co.edu.javeriana.ambulancias.persistencia.PersistenceException;
+
 /**
  * @author Pablo Ariza y Alejandro Castro Inferfaz de servicios para el sistema
  */
@@ -26,8 +28,9 @@ public interface IServiciosAmbulancias {
 	 *            Indica el numero de la carrera de la IPS
 	 * @param numero:
 	 *            Indica el numero sobre el cual esta ubicada la IPS
+	 * @throws PersistenceException 
 	 */
-	void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero);
+	void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero) throws PersistenceException;
 
 	/**
 	 * Metodo para agregar Ambulancia al sistema.
@@ -43,8 +46,9 @@ public interface IServiciosAmbulancias {
 	 *            ambulancia
 	 * @param tipoUCI:
 	 *            Indica el tipo UCI (Si lo tiene de la ambulancia a agregar
+	 * @throws PersistenceException 
 	 */
-	void agregarAmbulancia(String tipoAmbulancia, int codigo, String placa, String medicoEnfermero, String tipoUCI);
+	void agregarAmbulancia(String tipoAmbulancia, int codigo, String placa, String medicoEnfermero, String tipoUCI) throws PersistenceException;
 
 	/**
 	 * Metodo para registrar la posicion de una ambulancia existente dentro del

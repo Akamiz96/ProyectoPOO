@@ -67,9 +67,10 @@ public class ManejoArchivos {
 	 *            Indica la empresa de ambulancias a agregar la IPS luego de su
 	 *            procesamiento
 	 * @return String: Retorna el resto de la linea luego de ser procesada
+	 * @throws PersistenceException 
 	 * @see EmpresaAmbulancias#agregarIPS
 	 */
-	private static String procesarIPS(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) {
+	private static String procesarIPS(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) throws PersistenceException {
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		String nombre = tokens.nextToken().trim();
 		String tipoAtencion = tokens.nextToken().trim();
@@ -123,10 +124,11 @@ public class ManejoArchivos {
 	/**
 	 * Metodo Privado Estatico para procesar una ambulancia e invocar metodo
 	 * agregarIPS de la clase empresaAmbulancia
+	 * @throws PersistenceException 
 	 * 
 	 * @see EmpresaAmbulancias#agregarAmbulancia
 	 */
-	private static String procesarAmbulancias(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) {
+	private static String procesarAmbulancias(IServiciosAmbulancias empresaAmbulancias, Scanner input, String linea) throws PersistenceException {
 		StringTokenizer tokens = new StringTokenizer(linea, "*");
 		String tipoAmbulancia = tokens.nextToken().trim();
 		int codigo = Integer.parseInt(tokens.nextToken().trim());

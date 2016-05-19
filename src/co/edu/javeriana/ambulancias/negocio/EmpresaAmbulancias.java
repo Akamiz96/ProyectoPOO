@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import co.edu.javeriana.ambulancias.persistencia.PersistenceException;
+
 /**
  * @author Pablo Ariza y Alejandro Castro
  *
@@ -135,9 +137,10 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *            Indica el numero de la carrera de la nueva IPS
 	 * @param numero:
 	 *            Indica la posicion de la nueva IPS en la calle o en la carrera
+	 * @throws PersistenceException
 	 */
-	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera,
-			int numero) {
+	public void agregarIPS(String nombre, String tipoAtencion, String tipoDireccion, int calle, int carrera, int numero)
+			throws PersistenceException {
 		boolean ipsRep = buscarips(nombre);
 		if (!ipsRep) {
 			if (tipoDireccion.equals("CALLE")) {
@@ -147,6 +150,9 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 				IPS ips = new IPS(nombre, tipoAtencion, TipoDireccion.CARRERA, calle, carrera, numero);
 				lasIPS.put(nombre, ips);
 			}
+		} else {
+			lasIPS = new Hashtable<String, IPS>();
+			throw new PersistenceException("El archivo esta errado");
 		}
 	}
 
@@ -170,22 +176,29 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *            Indica la placa de la nueva ambulancia
 	 * @param tipoDotacion:
 	 *            Indica el equipamiento de la nueva ambulancia
+	 * @throws PersistenceException 
 	 */
 	public void agregarAmbulancia(String tipoAmbulancia, int codigo, String placa, String medicoEnfermero,
-			String tipoUCI) {
-		Ambulancia ambulancia = null;
-		if (tipoAmbulancia.equals("BASICA"))
-			ambulancia = new AmbulanciaBasica(codigo, placa, medicoEnfermero);
-		else if (tipoAmbulancia.equals("NOMEDICALIZADA"))
-			ambulancia = new AmbulanciaNoMedicalizada(codigo, placa, medicoEnfermero);
-		else if (tipoAmbulancia.equals("UCI")) {
-			if (tipoUCI.equals("CARDIOVASCULAR"))
-				ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, TipoUCI.CARDIOVASCULAR);
-			if (tipoUCI.equals("PEDIATRICA"))
-				ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, TipoUCI.PEDIATRICA);
+			String tipoUCI) throws PersistenceException {
+		Ambulancia ambRep = buscarAmbulancia(codigo);
+		if (ambRep == null) {
+			Ambulancia ambulancia = null;
+			if (tipoAmbulancia.equals("BASICA"))
+				ambulancia = new AmbulanciaBasica(codigo, placa, medicoEnfermero);
+			else if (tipoAmbulancia.equals("NOMEDICALIZADA"))
+				ambulancia = new AmbulanciaNoMedicalizada(codigo, placa, medicoEnfermero);
+			else if (tipoAmbulancia.equals("UCI")) {
+				if (tipoUCI.equals("CARDIOVASCULAR"))
+					ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, TipoUCI.CARDIOVASCULAR);
+				if (tipoUCI.equals("PEDIATRICA"))
+					ambulancia = new AmbulanciaUCI(codigo, placa, medicoEnfermero, TipoUCI.PEDIATRICA);
 
+			}
+			ambulancias.put(codigo, ambulancia);
+		} else {
+			ambulancias = new Hashtable<Integer, Ambulancia>();
+			throw new PersistenceException("El archivo esta errado");
 		}
-		ambulancias.put(codigo, ambulancia);
 	}
 
 	/**
