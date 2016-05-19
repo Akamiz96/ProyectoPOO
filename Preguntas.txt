@@ -1,23 +1,18 @@
 ---------------------------PREGUNTAS-------------------------------
 
--> como se pasa por referencia?
--> Si el codigo de Ambulancia es unico para cada ambulancia?
--> Como saber si una ambulancia esta disponible? Toca recorrer la lista de servicios de la
-ambulancia o hay una atributo para ello
--> revisar constructores de las clases
-->El usuario ingresa el nombre completo del archivo con la extension y todo
--> Validar asi hay o no servicio en el toString de ambulancia
-
-
-Funcion 4 revisar
-Funcion 6 probarla y arreglar cosas que mostrar
-Funcion 7 FALTA....
-Funcion 8 Reporte completo PROBAR
-FUncion 9 Reporte IPS PROBAR
-
-
-->toString de la ambulancia puede fallar
-  Verificar el ciclo......
-->Verificar validacion de NULL en EmpresaAmbulancia
-  calcularIPSMasCercano
-  calcularAmbulanciaMasCercana
+_No repeticion de las IPS 
+-> Registrar Posicion Ambulancia:
+	->Excepcion cuando no se selecciona una ambulancia y se le da actualizar
+	->Excepcion cuando no se escribe en los textbox(Determinar tambien cuando no son enteros)
+->Registrar Servicio
+	->Excepcion cuando no se ingresan datos.
+	->Limpiar los textbox cuando se presiona REGISTRAR
+->Asignar Servicio
+	->Excepcion cuando no se selecciona un servicio
+->Finalizar servicio 
+	->Solo mostrar los servicios en estado ASiGNADO Y NO_ASIGNADO
+->Reporte Servicios
+	->Excepcion cuando el servicio no ha sido asignado o finalizado (ESTADO NO ASIGNADO)
+->Reporte de IPS 
+	->MEnsaje cuando no hay servicios de la IPS 
+	
