@@ -623,7 +623,7 @@ public class TestGUIAmbulancias extends JFrame {
 
 		JLabel lblAmbulanciaAsignada = new JLabel("Ambulancia asignada");
 		lblAmbulanciaAsignada.setFont(new Font("Baskerville Old Face", Font.BOLD | Font.ITALIC, 29));
-		lblAmbulanciaAsignada.setBounds(10, 366, 293, 35);
+		lblAmbulanciaAsignada.setBounds(10, 296, 293, 35);
 		reporteServicios.add(lblAmbulanciaAsignada);
 
 		btnRegresar_5 = new JButton("Regresar");
@@ -632,16 +632,16 @@ public class TestGUIAmbulancias extends JFrame {
 				regresar(arg0);
 			}
 		});
-		btnRegresar_5.setBounds(729, 483, 199, 35);
+		btnRegresar_5.setBounds(760, 424, 168, 94);
 		reporteServicios.add(btnRegresar_5);
 
-		JButton btnMostrar = new JButton("Mostrar IPS y ambulancia asignadas");
+		JButton btnMostrar = new JButton("<html><p>Mostrar </p><p>IPS y</p><p>ambulancia asignadas</p></html>");
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarIpsAmbulancia(e);
 			}
 		});
-		btnMostrar.setBounds(668, 207, 260, 51);
+		btnMostrar.setBounds(830, 207, 98, 124);
 		reporteServicios.add(btnMostrar);
 
 		scrollPane_2 = new JScrollPane();
@@ -652,158 +652,206 @@ public class TestGUIAmbulancias extends JFrame {
 		scrollPane_2.setViewportView(tablaServicios1);
 
 		txtNombre = new JTextField();
+		txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNombre.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtNombre.setEditable(false);
 		txtNombre.setText("Nombre");
-		txtNombre.setBounds(20, 258, 86, 20);
+		txtNombre.setBounds(189, 212, 219, 30);
 		reporteServicios.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtTipoAtencion = new JTextField();
+		txtTipoAtencion.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTipoAtencion.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtTipoAtencion.setEditable(false);
 		txtTipoAtencion.setText("Tipo atencion");
-		txtTipoAtencion.setBounds(152, 258, 86, 20);
+		txtTipoAtencion.setBounds(418, 212, 223, 30);
 		reporteServicios.add(txtTipoAtencion);
 		txtTipoAtencion.setColumns(10);
 
 		txtDireccion = new JTextField();
+		txtDireccion.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDireccion.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtDireccion.setEditable(false);
 		txtDireccion.setText("Direccion ");
-		txtDireccion.setBounds(289, 258, 86, 20);
+		txtDireccion.setBounds(651, 212, 169, 30);
 		reporteServicios.add(txtDireccion);
 		txtDireccion.setColumns(10);
 
 		txtCodigo = new JTextField();
+		txtCodigo.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCodigo.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtCodigo.setEditable(false);
 		txtCodigo.setText("Codigo");
-		txtCodigo.setBounds(20, 412, 86, 20);
+		txtCodigo.setBounds(20, 342, 86, 30);
 		reporteServicios.add(txtCodigo);
 		txtCodigo.setColumns(10);
 
 		txtTipo = new JTextField();
+		txtTipo.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTipo.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtTipo.setEditable(false);
 		txtTipo.setText("Tipo");
-		txtTipo.setBounds(152, 412, 86, 20);
+		txtTipo.setBounds(121, 342, 229, 30);
 		reporteServicios.add(txtTipo);
 		txtTipo.setColumns(10);
 
 		txtPlaca = new JTextField();
+		txtPlaca.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPlaca.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtPlaca.setEditable(false);
 		txtPlaca.setText("Placa");
-		txtPlaca.setBounds(289, 412, 86, 20);
+		txtPlaca.setBounds(360, 342, 86, 30);
 		reporteServicios.add(txtPlaca);
 		txtPlaca.setColumns(10);
 
 		txtMedicoEnfermero = new JTextField();
+		txtMedicoEnfermero.setText("Medico\r\nEnfermero");
+		txtMedicoEnfermero.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMedicoEnfermero.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtMedicoEnfermero.setEditable(false);
-		txtMedicoEnfermero.setText("Medico/ enfermero");
-		txtMedicoEnfermero.setBounds(428, 412, 86, 20);
+		txtMedicoEnfermero.setBounds(456, 342, 186, 30);
 		reporteServicios.add(txtMedicoEnfermero);
 		txtMedicoEnfermero.setColumns(10);
 
 		txtHoraSolicitud = new JTextField();
+		txtHoraSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
+		txtHoraSolicitud.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtHoraSolicitud.setEditable(false);
 		txtHoraSolicitud.setText("Hora solicitud");
-		txtHoraSolicitud.setBounds(581, 412, 86, 20);
+		txtHoraSolicitud.setBounds(652, 342, 168, 30);
 		reporteServicios.add(txtHoraSolicitud);
 		txtHoraSolicitud.setColumns(10);
 
 		txtCalle = new JTextField();
+		txtCalle.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCalle.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtCalle.setEditable(false);
 		txtCalle.setText("Calle");
-		txtCalle.setBounds(716, 412, 86, 20);
+		txtCalle.setBounds(20, 424, 86, 30);
 		reporteServicios.add(txtCalle);
 		txtCalle.setColumns(10);
 
 		txtCarrera = new JTextField();
+		txtCarrera.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCarrera.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtCarrera.setEditable(false);
 		txtCarrera.setText("Carrera");
-		txtCarrera.setBounds(830, 412, 86, 20);
+		txtCarrera.setBounds(116, 424, 86, 30);
 		reporteServicios.add(txtCarrera);
 		txtCarrera.setColumns(10);
 
 		txtTarifa = new JTextField();
+		txtTarifa.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTarifa.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtTarifa.setEditable(false);
 		txtTarifa.setText("Tarifa");
-		txtTarifa.setBounds(20, 471, 86, 20);
+		txtTarifa.setBounds(217, 424, 86, 30);
 		reporteServicios.add(txtTarifa);
 		txtTarifa.setColumns(10);
 
 		nombreIPS = new JTextField();
+		nombreIPS.setHorizontalAlignment(SwingConstants.CENTER);
+		nombreIPS.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		nombreIPS.setEditable(false);
-		nombreIPS.setBounds(10, 289, 86, 20);
+		nombreIPS.setBounds(189, 255, 219, 30);
 		reporteServicios.add(nombreIPS);
 		nombreIPS.setColumns(10);
 
 		tipoAtencionIPS = new JTextField();
+		tipoAtencionIPS.setHorizontalAlignment(SwingConstants.CENTER);
+		tipoAtencionIPS.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		tipoAtencionIPS.setEditable(false);
-		tipoAtencionIPS.setBounds(152, 289, 86, 20);
+		tipoAtencionIPS.setBounds(418, 255, 223, 30);
 		reporteServicios.add(tipoAtencionIPS);
 		tipoAtencionIPS.setColumns(10);
 
 		DireccionIPS = new JTextField();
+		DireccionIPS.setHorizontalAlignment(SwingConstants.CENTER);
+		DireccionIPS.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		DireccionIPS.setEditable(false);
-		DireccionIPS.setBounds(289, 289, 86, 20);
+		DireccionIPS.setBounds(651, 255, 169, 30);
 		reporteServicios.add(DireccionIPS);
 		DireccionIPS.setColumns(10);
 
 		codigoAmbulancia = new JTextField();
+		codigoAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		codigoAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		codigoAmbulancia.setEditable(false);
-		codigoAmbulancia.setBounds(20, 440, 86, 20);
+		codigoAmbulancia.setBounds(20, 383, 86, 30);
 		reporteServicios.add(codigoAmbulancia);
 		codigoAmbulancia.setColumns(10);
 
 		tipoAmbulancia = new JTextField();
+		tipoAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		tipoAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		tipoAmbulancia.setEditable(false);
-		tipoAmbulancia.setBounds(152, 440, 86, 20);
+		tipoAmbulancia.setBounds(121, 383, 229, 30);
 		reporteServicios.add(tipoAmbulancia);
 		tipoAmbulancia.setColumns(10);
 
 		placaAmbulancia = new JTextField();
+		placaAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		placaAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		placaAmbulancia.setEditable(false);
-		placaAmbulancia.setBounds(289, 440, 86, 20);
+		placaAmbulancia.setBounds(360, 383, 86, 30);
 		reporteServicios.add(placaAmbulancia);
 		placaAmbulancia.setColumns(10);
 
 		medicoAmbulancia = new JTextField();
+		medicoAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		medicoAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		medicoAmbulancia.setEditable(false);
-		medicoAmbulancia.setBounds(428, 440, 86, 20);
+		medicoAmbulancia.setBounds(456, 383, 186, 30);
 		reporteServicios.add(medicoAmbulancia);
 		medicoAmbulancia.setColumns(10);
 
 		horaAmbulancia = new JTextField();
+		horaAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		horaAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		horaAmbulancia.setEditable(false);
-		horaAmbulancia.setBounds(581, 443, 86, 20);
+		horaAmbulancia.setBounds(652, 383, 168, 30);
 		reporteServicios.add(horaAmbulancia);
 		horaAmbulancia.setColumns(10);
 
 		calleAmbulancia = new JTextField();
+		calleAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		calleAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		calleAmbulancia.setEditable(false);
-		calleAmbulancia.setBounds(726, 440, 86, 20);
+		calleAmbulancia.setBounds(20, 465, 86, 30);
 		reporteServicios.add(calleAmbulancia);
 		calleAmbulancia.setColumns(10);
 
 		carreraAmbulancia = new JTextField();
+		carreraAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		carreraAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		carreraAmbulancia.setEditable(false);
-		carreraAmbulancia.setBounds(830, 443, 86, 20);
+		carreraAmbulancia.setBounds(116, 465, 86, 30);
 		reporteServicios.add(carreraAmbulancia);
 		carreraAmbulancia.setColumns(10);
 
 		tarifaAmbulancia = new JTextField();
+		tarifaAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		tarifaAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		tarifaAmbulancia.setEditable(false);
-		tarifaAmbulancia.setBounds(20, 498, 86, 20);
+		tarifaAmbulancia.setBounds(217, 465, 86, 30);
 		reporteServicios.add(tarifaAmbulancia);
 		tarifaAmbulancia.setColumns(10);
 
 		txtTipoUci = new JTextField();
+		txtTipoUci.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTipoUci.setFont(new Font("OCR A Extended", Font.BOLD, 17));
 		txtTipoUci.setEditable(false);
 		txtTipoUci.setText("Tipo UCI");
-		txtTipoUci.setBounds(152, 471, 86, 20);
+		txtTipoUci.setBounds(318, 424, 194, 30);
 		reporteServicios.add(txtTipoUci);
 		txtTipoUci.setColumns(10);
 
 		tipoUCIAmbulancia = new JTextField();
+		tipoUCIAmbulancia.setHorizontalAlignment(SwingConstants.CENTER);
+		tipoUCIAmbulancia.setFont(new Font("OCR A Extended", Font.PLAIN, 16));
 		tipoUCIAmbulancia.setEditable(false);
-		tipoUCIAmbulancia.setBounds(152, 498, 86, 20);
+		tipoUCIAmbulancia.setBounds(318, 465, 194, 30);
 		reporteServicios.add(tipoUCIAmbulancia);
 		tipoUCIAmbulancia.setColumns(10);
 
@@ -1467,8 +1515,7 @@ public class TestGUIAmbulancias extends JFrame {
 				JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente",
 						"fallo finalizacion", JOptionPane.ERROR_MESSAGE);
 			}
-		}
-		else{
+		} else {
 			JOptionPane.showMessageDialog(this, "No se ha seleccionado un servicio para finalizar",
 					"fallo finalizacion", JOptionPane.ERROR_MESSAGE);
 		}
@@ -1501,41 +1548,55 @@ public class TestGUIAmbulancias extends JFrame {
 			}
 			tablaIPS.changeSelection(numFila, 0, false, false);
 		} else {
-			JOptionPane.showMessageDialog(this, "No pudo ser asignado el servicio exitosamente", "fallo finalizacion",
+			JOptionPane.showMessageDialog(this, "No pudo ser asignado el servicio", "fallo finalizacion",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	private void mostrarIpsAmbulancia(ActionEvent e) {
-		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
-		TableModel model = tablaServicios.getModel();
-		int codigo = (int) model.getValueAt(indexFilaSeleccionada, 0);
-		Servicio servicio = ((EmpresaAmbulancias) empresaAmbulancias).buscarServicio(codigo);
-		if (servicio.getEstado() == EstadoServicio.ASIGNADO || servicio.getEstado() == EstadoServicio.FINALIZADO) {
-			codigoAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getCodigo()));
-			horaAmbulancia.setText(Utils.convertirFechaHoraString(servicio.getAmbulancia().getHoraPosicion()));
-			carreraAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getPosicionCarrera()));
-			calleAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getPosicionCalle()));
-			tarifaAmbulancia.setText(String.valueOf(servicio.getAmbulancia().calcularTarifa()));
-			placaAmbulancia.setText(servicio.getAmbulancia().getPlaca());
-			nombreIPS.setText(servicio.getIps().getNombre());
-			DireccionIPS.setText(servicio.getIps().getDireccion().toString());
-			tipoAtencionIPS.setText(servicio.getIps().getTipoAtencion());
-			if (servicio.getAmbulancia() instanceof AmbulanciaBasica) {
-				tipoAmbulancia.setText("BASICA");
-				tipoUCIAmbulancia.setText("");
-				medicoAmbulancia.setText("");
+		long indexFilaSeleccionada = tablaServicios1.getSelectedRow();
+		if (indexFilaSeleccionada != -1) {
+			TableModel model = tablaServicios1.getModel();
+			long codigo = (long) model.getValueAt((int) indexFilaSeleccionada, 0);
+			Servicio servicio = ((EmpresaAmbulancias) empresaAmbulancias).buscarServicio(codigo);
+			if (servicio.getEstado() == EstadoServicio.ASIGNADO || servicio.getEstado() == EstadoServicio.FINALIZADO) {
+				codigoAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getCodigo()));
+				horaAmbulancia.setText(Utils.convertirFechaHoraString(servicio.getAmbulancia().getHoraPosicion()));
+				carreraAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getPosicionCarrera()));
+				calleAmbulancia.setText(String.valueOf(servicio.getAmbulancia().getPosicionCalle()));
+				tarifaAmbulancia.setText(String.valueOf(servicio.getAmbulancia().calcularTarifa()));
+				placaAmbulancia.setText(servicio.getAmbulancia().getPlaca());
+				if (servicio.getIps() != null) {
+					nombreIPS.setText(servicio.getIps().getNombre());
+					DireccionIPS.setText(servicio.getIps().getDireccion().toString());
+					tipoAtencionIPS.setText(servicio.getIps().getTipoAtencion());
+				} else {
+					nombreIPS.setText(null);
+					DireccionIPS.setText(null);
+					tipoAtencionIPS.setText(null);
+				}
+				if (servicio.getAmbulancia() instanceof AmbulanciaBasica) {
+					tipoAmbulancia.setText("BASICA");
+					tipoUCIAmbulancia.setText("");
+					medicoAmbulancia.setText("");
+				}
+				if (servicio.getAmbulancia() instanceof AmbulanciaUCI) {
+					tipoAmbulancia.setText("UCI");
+					tipoUCIAmbulancia.setText(((AmbulanciaUCI) servicio.getAmbulancia()).getTipoUCI().toString());
+					medicoAmbulancia.setText(((AmbulanciaMedicalizada) servicio.getAmbulancia()).getMedico());
+				}
+				if (servicio.getAmbulancia() instanceof AmbulanciaNoMedicalizada) {
+					tipoAmbulancia.setText("NO MEDICALIZADA");
+					tipoUCIAmbulancia.setText("");
+					medicoAmbulancia.setText(((AmbulanciaNoMedicalizada) servicio.getAmbulancia()).getEnfermero());
+				}
+			} else {
+				JOptionPane.showMessageDialog(this, "El servicio no se ha asignado a una ambulancia y a una Ips", "Asignacion de servicio",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
-			if (servicio.getAmbulancia() instanceof AmbulanciaUCI) {
-				tipoAmbulancia.setText("UCI");
-				tipoUCIAmbulancia.setText(((AmbulanciaUCI) servicio.getAmbulancia()).getTipoUCI().toString());
-				medicoAmbulancia.setText(((AmbulanciaMedicalizada) servicio.getAmbulancia()).getMedico());
-			}
-			if (servicio.getAmbulancia() instanceof AmbulanciaNoMedicalizada) {
-				tipoAmbulancia.setText("NO MEDICALIZADA");
-				tipoUCIAmbulancia.setText("");
-				medicoAmbulancia.setText(((AmbulanciaMedicalizada) servicio.getAmbulancia()).getMedico());
-			}
+		} else {
+			JOptionPane.showMessageDialog(this, "No se ha seleccionado un servicio", "Seleccion de servicio",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
