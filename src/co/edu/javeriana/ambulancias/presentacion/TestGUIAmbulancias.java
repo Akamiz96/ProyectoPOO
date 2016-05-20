@@ -990,6 +990,11 @@ public class TestGUIAmbulancias extends JFrame {
 		this.comboBoxTipo.addItem(elemento);
 		elemento = String.valueOf(TipoServicio.URGENCIA);
 		this.comboBoxTipo.addItem(elemento);
+		this.paciente.setText(null);
+		this.telefono.setText(null);
+		this.calleServicio.setText(null);
+		this.carreraServicio.setText(null);
+		this.numeroServicio.setText(null);
 	}
 
 	private void registrarServicio(ActionEvent e) {
@@ -1000,50 +1005,64 @@ public class TestGUIAmbulancias extends JFrame {
 		String tipoServicio = (String) this.comboBoxTipo.getSelectedItem();
 		String telefono = this.telefono.getText();
 		String tipoDireccion = (String) this.comboBoxDireccion.getSelectedItem();
-		calle = Integer.parseInt(this.calleServicio.getText());
-		carrera = Integer.parseInt(this.carreraServicio.getText());
-		int numero = Integer.parseInt(this.numeroServicio.getText());
-		if ((tipoServicio.equals("URGENCIA") || tipoServicio.equals("EMERGENCIA") || tipoServicio.equals("DOMICILIO"))
-				&& (tipoDireccion.equals("CALLE") || tipoDireccion.equals("CARRERA"))) {
-			if (tipoServicio.equals("URGENCIA")) {
-				if (tipoDireccion.equals("CALLE")) {
-					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
-							TipoDireccion.CALLE, calle, carrera, numero);
-					JOptionPane.showMessageDialog(null,
-							"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
-				} else {
-					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
-							TipoDireccion.CARRERA, calle, carrera, numero);
-					JOptionPane.showMessageDialog(null,
-							"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+		String calleS = this.calleServicio.getText();
+		String carreraS = this.carreraServicio.getText();
+		String numeroS = this.numeroServicio.getText();
+		if (paciente.length() != 0 && telefono.length() != 0 && calleS.length() != 0 && carreraS.length() != 0
+				&& carreraS.length() != 0) {
+			calle = Integer.parseInt(calleS);
+			carrera = Integer.parseInt(carreraS);
+			int numero = Integer.parseInt(numeroS);
+			if ((tipoServicio.equals("URGENCIA") || tipoServicio.equals("EMERGENCIA")
+					|| tipoServicio.equals("DOMICILIO"))
+					&& (tipoDireccion.equals("CALLE") || tipoDireccion.equals("CARRERA"))) {
+				if (tipoServicio.equals("URGENCIA")) {
+					if (tipoDireccion.equals("CALLE")) {
+						codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+								TipoDireccion.CALLE, calle, carrera, numero);
+						JOptionPane.showMessageDialog(null,
+								"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+					} else {
+						codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+								TipoDireccion.CARRERA, calle, carrera, numero);
+						JOptionPane.showMessageDialog(null,
+								"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+					}
+				} else if (tipoServicio.equals("EMERGENCIA")) {
+					if (tipoDireccion.equals("CALLE")) {
+						codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+								TipoDireccion.CALLE, calle, carrera, numero);
+						JOptionPane.showMessageDialog(null,
+								"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+					} else {
+						codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+								TipoDireccion.CARRERA, calle, carrera, numero);
+						JOptionPane.showMessageDialog(null,
+								"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+					}
+				} else if (tipoServicio.equals("DOMICILIO")) {
+					if (tipoDireccion.equals("CALLE")) {
+						codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+								TipoDireccion.CALLE, calle, carrera, numero);
+						JOptionPane.showMessageDialog(null,
+								"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+					} else {
+						codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
+								TipoDireccion.CARRERA, calle, carrera, numero);
+						JOptionPane.showMessageDialog(null,
+								"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
+					}
 				}
-			} else if (tipoServicio.equals("EMERGENCIA")) {
-				if (tipoDireccion.equals("CALLE")) {
-					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
-							TipoDireccion.CALLE, calle, carrera, numero);
-					JOptionPane.showMessageDialog(null,
-							"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
-				} else {
-					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
-							TipoDireccion.CARRERA, calle, carrera, numero);
-					JOptionPane.showMessageDialog(null,
-							"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
-				}
-			} else if (tipoServicio.equals("DOMICILIO")) {
-				if (tipoDireccion.equals("CALLE")) {
-					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
-							TipoDireccion.CALLE, calle, carrera, numero);
-					JOptionPane.showMessageDialog(null,
-							"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
-				} else {
-					codigoServicio = empresaAmbulancias.registrarServicio(paciente, TipoServicio.URGENCIA, telefono,
-							TipoDireccion.CARRERA, calle, carrera, numero);
-					JOptionPane.showMessageDialog(null,
-							"El nuevo Servicio tiene codigo: " + String.valueOf(codigoServicio));
-				}
-			}
+				this.paciente.setText(null);
+				this.telefono.setText(null);
+				this.calleServicio.setText(null);
+				this.carreraServicio.setText(null);
+				this.numeroServicio.setText(null);
+			} else
+				JOptionPane.showMessageDialog(null, "Fallo en el registro del servicio");
 		} else
-			JOptionPane.showMessageDialog(null, "Fallo en el registro del servicio");
+			JOptionPane.showMessageDialog(this, "No se han digitado los datos necesarios para registrar un servicio",
+					"Escritura de datos", JOptionPane.ERROR_MESSAGE);
 	}
 
 	public JTabbedPane getTabbedPane() {
@@ -1065,6 +1084,8 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaAmbulancias = new JTable(filaDatosAmbulancias, nombreColumAmbulanciasV);
 			scrollPane.setViewportView(getTablaAmbulancias());
 		}
+		this.calle.setText(null);
+		this.carrera.setText(null);
 	}
 
 	/**
@@ -1434,16 +1455,22 @@ public class TestGUIAmbulancias extends JFrame {
 
 	private void finalizarServicio(ActionEvent e) {
 		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
-		TableModel model = tablaServicios.getModel();
-		long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
-		if (empresaAmbulancias.finalizarServicio(codigo)) {
-			Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
-			fila.set(6, EstadoServicio.FINALIZADO);
-			tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
-			scrollPane_1.setViewportView(getTablaServicios());
-		} else {
-			JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente", "fallo finalizacion",
-					JOptionPane.ERROR_MESSAGE);
+		if (indexFilaSeleccionada != -1) {
+			TableModel model = tablaServicios.getModel();
+			long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
+			if (empresaAmbulancias.finalizarServicio(codigo)) {
+				Vector fila = (Vector) filaDatosServicios.get(indexFilaSeleccionada);
+				fila.set(6, EstadoServicio.FINALIZADO);
+				tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
+				scrollPane_1.setViewportView(getTablaServicios());
+			} else {
+				JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente",
+						"fallo finalizacion", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "No se ha seleccionado un servicio para finalizar",
+					"fallo finalizacion", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -1461,15 +1488,15 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
 			scrollPane_6.setViewportView(getTablaServicios3());
 			int numFila;
-			for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++){
+			for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++) {
 				Vector auxFila = (Vector) filaDatosAmbulancias3V.get(numFila);
-				if((Integer)auxFila.get(0) == servicio.getAmbulancia().getCodigo())
+				if ((Integer) auxFila.get(0) == servicio.getAmbulancia().getCodigo())
 					break;
 			}
 			tablaAmbulancias3.changeSelection(numFila, 0, false, false);
-			for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++){
+			for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++) {
 				Vector auxFila = (Vector) filaDatosIPS.get(numFila);
-				if(auxFila.get(0).equals(servicio.getIps().getNombre()))
+				if (auxFila.get(0).equals(servicio.getIps().getNombre()))
 					break;
 			}
 			tablaIPS.changeSelection(numFila, 0, false, false);
