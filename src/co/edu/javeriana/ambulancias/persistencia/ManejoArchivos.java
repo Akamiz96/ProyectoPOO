@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 
 import co.edu.javeriana.ambulancias.negocio.EmpresaAmbulancias;
 import co.edu.javeriana.ambulancias.negocio.IServiciosAmbulancias;
+import co.edu.javeriana.ambulancias.negocio.Servicio;
 
 /**
  * @author Pablo Ariza y Alejandro Castro
@@ -171,6 +172,7 @@ public class ManejoArchivos {
 			inStream = new FileInputStream(inFile);
 			dataInStream = new ObjectInputStream(inStream);
 			empresaAmbulancia = (IServiciosAmbulancias) dataInStream.readObject();
+			Servicio.setConsecutivo(empresaAmbulancia.getServicios().size() + 1);
 			dataInStream.close();
 			inStream.close();
 		} catch (FileNotFoundException e) {

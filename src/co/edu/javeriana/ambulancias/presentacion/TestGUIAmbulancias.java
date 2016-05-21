@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -896,6 +897,11 @@ public class TestGUIAmbulancias extends JFrame {
 		reporteIPS.add(comboBoxIPS);
 
 		JButton btnMostrarServiciosAsociados = new JButton("Mostrar servicios asociados");
+		btnMostrarServiciosAsociados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarServiciosAsociados(e);
+			}
+		});
 		btnMostrarServiciosAsociados.setBounds(121, 163, 254, 56);
 		reporteIPS.add(btnMostrarServiciosAsociados);
 
@@ -1461,15 +1467,15 @@ public class TestGUIAmbulancias extends JFrame {
 			tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
 			scrollPane_6.setViewportView(getTablaServicios3());
 			int numFila;
-			for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++){
+			for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++) {
 				Vector auxFila = (Vector) filaDatosAmbulancias3V.get(numFila);
-				if((Integer)auxFila.get(0) == servicio.getAmbulancia().getCodigo())
+				if ((Integer) auxFila.get(0) == servicio.getAmbulancia().getCodigo())
 					break;
 			}
 			tablaAmbulancias3.changeSelection(numFila, 0, false, false);
-			for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++){
+			for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++) {
 				Vector auxFila = (Vector) filaDatosIPS.get(numFila);
-				if(auxFila.get(0).equals(servicio.getIps().getNombre()))
+				if (auxFila.get(0).equals(servicio.getIps().getNombre()))
 					break;
 			}
 			tablaIPS.changeSelection(numFila, 0, false, false);
@@ -1558,5 +1564,15 @@ public class TestGUIAmbulancias extends JFrame {
 
 	public JTextField getTipoUCIAmbulancia() {
 		return tipoUCIAmbulancia;
+	}
+
+	private void mostrarServiciosAsociados(ActionEvent e) {
+		String comboIps = (String) comboBoxIPS.getSelectedItem();
+		StringTokenizer token = new StringTokenizer(comboIps, "-");
+		String nombreCombo = token.nextToken().trim();
+		List<Servicio> servicios = empresaAmbulancias.getLasIPS().get(nombreCombo).getServicios();
+		llenarFilasServicio(servicios, filaDatosServicios2);
+		tablaServicios2 = new JTable(filaDatosServicios2, nombreColumServiciosV2);
+		scrollPane_5.setViewportView(getTablaServicios2());
 	}
 }

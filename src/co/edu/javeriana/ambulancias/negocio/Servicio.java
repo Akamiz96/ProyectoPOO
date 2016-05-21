@@ -228,6 +228,10 @@ public class Servicio implements Serializable {
 	public static long getConsecutivo() {
 		return consecutivo;
 	}
+	
+	public static void setConsecutivo(long newConsecutivo){
+		consecutivo = newConsecutivo;
+	}
 
 	/**
 	 * @return the codigo: Representa el codigo unico dado al servicio dentro
