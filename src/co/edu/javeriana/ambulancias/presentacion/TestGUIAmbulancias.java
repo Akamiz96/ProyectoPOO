@@ -1302,6 +1302,18 @@ public class TestGUIAmbulancias extends JFrame {
 
 	private void irReporteServicios(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.reporteServicios);
+		this.nombreIPS.setText(null);
+		this.tipoAtencionIPS.setText(null);
+		this.DireccionIPS.setText(null);
+		this.codigoAmbulancia.setText(null);
+		this.tipoAmbulancia.setText(null);
+		this.placaAmbulancia.setText(null);
+		this.medicoAmbulancia.setText(null);
+		this.horaAmbulancia.setText(null);
+		this.calleAmbulancia.setText(null);
+		this.carreraAmbulancia.setText(null);
+		this.tarifaAmbulancia.setText(null);
+		this.tipoUCIAmbulancia.setText(null);
 		filaDatosServicios1 = new Vector(); // obtener items de venta actual:
 		int indexVentaActual = empresaAmbulancias.getServicios().size() - 1;
 		List<Servicio> items = empresaAmbulancias.getServicios(); // llenar el
@@ -1310,10 +1322,31 @@ public class TestGUIAmbulancias extends JFrame {
 																	// JTable
 																	// datosNegocio
 		Collections.sort(items, new HoraSolicitudComparator());
-		llenarFilasServicio(items, filaDatosServicios1);
+		llenarFilasServicioReporte(items, filaDatosServicios1);
 		// refrescar visualmente el JTable dentro del scroll:
 		tablaServicios1 = new JTable(filaDatosServicios1, nombreColumServiciosV1);
 		scrollPane_2.setViewportView(getTablaServicios1());
+	}
+
+	/**
+	 * @param items
+	 */
+	private void llenarFilasServicioReporte(List<Servicio> items, Vector filasDatos) {
+		for (Servicio servicio : items) {
+			Vector fila = new Vector();
+			fila.add(servicio.getCodigo());
+			fila.add(Utils.convertirFechaHoraString(servicio.getHoraSolicitud()));
+			fila.add(servicio.getPaciente());
+			fila.add(servicio.getTipoServicio());
+			fila.add(servicio.getTelefono());
+			fila.add(servicio.getDireccion().toString());
+			fila.add(servicio.getEstado().toString());
+			if (servicio.getAmbulancia() != null)
+				fila.add(servicio.getAmbulancia().calcularTarifa());
+			else
+				fila.add("");
+			filasDatos.add(fila);
+		}
 	}
 
 	private void irReporteIPS(ActionEvent e) {
@@ -1517,6 +1550,8 @@ public class TestGUIAmbulancias extends JFrame {
 				fila.set(6, EstadoServicio.FINALIZADO);
 				tablaServicios = new JTable(filaDatosServicios, nombreColumServiciosV);
 				scrollPane_1.setViewportView(getTablaServicios());
+				JOptionPane.showMessageDialog(this, "El servicio se ha finalizado exitosamente", "finalizacion exitosa",
+						JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(this, "No pudo ser finalizado el servicio exitosamente",
 						"fallo finalizacion", JOptionPane.ERROR_MESSAGE);
@@ -1597,8 +1632,8 @@ public class TestGUIAmbulancias extends JFrame {
 					medicoAmbulancia.setText(((AmbulanciaNoMedicalizada) servicio.getAmbulancia()).getEnfermero());
 				}
 			} else {
-				JOptionPane.showMessageDialog(this, "El servicio no se ha asignado a una ambulancia y a una Ips", "Asignacion de servicio",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El servicio no se ha asignado a una ambulancia y a una Ips",
+						"Asignacion de servicio", JOptionPane.INFORMATION_MESSAGE);
 			}
 		} else {
 			JOptionPane.showMessageDialog(this, "No se ha seleccionado un servicio", "Seleccion de servicio",
