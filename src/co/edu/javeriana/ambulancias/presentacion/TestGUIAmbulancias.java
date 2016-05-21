@@ -1350,6 +1350,8 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	private void irReporteIPS(ActionEvent e) {
+		filaDatosServicios2.removeAllElements();
+		tablaServicios2.removeAll();
 		this.getTabbedPane().setSelectedIndex(this.reporteIPS);
 		comboBoxIPS.removeAllItems();
 		Set<String> llaves1 = empresaAmbulancias.getLasIPS().keySet();
@@ -1690,12 +1692,20 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	private void mostrarServiciosAsociados(ActionEvent e) {
+		filaDatosServicios2.removeAllElements();
 		String comboIps = (String) comboBoxIPS.getSelectedItem();
 		StringTokenizer token = new StringTokenizer(comboIps, "-");
 		String nombreCombo = token.nextToken().trim();
 		List<Servicio> servicios = empresaAmbulancias.getLasIPS().get(nombreCombo).getServicios();
-		llenarFilasServicio(servicios, filaDatosServicios2);
-		tablaServicios2 = new JTable(filaDatosServicios2, nombreColumServiciosV2);
-		scrollPane_5.setViewportView(getTablaServicios2());
+		if (!servicios.isEmpty()) {
+			llenarFilasServicio(servicios, filaDatosServicios2);
+			tablaServicios2 = new JTable(filaDatosServicios2, nombreColumServiciosV2);
+			scrollPane_5.setViewportView(getTablaServicios2());
+		} else {
+			JOptionPane.showMessageDialog(this, "No hay servicios asociados a la IPS seleccionada",
+					"Sin servicios asociados", JOptionPane.INFORMATION_MESSAGE);
+			tablaServicios2 = new JTable(filaDatosServicios2, nombreColumServiciosV2);
+			scrollPane_5.setViewportView(getTablaServicios2());
+		}
 	}
 }
