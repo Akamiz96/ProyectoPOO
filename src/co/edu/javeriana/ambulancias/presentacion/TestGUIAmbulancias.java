@@ -52,6 +52,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.SystemColor;
+import java.awt.Window.Type;
+import javax.swing.ImageIcon;
 
 public class TestGUIAmbulancias extends JFrame {
 
@@ -276,7 +280,11 @@ public class TestGUIAmbulancias extends JFrame {
 	 * Create the frame.
 	 */
 	public TestGUIAmbulancias() {
-		setForeground(new Color(255, 255, 255));
+		setResizable(false);
+		setFont(new Font("Brush Script Std", Font.PLAIN, 37));
+		setTitle("Sis-Salud");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TestGUIAmbulancias.class.getResource("/Images/Icono Salud.jpg")));
+		setForeground(SystemColor.activeCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 617);
 
@@ -287,6 +295,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnMenu);
 
 		JMenuItem mntmMenuPrincipal = new JMenuItem("Menu Principal");
+		mntmMenuPrincipal.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/kmenuedit_opt.png")));
 		mntmMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irMenuPrincipal(e);
@@ -298,6 +307,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnCargarsalvarSistema);
 
 		JMenuItem mntmCargarDatosDel = new JMenuItem("Cargar datos del sistema");
+		mntmCargarDatosDel.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Load Icon.png")));
 		mntmCargarDatosDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarDatos(e);
@@ -306,6 +316,7 @@ public class TestGUIAmbulancias extends JFrame {
 		mnCargarsalvarSistema.add(mntmCargarDatosDel);
 
 		JMenuItem mntmSalvarDatosDel = new JMenuItem("Salvar datos del sistema");
+		mntmSalvarDatosDel.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Guardar Icon_opt.png")));
 		mntmSalvarDatosDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardarArchivo(e);
@@ -317,6 +328,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnIngresarIpsY);
 
 		JMenuItem mntmIngresarIpsY = new JMenuItem("Ingresar IPS y ambulancias");
+		mntmIngresarIpsY.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
 		mntmIngresarIpsY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irIngresarIPSAmbulancias(e);
@@ -324,21 +336,32 @@ public class TestGUIAmbulancias extends JFrame {
 		});
 		mnIngresarIpsY.add(mntmIngresarIpsY);
 
-		JMenu mnNewMenu = new JMenu("Registrar Posicion");
+		JMenu mnNewMenu = new JMenu("Registrar");
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmPosicionAmbulancia = new JMenuItem("Posicion ambulancia");
+		mntmPosicionAmbulancia.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		mntmPosicionAmbulancia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irRegistrarPosicion(e);
 			}
 		});
 		mnNewMenu.add(mntmPosicionAmbulancia);
+		
+		JMenuItem mntmServicio = new JMenuItem("Servicio");
+		mntmServicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				irRegistrarServicio(e);
+			}
+		});
+		mntmServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
+		mnNewMenu.add(mntmServicio);
 
 		JMenu mnServicio = new JMenu("Servicio");
 		menuBar.add(mnServicio);
 
 		JMenuItem mntmFinalizarServicio = new JMenuItem("Finalizar servicio");
+		mntmFinalizarServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
 		mntmFinalizarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irFinalizarServicio(e);
@@ -347,6 +370,7 @@ public class TestGUIAmbulancias extends JFrame {
 		mnServicio.add(mntmFinalizarServicio);
 
 		JMenuItem mntmRegistrarServicio = new JMenuItem("Registrar servicio");
+		mntmRegistrarServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		mntmRegistrarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irRegistrarServicio(e);
@@ -355,6 +379,7 @@ public class TestGUIAmbulancias extends JFrame {
 		mnServicio.add(mntmRegistrarServicio);
 
 		JMenuItem mntmAsignarServicio = new JMenuItem("Asignar servicio");
+		mntmAsignarServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/checked_user_opt.png")));
 		mntmAsignarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irAsignarServicio(e);
@@ -366,6 +391,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnReportes);
 
 		JMenuItem mntmReporteDeServicios = new JMenuItem("Reporte de servicios con IPS y ambulancias");
+		mntmReporteDeServicios.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/report_icon_opt.jpg")));
 		mntmReporteDeServicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irReporteServicios(e);
@@ -374,6 +400,7 @@ public class TestGUIAmbulancias extends JFrame {
 		mnReportes.add(mntmReporteDeServicios);
 
 		JMenuItem mntmReporteDeIps = new JMenuItem("Reporte de IPS con servicios asociados");
+		mntmReporteDeIps.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/report_icon_opt.jpg")));
 		mntmReporteDeIps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irReporteIPS(e);
@@ -386,13 +413,14 @@ public class TestGUIAmbulancias extends JFrame {
 		contentPane.setLayout(null);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 948, 578);
+		tabbedPane.setBounds(0, 0, 958, 567);
 		contentPane.add(tabbedPane);
 
 		JPanel menuServicios_1 = new JPanel();
 		tabbedPane.addTab("Menu Servicios", null, menuServicios_1, null);
 
 		btnRegistrarLaPosicion = new JButton("Registrar la posicion actual de una ambulancia");
+		btnRegistrarLaPosicion.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		btnRegistrarLaPosicion.setBounds(79, 67, 363, 55);
 		btnRegistrarLaPosicion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -403,6 +431,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnRegistrarLaPosicion);
 
 		JButton btnRegistrarUnServicio = new JButton("Registrar un servicio ");
+		btnRegistrarUnServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		btnRegistrarUnServicio.setBounds(79, 133, 363, 55);
 		btnRegistrarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -412,6 +441,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnRegistrarUnServicio);
 
 		JButton btnAsignarUnServicio = new JButton("Asignar a un servicio una ambulancia y una IPS");
+		btnAsignarUnServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/checked_user_opt.png")));
 		btnAsignarUnServicio.setBounds(79, 200, 363, 55);
 		btnAsignarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -421,6 +451,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnAsignarUnServicio);
 
 		JButton btnFinalizarUnServicio = new JButton("Finalizar un servicio");
+		btnFinalizarUnServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
 		btnFinalizarUnServicio.setBounds(471, 67, 363, 55);
 		btnFinalizarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -430,6 +461,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnFinalizarUnServicio);
 
 		JButton btnReporteServicios = new JButton("Reporte de servicios con IPS y ambulancias asignados");
+		btnReporteServicios.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/report_icon_opt.jpg")));
 		btnReporteServicios.setBounds(471, 133, 363, 55);
 		btnReporteServicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -439,6 +471,7 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnReporteServicios);
 
 		JButton btnReporteDeLa = new JButton("Reporte de la IPS con servicios asociados");
+		btnReporteDeLa.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/report_icon_opt.jpg")));
 		btnReporteDeLa.setBounds(471, 200, 363, 55);
 		btnReporteDeLa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -447,7 +480,8 @@ public class TestGUIAmbulancias extends JFrame {
 		});
 		menuServicios_1.add(btnReporteDeLa);
 
-		JButton ingresarIPSAmbulancias = new JButton("Ingresar IPS y Ambulancias");
+		JButton ingresarIPSAmbulancias = new JButton("<html><p>Ingresar IPS y </p><p>Ambulancias</p></html>");
+		ingresarIPSAmbulancias.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
 		ingresarIPSAmbulancias.setBounds(147, 303, 242, 73);
 		ingresarIPSAmbulancias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -456,7 +490,8 @@ public class TestGUIAmbulancias extends JFrame {
 		});
 		menuServicios_1.add(ingresarIPSAmbulancias);
 
-		JButton btnSalvarSi = new JButton("Salvar datos del sistema");
+		JButton btnSalvarSi = new JButton("<html><p>Salvar datos del </p><p>sistema</p></html>");
+		btnSalvarSi.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Guardar Icon_opt.png")));
 		btnSalvarSi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardarArchivo(e);
@@ -465,7 +500,8 @@ public class TestGUIAmbulancias extends JFrame {
 		btnSalvarSi.setBounds(547, 285, 225, 62);
 		menuServicios_1.add(btnSalvarSi);
 
-		JButton btnCargarDatosDel = new JButton("Cargar datos del sistema");
+		JButton btnCargarDatosDel = new JButton("<html><p>Cargar datos del </p><p>sistema</p></html>");
+		btnCargarDatosDel.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Load Icon.png")));
 		btnCargarDatosDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarDatos(e);
@@ -479,6 +515,7 @@ public class TestGUIAmbulancias extends JFrame {
 		ingresarIPSyAmbulancias.setLayout(null);
 
 		JButton btnSeleccionarArchivoDe = new JButton("Seleccionar archivo de IPS");
+		btnSeleccionarArchivoDe.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/hospital_icon_opt.jpg")));
 		btnSeleccionarArchivoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -492,6 +529,7 @@ public class TestGUIAmbulancias extends JFrame {
 		ingresarIPSyAmbulancias.add(btnSeleccionarArchivoDe);
 
 		JButton btnSeleccionarArchivoDe_1 = new JButton("Seleccionar archivo de ambulancias");
+		btnSeleccionarArchivoDe_1.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
 		btnSeleccionarArchivoDe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -505,12 +543,13 @@ public class TestGUIAmbulancias extends JFrame {
 		ingresarIPSyAmbulancias.add(btnSeleccionarArchivoDe_1);
 
 		btnRegresar = new JButton("Regresar");
+		btnRegresar.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt.png")));
 		btnRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regresar(e);
 			}
 		});
-		btnRegresar.setBounds(712, 403, 159, 66);
+		btnRegresar.setBounds(712, 403, 200, 84);
 		ingresarIPSyAmbulancias.add(btnRegresar);
 
 		JLabel lblIngresarIpsY = new JLabel("Ingresar IPS y ambulancias");
@@ -551,22 +590,24 @@ public class TestGUIAmbulancias extends JFrame {
 		carrera.setColumns(10);
 
 		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Actualizar Icon.png")));
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registrarPosicionActual(e);
 			}
 		});
-		btnActualizar.setBounds(327, 435, 200, 50);
+		btnActualizar.setBounds(274, 432, 257, 72);
 		btnActualizar.setFont(new Font("Script MT Bold", Font.ITALIC, 35));
 		registrarPosicionAmbulancia.add(btnActualizar);
 
 		btnRegresar_1 = new JButton("Regresar");
+		btnRegresar_1.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt.png")));
 		btnRegresar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regresar(e);
 			}
 		});
-		btnRegresar_1.setBounds(760, 435, 131, 50);
+		btnRegresar_1.setBounds(739, 435, 168, 69);
 		registrarPosicionAmbulancia.add(btnRegresar_1);
 
 		scrollPane = new JScrollPane();
@@ -591,15 +632,17 @@ public class TestGUIAmbulancias extends JFrame {
 		finalizarServicio.add(lblServicios_1);
 
 		btnRegresar_4 = new JButton("Regresar");
+		btnRegresar_4.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt.png")));
 		btnRegresar_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regresar(e);
 			}
 		});
-		btnRegresar_4.setBounds(750, 424, 141, 61);
+		btnRegresar_4.setBounds(750, 424, 156, 72);
 		finalizarServicio.add(btnRegresar_4);
 
 		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
+		btnFinalizarServicioSeleccionado.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
 		btnFinalizarServicioSeleccionado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finalizarServicio(e);
@@ -685,21 +728,23 @@ public class TestGUIAmbulancias extends JFrame {
 		numeroServicio.setColumns(10);
 
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registrarServicio(e);
 			}
 		});
-		btnRegistrar.setBounds(763, 11, 128, 76);
+		btnRegistrar.setBounds(763, 11, 180, 76);
 		registrarServicio.add(btnRegistrar);
 
 		JButton btnRegresar_2 = new JButton("Regresar");
+		btnRegresar_2.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt.png")));
 		btnRegresar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regresar(e);
 			}
 		});
-		btnRegresar_2.setBounds(763, 409, 128, 76);
+		btnRegresar_2.setBounds(763, 409, 156, 76);
 		registrarServicio.add(btnRegresar_2);
 
 		comboBoxTipo = new JComboBox();
@@ -735,12 +780,13 @@ public class TestGUIAmbulancias extends JFrame {
 		reporteServicios.add(lblAmbulanciaAsignada);
 
 		btnRegresar_5 = new JButton("Regresar");
+		btnRegresar_5.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt.png")));
 		btnRegresar_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				regresar(arg0);
 			}
 		});
-		btnRegresar_5.setBounds(781, 424, 147, 71);
+		btnRegresar_5.setBounds(777, 424, 156, 93);
 		reporteServicios.add(btnRegresar_5);
 
 		JButton btnMostrar = new JButton("<html><p>Mostrar </p><p>IPS y</p><p>ambulancia asignadas</p></html>");
@@ -988,12 +1034,13 @@ public class TestGUIAmbulancias extends JFrame {
 		asignarServicio.add(lblAmbulancias_1);
 
 		btnRegresar_3 = new JButton("Regresar");
+		btnRegresar_3.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt1.png")));
 		btnRegresar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regresar(e);
 			}
 		});
-		btnRegresar_3.setBounds(744, 469, 189, 36);
+		btnRegresar_3.setBounds(743, 469, 189, 43);
 		asignarServicio.add(btnRegresar_3);
 
 		JButton btnAsignarServicioSeleccionado = new JButton("Asignar servicio seleccionado");
@@ -1052,6 +1099,7 @@ public class TestGUIAmbulancias extends JFrame {
 		reporteIPS.add(comboBoxIPS);
 
 		JButton btnMostrarServiciosAsociados = new JButton("Mostrar servicios asociados");
+		btnMostrarServiciosAsociados.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Show Icon.png")));
 		btnMostrarServiciosAsociados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarServiciosAsociados(e);
@@ -1061,12 +1109,13 @@ public class TestGUIAmbulancias extends JFrame {
 		reporteIPS.add(btnMostrarServiciosAsociados);
 
 		btnRegresar_6 = new JButton("Regresar");
+		btnRegresar_6.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/go-back-icon_opt.png")));
 		btnRegresar_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regresar(e);
 			}
 		});
-		btnRegresar_6.setBounds(780, 443, 148, 63);
+		btnRegresar_6.setBounds(753, 443, 175, 61);
 		reporteIPS.add(btnRegresar_6);
 
 		this.getTabbedPane().setSelectedIndex(5);
