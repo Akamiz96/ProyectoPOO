@@ -509,6 +509,12 @@ public class TestGUIAmbulancias extends JFrame {
 		});
 		btnCargarDatosDel.setBounds(547, 365, 225, 62);
 		menuServicios_1.add(btnCargarDatosDel);
+		
+		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
+		label.setBounds(0, 0, 953, 523);
+		menuServicios_1.add(label);
 
 		JPanel ingresarIPSyAmbulancias = new JPanel();
 		tabbedPane.addTab("Ingresar IPS y Ambulancias", null, ingresarIPSyAmbulancias, null);
@@ -557,6 +563,11 @@ public class TestGUIAmbulancias extends JFrame {
 		lblIngresarIpsY.setFont(new Font("Segoe Script", Font.BOLD | Font.ITALIC, 50));
 		lblIngresarIpsY.setBounds(0, 11, 912, 52);
 		ingresarIPSyAmbulancias.add(lblIngresarIpsY);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Icono Salud.jpg")));
+		label_1.setBounds(0, 0, 953, 523);
+		ingresarIPSyAmbulancias.add(label_1);
 
 		JPanel registrarPosicionAmbulancia = new JPanel();
 		tabbedPane.addTab("Registrar Posicion Ambulancia", null, registrarPosicionAmbulancia, null);
@@ -616,6 +627,11 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaAmbulancias = getTablaAmbulancias();
 		scrollPane.setViewportView(tablaAmbulancias);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/disruptive-health-care.jpg")));
+		label_2.setBounds(0, 0, 953, 523);
+		registrarPosicionAmbulancia.add(label_2);
 
 		JPanel finalizarServicio = new JPanel();
 		tabbedPane.addTab("Finalizar un Servicio", null, finalizarServicio, null);
@@ -657,6 +673,11 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios = getTablaServicios();
 		scrollPane_1.setViewportView(tablaServicios);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/disruptive-health-care.jpg")));
+		label_3.setBounds(0, 0, 953, 523);
+		finalizarServicio.add(label_3);
 
 		JPanel registrarServicio = new JPanel();
 		tabbedPane.addTab("Registrar un Servicio", null, registrarServicio, null);
@@ -754,6 +775,11 @@ public class TestGUIAmbulancias extends JFrame {
 		comboBoxDireccion = new JComboBox();
 		comboBoxDireccion.setBounds(418, 252, 316, 47);
 		registrarServicio.add(comboBoxDireccion);
+		
+		JLabel label_4 = new JLabel("");
+		label_4.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
+		label_4.setBounds(0, 0, 953, 523);
+		registrarServicio.add(label_4);
 
 		JPanel reporteServicios = new JPanel();
 		tabbedPane.addTab("Reporte Servicios con IPS y ambulancias asignados", null, reporteServicios, null);
@@ -1008,28 +1034,33 @@ public class TestGUIAmbulancias extends JFrame {
 		tipoUCIAmbulancia.setBounds(318, 465, 194, 30);
 		reporteServicios.add(tipoUCIAmbulancia);
 		tipoUCIAmbulancia.setColumns(10);
+		
+		JLabel label_5 = new JLabel("");
+		label_5.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
+		label_5.setBounds(0, 0, 953, 523);
+		reporteServicios.add(label_5);
 
 		JPanel asignarServicio = new JPanel();
 		tabbedPane.addTab("Asignar un Servicio a una Ambulancia y una IPS", null, asignarServicio, null);
 		asignarServicio.setLayout(null);
 
 		JLabel lblAsignarUnServicio = new JLabel("Asignar un servicio a una ambulancia y una IPS");
-		lblAsignarUnServicio.setFont(new Font("MV Boli", Font.BOLD | Font.ITALIC, 31));
-		lblAsignarUnServicio.setBounds(10, 0, 800, 51);
+		lblAsignarUnServicio.setFont(new Font("MV Boli", Font.BOLD, 33));
+		lblAsignarUnServicio.setBounds(10, 0, 870, 51);
 		asignarServicio.add(lblAsignarUnServicio);
 
 		JLabel lblServicios = new JLabel("Servicios");
-		lblServicios.setFont(new Font("Yu Gothic Light", Font.BOLD, 26));
+		lblServicios.setFont(new Font("Source Sans Pro", Font.BOLD, 31));
 		lblServicios.setBounds(10, 43, 146, 31);
 		asignarServicio.add(lblServicios);
 
 		JLabel lblIps = new JLabel("IPS");
-		lblIps.setFont(new Font("Yu Gothic Light", Font.BOLD, 26));
+		lblIps.setFont(new Font("Source Sans Pro", Font.BOLD, 31));
 		lblIps.setBounds(10, 222, 61, 31);
 		asignarServicio.add(lblIps);
 
 		JLabel lblAmbulancias_1 = new JLabel("Ambulancias");
-		lblAmbulancias_1.setFont(new Font("Yu Gothic Light", Font.BOLD, 26));
+		lblAmbulancias_1.setFont(new Font("Source Sans Pro", Font.BOLD, 31));
 		lblAmbulancias_1.setBounds(10, 335, 189, 31);
 		asignarServicio.add(lblAmbulancias_1);
 
@@ -1074,6 +1105,11 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaAmbulancias3 = getTablaAmbulancias3();
 		scrollPane_8.setViewportView(tablaAmbulancias3);
+		
+		JLabel label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
+		label_6.setBounds(0, 0, 953, 523);
+		asignarServicio.add(label_6);
 
 		JPanel reporteIPS = new JPanel();
 		tabbedPane.addTab("Reporte de IPS con servicios asociados", null, reporteIPS, null);
@@ -1126,6 +1162,11 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios2 = this.getTablaServicios2();
 		scrollPane_5.setViewportView(tablaServicios2);
+		
+		JLabel label_7 = new JLabel("");
+		label_7.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
+		label_7.setBounds(0, 0, 953, 523);
+		reporteIPS.add(label_7);
 		/*
 		 * Reaccion al cambio de tabs dentro de la interfaz
 		 */
