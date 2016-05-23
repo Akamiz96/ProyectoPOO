@@ -59,204 +59,399 @@ import javax.swing.ImageIcon;
 
 public class TestGUIAmbulancias extends JFrame {
 
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra el menu de servicios
 	 */
 	private final static int menuServicios = 0;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Registrar la posicion de
 	 * la ambulancia
 	 */
 	private final static int registrarPosicion = 2;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Registrar un servicio
 	 */
 	private final static int registrarServicio = 4;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Asignar un servicio
 	 */
 	private final static int asignarServicio = 6;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Finalizar un servicio
 	 */
 	private final static int finalizarServicio = 3;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Reporte de Servicios con
 	 * IPS y Ambulancias asociados
 	 */
 	private final static int reporteServicios = 5;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Reporte de IPS con
 	 * Servicios Asociados
 	 */
 	private final static int reporteIPS = 7;
-	/*
+	/**
 	 * Atributo que indica el tab en cual se encuentra Ingresar IPS y
 	 * Ambulancias
 	 */
 	private final static int ingresarIPSAmbulancias = 1;
-	/*
+	/**
 	 * Nombres de los encabezados para registrar la posicion de una ambulancia
 	 */
 	private String[] nombreColumAmbulancias = { "codigo", "tipo", "placa", "medico/enfermero", "tipo UCI",
 			"hora posicion", "calle", "carrera" };
-	/*
+	/**
 	 * Nombres de los encabezados para registrar la posicion de una ambulancia
 	 */
 	private Vector nombreColumAmbulanciasV;
-	/*
+	/**
 	 * Vector de vectores de datos para registrar la posicion de una ambulancia
 	 */
 	private Vector filaDatosAmbulancias;
-	/*
+	/**
 	 * Nombres de los encabezados para finalizar un servicio
 	 */
 	private String[] nombreColumServicios = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
 			"direccion", "estado", "IPS", "ambul." };
-	/*
+	/**
 	 * Nombres de los encabezados para finalizar un servicio
 	 */
 	private Vector nombreColumServiciosV;
-	/*
+	/**
 	 * Vector de vectores de datos para finalizar un servicio
 	 */
 	private Vector filaDatosServicios;
-	/*
+	/**
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
 	private String[] nombreColumServicios1 = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
 			"direccion", "estado", "valor" };
-	/*
+	/**
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
 	private Vector nombreColumServiciosV1;
-	/*
+	/**
 	 * Vector de vectores de datos para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
 	private Vector filaDatosServicios1;
-	/*
+	/**
 	 * Nombres de los encabezados para reporte IPS con servicios asociados
 	 */
 	private String[] nombreColumServicios2 = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
 			"direccion", "estado", "IPS", "ambul." };
-	/*
+	/**
 	 * Nombres de los encabezados para reporte IPS con servicios asociados
 	 */
 	private Vector nombreColumServiciosV2;
-	/*
+	/**
 	 * Vector de vectores de datos para reporte IPS con servicios asociados
 	 */
 	private Vector filaDatosServicios2;
-	/*
+	/**
 	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una
 	 * Ambulancia
 	 */
 	private String[] nombreColumServicios3 = { "codigo", "hora sol.", "paciente", "tipo servicio", "telefono",
 			"direccion", "estado", "IPS", "ambul." };
-	/*
+	/**
 	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una
 	 * Ambulancia
 	 */
 	private Vector nombreColumServiciosV3;
-	/*
+	/**
 	 * Vector de vectores de datos para Asignar un Servicio a una IPS y a una
 	 * Ambulancia
 	 */
 	private Vector filaDatosServicios3;
-	/*
+	/**
 	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una
 	 * Ambulancia
 	 */
 	private String[] nombreColumIPS = { "nombre", "tipo de atencion", "direccion" };
-	/*
+	/**
 	 * Nombres de los encabezados para Asignar un Servicio a una IPS y a una
 	 * Ambulancia
 	 */
 	private Vector nombreColumIPSV;
-	/*
+	/**
 	 * Vector de vectores de datos para Asignar un Servicio a una IPS y a una
 	 * Ambulancia
 	 */
 	private Vector filaDatosIPS;
-	/*
+	/**
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
 	private String[] nombreColumAmbulancias3 = { "codigo", "tipo", "placa", "medico/enfermero", "Tipo UCI",
 			"hora posicion", "calle", "carrera" };
-	/*
+	/**
 	 * Nombres de los encabezados para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
 	private Vector nombreColumAmbulancias3V;
-	/*
+	/**
 	 * Vector de vectores de datos para reporte Servicios con IPS y Ambulancias
 	 * asignados
 	 */
 	private Vector filaDatosAmbulancias3V;
-
+	/**
+	 * Atributo EmpresaAmbulancias que representa el sistema.
+	 */
 	private IServiciosAmbulancias empresaAmbulancias = new EmpresaAmbulancias("AAA");
+	/**
+	 * Panel en el cual se encuentran todas las ventanas. (Tabs)
+	 */
 	private JPanel contentPane;
+	/**
+	 * TextField donde se escribe la calle para registrar la calle de una
+	 * ambulancia
+	 */
 	private JTextField calle;
+	/**
+	 * TextField donde se escribe la carrera para registrar la carrera de una
+	 * ambulancia
+	 */
 	private JTextField carrera;
+	/**
+	 * TextField donde se escribe el nombre del paciente para registrar un
+	 * paciente
+	 */
 	private JTextField paciente;
+	/**
+	 * TextField donde se escribe el numero para registrar un paciente
+	 */
 	private JTextField telefono;
+	/**
+	 * TextField donde se escribe la calle para registrar un paciente
+	 */
 	private JTextField calleServicio;
+	/**
+	 * TextField donde se escribe la carrera para registrar un paciente
+	 */
 	private JTextField carreraServicio;
+	/**
+	 * TextField donde se escribe el numero para registrar un paciente
+	 */
 	private JTextField numeroServicio;
+	/**
+	 * Combobox para el tipo de servicio a registrar
+	 * 
+	 * @see TipoServicio
+	 */
 	private JComboBox comboBoxTipo;
+	/**
+	 * Combobox para el tipo de direccion a registrar
+	 * 
+	 * @see TipoDireccion
+	 */
 	private JComboBox comboBoxDireccion;
+	/**
+	 * Tab de servicios
+	 */
 	private JTabbedPane tabbedPane;
+	/**
+	 * Tabla de ambulancias para registrar su posicion actual
+	 */
 	private JTable tablaAmbulancias;
+	/**
+	 * Tabla de servicios para Finalizar un servicio
+	 */
 	private JTable tablaServicios;
+	/**
+	 * Tabla de servicios para Reporte de servicios con IPS Y ambulancia
+	 * asignados
+	 */
 	private JTable tablaServicios1;
+	/**
+	 * Tabla de servicios para Reporte de IPS con servicios Asociados
+	 */
 	private JTable tablaServicios2;
+	/**
+	 * Tabla de servicios para Asignar un servicio
+	 */
 	private JTable tablaServicios3;
+	/**
+	 * Tabla de IPS para Asignar un servicio
+	 */
 	private JTable tablaIPS;
+	/**
+	 * Tabla de ambulancias para asignar un servicio
+	 */
 	private JTable tablaAmbulancias3;
+	/**
+	 * Boton para regresar al menu principal
+	 */
 	private JButton btnRegresar_5;
+	/**
+	 * Boton para regresar al menu principal
+	 */
 	private JButton btnRegresar_4;
+	/**
+	 * Boton para regresar al menu principal
+	 */
 	private JButton btnRegresar_3;
+	/**
+	 * Boton para regresar al menu principal
+	 */
 	private JButton btnRegresar_6;
+	/**
+	 * Boton para regresar al menu principal
+	 */
 	private JButton btnRegresar_1;
+	/**
+	 * Boton para regresar al menu principal
+	 */
 	private JButton btnRegresar;
+	/**
+	 * Boton del menu principal para actualizar la posicion de una ambulancia
+	 */
 	private JButton btnRegistrarLaPosicion;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane_1;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane_5;
+	/**
+	 * Combobox del reporte de IPS con servicios asociados en donde van las IPS
+	 */
 	private JComboBox comboBoxIPS;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane_2;
+	/**
+	 * Boton para actualizar la posicion de una ambulancia
+	 */
 	private JButton btnActualizar;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane_6;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane_7;
+	/**
+	 * scrollPane donde se inserta una tabla
+	 */
 	private JScrollPane scrollPane_8;
+	/**
+	 * Campo par registrar el nombre de la IPS (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtNombre;
+	/**
+	 * Campo par registrar el tipo de atencion de la IPS (Reporte Servicios)
+	 * (TITULO)
+	 */
 	private JTextField txtTipoAtencion;
+	/**
+	 * Campo par registrar la direccion de la IPS (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtDireccion;
+	/**
+	 * Campo par registrar el codigo de la ambulancia (Reporte
+	 * Servicios)(TITULO)
+	 */
 	private JTextField txtCodigo;
+	/**
+	 * Campo par registrar el tipo de la ambulancia (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtTipo;
+	/**
+	 * Campo par registrar la placa de la ambulancia (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtPlaca;
+	/**
+	 * Campo par registrar el nombre del enfermero/medico de la ambulancia
+	 * (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtMedicoEnfermero;
+	/**
+	 * Campo par registrar la hora de registro de la Ambulancia (Reporte
+	 * Servicios)(TITULO)
+	 */
 	private JTextField txtHoraSolicitud;
+	/**
+	 * Campo par registrar la calle de la ambulancia (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtCalle;
+	/**
+	 * Campo par registrar la carrera de la ambulancia (Reporte
+	 * Servicios)(TITULO)
+	 */
 	private JTextField txtCarrera;
+	/**
+	 * Campo par registrar la tarifa del servicio (Reporte Servicios)(TITULO)
+	 */
 	private JTextField txtTarifa;
+	/**
+	 * Campo par registrar el nombre de la IPS (Reporte Servicios)
+	 */
 	private JTextField nombreIPS;
+	/**
+	 * Campo par registrar el Tipo de atencion de la IPS (Reporte Servicios)
+	 */
 	private JTextField tipoAtencionIPS;
+	/**
+	 * Campo par registrar la direccion de la IPS (Reporte Servicios)
+	 */
 	private JTextField DireccionIPS;
+	/**
+	 * Campo par registrar el codigo de la Ambulancia (Reporte Servicios)
+	 */
 	private JTextField codigoAmbulancia;
+	/**
+	 * Campo par registrar el tipo de la ambulancia asignada (Reporte Servicios)
+	 */
 	private JTextField tipoAmbulancia;
+	/**
+	 * Campo par registrar la placa de la Ambulancia (Reporte Servicios)
+	 */
 	private JTextField placaAmbulancia;
+	/**
+	 * Campo par registrar el nombre del medico de la Ambulancia (Reporte
+	 * Servicios)
+	 */
 	private JTextField medicoAmbulancia;
+	/**
+	 * Campo par registrar la hora de registro de la posicion de la ambulancia
+	 * (Reporte Servicios)
+	 */
 	private JTextField horaAmbulancia;
+	/**
+	 * Campo par registrar la calle de la ambulancia (Reporte Servicios)
+	 */
 	private JTextField calleAmbulancia;
+	/**
+	 * Campo par registrar la carrera de la ambulancia (Reporte Servicios)
+	 */
 	private JTextField carreraAmbulancia;
+	/**
+	 * Campo par registrar la tarifa de la ambulancia (Reporte Servicios)
+	 */
 	private JTextField tarifaAmbulancia;
+	/**
+	 * Campo par registrar el tipo UCI de la ambulancia (Reporte
+	 * Servicios)(TITULO)
+	 */
 	private JTextField txtTipoUci;
+	/**
+	 * Campo par registrar el tipo UCI de la ambulancia (Reporte Servicios)
+	 */
 	private JTextField tipoUCIAmbulancia;
+	/**
+	 * Menu auxiliar para la parte superior de la ventana
+	 */
 	private JMenuBar menuBar;
 
 	/**
@@ -277,13 +472,14 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Creador de la interfaz grafica
 	 */
 	public TestGUIAmbulancias() {
 		setResizable(false);
 		setFont(new Font("Brush Script Std", Font.PLAIN, 37));
 		setTitle("Sis-Salud");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TestGUIAmbulancias.class.getResource("/Images/Icono Salud.jpg")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TestGUIAmbulancias.class.getResource("/Images/Icono Salud.jpg")));
 		setForeground(SystemColor.activeCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 617);
@@ -340,14 +536,15 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmPosicionAmbulancia = new JMenuItem("Posicion ambulancia");
-		mntmPosicionAmbulancia.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
+		mntmPosicionAmbulancia
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		mntmPosicionAmbulancia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irRegistrarPosicion(e);
 			}
 		});
 		mnNewMenu.add(mntmPosicionAmbulancia);
-		
+
 		JMenuItem mntmServicio = new JMenuItem("Servicio");
 		mntmServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -361,7 +558,8 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnServicio);
 
 		JMenuItem mntmFinalizarServicio = new JMenuItem("Finalizar servicio");
-		mntmFinalizarServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
+		mntmFinalizarServicio
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
 		mntmFinalizarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irFinalizarServicio(e);
@@ -370,7 +568,8 @@ public class TestGUIAmbulancias extends JFrame {
 		mnServicio.add(mntmFinalizarServicio);
 
 		JMenuItem mntmRegistrarServicio = new JMenuItem("Registrar servicio");
-		mntmRegistrarServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
+		mntmRegistrarServicio
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		mntmRegistrarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irRegistrarServicio(e);
@@ -379,7 +578,8 @@ public class TestGUIAmbulancias extends JFrame {
 		mnServicio.add(mntmRegistrarServicio);
 
 		JMenuItem mntmAsignarServicio = new JMenuItem("Asignar servicio");
-		mntmAsignarServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/checked_user_opt.png")));
+		mntmAsignarServicio
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/checked_user_opt.png")));
 		mntmAsignarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irAsignarServicio(e);
@@ -391,7 +591,8 @@ public class TestGUIAmbulancias extends JFrame {
 		menuBar.add(mnReportes);
 
 		JMenuItem mntmReporteDeServicios = new JMenuItem("Reporte de servicios con IPS y ambulancias");
-		mntmReporteDeServicios.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/report_icon_opt.jpg")));
+		mntmReporteDeServicios
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/report_icon_opt.jpg")));
 		mntmReporteDeServicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				irReporteServicios(e);
@@ -420,7 +621,8 @@ public class TestGUIAmbulancias extends JFrame {
 		tabbedPane.addTab("Menu Servicios", null, menuServicios_1, null);
 
 		btnRegistrarLaPosicion = new JButton("Registrar la posicion actual de una ambulancia");
-		btnRegistrarLaPosicion.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
+		btnRegistrarLaPosicion
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		btnRegistrarLaPosicion.setBounds(79, 67, 363, 55);
 		btnRegistrarLaPosicion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -431,7 +633,8 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnRegistrarLaPosicion);
 
 		JButton btnRegistrarUnServicio = new JButton("Registrar un servicio ");
-		btnRegistrarUnServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
+		btnRegistrarUnServicio
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/registrationIcon_opt.png")));
 		btnRegistrarUnServicio.setBounds(79, 133, 363, 55);
 		btnRegistrarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -441,7 +644,8 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnRegistrarUnServicio);
 
 		JButton btnAsignarUnServicio = new JButton("Asignar a un servicio una ambulancia y una IPS");
-		btnAsignarUnServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/checked_user_opt.png")));
+		btnAsignarUnServicio
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/checked_user_opt.png")));
 		btnAsignarUnServicio.setBounds(79, 200, 363, 55);
 		btnAsignarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -451,7 +655,8 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnAsignarUnServicio);
 
 		JButton btnFinalizarUnServicio = new JButton("Finalizar un servicio");
-		btnFinalizarUnServicio.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
+		btnFinalizarUnServicio
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
 		btnFinalizarUnServicio.setBounds(471, 67, 363, 55);
 		btnFinalizarUnServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -481,7 +686,8 @@ public class TestGUIAmbulancias extends JFrame {
 		menuServicios_1.add(btnReporteDeLa);
 
 		JButton ingresarIPSAmbulancias = new JButton("<html><p>Ingresar IPS y </p><p>Ambulancias</p></html>");
-		ingresarIPSAmbulancias.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
+		ingresarIPSAmbulancias
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
 		ingresarIPSAmbulancias.setBounds(147, 303, 242, 73);
 		ingresarIPSAmbulancias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -509,7 +715,7 @@ public class TestGUIAmbulancias extends JFrame {
 		});
 		btnCargarDatosDel.setBounds(547, 365, 225, 62);
 		menuServicios_1.add(btnCargarDatosDel);
-		
+
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
@@ -521,7 +727,8 @@ public class TestGUIAmbulancias extends JFrame {
 		ingresarIPSyAmbulancias.setLayout(null);
 
 		JButton btnSeleccionarArchivoDe = new JButton("Seleccionar archivo de IPS");
-		btnSeleccionarArchivoDe.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/hospital_icon_opt.jpg")));
+		btnSeleccionarArchivoDe
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/hospital_icon_opt.jpg")));
 		btnSeleccionarArchivoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -535,7 +742,8 @@ public class TestGUIAmbulancias extends JFrame {
 		ingresarIPSyAmbulancias.add(btnSeleccionarArchivoDe);
 
 		JButton btnSeleccionarArchivoDe_1 = new JButton("Seleccionar archivo de ambulancias");
-		btnSeleccionarArchivoDe_1.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
+		btnSeleccionarArchivoDe_1
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/ambulance_icon_opt.jpg")));
 		btnSeleccionarArchivoDe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -563,7 +771,7 @@ public class TestGUIAmbulancias extends JFrame {
 		lblIngresarIpsY.setFont(new Font("Segoe Script", Font.BOLD | Font.ITALIC, 50));
 		lblIngresarIpsY.setBounds(0, 11, 912, 52);
 		ingresarIPSyAmbulancias.add(lblIngresarIpsY);
-		
+
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Icono Salud.jpg")));
 		label_1.setBounds(0, 0, 953, 523);
@@ -627,7 +835,7 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaAmbulancias = getTablaAmbulancias();
 		scrollPane.setViewportView(tablaAmbulancias);
-		
+
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/disruptive-health-care.jpg")));
 		label_2.setBounds(0, 0, 953, 523);
@@ -658,7 +866,8 @@ public class TestGUIAmbulancias extends JFrame {
 		finalizarServicio.add(btnRegresar_4);
 
 		JButton btnFinalizarServicioSeleccionado = new JButton("Finalizar servicio seleccionado");
-		btnFinalizarServicioSeleccionado.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
+		btnFinalizarServicioSeleccionado
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/unit-completed-icon_opt.png")));
 		btnFinalizarServicioSeleccionado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finalizarServicio(e);
@@ -673,7 +882,7 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios = getTablaServicios();
 		scrollPane_1.setViewportView(tablaServicios);
-		
+
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/disruptive-health-care.jpg")));
 		label_3.setBounds(0, 0, 953, 523);
@@ -775,7 +984,7 @@ public class TestGUIAmbulancias extends JFrame {
 		comboBoxDireccion = new JComboBox();
 		comboBoxDireccion.setBounds(418, 252, 316, 47);
 		registrarServicio.add(comboBoxDireccion);
-		
+
 		JLabel label_4 = new JLabel("");
 		label_4.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
 		label_4.setBounds(0, 0, 953, 523);
@@ -1034,7 +1243,7 @@ public class TestGUIAmbulancias extends JFrame {
 		tipoUCIAmbulancia.setBounds(318, 465, 194, 30);
 		reporteServicios.add(tipoUCIAmbulancia);
 		tipoUCIAmbulancia.setColumns(10);
-		
+
 		JLabel label_5 = new JLabel("");
 		label_5.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
 		label_5.setBounds(0, 0, 953, 523);
@@ -1105,7 +1314,7 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaAmbulancias3 = getTablaAmbulancias3();
 		scrollPane_8.setViewportView(tablaAmbulancias3);
-		
+
 		JLabel label_6 = new JLabel("");
 		label_6.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
 		label_6.setBounds(0, 0, 953, 523);
@@ -1135,7 +1344,8 @@ public class TestGUIAmbulancias extends JFrame {
 		reporteIPS.add(comboBoxIPS);
 
 		JButton btnMostrarServiciosAsociados = new JButton("Mostrar servicios asociados");
-		btnMostrarServiciosAsociados.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Show Icon.png")));
+		btnMostrarServiciosAsociados
+				.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/Show Icon.png")));
 		btnMostrarServiciosAsociados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarServiciosAsociados(e);
@@ -1162,12 +1372,12 @@ public class TestGUIAmbulancias extends JFrame {
 
 		tablaServicios2 = this.getTablaServicios2();
 		scrollPane_5.setViewportView(tablaServicios2);
-		
+
 		JLabel label_7 = new JLabel("");
 		label_7.setIcon(new ImageIcon(TestGUIAmbulancias.class.getResource("/Images/heart-health-main.jpg")));
 		label_7.setBounds(0, 0, 953, 523);
 		reporteIPS.add(label_7);
-		/*
+		/**
 		 * Reaccion al cambio de tabs dentro de la interfaz
 		 */
 		ChangeListener changeListener = new ChangeListener() {
@@ -1199,42 +1409,96 @@ public class TestGUIAmbulancias extends JFrame {
 		tabbedPane.addChangeListener(changeListener);
 	}
 
+	/**
+	 * Metodo para ir a la ventana del menu principal
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar el boton
+	 */
 	private void irMenuPrincipal(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.menuServicios);
 	}
 
+	/**
+	 * Metodo para ir a la ventana de registrar un servicio
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar el boton
+	 */
 	private void irRegistrarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.registrarServicio);
 	}
 
+	/**
+	 * Obtener el paciente
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getPaciente() {
 		return paciente;
 	}
 
+	/**
+	 * Obtener combobox del tipo
+	 * 
+	 * @return JComboBox
+	 */
 	public JComboBox getComboBoxTipo() {
 		return comboBoxTipo;
 	}
 
+	/**
+	 * Obtener telefono
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getTelefono() {
 		return telefono;
 	}
 
+	/**
+	 * Otener ComboBox de tipo de direccion
+	 * 
+	 * @return JComboBox
+	 */
 	public JComboBox getComboBoxDireccion() {
 		return comboBoxDireccion;
 	}
 
+	/**
+	 * Obtener Calle del servicio
+	 * 
+	 * @return JTetField
+	 */
 	public JTextField getCalleServicio() {
 		return calleServicio;
 	}
 
+	/**
+	 * Obtener Carrera del servicio
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getCarreraServicio() {
 		return carreraServicio;
 	}
 
+	/**
+	 * Obtener el numero de calle/carrera del servicio
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getNumeroServicio() {
 		return numeroServicio;
 	}
 
+	/**
+	 * Metodo para mostrar los componentes de la pestania de registrar un
+	 * servicio
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void mostrarRegistroServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.registrarServicio);
 		comboBoxDireccion.removeAllItems();
@@ -1256,6 +1520,12 @@ public class TestGUIAmbulancias extends JFrame {
 		this.numeroServicio.setText(null);
 	}
 
+	/**
+	 * Metodo relcaionado a registrar un servicio cuando se presiona un boton
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void registrarServicio(ActionEvent e) {
 		int calle;
 		int carrera;
@@ -1324,14 +1594,31 @@ public class TestGUIAmbulancias extends JFrame {
 					"Escritura de datos", JOptionPane.ERROR_MESSAGE);
 	}
 
+	/**
+	 * Obtener el tab
+	 * 
+	 * @return JTabbedPane
+	 */
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
 
+	/**
+	 * Metodo para regresar al menu de servicios cuando un boton es oprimido
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void regresar(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.menuServicios);
 	}
 
+	/**
+	 * Metodo para ir a la pestania de Registrar la posicion de una ambulancia
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void irRegistrarPosicion(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.registrarPosicion);
 		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
@@ -1348,7 +1635,11 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	/**
+	 * Metodo para registrar la nueva posicion de una ambulancia cuando se
+	 * presiona un boton
 	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
 	 */
 	private void registrarPosicionActual(ActionEvent e) {
 		int indexFilaSeleccionada = tablaAmbulancias.getSelectedRow();
@@ -1382,6 +1673,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Ir a la pestania de Asignar un servicio a una ambulancia y a una IPS
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void irAsignarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.asignarServicio);
 		if (!empresaAmbulancias.getAmbulancias().isEmpty()) {
@@ -1420,7 +1717,12 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	/**
-	 * @param orLlaves
+	 * Metodo para llenar lel Vector dado de datos de ambulancias
+	 * 
+	 * @param orLlaves:
+	 *            Lista de Enteros que son los codigos de la ambulancias
+	 * @param filasDatos:
+	 *            Vector que contiene los datos para la tabla
 	 */
 	private void llenarFilasAmbulancias(List<Integer> orLlaves, Vector filasDatos) {
 		for (Integer llave : orLlaves) {
@@ -1465,6 +1767,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para ir a la pestania de Finalizar un servicio
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void irFinalizarServicio(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.finalizarServicio);
 		filaDatosServicios = new Vector(); // obtener items de venta actual:
@@ -1481,7 +1789,13 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	/**
-	 * @param items
+	 * Metodo para llenar el Vector de datos de los datos de los servicios.
+	 * 
+	 * @param items:
+	 *            Lista que significa los servicios del sistema a agregar al
+	 *            vector de datos
+	 * @param filasDatos:
+	 *            Vector a llenar
 	 */
 	private void llenarFilasServicio(List<Servicio> items, Vector filasDatos) {
 		for (Servicio servicio : items) {
@@ -1505,6 +1819,13 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para ir a la pestania de Reporte de seervicios con IPS y
+	 * ambulancia asignados
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void irReporteServicios(ActionEvent e) {
 		this.getTabbedPane().setSelectedIndex(this.reporteServicios);
 		this.nombreIPS.setText(null);
@@ -1534,7 +1855,12 @@ public class TestGUIAmbulancias extends JFrame {
 	}
 
 	/**
-	 * @param items
+	 * Metodo para llenar el vector dado de datos de servicios
+	 * 
+	 * @param items:
+	 *            Lista que significa los servicios del sistema
+	 * @param filasDatos:
+	 *            Vector a llenar de datos
 	 */
 	private void llenarFilasServicioReporte(List<Servicio> items, Vector filasDatos) {
 		for (Servicio servicio : items) {
@@ -1554,6 +1880,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para ir a la pestania de Reporte de IPS con servicios asociados
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void irReporteIPS(ActionEvent e) {
 		filaDatosServicios2.removeAllElements();
 		tablaServicios2.removeAll();
@@ -1568,10 +1900,25 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para ir a la pestania de Ingresar IPS y ambulancias al sistema por
+	 * medio de archivos
+	 * 
+	 * @param arg0:
+	 *            Evento relacionado a presionar un boton
+	 */
 	private void irIngresarIPSAmbulancias(ActionEvent arg0) {
 		this.getTabbedPane().setSelectedIndex(this.ingresarIPSAmbulancias);
 	}
 
+	/**
+	 * Metodo para seleccionar el archivo que contiene las IPS del sistema
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 * @throws PersistenceException:
+	 *             Excepcion de persistencia (Lectura de archivo)
+	 */
 	private void seleccionarIPS(ActionEvent e) throws PersistenceException {
 		// muestra otra ventana proponiendo directorio ./data:
 		JFileChooser chooser = new JFileChooser("./");
@@ -1590,6 +1937,15 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para seleccionar el archivo que contiene las ambulancias del
+	 * sistema
+	 * 
+	 * @param e:
+	 *            Evento relacionado a presionar un boton
+	 * @throws PersistenceException:
+	 *             Excepcion de persistencia (Lectura de archivo)
+	 */
 	private void seleccionarAmbulancias(ActionEvent arg0) throws PersistenceException {
 		// muestra otra ventana proponiendo directorio ./data:
 		JFileChooser chooser = new JFileChooser("./");
@@ -1608,10 +1964,20 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
 
+	/**
+	 * Obtener tabla de ambulancias para registrar su posicion actual
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaAmbulancias() {
 		if (tablaAmbulancias == null) {
 			filaDatosAmbulancias = new Vector();
@@ -1622,10 +1988,20 @@ public class TestGUIAmbulancias extends JFrame {
 
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane_1() {
 		return scrollPane_1;
 	}
 
+	/**
+	 * Obtener tabla de servicios para finalizar
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaServicios() {
 		if (tablaServicios == null) {
 			filaDatosServicios = new Vector();
@@ -1635,10 +2011,20 @@ public class TestGUIAmbulancias extends JFrame {
 		return tablaServicios;
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane_5() {
 		return scrollPane_5;
 	}
 
+	/**
+	 * Obtener tabla de servicios para Reporte de Servicios
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaServicios2() {
 		if (tablaServicios2 == null) {
 			filaDatosServicios2 = new Vector();
@@ -1648,14 +2034,29 @@ public class TestGUIAmbulancias extends JFrame {
 		return tablaServicios2;
 	}
 
+	/**
+	 * Obtener ComboBox de la IPS (Reporte IPS)
+	 * 
+	 * @return JComboBox
+	 */
 	public JComboBox getComboBoxIPS() {
 		return comboBoxIPS;
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane_2() {
 		return scrollPane_2;
 	}
 
+	/**
+	 * Obtener tabla de servicios para Reporte de IPS
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaServicios1() {
 		if (tablaServicios1 == null) {
 			filaDatosServicios1 = new Vector();
@@ -1665,14 +2066,29 @@ public class TestGUIAmbulancias extends JFrame {
 		return tablaServicios1;
 	}
 
+	/**
+	 * Obtener boton para actualizar la posicion de una ammbulancia
+	 * 
+	 * @return
+	 */
 	public JButton getBtnActualizar() {
 		return btnActualizar;
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane_6() {
 		return scrollPane_6;
 	}
 
+	/**
+	 * Obtener tabla de servicios para Asignar servicio
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaServicios3() {
 		if (tablaServicios3 == null) {
 			filaDatosServicios3 = new Vector();
@@ -1682,10 +2098,20 @@ public class TestGUIAmbulancias extends JFrame {
 		return tablaServicios3;
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane_7() {
 		return scrollPane_7;
 	}
 
+	/**
+	 * Obtener tabla de IPS para Asignar servicio
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaIPS() {
 		if (tablaIPS == null) {
 			filaDatosIPS = new Vector();
@@ -1697,10 +2123,20 @@ public class TestGUIAmbulancias extends JFrame {
 		return tablaIPS;
 	}
 
+	/**
+	 * Obtener ScrollPane
+	 * 
+	 * @return scrollPane
+	 */
 	public JScrollPane getScrollPane_8() {
 		return scrollPane_8;
 	}
 
+	/**
+	 * Obtener tabla de IPS para Asignar Servicio
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTablaAmbulancias3() {
 		if (tablaAmbulancias3 == null) {
 			filaDatosAmbulancias3V = new Vector();
@@ -1711,6 +2147,12 @@ public class TestGUIAmbulancias extends JFrame {
 		return tablaAmbulancias3;
 	}
 
+	/**
+	 * Metodo para guardar la totalidad del sistema
+	 * 
+	 * @param e:
+	 *            Relacionado al presionar un boton
+	 */
 	private void guardarArchivo(ActionEvent e) {
 		// muestra otra ventana proponiendo directorio ./data:
 		JFileChooser chooser = new JFileChooser("./data");
@@ -1729,6 +2171,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para cargar los datos del sistema
+	 * 
+	 * @param e:
+	 *            Relacionado al presionar un boton
+	 */
 	private void cargarDatos(ActionEvent e) {
 		// muestra otra ventana proponiendo directorio ./data:
 		JFileChooser chooser = new JFileChooser("./data");
@@ -1747,6 +2195,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para finalizar un servicio al presionar un boton
+	 * 
+	 * @param e:
+	 *            Relacionado al presionar un boton
+	 */
 	private void finalizarServicio(ActionEvent e) {
 		int indexFilaSeleccionada = tablaServicios.getSelectedRow();
 		if (indexFilaSeleccionada != -1) {
@@ -1769,6 +2223,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para Asignar un servicio al presionar un boton
+	 * 
+	 * @param e:
+	 *            Relacionado al presionar un boton
+	 */
 	private void asignarServicio(ActionEvent e) {
 		int indexFilaSeleccionada = tablaServicios3.getSelectedRow();
 		TableModel model = tablaServicios3.getModel();
@@ -1801,6 +2261,12 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Metodo para mostrar la IPS y ambulancia asignados a un servicio dado
+	 * 
+	 * @param e:
+	 *            Relacionado al presionar un boton
+	 */
 	private void mostrarIpsAmbulancia(ActionEvent e) {
 		long indexFilaSeleccionada = tablaServicios1.getSelectedRow();
 		if (indexFilaSeleccionada != -1) {
@@ -1848,54 +2314,120 @@ public class TestGUIAmbulancias extends JFrame {
 		}
 	}
 
+	/**
+	 * Obtener el JTextField Carrera ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getCarreraAmbulancia() {
 		return carreraAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField Tipo ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getTipoAmbulancia() {
 		return tipoAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField medico/Enfermero ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getMedicoAmbulancia() {
 		return medicoAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField placa ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getPlacaAmbulancia() {
 		return placaAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField tarifa ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getTarifaAmbulancia() {
 		return tarifaAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField nombre IPS
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getNombreIPS() {
 		return nombreIPS;
 	}
 
+	/**
+	 * Obtener el JTextField Hora solicitud ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getHoraAmbulancia() {
 		return horaAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField direccion IPS
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getDireccionIPS() {
 		return DireccionIPS;
 	}
 
+	/**
+	 * Obtener el JTextField Codigo ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getCodigoAmbulancia() {
 		return codigoAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField Calle ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getCalleAmbulancia() {
 		return calleAmbulancia;
 	}
 
+	/**
+	 * Obtener el JTextField Tipo IPS
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getTipoAtencionIPS() {
 		return tipoAtencionIPS;
 	}
 
+	/**
+	 * Obtener el JTextField Tipo UCI ambulancia
+	 * 
+	 * @return JTextField
+	 */
 	public JTextField getTipoUCIAmbulancia() {
 		return tipoUCIAmbulancia;
 	}
 
+	/**
+	 * Metodo para mostrar los servicios asociados a una IPS
+	 * 
+	 * @param e:
+	 *            Relacionado al presionar un boton
+	 */
 	private void mostrarServiciosAsociados(ActionEvent e) {
 		filaDatosServicios2.removeAllElements();
 		String comboIps = (String) comboBoxIPS.getSelectedItem();
