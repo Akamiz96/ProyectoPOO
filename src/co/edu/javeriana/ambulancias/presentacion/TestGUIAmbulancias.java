@@ -57,6 +57,12 @@ import java.awt.SystemColor;
 import java.awt.Window.Type;
 import javax.swing.ImageIcon;
 
+/**
+ * Clase para la Interfaz Grafica del sistema
+ * 
+ * @author Pablo Ariza y Alejandro Castro
+ *
+ */
 public class TestGUIAmbulancias extends JFrame {
 
 	/**
