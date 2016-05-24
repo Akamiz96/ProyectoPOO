@@ -2240,31 +2240,52 @@ public class TestGUIAmbulancias extends JFrame {
 		TableModel model = tablaServicios3.getModel();
 		long codigo = (long) model.getValueAt(indexFilaSeleccionada, 0);
 		Servicio servicio = ((EmpresaAmbulancias) empresaAmbulancias).buscarServicio(codigo);
-		if (empresaAmbulancias.asignarServicio(codigo)) {
+		try {
 			Vector fila = (Vector) filaDatosServicios3.get(indexFilaSeleccionada);
-			fila.set(6, EstadoServicio.ASIGNADO);
-			if (servicio.getTipoServicio() != TipoServicio.DOMICILIO)
-				fila.set(7, servicio.getIps().getNombre());
-			fila.set(8, servicio.getAmbulancia().getCodigo());
-			tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
-			scrollPane_6.setViewportView(getTablaServicios3());
-			int numFila;
-			for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++) {
-				Vector auxFila = (Vector) filaDatosAmbulancias3V.get(numFila);
-				if ((Integer) auxFila.get(0) == servicio.getAmbulancia().getCodigo())
-					break;
+			if (fila.get(6).equals("ASIGNADO")) {
+				JOptionPane.showMessageDialog(this, "El servicio ya ha sido asignado", "Asignacion erronea",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (fila.get(6).equals("FINALIZADO")) {
+					JOptionPane.showMessageDialog(this, "El servicio ya ha sido asignado y finalizado",
+							"Asignacion erronea", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (empresaAmbulancias.asignarServicio(codigo)) {
+
+						fila.set(6, EstadoServicio.ASIGNADO);
+						if (servicio.getTipoServicio() != TipoServicio.DOMICILIO)
+							fila.set(7, servicio.getIps().getNombre());
+						fila.set(8, servicio.getAmbulancia().getCodigo());
+						tablaServicios3 = new JTable(filaDatosServicios3, nombreColumServiciosV3);
+						scrollPane_6.setViewportView(getTablaServicios3());
+						int numFila;
+						for (numFila = 0; numFila < tablaAmbulancias3.getRowCount(); numFila++) {
+							Vector auxFila = (Vector) filaDatosAmbulancias3V.get(numFila);
+							if ((Integer) auxFila.get(0) == servicio.getAmbulancia().getCodigo())
+								break;
+						}
+						tablaAmbulancias3.changeSelection(numFila, 0, false, false);
+						for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++) {
+							Vector auxFila = (Vector) filaDatosIPS.get(numFila);
+							if (auxFila.get(0).equals(servicio.getIps().getNombre()))
+								break;
+						}
+						tablaIPS.changeSelection(numFila, 0, false, false);
+					} else {
+						JOptionPane.showMessageDialog(this, "No pudo ser asignado el servicio", "fallo asignacion",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			}
-			tablaAmbulancias3.changeSelection(numFila, 0, false, false);
-			for (numFila = 0; numFila < tablaIPS.getRowCount(); numFila++) {
-				Vector auxFila = (Vector) filaDatosIPS.get(numFila);
-				if (auxFila.get(0).equals(servicio.getIps().getNombre()))
-					break;
-			}
-			tablaIPS.changeSelection(numFila, 0, false, false);
-		} else {
-			JOptionPane.showMessageDialog(this, "No pudo ser asignado el servicio", "fallo finalizacion",
+		} catch (ArrayIndexOutOfBoundsException fueraDeLimites) {
+			JOptionPane.showMessageDialog(this, "Favor seleccionar una fila valida", "seleccion invalida",
 					JOptionPane.ERROR_MESSAGE);
+		} catch (Exception excepcion) {
+			JOptionPane.showMessageDialog(this,
+					"No pudo ser asignado el servicio. Revisar la asignacion de la posicion de ambulancias",
+					"fallo finalizacion", JOptionPane.ERROR_MESSAGE);
 		}
+
 	}
 
 	/**

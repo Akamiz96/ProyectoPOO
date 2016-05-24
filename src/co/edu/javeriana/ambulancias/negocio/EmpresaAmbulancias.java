@@ -176,7 +176,7 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	 *            Indica la placa de la nueva ambulancia
 	 * @param tipoDotacion:
 	 *            Indica el equipamiento de la nueva ambulancia
-	 * @throws PersistenceException 
+	 * @throws PersistenceException
 	 */
 	public void agregarAmbulancia(String tipoAmbulancia, int codigo, String placa, String medicoEnfermero,
 			String tipoUCI) throws PersistenceException {
@@ -274,27 +274,29 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	public boolean asignarServicio(long codigo) {
 		Servicio servicio = this.buscarServicio(codigo);
 		if (servicio != null) {
-			List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
-			if (!ambDisponibles.isEmpty()) {
-				Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles, servicio.getDireccion().getCalle(),
-						servicio.getDireccion().getCarrera());
-				IPS ips;
-				if (!(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
-					ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
-							servicio.getDireccion().getCarrera());
-				} else
-					ips = null;
-				if (ips != null && !(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
-					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
-					return true;
-				} else if (servicio.getTipoServicio() == TipoServicio.DOMICILIO) {
-					asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
-					return true;
-				} else {
-					return false;
+			if (!(servicio.getEstado() == EstadoServicio.FINALIZADO)) {
+				List<Ambulancia> ambDisponibles = this.construirAmbulanciasDisponiblesServicio(servicio);
+				if (!ambDisponibles.isEmpty()) {
+					Ambulancia ambulancia = calcularAmbulanciaMasCercana(ambDisponibles,
+							servicio.getDireccion().getCalle(), servicio.getDireccion().getCarrera());
+					IPS ips;
+					if (!(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
+						ips = calcularIPSMasCercano(this.lasIPS, servicio.getDireccion().getCalle(),
+								servicio.getDireccion().getCarrera());
+					} else
+						ips = null;
+					if (ips != null && !(servicio.getTipoServicio() == TipoServicio.DOMICILIO)) {
+						asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
+						return true;
+					} else if (servicio.getTipoServicio() == TipoServicio.DOMICILIO) {
+						asignarEstadoAmbulanciaIPS(servicio, ambulancia, ips);
+						return true;
+					} else {
+						return false;
+					}
 				}
+				return false;
 			}
-			return false;
 		}
 		return false;
 	}
