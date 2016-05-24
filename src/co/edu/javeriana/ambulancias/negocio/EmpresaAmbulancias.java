@@ -335,9 +335,10 @@ public class EmpresaAmbulancias implements Serializable, IServiciosAmbulancias {
 	public boolean finalizarServicio(long codigo) {
 		boolean finalizado = false;
 		Servicio servicio = this.buscarServicio(codigo);
-		if (servicio != null && servicio.getAmbulancia() != null) {
+		if (servicio != null) {
 			servicio.setEstado(EstadoServicio.FINALIZADO);
-			servicio.getAmbulancia().setEnServicio(false);
+			if (servicio.getTipoServicio() != TipoServicio.DOMICILIO)
+				servicio.getAmbulancia().setEnServicio(false);
 			finalizado = true;
 		}
 		return finalizado;
